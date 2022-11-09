@@ -22,7 +22,7 @@ export default function Index({
     <>
       <Layout preview={preview}>
 
-          {homeSettings.homeDesign.pageBuilder.map((section) => {
+          {homeSettings?.homeDesign?.pageBuilder?.map((section) => {
 
             if (section._type === 'hero') {
               return (
