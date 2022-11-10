@@ -10,7 +10,7 @@ import Footer from "./footer"
 import Error from '../templates/error';
 import Alert from '../alert';
 
-export default function Layout({ children, preview }) {
+export default function Layout({ children, preview }: any) {
 
     const client = SanityClient({
         projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
