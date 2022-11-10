@@ -6,7 +6,7 @@ export default function Idx() {
             <Layout>
                 <div
                     dangerouslySetInnerHTML={{
-                        __html: `{idxbody}`
+                        __html: `{idx_body}`
                     }}
                 />
             </Layout>
