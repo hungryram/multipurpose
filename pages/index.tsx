@@ -30,6 +30,7 @@ export default function Index({
                   <Hero 
                     heading={section.heading}
                     subtitle={section.subtitle}
+                    image={section.image}
                   />
                 </div>
               )

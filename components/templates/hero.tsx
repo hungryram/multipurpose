@@ -1,28 +1,38 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 
-export default function Hero({ image, heading, subtitle, _key, blurData, bodyColor, headerColor, buttonLink, buttonText, idxSubdomain = 'search', idxId = '132970' } : any) {
+export default function Hero({ image, heading, altTag, subtitle, _key, blurData, bodyColor, headerColor, buttonLink, buttonText, idxSubdomain = 'search', idxId = '132970' } : any) {
 
 
     return (
-        <div className="flex items-center relative h-screen" key={_key}>
+        <div className="flex items-center" key={_key}>
             {image ?
                 <Image
-                    src={urlForImage(image).url()}
-                    layout="fill"
-                    objectFit="cover"
-                    alt="Hero Image"
+                    src={urlForImage(image).height(1000).width(2000).url()}
+                    alt={altTag}
+                    className="w-full h-screen"
                     priority
+                    width={2000}
+                    height={1000}
+                    sizes="100vw"
                     placeholder="blur"
-                    blurDataURL={urlForImage(blurData).width(100).height(100).quality(1).url()}
+                    blurDataURL={urlForImage(image).width(100).height(100).quality(1).url()}
+                    style={{
+                        objectFit: 'cover'
+                    }}
                 />
                 :
                 <Image
                 src="/assets/banner.jpg"
-                layout="fill"
-                objectFit="cover"
-                alt="Hero Image"
+                alt="placeholder"
+                className="w-full h-screen"
+                width={2000}
+                height={1000}
+                sizes="100vw"
                 priority
+                style={{
+                    objectFit: 'cover'
+                }}
             />
             }
             <div className="overlay"></div>

@@ -23,6 +23,7 @@ export default function Layout({ children, preview }) {
     if (error) return <Error />;
     if (!data) return <Loading />;
     const bgLoader = data.appearances?.loaderImage
+
     return (
         <>
             <Head>
@@ -50,9 +51,14 @@ export default function Layout({ children, preview }) {
                 </style>
             </Head>
             <Navbar 
-                company_name={data.profileSettings.company_name}
+                company_name={data.profileSettings?.company_name}
+                logo={data.appearances?.branding?.logo}
+                logoWidth={data.appearances?.branding?.logoWidth}
+                navItems={data.appearances?.header?.navItems}
+                ctaLink={data.appearances.header?.ctaLink}
+                ctaText={data.appearances.header?.ctaText}
             />
-            {preview && <Alert preview={preview} />}
+            {/* {preview && <Alert preview={preview} />} */}
             <main>
                 {children}
             </main>

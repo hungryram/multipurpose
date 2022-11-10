@@ -29,7 +29,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
                 onMouseLeave={() => setDropdownActive(null)}
             >
-                <div className="md:flex items-center justify-center md:px-2 md:visible hidden">
+                <div className="md:flex items-center justify-center md:visible hidden p-4">
                     <div className="flex-1">
                         <Link href="/" className="relative cursor-pointer">
                                 {logo ?
@@ -37,12 +37,12 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                         <source srcSet={urlForImage(logo).url()} type="image" />
                                         <img
                                             src={urlForImage(logo).url()}
-                                            width={logoWidth}
+                                            width={logoWidth ? logoWidth : '150'}
                                             alt={company_name}
                                         />
                                     </picture>
                                     :
-                                    <h1 className="text-3xl">{company_name}</h1>
+                                    <h1 className="text-3xl">{company_name ? company_name : 'Company Name'}</h1>
                                 }
                         </Link>
                     </div>
