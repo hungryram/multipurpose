@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/templates/contenteditor.js", "pages/index.js", "components/global/Layout.js", "pages/idx.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/templates/contenteditor.js", "pages/index.js", "components/global/Layout.js", "pages/[slug].js", "pages/idx.js"],
   "exclude": ["node_modules"]
 }

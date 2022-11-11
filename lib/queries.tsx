@@ -84,6 +84,12 @@ export const pagesSlugsQuery = groq`
 *[_type == "pages" && defined(slug.current)][].slug.current
 `
 
+export const pagesBySlugQuery = groq`
+*[_type == "pages" && slug.current == $slug][0] {
+  'slug': slug.current
+}
+`
+
 export const postQuery = groq`
 {
   "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) [0] {

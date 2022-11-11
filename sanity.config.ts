@@ -3,6 +3,9 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
+ import { AiOutlineHome } from "react-icons/ai"
+ import { MdOutlineDesignServices, MdPersonOutline } from "react-icons/md"
+
  //  PLUGINS
  import { colorInput } from '@sanity/color-input'
  import { media } from "sanity-plugin-media"
@@ -23,6 +26,11 @@
  import profileDocument from './schemas/documents/profile'
  import pagesDocument from './schemas/documents/pages'
  import appearanceDocument from './schemas/documents/appearance'
+ import testimonialsDocument from './schemas/documents/testimonials'
+ import pressDocument from './schemas/documents/press'
+ import teamDocument from './schemas/documents/team'
+ import partnersDocument from './schemas/documents/partners'
+ import locationsDocument from './schemas/documents/locations'
  import navigationDocument from './schemas/documents/navigation'
  
  // OBJECTS
@@ -65,8 +73,13 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
       profileDocument,
       homeDocument,
       navigationDocument,
-      pagesDocument, 
+      pagesDocument,
       postType, 
+      teamDocument,
+      locationsDocument,
+      partnersDocument,
+      testimonialsDocument,
+      pressDocument,
       authorType,
       // OBJECTS
       textcolorObject,
@@ -107,6 +120,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
             const profileListItem = // A singleton not using `documentListItem`, eg no built-in preview
             S.listItem()
               .title(profileDocument.title)
+              .icon(MdPersonOutline)
               .child(
                 S.editor()
                   .id(profileDocument.name)
@@ -117,6 +131,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
             const homeListItem = // A singleton not using `documentListItem`, eg no built-in preview
             S.listItem()
               .title(homeDocument.title)
+              .icon(AiOutlineHome)
               .child(
                 S.editor()
                   .id(homeDocument.name)
@@ -127,6 +142,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
               const appearanceListItem = // A singleton not using `documentListItem`, eg no built-in preview
               S.listItem()
                 .title(appearanceDocument.title)
+                .icon(MdOutlineDesignServices)
                 .child(
                   S.editor()
                     .id(appearanceDocument.name)
@@ -136,12 +152,12 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
  
          // The default root list items (except custom ones)
          const defaultListItems = S.documentTypeListItems().filter(
-          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name, homeDocument.name, media.tag].includes(listItem.getId())
+          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name, homeDocument.name].includes(listItem.getId())
          )
  
          return S.list()
            .title('Content')
-           .items([settingsListItem, profileListItem, appearanceListItem, homeListItem, S.divider(), ...defaultListItems])
+           .items([profileListItem, appearanceListItem, homeListItem, S.divider(), ...defaultListItems])
        },
  
        // `defaultDocumentNode is responsible for adding a “Preview” tab to the document pane
@@ -192,6 +208,8 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
             break
           case profileDocument.name:
             break
+            case appearanceDocument.name:
+              break
             case pagesDocument.name:
               url.searchParams.set('slug', (document.slug as Slug).current!)
               break

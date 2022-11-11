@@ -1,4 +1,4 @@
-import { postBySlugQuery, pagesSlugsQuery } from '../../lib/queries'
+import { postBySlugQuery, pagesBySlugQuery } from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
 function redirectToPreview(res, Location) {
@@ -25,7 +25,7 @@ export default async function preview(req, res) {
     slug: req.query.slug,
   })
 
-  const pages = await getClient(true).fetch(pagesSlugsQuery, {
+  const pages = await getClient(true).fetch(pagesBySlugQuery, {
     slug: req.query.slug,
   })
 

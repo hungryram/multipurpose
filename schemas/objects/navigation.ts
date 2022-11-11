@@ -35,7 +35,13 @@ export default defineType({
             description: 'Select pages for navigation',
             type: 'reference',
             hidden: ({ parent }) => parent?.linkType !== "internal",
-            to: [{ type: 'post' }, {type: 'author'}, {type: 'pages'}],
+            to: [
+                {type: 'post'}, 
+                {type: 'author'}, 
+                {type: 'pages'}, 
+                {type: 'locations'}, 
+                {type: 'partners'}
+            ],
         },
         {
             name: 'externalUrl',

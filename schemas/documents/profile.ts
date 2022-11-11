@@ -2,31 +2,43 @@ export default {
     name: 'profile',
     title: 'Profile Settings',
     type: 'document',
+    groups: [
+        {title: 'Contact Information', name: 'contact'},
+        {title: 'Settings', name: 'settings'},
+    ],
     fields: [
         {
             title: 'Company Name',
             name: 'company_name',
             type: 'string',
+            group: 'contact'
         },
         {
             title: 'Contact Information',
             name: 'contact_information',
-            type: 'contact'
+            type: 'contact',
+            group: 'contact'
+
         },
         {
             title: 'Address',
             name: 'address',
-            type: 'location'
+            type: 'location',
+            group: 'contact'
+
         },
         {
             title: 'Social',
             name: 'social',
-            type: 'social'
+            type: 'social',
+            group: 'contact'
+
         },
         {
             name: 'seo',
             title: 'Search Engine Optimization',
             type: 'object',
+            group: 'settings',
             options: {
                 collapsible: true,
                 collapsed: true,
@@ -59,6 +71,7 @@ export default {
             title: 'Settings',
             name: 'settings',
             type: 'object',
+            group: 'settings',
             options: {
                 collapsible: true,
                 collapsed: true

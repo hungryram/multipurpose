@@ -1,4 +1,4 @@
-import { BookIcon } from '@sanity/icons'
+import { MdOutlineArticle } from 'react-icons/md'
 import { defineType } from 'sanity'
 
 import authorType from './author'
@@ -18,7 +18,7 @@ import authorType from './author'
 export default defineType({
   name: 'post',
   title: 'Post',
-  icon: BookIcon,
+  icon: MdOutlineArticle,
   type: 'document',
   fields: [
     {
