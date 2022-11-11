@@ -11,6 +11,8 @@ export default defineType({
             type: 'array',
             of: [
                 {type: 'hero'},
+                {type: 'textandImage'},
+                {type: 'featuredGrid'},
             ]
         }
     ]

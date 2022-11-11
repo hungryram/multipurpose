@@ -1,45 +1,51 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
+import Container from "../util/container"
+import PrimaryButton from "../util/primary-button"
+import Section from "../util/section"
+import ContentEditor from "./contenteditor"
 
-export default function TextImage({ image, heading, content, textStyle, headerStyle, buttonText, buttonLink, altTag } : any) {
+export default function TextImage({ image, heading, content, textStyle, headerStyle, buttonLabel, buttonLink, altTag }: any) {
     return (
-        <div className="section">
-            <div className="container">
+        <Section>
+            <Container>
                 <div className="md:flex items-center">
                     {image &&
-                        <div className="md:w-1/2 relative text-center mb-10">
+                        <div className="md:w-1/2 text-center">
                             <Image
                                 src={urlForImage(image).url()}
-                                width={400}
-                                height={500}
-                                objectFit="contain"
+                                width={500}
+                                height={0}
                                 alt={altTag}
                                 placeholder="blur"
-                                blurDataURL={urlFor(image).width(50).height(50).quality(1).url}
+                                blurDataURL={urlForImage(image).width(50).height(50).quality(1).url()}
+                                style={{
+                                    height: 'auto',
+                                    margin: '0 auto',
+                                }}
                             />
                         </div>
                     }
-                    <div className="md:w-1/2">
-                        {heading && <h2 className="h2 mb-10" style={headerStyle}>{heading}</h2>}
+                    <div className={`${image ? 'md:w-1/2' : 'w-full text-center'}`}>
+                        {heading && <h2 className="h2" style={headerStyle}>{heading}</h2>}
                         {content &&
                             <div className="content" style={textStyle}>
-                                <PortableText
-                                    value={content}
+                                <ContentEditor
+                                    content={content}
                                 />
                             </div>
                         }
                         <div className="mt-8">
-                            {buttonText &&
-                                <PrimaryLink
+                            {buttonLabel &&
+                                <PrimaryButton
                                     buttonLink={buttonLink}
-                                    buttonText={buttonText}
-                                    buttonType="primary-button"
+                                    buttonLabel={buttonLabel}
                                 />
                             }
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Container>
+        </Section>
     )
 }

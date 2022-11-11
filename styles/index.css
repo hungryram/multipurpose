@@ -3,3 +3,70 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* OVERLAY */
+
+.featured-grid-overlay:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.25);
+    right: 0;
+    bottom: 0;
+}
+
+/* BUTTON */
+
+.primary-button {
+    background-color: var(--primary-button-background);
+    color: var(--primary-button-text);
+    @apply px-4 py-2
+}
+
+/* HEADINGS */
+
+.h2 {
+    @apply md:text-3xl text-2xl;
+}
+
+.h3 {
+    @apply md:text-xl text-lg;
+}
+
+/* CONTENT */
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    @apply mt-4;
+  }
+  
+  .content h1 {
+    @apply md:text-5xl text-3xl;
+  }
+  
+  .content h2 {
+    @apply md:text-5xl text-3xl;
+  }
+  
+  .content h3 {
+    @apply md:text-xl text-lg;
+  }
+  
+  .content h4 {
+    @apply text-lg;
+  }
+  
+  .content p {
+    @apply my-2 pt-6;
+  }
+  
+  .content ul, .content ol {
+    @apply my-2 list-disc ml-5;
+  }
+  
+  .content li {
+    @apply my-1;
+  }

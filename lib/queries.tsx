@@ -30,6 +30,9 @@ export const homeQuery = groq`
     date,
     mainImage
   },
+  'profileSettings': *[_type == 'profile'][0]{
+    company_name
+  }
 }
 `
 
@@ -37,6 +40,49 @@ export const indexQuery = groq`
 *[_type == "post"] | order(date desc, _updatedAt desc) {
   ${postFields}
 }`
+
+export const pageQuery = groq`
+{
+    'pageDesign': *[_type == 'pages' && slug.current == $slug][0],
+    ...,
+    'team': *[_type == 'team'][0..6]{
+      name,
+      _id,
+      image,
+      'slug': slug.current
+    },
+    'blog': *[_type == 'blog'][0..4]{
+      'slug': slug.current,
+      title,
+      _id,
+      excerpt,
+      date,
+      mainImage
+    },
+    'listings': *[_type == 'listings'][0..6]{
+      'slug': slug.current,
+      propType,
+      _id,
+      shortTitle,
+      status,
+      price,
+      address,
+      city,
+      state,
+      zipCode,
+      'thumbnail': gallery.images[0],
+      'details': details {
+     bedrooms,
+     bathrooms,
+     squareFootage,
+   }
+    }
+}
+`
+
+export const pagesSlugsQuery = groq`
+*[_type == "pages" && defined(slug.current)][].slug.current
+`
 
 export const postQuery = groq`
 {

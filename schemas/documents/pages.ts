@@ -4,11 +4,18 @@ export default defineType({
     title: 'Pages',
     name: 'pages',
     type: 'document',
+    groups: [
+        {name: 'content', title: 'Content'},
+        {name: 'settings', title: 'Settings'},
+        {name: 'seo', title: 'SEO'},
+      ],
     fields: [
+        
         {
             title: 'Title',
             name: 'title',
-            type: 'string'
+            type: 'string',
+            group: 'settings'
         },
         {
             title: 'URL',
@@ -18,36 +25,33 @@ export default defineType({
             options: {
               source: "title",
             },
+            group: 'settings'
         },
         {
             title: 'Header Image',
             name: 'headerImage',
             type: 'image',
+            group: 'settings',
             options: {
                 hotspot: true
             },
-            fields: [
-                {
-                    title: 'Alt Tag',
-                    name: 'altTag',
-                    type: 'string',
-                    description: 'Describe your image'
-                }
-            ]
         },
         {
             title: 'Page Builder',
             name: 'pageBuilder',
             type: 'array',
+            group: 'content',
             of: [
                 {type: 'hero'},
+                {type: 'contactPage'},
             ]
         },
         {
             title: 'Search Engine Optimization',
             name: 'seo',
             type: 'seo',
-            validation: Rule => Rule.required().error('Required for search engines')
+            validation: Rule => Rule.required().error('Required for search engines'),
+            group: 'seo'
         }
     ]
 })

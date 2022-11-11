@@ -36,8 +36,8 @@ export default function Layout({ children, preview }: any) {
                             --footer-background-color: ${data.appearances?.footerBg};
                             --footer-header-color: ${data.appearances?.footerHeader};
                             --footer-text-color: ${data.appearances?.footerText};
-                            --primary-button-background: ${data.appearances?.primaryButtonBg};
-                            --primary-button-text: ${data.appearances?.primaryButtonText};
+                            --primary-button-background: ${data.appearances?.primaryButtonBg ?? '#000000'};
+                            --primary-button-text: ${data.appearances?.primaryButtonText ?? '#ffffff'};
                             --secondary-color: ${data.appearances?.secondaryColor};
 
                             --header-background-color: ${data.appearances?.navBgColor ? data.appearances?.navBgColor : 'transparent'};

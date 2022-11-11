@@ -4,44 +4,43 @@ export default defineType({
     title: 'Hero',
     name: 'hero',
     type: 'object',
+    groups: [
+        {name: 'content', title: 'Content'},
+        {name: 'settings', title: 'Settings'},
+    ],
     fields: [
         {
             title: 'Heading',
             name: 'heading',
-            type: 'string'
+            type: 'string',
+            group: 'content'
         },
         {
             title: 'Subtitle',
             name: 'subtitle',
-            type: 'text'
+            type: 'text',
+            group: 'content'
         },
         {
             title: 'Image',
             name: 'image',
             type: 'image',
+            group: 'content',
             options: {
                 hotspot: true,
-                collapsible: true,
-                collapsed: true
             },
-            fields: [
-                {
-                    title: 'Alt Tag',
-                    name: 'altTag',
-                    type: 'string',
-                    description: 'Describe your image'
-                }
-            ]
         },
         {
             title: 'Text Color',
             name: 'textColor',
             type: 'textColor',
+            group: 'settings'
         },
         {
             title: 'Button',
             name: 'button',
             type: 'object',
+            group: 'content',
             options: {
                 collapsible: true,
                 collapsed: true,

@@ -5,12 +5,15 @@
 
  //  PLUGINS
  import { colorInput } from '@sanity/color-input'
+ import { media } from "sanity-plugin-media"
  import { visionTool } from '@sanity/vision'
  import { createConfig, Slug } from 'sanity'
  import { deskTool } from 'sanity/desk'
  import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
- import { PostsPreview } from './components/Posts/PostsPreview'
+ // PREVIEWS  
+ import { PostsPreview } from './components/previews/PostsPreview'
+ import { PagesPreview } from './components/previews/PagesPreview'
 
 //  DOCUMENTS
  import authorType from './schemas/author'
@@ -38,6 +41,9 @@
 
 //  PAGEBUILDER
 import heroBuilder from './schemas/pagebuilder/hero'
+import contactBuilder from './schemas/pagebuilder/contact'
+import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
+import textImageBuilder from './schemas/pagebuilder/text-and-image'
 
  
  // @TODO: update next-sanity/studio to automatically set this when needed
@@ -77,6 +83,9 @@ import heroBuilder from './schemas/pagebuilder/hero'
       navigationObject,
       // PAGEBUILDER
       heroBuilder,
+      contactBuilder,
+      textImageBuilder,
+      featuredGridBuilder,
     ],
    },
    plugins: [
@@ -127,7 +136,7 @@ import heroBuilder from './schemas/pagebuilder/hero'
  
          // The default root list items (except custom ones)
          const defaultListItems = S.documentTypeListItems().filter(
-          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name, homeDocument.name].includes(listItem.getId())
+          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name, homeDocument.name, media.tag].includes(listItem.getId())
          )
  
          return S.list()
@@ -147,10 +156,18 @@ import heroBuilder from './schemas/pagebuilder/hero'
              S.view.component(PostsPreview).title('Preview'),
            ])
          }
+
+         if (schemaType === 'pages') {
+          return S.document().views([
+            S.view.form(),
+            S.view.component(PagesPreview).title('Preview'),
+          ])
+        }
  
          return null
        },
      }),
+    media(),
      // Add an image asset source for Unsplash
      unsplashImageAsset(),
      // Vision lets you query your content with GROQ in the studio
@@ -166,7 +183,7 @@ import heroBuilder from './schemas/pagebuilder/hero'
        if (secret) {
          url.searchParams.set('secret', secret)
        }
- 
+       
        try {
          switch (document._type) {
            case settingsType.name:
@@ -175,6 +192,9 @@ import heroBuilder from './schemas/pagebuilder/hero'
             break
           case profileDocument.name:
             break
+            case pagesDocument.name:
+              url.searchParams.set('slug', (document.slug as Slug).current!)
+              break
            case postType.name:
              url.searchParams.set('slug', (document.slug as Slug).current!)
              break

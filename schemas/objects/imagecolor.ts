@@ -32,7 +32,10 @@ export default defineType({
             title: 'Background Color',
             name: 'color',
             type: 'color',
-            hidden: ({parent}) => parent?.backgroundType !== 'color'
+            options: {
+                disableAlpha: true
+            },
+            hidden: ({ parent }) => parent?.backgroundType !== "color",
         }
     ]
 })
