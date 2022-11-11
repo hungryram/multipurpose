@@ -19,11 +19,17 @@ import Header from '../components/templates/header'
 
 export default function Pages({data, preview}) {
 
+    const router = useRouter();
+
     const {data: page} = usePreviewSubscription(pageQuery, {
         params: {slug: data?.page?.pages?.slug.current},
         initialData: data?.page?.pages,
         enabled: preview && data?.page?.pages?.slug.current,
       })
+
+      if (!router.isFallback && !data?.page?.pages?.slug.current) {
+        return <ErrorPage statusCode={404} />
+      }
 
     return (
         <Layout preview={preview}>

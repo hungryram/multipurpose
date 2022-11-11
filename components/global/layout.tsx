@@ -58,7 +58,7 @@ export default function Layout({ children, preview }: any) {
                 ctaLink={data.appearances.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
             />
-            {/* {preview && <Alert preview={preview} />} */}
+            {preview && <Alert preview={preview} />}
             <main>
                 {children}
             </main>
