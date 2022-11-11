@@ -43,7 +43,7 @@ export const indexQuery = groq`
 
 export const pageQuery = groq`
 {
-    'pageDesign': *[_type == 'pages' && slug.current == $slug][0],
+    'pages': *[_type == 'pages' && slug.current == $slug][0],
     ...,
     'team': *[_type == 'team'][0..6]{
       name,

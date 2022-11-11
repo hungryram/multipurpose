@@ -19,18 +19,19 @@ import Header from '../components/templates/header'
 
 export default function Pages({data, preview}) {
 
-    // const {data: page} = usePreviewSubscription(pageQuery, {
-    //     params: {slug: data.page?.pageDesign?.slug.current},
-    //     initialData: data.page.pageDesign,
-    //     enabled: preview && data.page?.pageDesign?.slug.current,
-    //   })
+    const {data: page} = usePreviewSubscription(pageQuery, {
+        params: {slug: data.page?.pages?.slug.current},
+        initialData: data.page.pages,
+        enabled: preview && data.page?.pages?.slug.current,
+      })
+
     return (
         <Layout preview={preview}>
             <Header 
-                title={data?.page?.pageDesign?.title}
-                image={data?.page?.pageDesign?.headerImage}
+                title={page?.pages?.title}
+                image={page?.pages?.headerImage}
             />
-            {data?.page?.pageDesign?.pageBuilder.map((section) => {
+            {page?.pages?.pageBuilder.map((section) => {
 
                 if (section._type === 'hero') {
                     return (
