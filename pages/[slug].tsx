@@ -1,5 +1,4 @@
 import ErrorPage from 'next/error'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 // UTIL
@@ -9,35 +8,46 @@ import Section from '../components/util/section'
 // TEMPLATES
 import Layout from '../components/global/layout'
 import Hero from '../components/templates/hero'
-import Form from '../components/templates/form'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../lib/sanity'
-import { getClient, overlayDrafts } from '../lib/sanity.server'
+import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import Header from '../components/templates/header'
+import { PageProps } from '../types'
 
-export default function Pages({data, preview}) {
 
-    const router = useRouter();
 
-    const {data: page} = usePreviewSubscription(pageQuery, {
-        params: {slug: data?.page?.pages?.slug.current},
-        initialData: data?.page?.pages,
-        enabled: preview && data?.page?.pages?.slug.current,
-      })
+interface Props {
+    data: { page: PageProps }
+    preview: any
+  }
 
-      if (!router.isFallback && !data?.page?.pages?.slug.current) {
-        return <ErrorPage statusCode={404} />
-      }
+export default function Pages(props: Props) {
+
+    const { data: initialData, preview } = props
+    const router = useRouter()
+  
+    const slug = initialData?.page?.pages?.slug.current
+    const { data } = usePreviewSubscription(pageQuery, {
+      params: { slug },
+      initialData: initialData?.page?.pages,
+      enabled: preview && !!slug,
+    })
+    const page = data || {}
+
+  
+    if (!router.isFallback && !slug) {
+      return <ErrorPage statusCode={404} />
+    }
 
     return (
         <Layout preview={preview}>
             <Header 
-                title={page?.pages?.title}
-                image={page?.pages?.headerImage}
+                title={page.title}
+                image={page.headerImage}
             />
-            {page?.pages?.pageBuilder.map((section) => {
+            {page.pageBuilder?.map((section) => {
 
                 if (section._type === 'hero') {
                     return (
@@ -65,6 +75,7 @@ export default function Pages({data, preview}) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
+    
     const page = await getClient(preview).fetch(pageQuery, {
         slug: params.slug,
     })

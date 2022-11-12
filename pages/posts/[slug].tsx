@@ -36,7 +36,6 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
-console.log(post)
   return (
     <Layout preview={preview}>
       <Container>
@@ -77,6 +76,7 @@ console.log(post)
 }
 
 export async function getStaticProps({ params, preview = false }) {
+
   const { post, morePosts } = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   })

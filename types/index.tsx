@@ -12,3 +12,11 @@ export interface PostProps {
   slug?: string
   content?: any
 }
+
+export interface PageProps {
+  title: string
+  headerImage: any
+  slug?: string
+  content?: any
+  pages?: any
+}
