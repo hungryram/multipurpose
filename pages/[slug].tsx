@@ -31,7 +31,7 @@ export default function Pages(props: Props) {
     const slug = initialData?.page?.pages?.slug.current
     const { data } = usePreviewSubscription(pageQuery, {
       params: { slug },
-      initialData: initialData?.page?.pages,
+      initialData: initialData?.page,
       enabled: preview && !!slug,
     })
     const page = data || {}
@@ -40,14 +40,14 @@ export default function Pages(props: Props) {
     if (!router.isFallback && !slug) {
       return <ErrorPage statusCode={404} />
     }
-
+    // console.log(page)
     return (
         <Layout preview={preview}>
             <Header 
-                title={page.title}
-                image={page.headerImage}
+                title={page?.pages?.title}
+                image={page?.pages?.headerImage}
             />
-            {page.pageBuilder?.map((section) => {
+            {page?.pages?.pageBuilder?.map((section) => {
 
                 if (section._type === 'hero') {
                     return (
