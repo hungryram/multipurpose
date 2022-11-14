@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
 
 export default defineType({
-    title: 'Text and Image',
-    name: 'textandImage',
+    title: 'Banner',
+    name: 'banner',
     type: 'object',
     groups: [
         {title: 'Content', name: 'content'},
@@ -16,16 +16,34 @@ export default defineType({
             group: 'content'
         },
         {
-            title: 'Content',
-            name: 'content',
-            type: 'contentEditor',
+            title: 'Text',
+            name: 'text',
+            type: 'text',
             group: 'content'
+        },
+        {
+            title: 'Full Width',
+            name: 'fullWidth',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
+            title: 'Two Column',
+            name: 'twoColumn',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
+            title: 'Remove Padding',
+            name: 'removePadding',
+            type: 'boolean',
+            group: 'settings',
         },
         {
             title: 'Button',
             name: 'button',
             type: 'object',
-            group: 'content',
+            group: ['settings', 'content'],
             options: {
                 collapsible: true,
                 collapsed: true
@@ -41,49 +59,29 @@ export default defineType({
                     name: 'buttonLink',
                     type: 'string',
                 },
+                {
+                    title: 'Button Background Color',
+                    name: 'buttonBackground',
+                    type: 'color',
+                },
+                {
+                    title: 'Button Text Color',
+                    name: 'buttonTextColor',
+                    type: 'color',
+                }
             ]
-        },
-        {
-            title: 'Image',
-            name: 'image',
-            type: 'image',
-            options: {
-                hotspot: true
-            },
-        },
-        {
-            title: 'Reverse Row',
-            name: 'reverseRow',
-            type: 'boolean',
-            description: 'Enable this to make sections staggered',
-            group: 'settings'
-        },
-        {
-            title: 'Text Left',
-            name: 'textLeft',
-            type: 'boolean',
-            description: 'Defaults to center when no image is set',
-            group: 'settings'
         },
         {
             title: 'Background image or color',
             name: 'background',
             type: 'imageColor',
-            group: 'settings'
+            group: 'settings',
         },
         {
             title: 'Text Color',
             name: 'textColor',
             type: 'textColor',
-            group: 'settings'
+            group: 'settings',
         },
-    ],
-    preview: {
-        select: {
-            title: 'heading',
-            subtitle: 'content',
-            media: 'image'
-        }
-    },
-    
+    ]
 })

@@ -13,6 +13,7 @@ export default defineType({
                 {type: 'hero'},
                 {type: 'textandImage'},
                 {type: 'featuredGrid'},
+                {type: 'banner'},
             ]
         }
     ]

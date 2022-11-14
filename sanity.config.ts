@@ -46,10 +46,12 @@
  import submenuObject from './schemas/objects/submenu'
  import navigationObject from './schemas/objects/navigation'
  import textcolorObject from './schemas/objects/textcolor'
+ import linksObject from './schemas/objects/links'
 
 //  PAGEBUILDER
 import heroBuilder from './schemas/pagebuilder/hero'
 import contactBuilder from './schemas/pagebuilder/contact'
+import bannerBuilder from './schemas/pagebuilder/banner'
 import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 
@@ -90,6 +92,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
       socialObject,
       mainColorObject,
       headerMenuObject,
+      linksObject,
       brandingObject,
       imagecolorObject,
       submenuObject,
@@ -97,6 +100,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
       // PAGEBUILDER
       heroBuilder,
       contactBuilder,
+      bannerBuilder,
       textImageBuilder,
       featuredGridBuilder,
     ],
@@ -166,14 +170,21 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
        // It's part of the Studio's “Structure Builder API” and is documented here:
        // https://www.sanity.io/docs/structure-builder-reference
        defaultDocumentNode: (S, { schemaType }) => {
-         if (schemaType === 'post') {
+         if (schemaType === postType.name) {
            return S.document().views([
              S.view.form(),
              S.view.component(PostsPreview).title('Preview'),
            ])
          }
 
-         if (schemaType === 'pages') {
+         if (schemaType === pagesDocument.name) {
+          return S.document().views([
+            S.view.form(),
+            S.view.component(PagesPreview).title('Preview'),
+          ])
+        }
+
+        if (schemaType === teamDocument.name) {
           return S.document().views([
             S.view.form(),
             S.view.component(PagesPreview).title('Preview'),

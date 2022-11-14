@@ -46,9 +46,9 @@ export default defineType({
                     of: [{ type: "navigationItem" }]
                 },
                 {
-                    title: 'Footer Background',
-                    name: 'footerBackground',
-                    type: 'imageColor'
+                    title: 'Footer Background Color',
+                    name: 'footerBackgroundColor',
+                    type: 'color',
                 },
                 {
                     title: 'Header Color',

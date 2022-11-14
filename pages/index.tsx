@@ -12,6 +12,7 @@ import { urlForImage } from '../lib/sanity'
 import FeaturedGrid from '../components/templates/featured-grid'
 import Section from '../components/util/section'
 import Heading from '../components/util/heading'
+import Banner from '../components/templates/banner'
 
 export default function Index({
   allPosts: initialAllPosts,
@@ -26,7 +27,6 @@ export default function Index({
 
   const defaultText = '#222'
   const defaultHeader = '#222'
-
   return (
     <>
       <Layout preview={preview}>
@@ -38,6 +38,11 @@ export default function Index({
           }
           const bodyColor = {
             color: section.textColor?.textColor?.hex ?? defaultText
+          }
+
+          const bannerButton = {
+            backgroundColor: section.button?.buttonBackground?.hex ?? '#000000',
+            color: section.button?.buttonTextColor?.hex ?? '#ffffff'
           }
 
           const backgroundStyles = {
@@ -53,6 +58,7 @@ export default function Index({
                   heading={section.heading}
                   subtitle={section.subtitle}
                   image={section.image}
+                  blurData={homeSettings.sanityImages.base64 ?? section.image}
                 />
               </div>
             )
@@ -64,14 +70,35 @@ export default function Index({
                 <TextImage
                   image={section?.image}
                   altTag={section?.image?.altTag ?? homeSettings?.profileSettings?.company_name}
+                  rowReverse={section?.reverseRow}
                   content={section?.content}
                   heading={section?.heading}
-                  buttonLink={section?.buttonLink}
-                  buttonLabel={section?.buttonText}
+                  buttonLink={section?.button?.buttonLink}
+                  buttonLabel={section?.button?.buttonText}
                   headerStyle={headerColor}
                   textStyle={bodyColor}
+                  textLeft={section?.textLeft}
                 />
               </div>
+            )
+          }
+
+          if (section._type === 'banner') {
+            return (
+              <Banner
+                heading={section.heading}
+                text={section?.text}
+                key={section._key}
+                backgroundStyles={backgroundStyles}
+                headerStyle={headerColor}
+                textStyle={bodyColor}
+                fullWidth={section?.fullWidth}
+                removePadding={section?.removePadding}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonStyle={bannerButton}
+                twoColumn={section?.twoColumn}
+              />
             )
           }
 
@@ -79,26 +106,45 @@ export default function Index({
             return (
               <div key={section?._key} style={backgroundStyles}>
                 <Section>
-                  <Container>
-                    <Heading
-                      heading={section?.heading}
-                      body={section?.text}
-                      headerStyle={headerColor}
-                      textStyle={bodyColor}
-                    />
-                    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mt-10">
-                      {section?.blocks.map((node) => {
-                        return (
-                          <FeaturedGrid 
-                            image={node.image}
-                            value={node.value}
-                            link={node.link}
-                            key={node._key}
-                          />
-                        )
-                      })}
+                  <div className={section?.fullWidth ? null : 'container'}>
+                    <div className={`${section.twoColumn ? 'md:flex items-center' : ''}`}>
+                      <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
+                        <Heading
+                          heading={section?.heading}
+                          body={section?.text}
+                          headerStyle={headerColor}
+                          textStyle={bodyColor}
+                          textAlign={section?.headerLeft}
+                        />
+                      </div>
+                      <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
+                        <div className={`grid lg:grid-cols-${section?.columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${section.removeGap ? 'gap-4' : ''} mt-10`}>
+                          {section?.blocks.map((node) => {
+                            return (
+                              <FeaturedGrid
+                                image={node.image}
+                                value={node.value}
+                                link={node.link}
+                                key={node._key}
+                                content={node.content}
+                                textOutsideImage={section.textOutsideImage}
+                                textLeft={section.textLeft}
+                                blurData={homeSettings.sanityImages.base64 ?? node.image}
+                                textColor={node?.textColor?.hex}
+                                borderColor={node?.borderColor?.hex}
+                                backgroundColor={node?.backgroundcolor?.hex}
+                                imageHeight={
+                                  section?.imageHeight === 'small' && '300px' ||
+                                  section?.imageHeight === 'medium' && '400px' ||
+                                  section?.imageHeight === 'large' && '500px'
+                                }
+                              />
+                            )
+                          })}
+                        </div>
+                      </div>
                     </div>
-                  </Container>
+                  </div>
                 </Section>
               </div>
             )

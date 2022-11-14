@@ -15,6 +15,7 @@ import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import Header from '../components/templates/header'
 import { PageProps } from '../types'
+import Banner from '../components/templates/banner'
 
 
 
@@ -40,7 +41,6 @@ export default function Pages(props: Props) {
     if (!router.isFallback && !slug) {
       return <ErrorPage statusCode={404} />
     }
-    // console.log(page)
     return (
         <Layout preview={preview}>
             <Header 
@@ -68,6 +68,8 @@ export default function Pages(props: Props) {
                         />
                     )
                 }
+
+
 
             })}
         </Layout>

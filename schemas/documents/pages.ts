@@ -44,6 +44,7 @@ export default defineType({
             of: [
                 {type: 'hero'},
                 {type: 'contactPage'},
+                {type: 'banner'},
             ]
         },
         {

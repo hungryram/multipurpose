@@ -15,6 +15,9 @@ export const settingsQuery = groq`*[_type == "settings"][0]{title}`
 
 export const homeQuery = groq`
 {
+  'sanityImages': *[_type == "sanity.imageAsset"][0] {
+    'base64': metadata.lqip
+  },
 	'homeDesign': *[_type == 'homeDesign'][0],
   'team': *[_type == 'team'][0..6]{
     name,
@@ -43,6 +46,9 @@ export const indexQuery = groq`
 
 export const pageQuery = groq`
 {
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
     'pages': *[_type == 'pages' && slug.current == $slug][0],
     ...,
     'team': *[_type == 'team'][0..6]{
@@ -125,7 +131,7 @@ export const appearances = groq`
     'primaryButtonText': mainColors.buttonTextColor.hex,
     'footerHeader': footer.headerColor.hex,
     'footerText': footer.textColor.hex,
-    'footerBg': footer.footerBackground.color.hex,
+    'footerBg': footer.footerBackgroundColor.hex,
     'primaryAccent': mainColors.primaryColor.hex,
     'secondaryColor': mainColors.secondaryColor.hex,
     'branding': branding {

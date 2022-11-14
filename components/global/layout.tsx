@@ -15,7 +15,8 @@ export default function Layout({ children, preview }: any) {
     const client = SanityClient({
         projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
         dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-        apiVersion: '2022-11-08'
+        apiVersion: '2022-11-08',
+        useCdn: true
       });
 
     
@@ -76,6 +77,7 @@ export default function Layout({ children, preview }: any) {
                 state={data.profileSettings?.address?.state}
                 zipCode={data.profileSettings?.address?.zip_code}
                 content={data.appearances?.footer?.footerText}
+                links={data.appearances?.footer?.quickLinks}
             />
         </>
     )
