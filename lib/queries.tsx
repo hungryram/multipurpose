@@ -200,3 +200,38 @@ export const appearances = groq`
     },
   }
 `
+
+
+// SERVICE QUERY
+export const queryServices = groq`
+*[_type == 'services']{
+    name,
+    image,
+    'slug': slug.current,
+    content,
+    title,
+    content,
+    _id
+}
+`
+
+export const servicesBySlugQuery = groq`
+*[_type == "services" && slug.current == $slug][0] {
+  'slug': slug.current
+}
+`
+
+export const queryServiceCurrentPage = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
+  'services': *[_type == 'services' && slug.current == $slug][0],
+  ...,
+  'allServices': *[_type == 'services']
+}
+`
+
+export const servicesSlugsQuery = groq`
+*[_type == "services" && defined(slug.current)][].slug.current
+`

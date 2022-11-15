@@ -1,4 +1,8 @@
-import { postBySlugQuery, pagesBySlugQuery } from '../../lib/queries'
+import { 
+  postBySlugQuery, 
+  pagesBySlugQuery, 
+  servicesBySlugQuery,
+} from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
 function redirectToPreview(res, Location) {
@@ -29,12 +33,18 @@ export default async function preview(req, res) {
     slug: req.query.slug,
   })
 
+  const services = await getClient(true).fetch(servicesBySlugQuery, {
+    slug: req.query.slug,
+  })
+
 
   // If the slug doesn't exist prevent preview mode from being enabled
   if (post) {
     redirectToPreview(res, `/posts/${post.slug}`)
   } else if(pages) {
     redirectToPreview(res, `/${pages.slug}`)
+  } else if(services) {
+    redirectToPreview(res, `/services/${services.slug}`)
   } else {
     return res.status(401).json({ message: 'Invalid slug' })
   }

@@ -20,3 +20,11 @@ export interface PageProps {
   content?: any
   pages?: any
 }
+
+export interface ServiceProps {
+  title: string
+  headerImage: any
+  slug?: string
+  content?: any
+  services: any
+}

@@ -40,7 +40,8 @@ export default defineType({
                 {type: 'author'}, 
                 {type: 'pages'}, 
                 {type: 'locations'}, 
-                {type: 'partners'}
+                {type: 'partners'},
+                {type: 'services'}
             ],
         },
         {
