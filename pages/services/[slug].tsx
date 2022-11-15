@@ -60,7 +60,7 @@ export default function ServicePages(props: Props) {
                             <div className="p-10 bg-slate-200">
                                 <h3 className="font-bold text-xl mb-8">More Services</h3>
                                 <ul>
-                                    {page.allServices.map((node) => {
+                                    {page?.allServices?.map((node) => {
                                         return (
                                             <>
                                                 <li className="bg-white my-2"><Link href={"/services/" + node.slug.current} className="flex items-center px-4 py-4 hover:bg-orange-600 hover:text-white transition-all ease-linear font-bold">{node.title}</Link></li>
