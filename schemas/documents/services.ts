@@ -1,9 +1,11 @@
 import { defineType } from "sanity";
+import { BsBriefcase } from "react-icons/bs"
 
 export default defineType({
-    title: 'Pages',
-    name: 'pages',
+    title: 'Services',
+    name: 'services',
     type: 'document',
+    icon: BsBriefcase,
     groups: [
         {name: 'content', title: 'Content'},
         {name: 'settings', title: 'Settings'},
@@ -37,18 +39,9 @@ export default defineType({
             },
         },
         {
-            title: 'Page Builder',
-            name: 'pageBuilder',
-            type: 'array',
-            group: 'content',
-            of: [
-                {type: 'hero'},
-                {type: 'textandImage'},
-                {type: 'featuredGrid'},
-                {type: 'banner'},
-                {type: 'disclosureSection'},
-                {type: 'contactPage'},
-            ]
+            title: 'Content',
+            name: 'content',
+            type: 'contentEditor'
         },
         {
             title: 'Search Engine Optimization',

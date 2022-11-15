@@ -5,7 +5,7 @@ export default function Banner({ twoColumn, heading, text, headerStyle, removePa
         <div className={`${removePadding ? '' : 'py-20'}`}>
             <div className={`${fullWidth ? 'w-full' : 'container'}`}>
                 <div className="py-20" style={backgroundStyles}>
-                    <div className={`${twoColumn ? 'md:flex justify-center items-center container md:px-20 px-5' : 'text-center'}`}>
+                    <div className={`${twoColumn ? 'md:flex justify-center items-center container md:px-10 px-5' : 'text-center'}`}>
                         <div className={`${twoColumn ? 'md:w-1/2 md:text-left text-center md:mb-0 mb-10' : ''}`}>
                             <div className="block">
                                 {heading && <h2 className="h2 mb-4" style={headerStyle}>{heading}</h2>}

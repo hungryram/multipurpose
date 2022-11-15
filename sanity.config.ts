@@ -32,6 +32,7 @@
  import partnersDocument from './schemas/documents/partners'
  import locationsDocument from './schemas/documents/locations'
  import navigationDocument from './schemas/documents/navigation'
+ import servicesDocument from './schemas/documents/services'
  
  // OBJECTS
  import contentObject from './schemas/objects/content'
@@ -52,6 +53,7 @@
 import heroBuilder from './schemas/pagebuilder/hero'
 import contactBuilder from './schemas/pagebuilder/contact'
 import bannerBuilder from './schemas/pagebuilder/banner'
+import disclosureBuilder from './schemas/pagebuilder/disclosure'
 import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 
@@ -76,12 +78,13 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
       homeDocument,
       navigationDocument,
       pagesDocument,
-      postType, 
+      servicesDocument,
       teamDocument,
       locationsDocument,
       partnersDocument,
       testimonialsDocument,
       pressDocument,
+      postType, 
       authorType,
       // OBJECTS
       textcolorObject,
@@ -101,6 +104,7 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
       heroBuilder,
       contactBuilder,
       bannerBuilder,
+      disclosureBuilder,
       textImageBuilder,
       featuredGridBuilder,
     ],

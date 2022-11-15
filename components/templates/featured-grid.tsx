@@ -3,7 +3,7 @@ import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 
 
-export default function FeaturedGrid({ link, image, value, backgroundColor, borderColor, blurData, content, textOutsideImage, textLeft, imageHeight, textColor }: any) {
+export default function FeaturedGrid({ link, image, value, backgroundColor, centerTextGrid, borderColor, blurData, content, textOutsideImage, textLeft, imageHeight, textColor }: any) {
     return (
         <Link href={link ?? '/'}>
             <div className="relative overflow-hidden">
@@ -31,7 +31,7 @@ export default function FeaturedGrid({ link, image, value, backgroundColor, bord
                     </div>
                 }
                 {textOutsideImage || !image ? null : <div className="featured-grid-overlay"></div>}
-                <div className={`${textOutsideImage ? null : 'absolute bottom-6 left-0 right-0'} px-6 py-4 justify-center ${textLeft ? 'text-left' : 'text-center'}`} style={{
+                <div className={`${textOutsideImage ? null : 'absolute bottom-6 left-0 right-0'} ${centerTextGrid ? 'top-0 flex items-center flex-col' : ''} px-6 py-4 justify-center ${textLeft ? 'text-left' : 'text-center'}`} style={{
                     color: `${textColor ? textColor : '#ffffff'}`
                 }}>
                     {value &&

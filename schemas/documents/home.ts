@@ -14,6 +14,7 @@ export default defineType({
                 {type: 'textandImage'},
                 {type: 'featuredGrid'},
                 {type: 'banner'},
+                {type: 'disclosureSection'},
             ]
         }
     ]

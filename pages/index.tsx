@@ -13,6 +13,7 @@ import FeaturedGrid from '../components/templates/featured-grid'
 import Section from '../components/util/section'
 import Heading from '../components/util/heading'
 import Banner from '../components/templates/banner'
+import DisclosureSection from '../components/templates/disclosure'
 
 export default function Index({
   allPosts: initialAllPosts,
@@ -57,8 +58,15 @@ export default function Index({
                 <Hero
                   heading={section.heading}
                   subtitle={section.subtitle}
+                  headerColor={headerColor}
+                  bodyColor={bodyColor}
                   image={section.image}
                   blurData={homeSettings.sanityImages.base64 ?? section.image}
+                  imageHeight={
+                    section?.imageHeight === 'small' && 'h-96' ||
+                    section?.imageHeight === 'medium' && 'h-[600px]' ||
+                    section?.imageHeight === 'large' && 'h-screen'
+                  }
                 />
               </div>
             )
@@ -128,7 +136,8 @@ export default function Index({
                                 key={node._key}
                                 content={node.content}
                                 textOutsideImage={section.textOutsideImage}
-                                textLeft={section.textLeft}
+                                textLeft={section?.textLeft}
+                                centerTextGrid={section?.centerTextGrid}
                                 blurData={homeSettings.sanityImages.base64 ?? node.image}
                                 textColor={node?.textColor?.hex}
                                 borderColor={node?.borderColor?.hex}
@@ -146,6 +155,34 @@ export default function Index({
                     </div>
                   </div>
                 </Section>
+              </div>
+            )
+          }
+
+          if (section._type === 'disclosureSection') {
+            return (
+              <div className="section" key={section?._key} style={backgroundStyles}>
+                <div className="container">
+                  <div className={section?.twoColumn ? 'md:flex md:space-x-20' : ''}>
+                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
+                      <Heading
+                        body={section?.content}
+                        textAlign={section?.textLeft}
+                        fullWidth={section?.twoColumn}
+                      />
+                    </div>
+                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
+                      <div className="mt-10">
+                        <DisclosureSection
+                          disclosure={section?.disclosures}
+                          disclosureBackgroundColor={section?.disclosureBackgroundColor?.hex}
+                          disclosureTextColor={section?.disclosureTextColor?.hex}
+                          disclosureContentColor={section?.disclosureContentColor?.hex}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )
           }

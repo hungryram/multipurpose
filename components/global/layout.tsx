@@ -58,6 +58,7 @@ export default function Layout({ children, preview }: any) {
                 navItems={data.appearances?.header?.navItems}
                 ctaLink={data.appearances.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
+                backgroundColor={data.appearances.navColor}
             />
             {preview && <Alert preview={preview} />}
             <main>

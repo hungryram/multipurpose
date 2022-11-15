@@ -105,10 +105,19 @@ export default defineType({
             group: 'settings'
         },
         {
+            title: 'Center Text in Grid',
+            name: 'centerTextGrid',
+            type: 'boolean',
+            group: 'settings',
+            hidden: ({ parent, value }) => !value && parent?.textLeft
+
+        },
+        {
             title: 'Text Left',
             name: 'textLeft',
             type: 'boolean',
-            group: 'settings'
+            group: 'settings',
+            hidden: ({ parent, value }) => !value && parent?.centerTextGrid
         },
         {
             title: 'Image Height',

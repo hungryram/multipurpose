@@ -1,16 +1,16 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 
-export default function Hero({ image, heading, altTag, subtitle, _key, blurData, bodyColor, headerColor, buttonLink, buttonText, idxSubdomain = 'search', idxId = '132970' } : any) {
+export default function Hero({ image, heading, altTag, subtitle, _key, blurData, imageHeight, bodyColor, headerColor, buttonLink, buttonText, idxSubdomain = 'search', idxId = '132970' } : any) {
 
 
     return (
-        <div className="flex items-center" key={_key}>
+        <div className="flex items-center relative" key={_key}>
             {image ?
                 <Image
                     src={urlForImage(image).height(1000).width(2000).url()}
                     alt={altTag}
-                    className="w-full h-screen"
+                    className={`w-full ${imageHeight}`}
                     priority
                     width={2000}
                     height={1000}
@@ -35,17 +35,14 @@ export default function Hero({ image, heading, altTag, subtitle, _key, blurData,
                 }}
             />
             }
-            <div className="overlay"></div>
-            <div className="absolute top-1/2 left-0 right-0 text-center -mt-20">
+            <div className="hero-overlay"></div>
+            <div className="absolute top-0 bottom-0 left-0 right-0 text-center flex items-center flex-col justify-center">
                 <h1 className="md:text-5xl text-3xl font-medium" style={headerColor}>{heading}</h1>
                 {subtitle &&
                     <div className="mt-4 text-lg" style={bodyColor}>
                         <p>{subtitle}</p>
                     </div>
                 }
-                <div className="mt-16">
-
-                </div>
             </div>
         </div>
     )

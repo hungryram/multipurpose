@@ -7,7 +7,7 @@ import { BiCaretDown } from "react-icons/bi"
 import { urlForImage } from "../../lib/sanity";
 import Styles from "../../styles/navbar.module.css"
 
-export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink } : any) {
+export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink, backgroundColor } : any) {
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
@@ -26,7 +26,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
     return (
         <>
             <nav
-                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
+                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'}`}
                 onMouseLeave={() => setDropdownActive(null)}
             >
                 <div className="md:flex items-center justify-center md:visible hidden p-4">

@@ -31,6 +31,19 @@ export default defineType({
             },
         },
         {
+            title: 'Image Height',
+            name: 'imageHeight',
+            type: 'string',
+            options: {
+                list: [
+                    {title: 'Small', value: 'small'},
+                    {title: 'Medium', value: 'medium'},
+                    {title: 'Large', value: 'large'},
+                ]
+            },
+            group: 'settings'
+        },
+        {
             title: 'Text Color',
             name: 'textColor',
             type: 'textColor',
