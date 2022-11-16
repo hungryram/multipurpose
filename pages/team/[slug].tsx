@@ -2,22 +2,15 @@ import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
 // UTIL
-import Link from 'next/link'
 import Image from 'next/image'
 
 // TEMPLATES
 import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
-import Hero from '../../components/templates/hero'
-import FeaturedGrid from '../../components/templates/featured-grid'
-import Heading from '../../components/util/heading'
-import Banner from '../../components/templates/banner'
-import DisclosureSection from '../../components/templates/disclosure'
 
 import { teamSlugsQuery, queryTeamCurrentPage } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
-import ContactPage from '../../components/templates/contact'
 import { TeamProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
 
@@ -46,9 +39,6 @@ export default function ServicePages(props: Props) {
         return <ErrorPage statusCode={404} />
     }
 
-    const defaultText = '#222'
-    const defaultHeader = '#222'
-    console.log(page?.header?.image)
     return (
         <Layout preview={preview}>
             <Header
@@ -59,17 +49,19 @@ export default function ServicePages(props: Props) {
                 <div className="container">
                     <div className="md:flex md:space-x-10 space-y-10">
                         <div className="md:w-1/3">
-                            <Image 
-                                src={urlForImage(page?.team?.image).url()}
-                                width={500}
-                                height={0}
-                                alt={page?.team?.name}
-                                style={{
-                                    width: '100%',
-                                    height: '500px',
-                                    objectFit: 'cover'
-                                }}
-                            />
+                            {page?.team?.image &&
+                                <Image
+                                    src={urlForImage(page?.team?.image).url()}
+                                    width={500}
+                                    height={0}
+                                    alt={page?.team?.name}
+                                    style={{
+                                        width: '100%',
+                                        height: '500px',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            }
                         </div>
                         <div className="md:w-2/3">
                             {page.team?.about &&

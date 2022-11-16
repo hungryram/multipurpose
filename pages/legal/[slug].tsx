@@ -1,23 +1,13 @@
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
-// UTIL
-import Link from 'next/link'
-import Image from 'next/image'
-
 // TEMPLATES
 import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
-import Hero from '../../components/templates/hero'
-import FeaturedGrid from '../../components/templates/featured-grid'
-import Heading from '../../components/util/heading'
-import Banner from '../../components/templates/banner'
-import DisclosureSection from '../../components/templates/disclosure'
 
 import { legalSlugsQuery, queryLegalCurrentPage } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
+import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
-import ContactPage from '../../components/templates/contact'
 import { LegalProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
 
@@ -42,12 +32,10 @@ export default function LegalPages(props: Props) {
     const page = data || {}
 
 
-    // if (!router.isFallback && !slug) {
-    //     return <ErrorPage statusCode={404} />
-    // }
+    if (!router.isFallback && !slug) {
+        return <ErrorPage statusCode={404} />
+    }
 
-    const defaultText = '#222'
-    const defaultHeader = '#222'
     return (
         <Layout preview={preview}>
             <Header
