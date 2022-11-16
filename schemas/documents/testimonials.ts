@@ -11,11 +11,18 @@ export default defineType({
             title: 'Testimonial',
             name: 'testimonial',
             type: 'contentEditor',
+            description: 'Testimonials are page blocks within the page builder. Choose the testimonial block in a page builder to display the testimonials'
         },
         {
             title: 'Name',
             name: 'name',
             type: 'string'
+        },
+    ],
+    preview: {
+        select: {
+            title: 'name',
+            subtitle: 'testimonial'
         }
-    ]
+    }
 })

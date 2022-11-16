@@ -15,7 +15,8 @@ export default defineType({
         {
             title: 'Description',
             name: 'description',
-            type: 'text'
+            type: 'text',
+            description: 'Press is a page block within the page builder. Choose the press block in a page builder to display the presses'
         },
         {
             title: 'Press Link',
@@ -23,5 +24,11 @@ export default defineType({
             type: 'url',
             description: 'URL to the press article'
         }
-    ]
+    ],
+    preview: {
+        select: {
+            title: 'pressTitle',
+            subtitle: 'pressLink'
+        }
+    }
 })

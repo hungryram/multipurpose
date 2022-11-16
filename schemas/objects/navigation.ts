@@ -16,8 +16,8 @@ export default defineType({
             name: "text",
             type: "string",
             validation: Rule => Rule.required().error('Name your menu item'),
-          },
-          {
+        },
+        {
             title: "Select the type of link",
             name: "linkType",
             type: "string",
@@ -36,12 +36,12 @@ export default defineType({
             type: 'reference',
             hidden: ({ parent }) => parent?.linkType !== "internal",
             to: [
-                {type: 'post'}, 
-                {type: 'author'}, 
-                {type: 'pages'}, 
-                {type: 'locations'}, 
-                {type: 'partners'},
-                {type: 'services'}
+                { type: 'post' },
+                { type: 'author' },
+                { type: 'pages' },
+                { type: 'locations' },
+                { type: 'partners' },
+                { type: 'services' }
             ],
         },
         {
@@ -61,7 +61,21 @@ export default defineType({
             title: 'Sub Menu',
             name: 'subMenu',
             type: 'array',
-            of: [{type: 'subMenu'}]
+            of: [{ type: 'subMenu' }]
         }
-    ]
+    ],
+    preview: {
+        select: {
+            title: 'text',
+            subtitle: 'subMenu[0].text'
+        },
+        prepare(selection) {
+            const { title, subtitle } = selection
+            return {
+                title: title,
+                subtitle: `${subtitle ? `has dropdown: ${subtitle}...` : ''}`
+            }
+        }
+
+    }
 })
