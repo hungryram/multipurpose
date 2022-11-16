@@ -47,7 +47,6 @@ export default function Pages(props: Props) {
 
     const defaultText = '#222'
     const defaultHeader = '#222'
-    console.log(page.profileSettings.social.facebook)
     return (
         <Layout preview={preview}>
             {page?.pages?.headerImage?.hideHeader ?
@@ -111,23 +110,23 @@ export default function Pages(props: Props) {
                             heading={section.heading}
                             content={section.text}
                             key={section._key}
-                            email={page.profileSettings.contact_information.email}
-                            phone_number={page.profileSettings.contact_information.phone_number}
-                            address={page.profileSettings.address.address}
-                            city={page.profileSettings.address.city}
-                            state={page.profileSettings.address.state}
-                            zipCode={page.profileSettings.address.zip_code}
-                            facebook={page.profileSettings.social.facebook}
-                            youtube={page.profileSettings.social.youtube}
-                            instagram={page.profileSettings.social.instagram}
-                            twitter={page.profileSettings.social.twitter}
-                            reddit={page.profileSettings.social.reddit}
-                            linkedin={page.profileSettings.social.linkedin}
-                            yelp={page.profileSettings.social.yelp}
-                            pinterest={page.profileSettings.social.pinterest}
-                            tiktok={page.profileSettings.social.tiktok}
-                            zillow={page.profileSettings.social.zillow}
-                            size={page.profileSettings.social.size}
+                            email={page.profileSettings?.contact_information?.email}
+                            phone_number={page.profileSettings?.contact_information?.phone_number}
+                            address={page.profileSettings?.address?.address}
+                            city={page.profileSettings?.address?.city}
+                            state={page.profileSettings?.address?.state}
+                            zipCode={page.profileSettings?.address?.zip_code}
+                            facebook={page.profileSettings?.social?.facebook}
+                            youtube={page.profileSettings?.social?.youtube}
+                            instagram={page.profileSettings?.social?.instagram}
+                            twitter={page.profileSettings?.social?.twitter}
+                            reddit={page.profileSettings?.social?.reddit}
+                            linkedin={page.profileSettings?.social?.linkedin}
+                            yelp={page.profileSettings?.social?.yelp}
+                            pinterest={page.profileSettings?.social?.pinterest}
+                            tiktok={page.profileSettings?.social?.tiktok}
+                            zillow={page.profileSettings?.social?.zillow}
+                            size={page.profileSettings?.social?.size}
                         />
                     )
                 }
