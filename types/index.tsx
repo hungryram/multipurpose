@@ -28,3 +28,19 @@ export interface ServiceProps {
   content?: any
   services: any
 }
+
+export interface TeamProps {
+  name: string
+  headerImage: any
+  image: any
+  slug?: string
+  content?: any
+  about?: any
+}
+
+export interface LegalProps {
+  title: string
+  image: any
+  slug?: string
+  content?: any
+}

@@ -36,6 +36,14 @@ export default defineType({
             title: 'Call to Action Button Link',
             name: 'ctaLink',
             type: 'string'
-        }
+        },
+        {
+            title: 'Default Page Header Image',
+            name: 'defaultHeaderImage',
+            type: 'image',
+            options: {
+                hotspot: true
+            }
+        },
     ]
 })

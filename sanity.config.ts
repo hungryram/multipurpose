@@ -16,7 +16,6 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
 // PREVIEWS  
 import { PostsPreview } from './components/previews/PostsPreview'
-import { PagesPreview } from './components/previews/PagesPreview'
 
 //  DOCUMENTS
 import authorType from './schemas/author'
@@ -33,6 +32,7 @@ import partnersDocument from './schemas/documents/partners'
 import locationsDocument from './schemas/documents/locations'
 import navigationDocument from './schemas/documents/navigation'
 import servicesDocument from './schemas/documents/services'
+import legalDocument from './schemas/documents/legal'
 
 // OBJECTS
 import contentObject from './schemas/objects/content'
@@ -54,6 +54,7 @@ import heroBuilder from './schemas/pagebuilder/hero'
 import contactBuilder from './schemas/pagebuilder/contact'
 import bannerBuilder from './schemas/pagebuilder/banner'
 import disclosureBuilder from './schemas/pagebuilder/disclosure'
+import codeBuilder from './schemas/pagebuilder/code'
 import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 
@@ -86,6 +87,7 @@ export default createConfig({
       pressDocument,
       postType,
       authorType,
+      legalDocument,
       // OBJECTS
       textcolorObject,
       contentObject,
@@ -102,6 +104,7 @@ export default createConfig({
       navigationObject,
       // PAGEBUILDER
       heroBuilder,
+      codeBuilder,
       contactBuilder,
       bannerBuilder,
       disclosureBuilder,
@@ -195,6 +198,20 @@ export default createConfig({
           ])
         }
 
+        if (schemaType === teamDocument.name) {
+          return S.document().views([
+            S.view.form(),
+            S.view.component(PostsPreview).title('Preview'),
+          ])
+        }
+
+        if (schemaType === legalDocument.name) {
+          return S.document().views([
+            S.view.form(),
+            S.view.component(PostsPreview).title('Preview'),
+          ])
+        }
+
         return null
       },
     }),
@@ -228,7 +245,13 @@ export default createConfig({
           case pagesDocument.name:
             url.searchParams.set('slug', (document.slug as Slug).current!)
             break
+          case legalDocument.name:
+            url.searchParams.set('slug', (document.slug as Slug).current!)
+            break
           case servicesDocument.name:
+            url.searchParams.set('slug', (document.slug as Slug).current!)
+            break
+          case teamDocument.name:
             url.searchParams.set('slug', (document.slug as Slug).current!)
             break
           case postType.name:

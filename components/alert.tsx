@@ -6,12 +6,12 @@ import Container from './util/container'
 export default function Alert({ preview }) {
   return (
     <div
-      className={cn('border-b relative z-50', {
-        'border-accent-7 bg-accent-7 text-white': preview,
+      className={cn('border-b z-50 fixed bottom-0 right-0', {
+        'border-accent-7 bg-black text-white': preview,
         'border-accent-2 bg-accent-1': !preview,
       })}
     >
-      <Container>
+      <div className="container">
         <div className="py-2 text-center text-sm">
           {preview && (
             <>
@@ -26,7 +26,7 @@ export default function Alert({ preview }) {
             </>
           )}
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

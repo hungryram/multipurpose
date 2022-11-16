@@ -35,6 +35,13 @@ export default defineType({
             options: {
                 hotspot: true
             },
+            fields: [
+                {
+                    title: 'Hide Header',
+                    name: 'hideHeader',
+                    type: 'boolean'
+                }
+            ]
         },
         {
             title: 'Page Builder',
@@ -48,6 +55,7 @@ export default defineType({
                 {type: 'banner'},
                 {type: 'disclosureSection'},
                 {type: 'contactPage'},
+                {type: 'codeBlock'},
             ]
         },
         {

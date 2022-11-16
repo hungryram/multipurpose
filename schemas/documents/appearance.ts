@@ -37,6 +37,12 @@ export default defineType({
                 {
                     title: 'Footer Text',
                     name: 'footerText',
+                    type: 'contentEditor',
+                    description: 'Perfect for a brief bio'
+                },
+                {
+                    title: 'Footer Disclaimer',
+                    name: 'footerDisclaimer',
                     type: 'contentEditor'
                 },
                 {

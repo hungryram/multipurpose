@@ -49,6 +49,17 @@ export const pageQuery = groq`
   'sanityImages': *[_type == "sanity.imageAsset"] {
     'base64': metadata.lqip
   },
+  'profileSettings': *[_type == 'profile'][0]{
+    contact_information {
+      ...
+    },
+    address {
+      ...
+    },
+    social {
+      ...
+    }
+  },
     'pages': *[_type == 'pages' && slug.current == $slug][0],
     ...,
     'team': *[_type == 'team'][0..6]{
@@ -191,6 +202,7 @@ export const appearances = groq`
   },
     'profileSettings': *[_type == 'profile'][0]{
         company_name,
+        social,
         contact_information {
             ...
         },
@@ -234,4 +246,91 @@ export const queryServiceCurrentPage = groq`
 
 export const servicesSlugsQuery = groq`
 *[_type == "services" && defined(slug.current)][].slug.current
+`
+
+// TEAM QUERY
+export const queryTeam = groq`
+{
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+  'team':*[_type == 'team']{
+  name,
+    _id,
+  image,
+  'slug': slug.current,
+  about,
+  position,
+  contactInformation {
+    ...
+  },
+  social {
+    ...
+  }
+}
+}
+`
+
+export const teamBySlugQuery = groq`
+*[_type == "team" && slug.current == $slug][0] {
+  'slug': slug.current
+}
+`
+
+export const queryTeamCurrentPage = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+  'team': *[_type == 'team' && slug.current == $slug][0],
+  ...,
+  'allTeam': *[_type == 'team']
+}
+`
+
+export const teamSlugsQuery = groq`
+*[_type == "team" && defined(slug.current)][].slug.current
+`
+
+// LEGAL QUERY
+export const queryLegal = groq`
+{
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+  'legal':*[_type == 'legal']{
+  title,
+    _id,
+  image,
+  'slug': slug.current,
+  content,
+}
+}
+`
+
+export const legalBySlugQuery = groq`
+*[_type == "legal" && slug.current == $slug][0] {
+  'slug': slug.current
+}
+`
+
+export const queryLegalCurrentPage = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+  'legal': *[_type == 'legal' && slug.current == $slug][0],
+  ...,
+  'allLegal': *[_type == 'legal']
+}
+`
+
+export const legalSlugsQuery = groq`
+*[_type == "legal" && defined(slug.current)][].slug.current
 `

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import useSWR from "swr"
 import { appearances } from "../../lib/queries";
 import SanityClient from "@sanity/client";
+import { getClient } from '../../lib/sanity.server';
 
 // TEMPLATES
 import Loading from "../templates/loading";
@@ -12,15 +13,8 @@ import Alert from '../alert';
 
 export default function Layout({ children, preview }: any) {
 
-    const client = SanityClient({
-        projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-        dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-        apiVersion: '2022-11-08',
-        useCdn: true
-      });
-
     
-    const { data, error } = useSWR(appearances, query => client.fetch(query))
+    const { data, error } = useSWR(appearances, query => getClient(false).fetch(query))
     if (error) return <Error />;
     if (!data) return <Loading />;
     const bgLoader = data.appearances?.loaderImage
@@ -79,6 +73,18 @@ export default function Layout({ children, preview }: any) {
                 zipCode={data.profileSettings?.address?.zip_code}
                 content={data.appearances?.footer?.footerText}
                 links={data.appearances?.footer?.quickLinks}
+                facebook={data.profileSettings.social.facebook}
+                youtube={data.profileSettings.social.youtube}
+                instagram={data.profileSettings.social.instagram}
+                twitter={data.profileSettings.social.twitter}
+                reddit={data.profileSettings.social.reddit}
+                linkedin={data.profileSettings.social.linkedin}
+                yelp={data.profileSettings.social.yelp}
+                pinterest={data.profileSettings.social.pinterest}
+                tiktok={data.profileSettings.social.tiktok}
+                zillow={data.profileSettings.social.zillow}
+                size={data.profileSettings.social.size}
+                footerDisclaimer={data.appearances.footer.footerDisclaimer}
             />
         </>
     )

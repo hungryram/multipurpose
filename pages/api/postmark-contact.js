@@ -5,10 +5,10 @@ export default async function (req, res) {
   const client = new ServerClient(serverToken);
   const submit = () => {
     const postmarkApiRes = client.sendEmailWithTemplate({
-      "From": process.env.NEXT_PUBLIC_POSTMARK_EMAIL,
+      "From": `${req.body.sendFrom ? req.body.sendFrom : 'forms@hungryramwebdesign.com'}`,
       "To": process.env.NEXT_PUBLIC_POSTMARK_EMAIL,
       "ReplyTo": req.body.email,
-      "TemplateAlias": "contact-form-submission",
+      "TemplateAlias": "bridge-website-contact-form",
       "TemplateModel": {
         "name": req.body.name,
         "email": req.body.email,

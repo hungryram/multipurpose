@@ -2,6 +2,8 @@ import {
   postBySlugQuery, 
   pagesBySlugQuery, 
   servicesBySlugQuery,
+  teamBySlugQuery,
+  legalBySlugQuery,
 } from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
@@ -37,6 +39,14 @@ export default async function preview(req, res) {
     slug: req.query.slug,
   })
 
+  const teams = await getClient(true).fetch(teamBySlugQuery, {
+    slug: req.query.slug,
+  })
+
+  const legal = await getClient(true).fetch(legalBySlugQuery, {
+    slug: req.query.slug,
+  })
+
 
   // If the slug doesn't exist prevent preview mode from being enabled
   if (post) {
@@ -45,7 +55,13 @@ export default async function preview(req, res) {
     redirectToPreview(res, `/${pages.slug}`)
   } else if(services) {
     redirectToPreview(res, `/services/${services.slug}`)
-  } else {
+  } else if(teams) {
+    redirectToPreview(res, `/team/${teams.slug}`)
+  } else if(legal) {
+    redirectToPreview(res, `/legal/${legal.slug}`)
+  } 
+  
+  else {
     return res.status(401).json({ message: 'Invalid slug' })
   }
 
