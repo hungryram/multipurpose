@@ -54,8 +54,10 @@ export default defineType({
                 {type: 'featuredGrid'},
                 {type: 'banner'},
                 {type: 'disclosureSection'},
-                {type: 'contactPage'},
+                {type: 'gallery'},
+                {type: 'fullWidthTextImage'},
                 {type: 'codeBlock'},
+                {type: 'contactPage'},
             ]
         },
         {

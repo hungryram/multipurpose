@@ -46,6 +46,8 @@ import submenuObject from './schemas/objects/submenu'
 import navigationObject from './schemas/objects/navigation'
 import textcolorObject from './schemas/objects/textcolor'
 import linksObject from './schemas/objects/links'
+import buttonSettingsObject from './schemas/objects/button-settings'
+import imageObject from './schemas/objects/image'
 
 //  PAGEBUILDER
 import heroBuilder from './schemas/pagebuilder/hero'
@@ -54,6 +56,7 @@ import fullWidthTextImageBuilder from './schemas/pagebuilder/fullwidth-text-imag
 import bannerBuilder from './schemas/pagebuilder/banner'
 import disclosureBuilder from './schemas/pagebuilder/disclosure'
 import codeBuilder from './schemas/pagebuilder/code'
+import imageGalleryBuilder from './schemas/pagebuilder/image-gallery'
 import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 
@@ -89,6 +92,8 @@ export default createConfig({
       // OBJECTS
       textcolorObject,
       contentObject,
+      buttonSettingsObject,
+      imageObject,
       seoObject,
       contactObject,
       locationObject,
@@ -103,6 +108,7 @@ export default createConfig({
       // PAGEBUILDER
       heroBuilder,
       codeBuilder,
+      imageGalleryBuilder,
       contactBuilder,
       bannerBuilder,
       disclosureBuilder,
@@ -126,7 +132,7 @@ export default createConfig({
                 .schemaType(profileDocument.name)
                 .documentId(profileDocument.name)
             )
-            
+
         const appearanceListItem = // A singleton not using `documentListItem`, eg no built-in preview
           S.listItem()
             .title(appearanceDocument.title)

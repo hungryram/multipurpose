@@ -3,7 +3,7 @@ import { urlForImage } from "../../lib/sanity";
 import PrimaryButton from "../util/primary-button";
 import ContentEditor from "./contenteditor";
 
-export default function FullWidthTextImage({ content, buttonText, buttonLink, image, backgroundStyles, textColor, columnReverse }: any) {
+export default function FullWidthTextImage({ content, buttonText, buttonLink, image, backgroundStyles, textColor, columnReverse, buttonBackground, buttonTextColor }: any) {
     return (
         <div>
             <div className={`md:flex items-center ${columnReverse ? 'flex-row-reverse' : ''}`} style={{
@@ -16,11 +16,13 @@ export default function FullWidthTextImage({ content, buttonText, buttonLink, im
                         <ContentEditor
                             content={content}
                         />
-                        {buttonText &&
+                        {buttonLink &&
                             <div className="mt-10">
                                 <PrimaryButton
                                     buttonLabel={buttonText}
                                     buttonLink={buttonLink}
+                                    buttonBackground={buttonBackground}
+                                    buttonTextColor={buttonTextColor}
                                 />
                             </div>
                         }

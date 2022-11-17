@@ -39,6 +39,7 @@ export default defineType({
                 {type: 'featuredGrid'},
                 {type: 'banner'},
                 {type: 'disclosureSection'},
+                {type: 'gallery'},
                 {type: 'fullWidthTextImage'},
             ]
         }

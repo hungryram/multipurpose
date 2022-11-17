@@ -14,6 +14,7 @@ import Heading from '../components/util/heading'
 import Banner from '../components/templates/banner'
 import DisclosureSection from '../components/templates/disclosure'
 import FullWidthTextImage from '../components/templates/full-width-text-image'
+import Gallery from '../components/templates/gallery'
 
 export default function Index({
   preview,
@@ -105,7 +106,7 @@ export default function Index({
 
           if (section._type === 'fullWidthTextImage') {
             return (
-              <FullWidthTextImage 
+              <FullWidthTextImage
                 key={section?._key}
                 content={section?.content}
                 image={section?.image}
@@ -114,6 +115,8 @@ export default function Index({
                 columnReverse={section?.reverseColumn}
                 buttonText={section?.button?.buttonText}
                 buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
               />
             )
           }
@@ -192,6 +195,24 @@ export default function Index({
                   </div>
                 </div>
               </div>
+            )
+          }
+
+          if (section._type === 'gallery') {
+            return (
+              <Gallery
+                key={section?._key}
+                images={section?.images}
+                content={section?.content}
+                animation={section?.animation ?? 'fade'}
+                fullWidth={section?.fullWidth}
+                textColor={section?.textColor?.hex}
+                backgroundColor={section?.background?.hex}
+                buttonLink={section?.button?.buttonLink}
+                buttonText={section?.button?.buttonText}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+              />
             )
           }
 

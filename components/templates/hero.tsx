@@ -30,8 +30,6 @@ export default function Hero({ image, heading, altTag, subtitle, _key, blurData,
                 height={1000}
                 sizes="100vw"
                 priority
-                placeholder="blur"
-                blurDataURL={blurData ?? urlForImage(image).width(100).height(100).quality(1).url()}
                 style={{
                     objectFit: 'cover'
                 }}
