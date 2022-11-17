@@ -26,19 +26,19 @@ export default function Layout({ children, preview }: any) {
                     {`
                         :root {
 
-                            --primary-accent: ${data.appearances?.primaryAccent};
+                            --primary-accent: ${data.appearances?.primaryAccent ?? '#cccccc'};
 
-                            --footer-background-color: ${data.appearances?.footerBg};
-                            --footer-header-color: ${data.appearances?.footerHeader};
-                            --footer-text-color: ${data.appearances?.footerText};
+                            --footer-background-color: ${data.appearances?.footerBg ?? '0e0e0e'};
+                            --footer-header-color: ${data.appearances?.footerHeader ?? '#ffffff'};
+                            --footer-text-color: ${data.appearances?.footerText ?? '#9b9b9b'};
                             --primary-button-background: ${data.appearances?.primaryButtonBg ?? '#000000'};
                             --primary-button-text: ${data.appearances?.primaryButtonText ?? '#ffffff'};
-                            --secondary-color: ${data.appearances?.secondaryColor};
+                            --secondary-color: ${data.appearances?.secondaryColor ?? '#cccccc'};
 
                             --header-background-color: ${data.appearances?.navBgColor ? data.appearances?.navBgColor : 'transparent'};
-                            --header-navigation-color: ${data.appearances?.navColor};
+                            --header-navigation-color: ${data.appearances?.navColor ?? '#ffffff'};
 
-                            --loading-background-color: ${data.appearances?.loaderColor};
+                            --loading-background-color: ${data.appearances?.loaderColor ?? '#0e0e0e'};
                             --loading-image: url(${bgLoader});
                         
                         }

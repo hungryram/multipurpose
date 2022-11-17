@@ -104,7 +104,6 @@ export default function Index({
           }
 
           if (section._type === 'fullWidthTextImage') {
-            console.log(section)
             return (
               <FullWidthTextImage 
                 key={section?._key}

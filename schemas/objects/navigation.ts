@@ -36,7 +36,7 @@ export default defineType({
             type: 'reference',
             hidden: ({ parent }) => parent?.linkType !== "internal",
             to: [
-                { type: 'post' },
+                { type: 'blog' },
                 { type: 'author' },
                 { type: 'pages' },
                 { type: 'locations' },

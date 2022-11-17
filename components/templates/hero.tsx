@@ -1,11 +1,11 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 
-export default function Hero({ image, heading, altTag, subtitle, _key, blurData, imageHeight, bodyColor, headerColor, buttonLink, buttonText, idxSubdomain = 'search', idxId = '132970' } : any) {
+export default function Hero({ image, heading, altTag, subtitle, _key, blurData, imageHeight, bodyColor, headerColor, buttonLink, buttonText } : any) {
 
 
     return (
-        <div className="flex items-center relative" key={_key}>
+        <div className="flex items-center relative">
             {image ?
                 <Image
                     src={urlForImage(image).height(1000).width(2000).url()}
@@ -25,11 +25,13 @@ export default function Hero({ image, heading, altTag, subtitle, _key, blurData,
                 <Image
                 src="/assets/banner.jpg"
                 alt="placeholder"
-                className="w-full h-screen"
+                className={`w-full ${imageHeight}`}
                 width={2000}
                 height={1000}
                 sizes="100vw"
                 priority
+                placeholder="blur"
+                blurDataURL={blurData ?? urlForImage(image).width(100).height(100).quality(1).url()}
                 style={{
                     objectFit: 'cover'
                 }}

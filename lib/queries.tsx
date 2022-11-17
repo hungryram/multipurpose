@@ -53,7 +53,7 @@ export const homeQuery = groq`
 `
 
 export const indexQuery = groq`
-*[_type == "post"] | order(date desc, _updatedAt desc) {
+*[_type == "blog"] | order(date desc, _updatedAt desc) {
   ${postFields}
 }`
 
@@ -122,22 +122,22 @@ export const pagesBySlugQuery = groq`
 
 export const postQuery = groq`
 {
-  "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) [0] {
+  "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {
     content,
     ${postFields}
   },
-  "morePosts": *[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
+  "morePosts": *[_type == "blog" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
     content,
     ${postFields}
   }
 }`
 
 export const postSlugsQuery = groq`
-*[_type == "post" && defined(slug.current)][].slug.current
+*[_type == "blog" && defined(slug.current)][].slug.current
 `
 
 export const postBySlugQuery = groq`
-*[_type == "post" && slug.current == $slug][0] {
+*[_type == "blog" && slug.current == $slug][0] {
   ${postFields}
 }
 `

@@ -4,6 +4,12 @@ export default defineType({
     name: 'appearances',
     title: 'Appearance',
     type: 'document',
+    groups: [
+        {title: 'Branding', name: 'branding'},
+        {title: 'Header', name: 'header'},
+        {title: 'Colors', name: 'colors'},
+        {title: 'Footer', name: 'footer'},
+    ],
     fields: [
         {
             title: 'Home Page',
@@ -15,22 +21,26 @@ export default defineType({
         {
             title: 'Branding',
             name: 'branding',
-            type: 'branding'
+            type: 'branding',
+            group: 'branding'
         },
         {
             title: 'Header',
             name: 'header',
-            type: 'headerMenu'
+            type: 'headerMenu',
+            group: 'header'
         },
         {
             title: 'Colors',
             name: 'mainColors',
-            type: 'mainColors'
+            type: 'mainColors',
+            group: 'colors'
         },
         {
             title: 'Footer',
             name: 'footer',
             type: 'object',
+            group: 'footer',
             options: {
                 collapsible: true,
                 collapsed: true

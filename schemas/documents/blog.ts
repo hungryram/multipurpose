@@ -16,8 +16,8 @@ import authorType from './author'
  */
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
+  name: 'blog',
+  title: 'Blog',
   icon: MdOutlineArticle,
   type: 'document',
   fields: [

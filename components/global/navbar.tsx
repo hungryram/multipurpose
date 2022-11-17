@@ -6,8 +6,9 @@ import { AiOutlineClose } from "react-icons/ai"
 import { BiCaretDown } from "react-icons/bi"
 import { urlForImage } from "../../lib/sanity";
 import Styles from "../../styles/navbar.module.css"
+import Image from "next/image";
 
-export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink, backgroundColor } : any) {
+export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink, backgroundColor }: any) {
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
@@ -29,94 +30,94 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'}`}
                 onMouseLeave={() => setDropdownActive(null)}
             >
-                <div className="md:flex items-center justify-center md:visible hidden p-4">
-                    <div className="flex-1">
+                <div className="md:flex items-center justify-between flex-wrap md:visible hidden p-4">
+                    <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer">
-                                {logo ?
-                                    <picture>
-                                        <source srcSet={urlForImage(logo).url()} type="image" />
-                                        <img
-                                            src={urlForImage(logo).url()}
-                                            width={logoWidth ? logoWidth : '150'}
-                                            alt={company_name}
-                                        />
-                                    </picture>
-                                    :
-                                    <h1 className="text-3xl">{company_name ? company_name : 'Company Name'}</h1>
-                                }
+                            {logo ?
+                                <Image
+                                    src={urlForImage(logo).url()}
+                                    width={logoWidth ? logoWidth : '150'}
+                                    height={10}
+                                    alt={company_name}
+                                />
+                                :
+                                <h1 className="text-3xl">{company_name ? company_name : 'Company Name'}</h1>
+                            }
                         </Link>
                     </div>
-                    <ul className="items-center text-right md:mr-10 justify-end">
-                        {navItems?.map((link) => {
+                    <div className="flex items-center w-auto">
+                        <ul className="items-center text-right md:mr-10 justify-end">
+                            {navItems?.map((link) => {
 
-                            const menuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
+                                const menuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
 
 
-                            if (link.subMenu?.length > 0) {
+                                if (link.subMenu?.length > 0) {
 
-                                return (
-                                    <li
-                                        key={link._key}
-                                        className={`${desktopMenuParentItems}`}
-                                        onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}>
-                                        <Link
-                                            href={menuLinks}
-                                            target={link?.externalUrl && "_blank"}
-                                            rel={link?.externalUrl && "noreferrer"}
-                                            aria-label={link.internalLink?.name ?? link.internalLink?.title ?? link.text}
-                                            className={`cursor-pointer flex flex-row items-center py-10 ${Styles.navItems}`}
-                                        >
+                                    return (
+                                        <li
+                                            key={link._key}
+                                            className={`${desktopMenuParentItems}`}
+                                            onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}>
+                                            <Link
+                                                href="/"
+                                                target={link?.externalUrl && "_blank"}
+                                                rel={link?.externalUrl && "noreferrer"}
+                                                aria-label={link.internalLink?.name ?? link.internalLink?.title ?? link.text}
+                                                className={`cursor-pointer flex flex-row items-center py-10 ${Styles.navItems}`}
+                                            >
                                                 {link.internalLink?.name ?? link.internalLink?.title ?? link.text} <BiCaretDown className="ml-1 text-lg" />
-                                        </Link>
+                                            </Link>
 
-                                        <ul className={`absolute bottom-0 left-0 translate-y-full bg-white p-2 border text-left min-w-[200px] z-50 ${dropdownActive === link ? "visible" : "hidden"}`}>
-                                            {link.subMenu.map((sub) => {
+                                            <ul className={`absolute bottom-0 left-0 translate-y-full bg-white p-2 border text-left min-w-[200px] z-50 ${dropdownActive === link ? "visible" : "hidden"}`}>
+                                                {link.subMenu.map((sub) => {
 
-                                                const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
+                                                    const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
 
-                                                return (
-                                                    <>
-                                                        <li className="whitespace-nowrap text-black" key={sub._key}>
-                                                            <Link 
-                                                                href={subMenuLinks}
-                                                                target={sub.newTab && '_blank'} aria-label={sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text} rel={sub?.externalUrl && "noreferrer"} onClick={() => setDropdownActive(null)} className="py-1 block"
+                                                    return (
+                                                        <>
+                                                            <li className="whitespace-nowrap text-black" key={sub._key}>
+                                                                <Link
+                                                                    href={subMenuLinks}
+                                                                    target={sub.newTab && '_blank'} aria-label={sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text} rel={sub?.externalUrl && "noreferrer"} onClick={() => setDropdownActive(null)} className="py-1 block"
                                                                 >
                                                                     {sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text}
-                                                            </Link>
-                                                        </li>
-                                                    </>
-                                                )
-                                            })}
-                                        </ul>
-                                    </li>
-                                )
-                            }
-                            else {
-                                return (
-                                    <>
-                                        <li className={`relative inline-block mx-4 text-md`} key={link._key}>
-                                            <Link 
-                                                href={menuLinks}
-                                                target={link.newTab && '_blank'} aria-label={link?.name ?? link?.title ?? link.text} rel={link?.externalUrl && "noreferrer"} className={`${router.asPath === menuLinks ? 'active' : 'false'} ${Styles.navItems}`}
-                                            >
-                                                    {link.text}
-                                            </Link>
+                                                                </Link>
+                                                            </li>
+                                                        </>
+                                                    )
+                                                })}
+                                            </ul>
                                         </li>
-                                    </>
-                                )
-                            }
-                        })}
-                        {ctaText &&
-                            <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
-                                <Link 
-                                    href={ctaLink}
-                                    className="primary-button"
+                                    )
+                                }
+                                else {
+                                    return (
+                                        <>
+                                            <li className={`relative inline-block mx-4 text-md`} key={link._key}>
+                                                <Link
+                                                    href={menuLinks}
+                                                    target={link.newTab && '_blank'} aria-label={link?.name ?? link?.title ?? link.text} rel={link?.externalUrl && "noreferrer"} className={`${router.asPath === menuLinks ? 'active' : 'false'} ${Styles.navItems}`}
+                                                >
+                                                    {link.text}
+                                                </Link>
+                                            </li>
+                                        </>
+                                    )
+                                }
+                            })}
+                            {ctaText &&
+                                <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
+                                    <Link
+                                        href={ctaLink}
+                                        className="primary-button"
                                     >
                                         <span>{ctaText}</span>
-                                </Link>
-                            </li>
-                        }
-                    </ul>
+                                    </Link>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </nav>
 
@@ -125,16 +126,14 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                     <div className="flex items-center">
                         <div className="flex-1">
                             <Link href="/" className="relative cursor-pointer">
-                                    {logo &&
-                                        <picture>
-                                            <source srcSet={urlForImage(logo).url()} type="image" />
-                                            <img
-                                                src={urlForImage(logo).url()}
-                                                width={logoWidth}
-                                                alt={company_name}
-                                            />
-                                        </picture>
-                                    }
+                                {logo &&
+                                    <Image
+                                        src={urlForImage(logo).url()}
+                                        width={150}
+                                        height={50}
+                                        alt={company_name}
+                                    />
+                                }
                             </Link>
                         </div>
                         <div className="flex-1 text-right">
@@ -161,11 +160,11 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                     return (
                                         <>
                                             <li key={link._key} className="relative my-3" onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}>
-                                                <Link 
-                                                    href={mobileMenuLinks}
+                                                <Link
+                                                    href="/"
                                                     className="cursor-pointer flex flex-row items-center text-right justify-end text-2xl primary-heading" onClick={() => setOpenMobileNav(true)}
-                                                    >
-                                                        {link.internalLink?.name ?? link.internalLink?.title ?? link.text} <BiCaretDown className="ml-1 text-lg" />
+                                                >
+                                                    {link.internalLink?.name ?? link.internalLink?.title ?? link.text} <BiCaretDown className="ml-1 text-lg" />
                                                 </Link>
 
                                                 <ul className={`relative block w-full p-2 text-left ${dropdownActive === link ? "visible" : "hidden"}`}>
@@ -176,11 +175,11 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                         return (
                                                             <>
                                                                 <li className="block my-1 justify-end mx-auto text-right" key={sub._key}>
-                                                                    <Link 
+                                                                    <Link
                                                                         href={subMenuLinks}
                                                                         aria-label={sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text} target={sub?.newTab && "_blank"} rel={sub?.externalUrl && "noreferrer"} onClick={() => setOpenMobileNav(false)}
-                                                                        >
-                                                                            {sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text}
+                                                                    >
+                                                                        {sub.internalLink?.name ?? sub.internalLink?.title ?? sub.text}
                                                                     </Link>
                                                                 </li>
                                                             </>
@@ -194,13 +193,13 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                 else {
                                     return (
                                         <li key={link._key} onClick={() => setOpenMobileNav(false)} className="my-3">
-                                            <Link 
+                                            <Link
                                                 href={mobileMenuLinks}
-                                                rel={link?.externalUrl && "noreferrer"} 
-                                                aria-label={link.internalLink?.name ?? link.internalLink?.title ?? link.text} 
+                                                rel={link?.externalUrl && "noreferrer"}
+                                                aria-label={link.internalLink?.name ?? link.internalLink?.title ?? link.text}
                                                 className={`block w-full h-full text-2xl primary-heading ${router.asPath === mobileMenuLinks ? 'active' : 'false'}`}
-                                                >
-                                                    {link.internalLink?.name ?? link.internalLink?.title ?? link.text}
+                                            >
+                                                {link.internalLink?.name ?? link.internalLink?.title ?? link.text}
 
                                             </Link>
                                         </li>

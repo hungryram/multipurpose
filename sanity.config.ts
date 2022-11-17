@@ -3,7 +3,6 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
-import { AiOutlineHome } from "react-icons/ai"
 import { MdOutlineDesignServices, MdPersonOutline } from "react-icons/md"
 
 //  PLUGINS
@@ -18,8 +17,8 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { PostsPreview } from './components/previews/PostsPreview'
 
 //  DOCUMENTS
-import authorType from './schemas/author'
-import postType from './schemas/post'
+import authorType from './schemas/documents/author'
+import postType from './schemas/documents/blog'
 import settingsType from './schemas/settings'
 import homeDocument from './schemas/documents/home'
 import profileDocument from './schemas/documents/profile'
@@ -127,18 +126,7 @@ export default createConfig({
                 .schemaType(profileDocument.name)
                 .documentId(profileDocument.name)
             )
-
-        // const homeListItem =
-        //   S.listItem()
-        //     .title(homeDocument.title)
-        //     .icon(AiOutlineHome)
-        //     .child(
-        //       S.editor()
-        //         .id(homeDocument.name)
-        //         .schemaType(homeDocument.name)
-        //         .documentId(homeDocument.name)
-        //     )
-
+            
         const appearanceListItem = // A singleton not using `documentListItem`, eg no built-in preview
           S.listItem()
             .title(appearanceDocument.title)

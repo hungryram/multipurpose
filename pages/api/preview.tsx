@@ -56,7 +56,7 @@ export default async function preview(req, res) {
 
   // If the slug doesn't exist prevent preview mode from being enabled
   if (post) {
-    redirectToPreview(res, `/posts/${post.slug}`)
+    redirectToPreview(res, `/blog/${post.slug}`)
   } else if(pages) {
     redirectToPreview(res, `/${pages.slug}`)
   } else if(services) {
