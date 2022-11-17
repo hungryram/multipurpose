@@ -65,5 +65,21 @@ export default defineType({
             validation: Rule => Rule.required().error('Required for search engines'),
             group: 'seo'
         }
-    ]
+    ],
+    preview: {
+        select: {
+            title: 'title',
+            subtitle: 'slug.current',
+            media: 'headerImage'
+        },
+        prepare(selection) {
+            const { title, subtitle, media } = selection
+            return {
+                title: title,
+                subtitle: `/${subtitle}`,
+                media: media
+                
+            }
+        }
+    }
 })

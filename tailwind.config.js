@@ -16,7 +16,7 @@ module.exports = {
     'lg:grid-cols-9',
     'lg:grid-cols-10',
     'lg:grid-cols-11',
-    'lg:grid-cols-12'
+    'lg:grid-cols-12',
   ],
   theme: {
     container: {

@@ -110,7 +110,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                             <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
                                 <Link 
                                     href={ctaLink}
-                                    className="primary-button" style={{ background: 'transparent', border: '1px solid #fff', color: '#fff' }}
+                                    className="primary-button"
                                     >
                                         <span>{ctaText}</span>
                                 </Link>

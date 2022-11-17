@@ -6,6 +6,13 @@ export default defineType({
     type: 'document',
     fields: [
         {
+            title: 'Home Page',
+            name: 'homePage',
+            description: 'Select your home page',
+            type: 'reference',
+            to: { type: 'homeDesign' },
+        },
+        {
             title: 'Branding',
             name: 'branding',
             type: 'branding'
@@ -68,5 +75,12 @@ export default defineType({
                 }
             ]
         }
-    ]
+    ],
+    preview: {
+        prepare(){
+            return {
+                title: 'Appearance'
+            }
+        }
+    }
 })

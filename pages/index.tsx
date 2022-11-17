@@ -3,8 +3,7 @@ import Container from '../components/util/container'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/global/layout'
 import MoreStories from '../components/more-stories'
-import { indexQuery, homeQuery } from '../lib/queries'
-import { usePreviewSubscription } from '../lib/sanity'
+import { homePageQuery } from '../lib/queries'
 import { getClient, overlayDrafts } from '../lib/sanity.server'
 import Hero from '../components/templates/hero'
 import TextImage from '../components/templates/text-and-image'
@@ -14,25 +13,19 @@ import Section from '../components/util/section'
 import Heading from '../components/util/heading'
 import Banner from '../components/templates/banner'
 import DisclosureSection from '../components/templates/disclosure'
+import FullWidthTextImage from '../components/templates/full-width-text-image'
 
 export default function Index({
-  allPosts: initialAllPosts,
   preview,
   homeSettings
 }) {
-  const { data: allPosts } = usePreviewSubscription(indexQuery, {
-    initialData: initialAllPosts,
-    enabled: preview,
-  })
-  const [heroPost, ...morePosts] = allPosts || []
 
   const defaultText = '#222'
   const defaultHeader = '#222'
   return (
     <>
       <Layout preview={preview}>
-
-        {homeSettings?.homeDesign?.pageBuilder?.map((section) => {
+        {homeSettings?.appearances?.homePage?.pageBuilder?.map((section) => {
 
           const headerColor = {
             color: section.textColor?.headerColor?.hex ?? defaultHeader
@@ -110,6 +103,22 @@ export default function Index({
             )
           }
 
+          if (section._type === 'fullWidthTextImage') {
+            console.log(section)
+            return (
+              <FullWidthTextImage 
+                key={section?._key}
+                content={section?.content}
+                image={section?.image}
+                backgroundStyles={section?.backgroundColor?.hex}
+                textColor={section?.textColor?.hex}
+                columnReverse={section?.reverseColumn}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+              />
+            )
+          }
+
           if (section._type === 'featuredGrid') {
             return (
               <div key={section?._key} style={backgroundStyles}>
@@ -138,7 +147,7 @@ export default function Index({
                                 textOutsideImage={section.textOutsideImage}
                                 textLeft={section?.textLeft}
                                 centerTextGrid={section?.centerTextGrid}
-                                blurData={homeSettings.sanityImages.base64 ?? node.image}
+                                blurData={homeSettings.sanityImages[0].base64 ?? node.image}
                                 textColor={node?.textColor?.hex}
                                 borderColor={node?.borderColor?.hex}
                                 backgroundColor={node?.backgroundcolor?.hex}
@@ -188,7 +197,6 @@ export default function Index({
           }
 
         })}
-
       </Layout>
     </>
   )
@@ -198,11 +206,10 @@ export async function getStaticProps({ preview = false }) {
 
   /* check if the project id has been defined by fetching the vercel envs */
   if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-    const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery))
-    const homeSettings = await getClient(preview).fetch(homeQuery)
+    const homeSettings = await getClient(preview).fetch(homePageQuery)
 
     return {
-      props: { allPosts, preview, homeSettings },
+      props: { preview, homeSettings },
       // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
       revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
     }

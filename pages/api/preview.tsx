@@ -1,4 +1,5 @@
 import { 
+  homeBySlugQuery,
   postBySlugQuery, 
   pagesBySlugQuery, 
   servicesBySlugQuery,
@@ -27,6 +28,11 @@ export default async function preview(req, res) {
   }
 
   // Check if the post with the given `slug` exists
+
+  const home = await getClient(true).fetch(homeBySlugQuery, {
+    slug: req.query.slug,
+  })
+
   const post = await getClient(true).fetch(postBySlugQuery, {
     slug: req.query.slug,
   })
@@ -59,6 +65,8 @@ export default async function preview(req, res) {
     redirectToPreview(res, `/team/${teams.slug}`)
   } else if(legal) {
     redirectToPreview(res, `/legal/${legal.slug}`)
+  } else if(home) {
+    redirectToPreview(res, `/home/${home.slug}`)
   } 
   
   else {

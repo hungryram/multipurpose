@@ -44,3 +44,11 @@ export interface LegalProps {
   slug?: string
   content?: any
 }
+
+export interface HomeProps {
+  title: string
+  image: any
+  slug?: string
+  content?: any
+  pages?: any
+}

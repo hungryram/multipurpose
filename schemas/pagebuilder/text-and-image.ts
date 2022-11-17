@@ -52,7 +52,7 @@ export default defineType({
             },
         },
         {
-            title: 'Reverse Row',
+            title: 'Reverse Column',
             name: 'reverseRow',
             type: 'boolean',
             description: 'Enable this to make sections staggered',

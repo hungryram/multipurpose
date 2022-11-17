@@ -28,7 +28,6 @@ import appearanceDocument from './schemas/documents/appearance'
 import testimonialsDocument from './schemas/documents/testimonials'
 import pressDocument from './schemas/documents/press'
 import teamDocument from './schemas/documents/team'
-import partnersDocument from './schemas/documents/partners'
 import locationsDocument from './schemas/documents/locations'
 import navigationDocument from './schemas/documents/navigation'
 import servicesDocument from './schemas/documents/services'
@@ -52,6 +51,7 @@ import linksObject from './schemas/objects/links'
 //  PAGEBUILDER
 import heroBuilder from './schemas/pagebuilder/hero'
 import contactBuilder from './schemas/pagebuilder/contact'
+import fullWidthTextImageBuilder from './schemas/pagebuilder/fullwidth-text-image'
 import bannerBuilder from './schemas/pagebuilder/banner'
 import disclosureBuilder from './schemas/pagebuilder/disclosure'
 import codeBuilder from './schemas/pagebuilder/code'
@@ -82,7 +82,6 @@ export default createConfig({
       servicesDocument,
       teamDocument,
       locationsDocument,
-      partnersDocument,
       testimonialsDocument,
       pressDocument,
       postType,
@@ -108,6 +107,7 @@ export default createConfig({
       contactBuilder,
       bannerBuilder,
       disclosureBuilder,
+      fullWidthTextImageBuilder,
       textImageBuilder,
       featuredGridBuilder,
     ],
@@ -116,17 +116,6 @@ export default createConfig({
     colorInput(),
     deskTool({
       structure: (S) => {
-        // The `Settings` root list item
-        const settingsListItem = // A singleton not using `documentListItem`, eg no built-in preview
-          S.listItem()
-            .title(settingsType.title)
-            .icon(settingsType.icon)
-            .child(
-              S.editor()
-                .id(settingsType.name)
-                .schemaType(settingsType.name)
-                .documentId(settingsType.name)
-            )
 
         const profileListItem = // A singleton not using `documentListItem`, eg no built-in preview
           S.listItem()
@@ -139,16 +128,16 @@ export default createConfig({
                 .documentId(profileDocument.name)
             )
 
-        const homeListItem = // A singleton not using `documentListItem`, eg no built-in preview
-          S.listItem()
-            .title(homeDocument.title)
-            .icon(AiOutlineHome)
-            .child(
-              S.editor()
-                .id(homeDocument.name)
-                .schemaType(homeDocument.name)
-                .documentId(homeDocument.name)
-            )
+        // const homeListItem =
+        //   S.listItem()
+        //     .title(homeDocument.title)
+        //     .icon(AiOutlineHome)
+        //     .child(
+        //       S.editor()
+        //         .id(homeDocument.name)
+        //         .schemaType(homeDocument.name)
+        //         .documentId(homeDocument.name)
+        //     )
 
         const appearanceListItem = // A singleton not using `documentListItem`, eg no built-in preview
           S.listItem()
@@ -163,12 +152,12 @@ export default createConfig({
 
         // The default root list items (except custom ones)
         const defaultListItems = S.documentTypeListItems().filter(
-          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name, homeDocument.name].includes(listItem.getId())
+          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name].includes(listItem.getId())
         )
 
         return S.list()
           .title('Content')
-          .items([profileListItem, appearanceListItem, homeListItem, S.divider(), ...defaultListItems])
+          .items([profileListItem, appearanceListItem, S.divider(), ...defaultListItems])
       },
 
       // `defaultDocumentNode is responsible for adding a “Preview” tab to the document pane
@@ -178,6 +167,13 @@ export default createConfig({
       // https://www.sanity.io/docs/structure-builder-reference
       defaultDocumentNode: (S, { schemaType }) => {
         if (schemaType === postType.name) {
+          return S.document().views([
+            S.view.form(),
+            S.view.component(PostsPreview).title('Preview'),
+          ])
+        }
+
+        if (schemaType === homeDocument.name) {
           return S.document().views([
             S.view.form(),
             S.view.component(PostsPreview).title('Preview'),
@@ -236,11 +232,12 @@ export default createConfig({
         switch (document._type) {
           case settingsType.name:
             break
-          case homeDocument.name:
-            break
           case profileDocument.name:
             break
           case appearanceDocument.name:
+            break
+          case homeDocument.name:
+            url.searchParams.set('slug', (document.slug as Slug).current!)
             break
           case pagesDocument.name:
             url.searchParams.set('slug', (document.slug as Slug).current!)

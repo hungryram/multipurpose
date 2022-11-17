@@ -11,6 +11,19 @@ const postFields = groq`
   "author": author->{name, picture},
 `
 
+export const homePageQuery = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"][0] {
+    'base64': metadata.lqip
+  },
+  'appearances': *[_type == 'appearances'][0]{
+    'homePage': homePage-> {
+      ...
+    }
+  }
+}
+`
+
 export const settingsQuery = groq`*[_type == "settings"][0]{title}`
 
 export const homeQuery = groq`
@@ -213,6 +226,82 @@ export const appearances = groq`
   }
 `
 
+// HOME QUERY
+export const queryHome = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
+  'profileSettings': *[_type == 'profile'][0]{
+    contact_information {
+      ...
+    },
+    address {
+      ...
+    },
+    social {
+      ...
+    }
+  },
+    'homeDesign': *[_type == 'homeDesign' && slug.current == $slug][0],
+    ...,
+    'team': *[_type == 'team'][0..6]{
+      name,
+      _id,
+      image,
+      'slug': slug.current
+    },
+    'blog': *[_type == 'blog'][0..4]{
+      'slug': slug.current,
+      title,
+      _id,
+      excerpt,
+      date,
+      mainImage
+    },
+    'listings': *[_type == 'listings'][0..6]{
+      'slug': slug.current,
+      propType,
+      _id,
+      shortTitle,
+      status,
+      price,
+      address,
+      city,
+      state,
+      zipCode,
+      'thumbnail': gallery.images[0],
+      'details': details {
+     bedrooms,
+     bathrooms,
+     squareFootage,
+   }
+    }
+}
+`
+
+export const homeBySlugQuery = groq`
+*[_type == "homeDesign" && slug.current == $slug][0] {
+  'slug': slug.current
+}
+`
+
+export const queryHomeCurrentPage = groq`
+{
+  'sanityImages': *[_type == "sanity.imageAsset"] {
+    'base64': metadata.lqip
+  },
+  'services': *[_type == 'homeDesign' && slug.current == $slug][0],
+  ...,
+  'allServices': *[_type == 'homeDesign']
+}
+`
+
+export const homeSlugsQuery = groq`
+*[_type == "homeDesign" && defined(slug.current)][].slug.current
+`
+
+
 
 // SERVICE QUERY
 export const queryServices = groq`
@@ -226,6 +315,7 @@ export const queryServices = groq`
     _id
 }
 `
+
 
 export const servicesBySlugQuery = groq`
 *[_type == "services" && slug.current == $slug][0] {
