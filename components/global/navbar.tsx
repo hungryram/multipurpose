@@ -48,7 +48,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                         </Link>
                     </div>
                     <div className="flex items-center w-auto">
-                        <ul className="items-center text-right md:mr-10 justify-end">
+                        <ul className="items-center text-right md:mr-10 justify-end" role="menu">
                             {navItems?.map((link) => {
 
                                 const menuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
@@ -60,16 +60,20 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                         <li
                                             key={link._key}
                                             className={`${desktopMenuParentItems}`}
-                                            onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}>
+                                            onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
+                                            aria-expanded={dropdownActive === link ? "true" : "false"}
+                                            >
                                             <Link
                                                 href="/"
-                                                aria-label={link.internalLink?.name ?? link.internalLink?.title ?? link.text}
-                                                className={`cursor-pointer flex flex-row items-center py-10 ${Styles.navItems}`}
+                                                className={`cursor-pointer flex flex-row items-center ${Styles.navItems}`}
                                             >
                                                 {link.text} <BiCaretDown className="ml-1 text-lg" />
                                             </Link>
 
-                                            <ul className={`absolute bottom-0 left-0 translate-y-full bg-white p-2 border text-left min-w-[200px] z-50 ${dropdownActive === link ? "visible" : "hidden"}`}>
+                                            <ul 
+                                                className={`absolute bottom-0 left-0 translate-y-full bg-white p-2 border text-left min-w-[200px] z-50 ${dropdownActive === link ? Styles.activeDropDown : Styles.hideDropDown}`}
+                                                role="menu"
+                                                >
                                                 {link.subMenu.map((sub) => {
 
                                                     const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
@@ -80,7 +84,6 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                                 <Link
                                                                     href={subMenuLinks ?? '/'}
                                                                     target={sub.newTab && '_blank'} 
-                                                                    aria-label={sub.text} 
                                                                     onClick={() => setDropdownActive(null)} 
                                                                     className="py-1 block"
                                                                 >
@@ -101,7 +104,6 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                 <Link
                                                     href={menuLinks ?? '/'}
                                                     target={link.newTab && '_blank'} 
-                                                    aria-label={link?.name ?? link?.title ?? link.text} 
                                                     className={`${router.asPath === menuLinks ? Styles.activeLink : 'false'} ${Styles.navItems}`}
                                                 >
                                                     {link.text}
@@ -140,7 +142,13 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                             </Link>
                         </div>
                         <div className="flex-1 text-right">
-                            <div id="toggle" className="cursor-pointer flex justify-end" onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}>
+                            <div 
+                                id="toggle" 
+                                className="cursor-pointer flex justify-end z-50" 
+                                onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
+                                aria-label={openMobileNav ? 'menu is open' : 'menu is closed'}
+                                aria-expanded={openMobileNav ? 'true' : 'false'}
+                                >
                                 <HamburgerMenu 
                                     isOpen={openMobileNav}
                                 />
@@ -150,8 +158,8 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
 
                 </div>
                 <div>
-                    <div className={`fixed bg-white w-full h-full top-0 z-50 py-4 transition-all duration-200 ease-linear ${openMobileNav ? "-left-20" : "-left-full"}`}>
-                        <ul style={{ listStyle: "none", padding: "0" }} className="mt-5 flex flex-col text-right mr-10">
+                    <div className={`relative bg-white left-0 right-0 h-auto z-50 py-4 transition-all duration-[50] ease-linear ${openMobileNav ? "top-0 opacity-100" : "-top-96 opacity-0"}`}>
+                        <ul style={{ listStyle: "none", padding: "0" }} className="flex flex-col text-left">
                             {navItems?.map((link) => {
 
                                 const mobileMenuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
@@ -160,25 +168,32 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                 if (link.subMenu?.length > 0) {
                                     return (
                                         <>
-                                            <li key={link._key} className="relative my-3" onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}>
+                                            <li 
+                                                key={link._key} 
+                                                className="relative my-3 px-4" 
+                                                onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
+                                                aria-expanded={dropdownActive === link ? "true" : "false"}
+                                                >
                                                 <Link
                                                     href="/"
-                                                    className="cursor-pointer flex flex-row items-center text-right justify-end text-2xl primary-heading" 
+                                                    className="cursor-pointer flex flex-row items-center text-left" 
                                                     onClick={() => setOpenMobileNav(true)}
                                                 >
                                                     {link.text} <BiCaretDown className="ml-1 text-lg" />
                                                 </Link>
 
-                                                <ul className={`relative block w-full p-2 text-left ${dropdownActive === link ? "visible" : "hidden"}`}>
+                                                <ul 
+                                                    className={`relative block w-full p-2 text-left ${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
+                                                    role="menu"
+                                                    >
                                                     {link.subMenu.map((sub) => {
 
                                                         const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
                                                         return (
                                                             <>
-                                                                <li className="block my-1 justify-end mx-auto text-right" key={sub._key}>
+                                                                <li className="block my-1 mx-auto" key={sub._key}>
                                                                     <Link
                                                                         href={subMenuLinks ?? '/'}
-                                                                        aria-label={sub.text} 
                                                                         target={sub?.newTab && "_blank"} 
                                                                         onClick={() => setOpenMobileNav(false)}
                                                                     >
@@ -198,8 +213,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                         <li key={link._key} onClick={() => setOpenMobileNav(false)} className="my-3">
                                             <Link
                                                 href={mobileMenuLinks ?? '/'}
-                                                aria-label={link.text}
-                                                className={`block w-full h-full text-2xl primary-heading ${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
+                                                className={`block w-full h-full transition-all px-4 ${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
                                             >
                                                 {link.text}
 

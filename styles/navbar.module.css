@@ -7,6 +7,8 @@
     color: var(--header-navigation-color)!important;
     font-weight: 500;
     font-size: 17px;
+    transition: all .2s linear;
+    @apply py-8
 }
 
 .navigationBurger div {
@@ -19,4 +21,31 @@
 
 .activeLink {
     color: var(--primary-accent)!important
+}
+
+.activeDropDown {
+    display: block;
+    transition: all .3s linear;
+    opacity: 1;
+    bottom: 10px
+}
+
+.hideDropDown {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s linear
+}
+
+.mobileDropDown {
+    transition: all .2s ease-in-out;
+    height: auto;
+    opacity: 1;
+    background: red;
+    display: block;
+}
+
+.mobileHideDropDown {
+    transition: all .2s linear;
+    display: none;
+    height: 0;
 }
