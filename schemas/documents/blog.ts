@@ -46,6 +46,7 @@ export default defineType({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
+      validation: Rule => Rule.error().max(300)
     },
     {
       name: 'coverImage',

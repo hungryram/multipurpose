@@ -18,7 +18,7 @@ export default function Layout({ children, preview }: any) {
     if (error) return <Error />;
     if (!data) return <Loading />;
     const bgLoader = data.appearances?.loaderImage
-
+    console.log(data.appearances.websiteBodyColor)
     return (
         <>
             <Head>
@@ -37,9 +37,18 @@ export default function Layout({ children, preview }: any) {
 
                             --header-background-color: ${data.appearances?.navBgColor ? data.appearances?.navBgColor : 'transparent'};
                             --header-navigation-color: ${data.appearances?.navColor ?? '#ffffff'};
+                            --mobile-icon-color: ${data.appearances?.mobileIconColor ?? '#ffffff'};
 
                             --loading-background-color: ${data.appearances?.loaderColor ?? '#0e0e0e'};
                             --loading-image: url(${bgLoader});
+
+                            --website-body-color: ${data.appearances?.websiteBodyColor ?? '#fff'};
+                            --website-text-color: ${data.appearances?.websiteTextColor ?? '#222'};
+
+                            --button-radius: ${data.appearances.buttonRadius ?? '4px'};
+                            --button-y-padding: ${data.appearances.buttonYPadding ?? '16px'};
+                            --button-x-padding: ${data.appearances.buttonXPadding ?? '50px'};
+                            
                         
                         }
                     `}
@@ -52,7 +61,7 @@ export default function Layout({ children, preview }: any) {
                 navItems={data.appearances?.header?.navItems}
                 ctaLink={data.appearances.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
-                backgroundColor={data.appearances.navColor}
+                backgroundColor={data.appearances?.navBgColor}
             />
             {preview && <Alert preview={preview} />}
             <main>

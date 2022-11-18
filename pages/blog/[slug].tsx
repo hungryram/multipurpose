@@ -2,13 +2,11 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import Container from '../../components/util/container'
 import Layout from '../../components/global/layout'
-import MoreStories from '../../components/more-stories'
-import PostBody from '../../components/post-body'
-import PostHeader from '../../components/post-header'
-import PostTitle from '../../components/post-title'
-import SectionSeparator from '../../components/section-separator'
+import MoreStories from '../../components/templates/blog/more-stories'
+import PostBody from '../../components/templates/blog/post-body'
+import PostHeader from '../../components/templates/blog/post-header'
+import PostTitle from '../../components/templates/blog/post-title'
 import { postQuery, postSlugsQuery, settingsQuery } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
@@ -36,42 +34,42 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
-console.log(initialData)
   return (
     <Layout preview={preview}>
-      <Container>
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article>
-              <Head>
-                <title>{`${post.title} | ${title}`}</title>
-                {post.coverImage?.asset?._ref && (
-                  <meta
-                    key="ogImage"
-                    property="og:image"
-                    content={urlForImage(post.coverImage)
-                      .width(1200)
-                      .height(627)
-                      .fit('crop')
-                      .url()}
-                  />
-                )}
-              </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.content} />
-            </article>
-            <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </>
-        )}
-      </Container>
+      <div className="section my-20">
+        <div className="container">
+          {router.isFallback ? (
+            <PostTitle>Loading…</PostTitle>
+          ) : (
+            <>
+              <article>
+                <Head>
+                  <title>{`${post.title} | ${title}`}</title>
+                  {post.coverImage?.asset?._ref && (
+                    <meta
+                      key="ogImage"
+                      property="og:image"
+                      content={urlForImage(post.coverImage)
+                        .width(1200)
+                        .height(627)
+                        .fit('crop')
+                        .url()}
+                    />
+                  )}
+                </Head>
+                <PostHeader
+                  title={post.title}
+                  coverImage={post.coverImage}
+                  date={post.date}
+                  author={post.author}
+                />
+                <PostBody content={post.content} />
+              </article>
+              {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            </>
+          )}
+        </div>
+      </div>
     </Layout>
   )
 }

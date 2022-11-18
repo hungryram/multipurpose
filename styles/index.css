@@ -8,12 +8,27 @@
     font-family: 'Lato', sans-serif;
 }
 
+body {
+  background-color: var(--website-body-color);
+  color: var(--website-text-color);
+}
+
 .section {
   @apply py-20
 }
 
 .container {
   @apply px-4
+}
+
+
+
+/* PAGINATION */
+span.swiper-pagination-bullet {
+  opacity: .7;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px!important;
 }
 
 /* OVERLAY */
@@ -47,11 +62,7 @@ ul.social-component li {
 
 /* BUTTON */
 
-.primary-button {
-    background-color: var(--primary-button-background);
-    color: var(--primary-button-text);
-    @apply px-4 py-2
-}
+
 
 /* HEADINGS */
 

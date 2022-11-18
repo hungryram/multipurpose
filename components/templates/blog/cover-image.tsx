@@ -1,8 +1,8 @@
+
+import { urlForImage } from '../../../lib/sanity'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { urlForImage } from '../lib/sanity'
 
 interface CoverImageProps {
   title: string
@@ -32,13 +32,13 @@ export default function CoverImage(props: CoverImageProps) {
       />
     </div>
   ) : (
-    <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
+    <></>
   )
 
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
+        <Link href={`/blog/${slug}`} aria-label={title}>
           {image}
         </Link>
       ) : (

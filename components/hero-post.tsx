@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { PostProps } from '../types'
 import Avatar from './avatar'
-import CoverImage from './cover-image'
+import CoverImage from './templates/blog/cover-image'
 import Date from './date'
 
 export default function HeroPost(props: PostProps) {

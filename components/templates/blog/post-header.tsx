@@ -1,4 +1,4 @@
-import { PostProps } from '../types'
+import { PostProps } from '../../../types'
 import Avatar from './avatar'
 import CoverImage from './cover-image'
 import Date from './date'
@@ -9,8 +9,12 @@ export default function PostHeader(props: PostProps) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="hidden md:mb-12 md:block">
-        {author && <Avatar name={author.name} picture={author.picture} />}
+      <div className=" md:mb-12 md:block text-center">
+        {author &&
+          <div className="flex justify-center">
+            <Avatar name={author.name} picture={author.picture} />
+          </div>
+        }
       </div>
       <div className="mb-8 sm:mx-0 md:mb-16">
         <CoverImage title={title} image={coverImage} priority slug={slug} />
@@ -19,7 +23,7 @@ export default function PostHeader(props: PostProps) {
         <div className="mb-6 block md:hidden">
           {author && <Avatar name={author.name} picture={author.picture} />}
         </div>
-        <div className="mb-6 text-lg">
+        <div className="mb-6 text-sm">
           <Date dateString={date} />
         </div>
       </div>

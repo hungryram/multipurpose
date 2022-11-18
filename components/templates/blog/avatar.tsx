@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import { urlForImage } from '../lib/sanity'
-import { AuthorProps } from '../types'
+import { urlForImage } from '../../../lib/sanity'
+import { AuthorProps } from '../../../types'
 
 export default function Avatar(props: AuthorProps) {
   const { name, picture } = props
@@ -12,7 +12,7 @@ export default function Avatar(props: AuthorProps) {
           src={
             picture?.asset?._ref
               ? urlForImage(picture).height(96).width(96).fit('crop').url()
-              : 'https://source.unsplash.com/96x96/?face'
+              : 'https://source.unsplash.com/96x96/?abstract'
           }
           className="rounded-full"
           height={96}
@@ -20,7 +20,7 @@ export default function Avatar(props: AuthorProps) {
           alt={name}
         />
       </div>
-      <div className="text-xl font-bold">{name}</div>
+      <div className="text-lg">{name}</div>
     </div>
   )
 }

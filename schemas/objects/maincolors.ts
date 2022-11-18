@@ -14,21 +14,49 @@ export default defineType({
             title: 'Primary Color',
             name: 'primaryColor',
             type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Secondary Color',
             name: 'secondaryColor',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Button Background Color',
             name: 'buttonBackgroundColor',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Button Text Color',
             name: 'buttonTextColor',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
+        },
+        {
+            title: 'Website Body Color',
+            name: 'websiteBodyColor',
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
+        },
+        {
+            title: 'Website Text Color',
+            name: 'websiteTextColor',
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         }
     ]
 })

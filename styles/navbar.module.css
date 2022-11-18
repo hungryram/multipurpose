@@ -6,3 +6,11 @@
 .navItems {
     color: var(--header-navigation-color)!important;
 }
+
+.navigationBurger div {
+    width: 25px;
+    height: 2px;
+    background: var(--mobile-icon-color);
+    margin: 4px 0;
+    transition: all .1s linear
+}

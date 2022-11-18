@@ -7,6 +7,8 @@ import { BiCaretDown } from "react-icons/bi"
 import { urlForImage } from "../../lib/sanity";
 import Styles from "../../styles/navbar.module.css"
 import Image from "next/image";
+import HamburgerMenu from "./hamburger-menu";
+import PrimaryButton from "../util/primary-button";
 
 export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink, backgroundColor }: any) {
 
@@ -27,7 +29,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
     return (
         <>
             <nav
-                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'}`}
+                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
                 onMouseLeave={() => setDropdownActive(null)}
             >
                 <div className="md:flex items-center justify-between flex-wrap md:visible hidden p-4">
@@ -106,14 +108,12 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                     )
                                 }
                             })}
-                            {ctaText &&
+                            {ctaLink &&
                                 <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
-                                    <Link
-                                        href={ctaLink}
-                                        className="primary-button"
-                                    >
-                                        <span>{ctaText}</span>
-                                    </Link>
+                                    <PrimaryButton 
+                                        buttonText={ctaText}
+                                        buttonLink={ctaLink}
+                                    />
                                 </li>
                             }
                         </ul>
@@ -121,7 +121,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                 </div>
             </nav>
 
-            <div className={`z-50 left-0 right-0 md:hidden ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}>
+            <div className={`z-50 left-0 right-0 md:hidden ${backgroundColor ? '' : 'absolute'} ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}>
                 <div className="nav px-4 py-2">
                     <div className="flex items-center">
                         <div className="flex-1">
@@ -138,18 +138,16 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                         </div>
                         <div className="flex-1 text-right">
                             <div id="toggle" className="cursor-pointer flex justify-end" onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}>
-                                {openMobileNav ?
-                                    <AiOutlineClose className="text-xl text-white" />
-                                    :
-                                    <IoIosMenu className="text-3xl text-white" />
-                                }
+                                <HamburgerMenu 
+                                    isOpen={openMobileNav}
+                                />
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <div>
-                    <div className={`absolute bg-white w-full h-screen top-0 z-50 py-4 transition-all duration-200 ease-linear ${openMobileNav ? "-left-20" : "-left-full"}`}>
+                    <div className={`fixed bg-white w-full h-full top-0 z-50 py-4 transition-all duration-200 ease-linear ${openMobileNav ? "-left-20" : "-left-full"}`}>
                         <ul style={{ listStyle: "none", padding: "0" }} className="mt-5 flex flex-col text-right mr-10">
                             {navItems?.map((link) => {
 

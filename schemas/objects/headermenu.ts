@@ -28,6 +28,11 @@ export default defineType({
             type: 'color'
         },
         {
+            name: 'hamburgerMenuColor',
+            title: 'Mobile Menu Icon Color',
+            type: 'color'
+        },
+        {
             title: 'Call to Action Button Text',
             name: 'ctaText',
             type: 'string',

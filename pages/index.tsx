@@ -2,7 +2,7 @@
 import Container from '../components/util/container'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/global/layout'
-import MoreStories from '../components/more-stories'
+import MoreStories from '../components/templates/blog/more-stories'
 import { homePageQuery } from '../lib/queries'
 import { getClient, overlayDrafts } from '../lib/sanity.server'
 import Hero from '../components/templates/hero'
@@ -212,6 +212,8 @@ export default function Index({
                 buttonText={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
+                disableNavigation={section?.disableNavigation}
+                disablePagination={section?.disablePagination}
               />
             )
           }

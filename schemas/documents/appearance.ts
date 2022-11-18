@@ -7,7 +7,7 @@ export default defineType({
     groups: [
         {title: 'Branding', name: 'branding'},
         {title: 'Header', name: 'header'},
-        {title: 'Colors', name: 'colors'},
+        {title: 'Colors and Buttons', name: 'colors'},
         {title: 'Footer', name: 'footer'},
     ],
     fields: [
@@ -35,6 +35,39 @@ export default defineType({
             name: 'mainColors',
             type: 'mainColors',
             group: 'colors'
+        },
+        {
+            title: 'Global Button Design',
+            name: 'globalButtonDesign',
+            type: 'object',
+            group: 'colors',
+            options: {
+                collapsible: true,
+                collapsed: true
+            },
+            fields: [
+                {
+                    title: 'Button Corners',
+                    name: 'buttonCorner',
+                    description: 'Higher numbers will give more rounded button corners',
+                    type: 'number',
+                    validation: Rule => Rule.error().min(0).max(100)
+                },
+                {
+                    title: 'X Axis Padding',
+                    name: 'xPadding',
+                    description: 'padding to the left and right of the button',
+                    type: 'number',
+                    validation: Rule => Rule.error().min(5).max(20)
+                },
+                {
+                    title: 'Y Axis Padding',
+                    name: 'yPadding',
+                    description: 'padding to the top and bottom of the button',
+                    type: 'number',
+                    validation: Rule => Rule.error().min(20).max(100)
+                }
+            ]
         },
         {
             title: 'Footer',

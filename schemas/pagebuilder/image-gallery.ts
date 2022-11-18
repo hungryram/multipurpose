@@ -46,6 +46,18 @@ export default defineType({
             group: 'settings',
         },
         {
+            title: 'Disable Pagination',
+            name: 'disablePagination',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
+            title: 'Disable Navigation Arrows',
+            name: 'disableNavigation',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
             title: 'Full Width',
             name: 'fullWidth',
             type: 'boolean',
@@ -71,7 +83,6 @@ export default defineType({
         },
         prepare(selection) {
           const { images, image } = selection;
-          console.log(images)
           return {
             title: `Gallery section of ${images.length} images`,
             media: image[0].image,

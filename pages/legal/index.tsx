@@ -26,7 +26,6 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function LegalIndex({ legalQuery }) {
-console.log(legalQuery)
     return (
         <Layout>
 
