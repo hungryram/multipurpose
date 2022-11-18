@@ -158,8 +158,8 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
 
                 </div>
                 <div>
-                    <div className={`relative bg-white left-0 right-0 h-auto z-50 py-4 transition-all duration-[50] ease-linear ${openMobileNav ? "top-0 opacity-100" : "-top-96 opacity-0"}`}>
-                        <ul style={{ listStyle: "none", padding: "0" }} className="flex flex-col text-left">
+                    <div className={`relative bg-white left-0 right-0 h-auto z-50 py-4 transition-all duration-200 ease-linear ${openMobileNav ? "top-0 opacity-100" : "-top-96 opacity-0"}`}>
+                        <ul className={Styles.mobileMenu}>
                             {navItems?.map((link) => {
 
                                 const mobileMenuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
@@ -170,20 +170,19 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                         <>
                                             <li 
                                                 key={link._key} 
-                                                className="relative my-3 px-4" 
                                                 onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
                                                 aria-expanded={dropdownActive === link ? "true" : "false"}
                                                 >
                                                 <Link
                                                     href="/"
-                                                    className="cursor-pointer flex flex-row items-center text-left" 
+                                                    className="cursor-pointer flex flex-row items-center" 
                                                     onClick={() => setOpenMobileNav(true)}
                                                 >
-                                                    {link.text} <BiCaretDown className="ml-1 text-lg" />
+                                                    {link.text} <BiCaretDown className="ml-1 inline" />
                                                 </Link>
 
                                                 <ul 
-                                                    className={`relative block w-full p-2 text-left ${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
+                                                    className={`${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
                                                     role="menu"
                                                     >
                                                     {link.subMenu.map((sub) => {
@@ -191,7 +190,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                         const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
                                                         return (
                                                             <>
-                                                                <li className="block my-1 mx-auto" key={sub._key}>
+                                                                <li key={sub._key}>
                                                                     <Link
                                                                         href={subMenuLinks ?? '/'}
                                                                         target={sub?.newTab && "_blank"} 
@@ -210,10 +209,10 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                 }
                                 else {
                                     return (
-                                        <li key={link._key} onClick={() => setOpenMobileNav(false)} className="my-3">
+                                        <li key={link._key} onClick={() => setOpenMobileNav(false)}>
                                             <Link
                                                 href={mobileMenuLinks ?? '/'}
-                                                className={`block w-full h-full transition-all px-4 ${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
+                                                className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
                                             >
                                                 {link.text}
 

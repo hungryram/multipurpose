@@ -36,16 +36,55 @@
     transition: all .2s linear
 }
 
+/* MOBILE */
+
+.mobileMenu li:not(:last-child) {
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.mobileMenu li a {
+    @apply py-3 px-6 block;
+    transition: all .3s linear;
+
+}
+
+.mobileMenu li:hover:not(.mobileDropDown) {
+    background: var(--primary-accent);
+    transition: all .2s linear;
+}
+
+.mobileMenu li {
+    transition: all .2s linear;
+}
+
+ul.mobileMenu li:hover .activeLink {
+    color: #fff!important;
+    transition: all .3s ease;
+
+}
+
 .mobileDropDown {
-    transition: all .2s ease-in-out;
+    transition: all .4s ease-in-out;
+    position: relative;
     height: auto;
+    padding-left: 10px;
     opacity: 1;
-    background: red;
-    display: block;
+}
+
+.mobileDropDown li {
+    transition: all .3s ease;
+}
+
+.mobileDropDown li:hover {
+    padding-left: 5px;
+    transition: all .3s ease;
 }
 
 .mobileHideDropDown {
-    transition: all .2s linear;
-    display: none;
+    transition: all .4s linear;
+    max-height: 0;
     height: 0;
+    overflow-y: hidden;
+    position: absolute;
+    opacity: 0;
 }

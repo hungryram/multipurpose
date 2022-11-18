@@ -11,12 +11,13 @@ export default function HamburgerMenu({ isOpen }: any) {
 
                 .line-two {
                     transform: ${isOpen ? 'translateX(100%)' : 'translateX(0)'};
-                    opacity: ${isOpen ? 0 : 1}
+                    opacity: ${isOpen ? 0 : 1};
+                    display: ${isOpen ? 'none' : ''};
                 }
 
                 .line-three {
                     transform: ${isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
-                    margin-top: ${isOpen ? '-11px' : ''};
+                    margin-top: ${isOpen ? '-6px' : ''};
                 }
             `}</style>
             <div className={Styles.navigationBurger}>
