@@ -20,6 +20,10 @@ export default defineType({
   title: 'Blog',
   icon: MdOutlineArticle,
   type: 'document',
+  groups: [
+    {name: 'content', title: 'Content'},
+    {name: 'settings', title: 'Settings'},
+  ],
   fields: [
     {
       name: 'title',
@@ -31,6 +35,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'settings',
       options: {
         source: 'title',
         maxLength: 96,
@@ -40,11 +45,14 @@ export default defineType({
     {
       name: 'content',
       title: 'Content',
+      group: 'content',
       type: 'contentEditor',
     },
     {
       name: 'excerpt',
       title: 'Excerpt',
+      group: 'content',
+      description: 'A brief introduction to your blog post.',
       type: 'text',
       validation: Rule => Rule.error().max(300)
     },
@@ -52,6 +60,7 @@ export default defineType({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
+      group: 'content',
       options: {
         hotspot: true,
       },
@@ -60,19 +69,28 @@ export default defineType({
       name: 'date',
       title: 'Date',
       type: 'datetime',
+      group: 'content',
     },
     {
       name: 'author',
       title: 'Author',
       type: 'reference',
+      group: 'content',
       to: [{ type: authorType.name }],
     },
+    {
+      title: 'Search Engine Optimization',
+      name: 'seo',
+      type: 'seo',
+      group: 'settings'
+    }
   ],
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
       media: 'coverImage',
+      group: 'content',
     },
     prepare(selection) {
       const { author } = selection

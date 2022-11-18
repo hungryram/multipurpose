@@ -33,6 +33,11 @@ export default defineType({
             title: 'Loading Background Color',
             name: 'loadingBackground',
             type: 'color'
-        }
+        },
+        {
+            title: 'Favicon',
+            name: 'favicon',
+            type: 'image'
+        },
     ]
 })

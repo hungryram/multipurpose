@@ -11,6 +11,9 @@ export interface PostProps {
   author: AuthorProps
   slug?: string
   content?: any
+  seo: any
+  profileSettings: any
+  appearances: any
 }
 
 export interface PageProps {
@@ -19,6 +22,7 @@ export interface PageProps {
   slug?: string
   content?: any
   pages?: any
+  profileSettings?: any
 }
 
 export interface ServiceProps {
@@ -51,4 +55,6 @@ export interface HomeProps {
   slug?: string
   content?: any
   pages?: any
+  profileSettings: any
+  homeDesign?: any
 }

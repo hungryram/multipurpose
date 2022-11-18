@@ -9,6 +9,22 @@ const postFields = groq`
   coverImage,
   "slug": slug.current,
   "author": author->{name, picture},
+  seo {
+    ...
+  }
+`
+
+const seoData = groq`
+'profileSettings': *[_type == 'profile'][0]{
+  company_name,
+  seo {
+    ...
+  }
+},
+'appearances': *[_type == 'appearances'][0]{
+  'favicon': branding.favicon,
+  'themeColor': mainColors.primaryColor.hex
+}
 `
 
 export const homePageQuery = groq`
@@ -24,7 +40,6 @@ export const homePageQuery = groq`
 }
 `
 
-export const settingsQuery = groq`*[_type == "settings"][0]{title}`
 
 export const homeQuery = groq`
 {
@@ -146,8 +161,10 @@ export const postQuery = groq`
   "morePosts": *[_type == "blog" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
     content,
     ${postFields}
-  }
-}`
+  },
+  ${seoData}
+}
+`
 
 export const postSlugsQuery = groq`
 *[_type == "blog" && defined(slug.current)][].slug.current
@@ -441,7 +458,8 @@ export const queryLegalCurrentPage = groq`
   },
   'legal': *[_type == 'legal' && slug.current == $slug][0],
   ...,
-  'allLegal': *[_type == 'legal']
+  'allLegal': *[_type == 'legal'],
+  
 }
 `
 

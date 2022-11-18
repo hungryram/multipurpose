@@ -7,7 +7,6 @@ export default defineType({
     groups: [
         {name: 'content', title: 'Content'},
         {name: 'settings', title: 'Settings'},
-        {name: 'seo', title: 'SEO'},
       ],
     fields: [
         
@@ -15,7 +14,7 @@ export default defineType({
             title: 'Title',
             name: 'title',
             type: 'string',
-            group: 'settings'
+            group: 'content'
         },
         {
             title: 'URL',
@@ -31,7 +30,7 @@ export default defineType({
             title: 'Header Image',
             name: 'headerImage',
             type: 'image',
-            group: 'settings',
+            group: 'content',
             options: {
                 hotspot: true
             },
@@ -65,7 +64,7 @@ export default defineType({
             name: 'seo',
             type: 'seo',
             validation: Rule => Rule.required().error('Required for search engines'),
-            group: 'seo'
+            group: 'settings'
         }
     ],
     preview: {

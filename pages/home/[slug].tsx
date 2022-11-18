@@ -9,6 +9,7 @@ import Heading from '../../components/util/heading'
 import Banner from '../../components/templates/banner'
 import DisclosureSection from '../../components/templates/disclosure'
 import FullWidthTextImage from '../../components/templates/full-width-text-image'
+import Seo from '../../components/global/seo'
 
 import { homeSlugsQuery, queryHome } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
@@ -44,6 +45,11 @@ export default function Pages(props: Props) {
     const defaultHeader = '#222'
     return (
         <Layout preview={preview}>
+            <Seo 
+                ogType="website"
+                robotIndex="nofollow, noindex"
+            />
+
             {page?.homeDesign?.pageBuilder?.map((section) => {
 
                 const headerColor = {

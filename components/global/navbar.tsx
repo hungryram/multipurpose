@@ -14,7 +14,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
-    const desktopMenuParentItems = `relative inline-block mx-4 text-md`
+    const desktopMenuParentItems = `relative inline-block mx-4`
 
     // const [scroll, setScroll] = useState(false);
     // useEffect(() => {

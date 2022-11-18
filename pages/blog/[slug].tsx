@@ -8,37 +8,47 @@ import MoreStories from '../../components/templates/blog/more-stories'
 import PostBody from '../../components/templates/blog/post-body'
 import PostHeader from '../../components/templates/blog/post-header'
 import PostTitle from '../../components/templates/blog/post-title'
-import { postQuery, postSlugsQuery, settingsQuery } from '../../lib/queries'
+import { postQuery, postSlugsQuery } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 import { PostProps } from '../../types'
+import Seo from '../../components/global/seo'
 
 interface Props {
-  data: { post: PostProps; morePosts: any }
+  data: { post: PostProps; morePosts: any; appearances: any, profileSettings: any }
   preview: any
-  blogSettings: any
+  seoData: any
 }
 
 export default function Post(props: Props) {
-  const { data: initialData, preview, blogSettings } = props
+  const { data: initialData, preview } = props
   const router = useRouter()
-
   const slug = initialData?.post?.slug
   const { data } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: initialData,
     enabled: preview && !!slug,
   })
-  const { post, morePosts } = data || {}
-  const { title = 'Blog.' } = blogSettings || {}
+  const { post, morePosts, appearances, profileSettings } = data || {}
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+
   return (
     <Layout preview={preview}>
       <Header 
         image={post.coverImage}
+      />
+      <Seo 
+        title={post?.seo?.title_tag}
+        description={post?.seo?.meta_description}
+        image={post?.coverImage ?? post?.profileSettings?.seo?.defaultImageBanner}
+        company_name={profileSettings?.company_name}
+        twitterHandle={profileSettings?.seo?.twitterHandle}
+        ogType="article"
+        favicon={appearances?.favicon}
+        themeColor={appearances?.themeColor}
       />
       <div className="section">
         <div className="container">
@@ -47,20 +57,6 @@ export default function Post(props: Props) {
           ) : (
             <>
               <article>
-                <Head>
-                  <title>{`${post.title} | ${title}`}</title>
-                  {post.coverImage?.asset?._ref && (
-                    <meta
-                      key="ogImage"
-                      property="og:image"
-                      content={urlForImage(post.coverImage)
-                        .width(1200)
-                        .height(627)
-                        .fit('crop')
-                        .url()}
-                    />
-                  )}
-                </Head>
                 <PostHeader
                   title={post.title}
                   coverImage={post.coverImage}
@@ -80,10 +76,9 @@ export default function Post(props: Props) {
 
 export async function getStaticProps({ params, preview = false }) {
 
-  const { post, morePosts } = await getClient(preview).fetch(postQuery, {
+  const { post, morePosts, profileSettings, appearances } = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   })
-  const blogSettings = await getClient(preview).fetch(settingsQuery)
 
   return {
     props: {
@@ -91,8 +86,9 @@ export async function getStaticProps({ params, preview = false }) {
       data: {
         post,
         morePosts: overlayDrafts(morePosts),
+        profileSettings,
+        appearances
       },
-      blogSettings,
     },
     // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
     revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
