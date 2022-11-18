@@ -38,7 +38,7 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header 
-        image={post.coverImage}
+        image={post?.coverImage}
       />
       <Seo 
         title={post?.seo?.title_tag}
