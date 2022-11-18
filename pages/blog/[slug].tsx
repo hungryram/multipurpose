@@ -59,7 +59,7 @@ export default function Post(props: Props) {
               <article>
                 <PostHeader
                   title={post.title}
-                  coverImage={post.coverImage}
+                  coverImage={post?.coverImage}
                   date={post.date}
                   author={post.author}
                 />
