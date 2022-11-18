@@ -5,6 +5,8 @@
 
 .navItems {
     color: var(--header-navigation-color)!important;
+    font-weight: 500;
+    font-size: 17px;
 }
 
 .navigationBurger div {
@@ -13,4 +15,8 @@
     background: var(--mobile-icon-color);
     margin: 4px 0;
     transition: all .1s linear
+}
+
+.activeLink {
+    color: var(--primary-accent)!important
 }

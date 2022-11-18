@@ -19,6 +19,11 @@ export default defineType({
             name: 'logoWidth',
             type: 'number'
         },
+        {   
+            title: 'Mobile Logo Width',
+            name: 'mobileLogoWidth',
+            type: 'number'
+        },
         {
             title: 'Loading Screen Logo',
             name: 'loadingLogo',

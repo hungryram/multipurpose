@@ -46,7 +46,7 @@ export default defineType({
         {
             name: 'externalUrl',
             title: 'External URL',
-            description: "Use this field to link to an external website",
+            description: "Paste in URL",
             hidden: ({ parent }) => parent?.linkType !== "external", // hidden if link type is not external
             type: 'string',
         },

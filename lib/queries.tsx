@@ -166,7 +166,8 @@ export const appearances = groq`
     'secondaryColor': mainColors.secondaryColor.hex,
     'branding': branding {
             logo,
-            logoWidth
+            logoWidth,
+            mobileLogoWidth
         },
         'header': header {
             ctaLink,

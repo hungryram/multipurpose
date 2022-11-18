@@ -58,6 +58,7 @@ export default function Layout({ children, preview }: any) {
                 company_name={data.profileSettings?.company_name}
                 logo={data.appearances?.branding?.logo}
                 logoWidth={data.appearances?.branding?.logoWidth}
+                mobileLogoWidth={data.appearances?.branding?.mobileLogoWidth}
                 navItems={data.appearances?.header?.navItems}
                 ctaLink={data.appearances.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
