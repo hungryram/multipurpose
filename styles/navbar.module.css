@@ -23,12 +23,33 @@
     color: var(--primary-accent)!important
 }
 
+.dropDown {
+    @apply absolute bottom-0 left-0 translate-y-full bg-white text-left min-w-[200px] z-50
+}
+
+.dropDown li {
+    transition: all .2s linear;
+    padding: 4px 10px
+}
+
+.dropDown li:hover {
+    background: var(--primary-accent);
+    transition: all .2s linear;
+
+}
+
+.activeDropDown li:not(:last-child) {
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+
 .activeDropDown {
     display: block;
     transition: all .3s linear;
     opacity: 1;
-    bottom: 10px
+    bottom: 10px;
+    box-shadow: 0 5px 12px rgb(0 0 0 / 15%);
 }
+
 
 .hideDropDown {
     visibility: hidden;
@@ -45,7 +66,6 @@
 .mobileMenu li a {
     @apply py-3 px-6 block;
     transition: all .3s linear;
-
 }
 
 .mobileMenu li:hover:not(.mobileDropDown) {

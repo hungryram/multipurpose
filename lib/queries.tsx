@@ -120,6 +120,23 @@ export const pagesBySlugQuery = groq`
 }
 `
 
+// All BLOG QUERY
+export const queryAllPosts = groq`
+{
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+  'blog':*[_type == 'blog'] {
+    title,
+    'slug': slug.current,
+    coverImage,
+    "author": author->{name, picture},
+    date,
+    excerpt,
+  }
+}
+`
+
 export const postQuery = groq`
 {
   "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {

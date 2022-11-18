@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Layout from '../../components/global/layout'
+import Header from '../../components/templates/header'
 import MoreStories from '../../components/templates/blog/more-stories'
 import PostBody from '../../components/templates/blog/post-body'
 import PostHeader from '../../components/templates/blog/post-header'
@@ -36,7 +37,10 @@ export default function Post(props: Props) {
   }
   return (
     <Layout preview={preview}>
-      <div className="section my-20">
+      <Header 
+        image={post.coverImage}
+      />
+      <div className="section">
         <div className="container">
           {router.isFallback ? (
             <PostTitle>Loading…</PostTitle>

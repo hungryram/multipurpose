@@ -16,13 +16,12 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
     const [openMobileNav, setOpenMobileNav] = useState(false)
     const desktopMenuParentItems = `relative inline-block mx-4 text-md`
 
-    const [scroll, setScroll] = useState(false);
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setScroll(window.scrollY > 50);
-        });
-    }, []);
-
+    // const [scroll, setScroll] = useState(false);
+    // useEffect(() => {
+    //     window.addEventListener("scroll", () => {
+    //         setScroll(window.scrollY > 50);
+    //     });
+    // }, []);
 
     const router = useRouter();
 
@@ -30,7 +29,6 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
         <>
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
-                onMouseLeave={() => setDropdownActive(null)}
             >
                 <div className="md:flex items-center justify-between flex-wrap md:visible hidden p-4">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -61,17 +59,18 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                             key={link._key}
                                             className={`${desktopMenuParentItems}`}
                                             onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
-                                            aria-expanded={dropdownActive === link ? "true" : "false"}
+                                            onMouseLeave={() => setDropdownActive(null)}
                                             >
                                             <Link
-                                                href="/"
+                                                href="#"
                                                 className={`cursor-pointer flex flex-row items-center ${Styles.navItems}`}
+                                                aria-expanded={dropdownActive === link ? "true" : "false"}
                                             >
                                                 {link.text} <BiCaretDown className="ml-1 text-lg" />
                                             </Link>
 
                                             <ul 
-                                                className={`absolute bottom-0 left-0 translate-y-full bg-white p-2 border text-left min-w-[200px] z-50 ${dropdownActive === link ? Styles.activeDropDown : Styles.hideDropDown}`}
+                                                className={`${Styles.dropDown} ${dropdownActive === link ? Styles.activeDropDown : Styles.hideDropDown}`}
                                                 role="menu"
                                                 >
                                                 {link.subMenu.map((sub) => {
@@ -83,8 +82,8 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                             <li className="whitespace-nowrap text-black" key={sub._key}>
                                                                 <Link
                                                                     href={subMenuLinks ?? '/'}
-                                                                    target={sub.newTab && '_blank'} 
-                                                                    onClick={() => setDropdownActive(null)} 
+                                                                    target={sub.newTab && '_blank'}
+                                                                    onClick={() => setDropdownActive(null)}
                                                                     className="py-1 block"
                                                                 >
                                                                     {sub.text}
@@ -171,12 +170,12 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                             <li 
                                                 key={link._key} 
                                                 onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
-                                                aria-expanded={dropdownActive === link ? "true" : "false"}
                                                 >
                                                 <Link
-                                                    href="/"
+                                                    href="#"
                                                     className="cursor-pointer flex flex-row items-center" 
                                                     onClick={() => setOpenMobileNav(true)}
+                                                    aria-expanded={dropdownActive === link ? "true" : "false"}
                                                 >
                                                     {link.text} <BiCaretDown className="ml-1 inline" />
                                                 </Link>
@@ -213,6 +212,8 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                             <Link
                                                 href={mobileMenuLinks ?? '/'}
                                                 className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
+                                                target={link?.newTab && "_blank"}
+
                                             >
                                                 {link.text}
 

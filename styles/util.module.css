@@ -1,0 +1,9 @@
+.headerOverlay:after {
+    background: rgba(8, 9, 16, 0.45);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
