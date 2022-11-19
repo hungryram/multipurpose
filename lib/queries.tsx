@@ -15,6 +15,9 @@ const postFields = groq`
 `
 
 const seoData = groq`
+'sanityImages': *[_type == "sanity.imageAsset"][0]{
+  'base64': metadata.lqip
+},
 'profileSettings': *[_type == 'profile'][0]{
   company_name,
   seo {
@@ -23,7 +26,8 @@ const seoData = groq`
 },
 'appearances': *[_type == 'appearances'][0]{
   'favicon': branding.favicon,
-  'themeColor': mainColors.primaryColor.hex
+  'themeColor': mainColors.primaryColor.hex,
+  'defaultImage': header.defaultHeaderImage
 }
 `
 
@@ -36,7 +40,8 @@ export const homePageQuery = groq`
     'homePage': homePage-> {
       ...
     }
-  }
+  },
+  'testimonialAll': *[_type == 'testimonials']
 }
 `
 
@@ -74,10 +79,16 @@ export const indexQuery = groq`
 
 export const pageQuery = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"] {
+  'sanityImages': *[_type == "sanity.imageAsset"][0] {
     'base64': metadata.lqip
   },
+  'appearances': *[_type == 'appearances'][0]{
+    'favicon': branding.favicon,
+    'themeColor': mainColors.primaryColor.hex,
+    'defaultImage': header.defaultHeaderImage
+  },
   'profileSettings': *[_type == 'profile'][0]{
+    company_name,
     contact_information {
       ...
     },
@@ -104,24 +115,6 @@ export const pageQuery = groq`
       date,
       mainImage
     },
-    'listings': *[_type == 'listings'][0..6]{
-      'slug': slug.current,
-      propType,
-      _id,
-      shortTitle,
-      status,
-      price,
-      address,
-      city,
-      state,
-      zipCode,
-      'thumbnail': gallery.images[0],
-      'details': details {
-     bedrooms,
-     bathrooms,
-     squareFootage,
-   }
-    }
 }
 `
 
@@ -366,12 +359,13 @@ export const servicesBySlugQuery = groq`
 
 export const queryServiceCurrentPage = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"] {
+  'sanityImages': *[_type == "sanity.imageAsset"][0]{
     'base64': metadata.lqip
   },
   'services': *[_type == 'services' && slug.current == $slug][0],
   ...,
-  'allServices': *[_type == 'services']
+  'allServices': *[_type == 'services'],
+  ${seoData}
 }
 `
 
@@ -410,15 +404,10 @@ export const teamBySlugQuery = groq`
 
 export const queryTeamCurrentPage = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"] {
-    'base64': metadata.lqip
-  },
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
   'team': *[_type == 'team' && slug.current == $slug][0],
   ...,
-  'allTeam': *[_type == 'team']
+  'allTeam': *[_type == 'team'],
+  ${seoData}
 }
 `
 
@@ -459,7 +448,7 @@ export const queryLegalCurrentPage = groq`
   'legal': *[_type == 'legal' && slug.current == $slug][0],
   ...,
   'allLegal': *[_type == 'legal'],
-  
+  ${seoData}
 }
 `
 

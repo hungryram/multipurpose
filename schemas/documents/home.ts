@@ -38,6 +38,7 @@ export default defineType({
                 {type: 'textandImage'},
                 {type: 'featuredGrid'},
                 {type: 'banner'},
+                {type: 'testimonialBuilder'},
                 {type: 'disclosureSection'},
                 {type: 'gallery'},
                 {type: 'fullWidthTextImage'},

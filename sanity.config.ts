@@ -48,6 +48,7 @@ import textcolorObject from './schemas/objects/textcolor'
 import linksObject from './schemas/objects/links'
 import buttonSettingsObject from './schemas/objects/button-settings'
 import imageObject from './schemas/objects/image'
+import backgroundTextOptionsObject from './schemas/objects/background-text-option'
 
 //  PAGEBUILDER
 import heroBuilder from './schemas/pagebuilder/hero'
@@ -56,6 +57,7 @@ import fullWidthTextImageBuilder from './schemas/pagebuilder/fullwidth-text-imag
 import bannerBuilder from './schemas/pagebuilder/banner'
 import disclosureBuilder from './schemas/pagebuilder/disclosure'
 import codeBuilder from './schemas/pagebuilder/code'
+import testimonialsBuilder from './schemas/pagebuilder/testimonials'
 import imageGalleryBuilder from './schemas/pagebuilder/image-gallery'
 import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
@@ -103,11 +105,13 @@ export default createConfig({
       linksObject,
       brandingObject,
       imagecolorObject,
+      backgroundTextOptionsObject,
       submenuObject,
       navigationObject,
       // PAGEBUILDER
       heroBuilder,
       codeBuilder,
+      testimonialsBuilder,
       imageGalleryBuilder,
       contactBuilder,
       bannerBuilder,

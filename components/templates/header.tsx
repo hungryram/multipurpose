@@ -2,9 +2,9 @@ import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 import Styles from '../../styles/util.module.css'
 
-export default function Header({ image, title, altTag }: any) {
+export default function Header({ image, title, altTag, hideHeader }: any) {
     return (
-        <div className={`flex items-center relative ${image ? `` : ` bg-black`}`}>
+        <div className={`flex items-center relative ${image ? `` : ` bg-black`} ${hideHeader ? 'hidden': ''}`}>
             {image &&
                 <>
                     <Image

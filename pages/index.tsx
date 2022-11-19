@@ -15,6 +15,7 @@ import Banner from '../components/templates/banner'
 import DisclosureSection from '../components/templates/disclosure'
 import FullWidthTextImage from '../components/templates/full-width-text-image'
 import Gallery from '../components/templates/gallery'
+import Testimonials from '../components/templates/testimonials'
 
 export default function Index({
   preview,
@@ -23,6 +24,8 @@ export default function Index({
 
   const defaultText = '#222'
   const defaultHeader = '#222'
+
+
   return (
     <>
       <Layout preview={preview}>
@@ -32,7 +35,7 @@ export default function Index({
             color: section.textColor?.headerColor?.hex ?? defaultHeader
           }
           const bodyColor = {
-            color: section.textColor?.textColor?.hex ?? defaultText
+            color: section?.background?.textColor?.textColor?.hex ?? defaultText
           }
 
           const bannerButton = {
@@ -41,10 +44,21 @@ export default function Index({
           }
 
           const backgroundStyles = {
-            background: `${section.background?.backgroundType === 'color' && section?.background?.color?.hex || section.background?.backgroundType === 'image' && `url(${section.background.image ? urlForImage(section?.background?.image).url() : undefined})`}`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover'
-          }
+            backgroundColor: `${section.background?.background?.backgroundType === 'color' && 
+              section?.background?.background?.color?.hex}`,
+            backgroundImage: `${section.background?.background?.backgroundType === 'image' && 
+              `linear-gradient(rgba(
+                ${section?.background?.background?.imageOverlayColor?.rgb.r}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.g}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.b}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.a}), 
+                rgba(
+                  ${section?.background?.background?.imageOverlayColor?.rgb.r}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.g}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.b}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.a})), 
+                  url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
+            }
 
           if (section._type === 'hero') {
             return (
@@ -80,6 +94,7 @@ export default function Index({
                   headerStyle={headerColor}
                   textStyle={bodyColor}
                   textLeft={section?.textLeft}
+                  backgroundStyles={backgroundStyles}
                 />
               </div>
             )
@@ -214,6 +229,20 @@ export default function Index({
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 disableNavigation={section?.disableNavigation}
                 disablePagination={section?.disablePagination}
+              />
+            )
+          }
+
+          if (section._type === 'testimonialBuilder') {
+            return (
+              <Testimonials
+                key={section?._key}
+                testimonial={homeSettings.testimonialAll}
+                content={section?.content}
+                carousel={section?.carousel}
+                backgroundStyles={backgroundStyles}
+                bodyColor={bodyColor}
+                arrowColor={section?.background?.textColor?.textColor?.hex}
               />
             )
           }

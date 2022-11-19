@@ -29,6 +29,12 @@ export default defineType({
             hidden: ({ parent }) => parent?.backgroundType !== "image",
         },
         {
+            title: 'Image Overlay Color',
+            name: 'imageOverlayColor',
+            type: 'color',
+            hidden: ({ parent }) => parent?.backgroundType !== "image",
+        },
+        {
             title: 'Background Color',
             name: 'color',
             type: 'color',

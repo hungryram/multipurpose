@@ -1,10 +1,6 @@
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
-// UTIL
-import Container from '../components/util/container'
-import Section from '../components/util/section'
-
 // TEMPLATES
 import Header from '../components/templates/header'
 import Layout from '../components/global/layout'
@@ -13,6 +9,7 @@ import FeaturedGrid from '../components/templates/featured-grid'
 import Heading from '../components/util/heading'
 import Banner from '../components/templates/banner'
 import DisclosureSection from '../components/templates/disclosure'
+import Seo from '../components/global/seo'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../lib/sanity'
@@ -47,17 +44,23 @@ export default function Pages(props: Props) {
 
     const defaultText = '#222'
     const defaultHeader = '#222'
+
     return (
         <Layout preview={preview}>
-            {page?.pages?.headerImage?.hideHeader ?
-                <></>
-                :
-                <Header
-                    title={page?.pages?.title}
-                    image={page?.pages?.headerImage}
-                />
-
-            }
+            <Seo
+                title={page?.pages?.seo?.title_tag}
+                description={page?.pages?.seo?.meta_description}
+                image={page?.pages?.headerImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                company_name={page?.profileSettings?.company_name}
+                twitterHandle={page?.profileSettings?.seo?.twitterHandle}
+                favicon={page?.appearances?.favicon}
+                themeColor={page?.appearances?.themeColor}
+            />
+            <Header
+                title={page?.pages?.title}
+                image={page?.pages?.headerImage}
+                hideHeader={page?.pages?.headerImage?.hideHeader}
+            />
             {page?.pages?.pageBuilder?.map((section) => {
 
                 const headerColor = {
@@ -153,7 +156,7 @@ export default function Pages(props: Props) {
                 if (section._type === 'featuredGrid') {
                     return (
                         <div key={section?._key} style={backgroundStyles}>
-                            <Section>
+                            <div className="section">
                                 <div className={section?.fullWidth ? null : 'container'}>
                                     <div className={`${section.twoColumn ? 'md:flex items-center' : ''}`}>
                                         <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
@@ -194,7 +197,7 @@ export default function Pages(props: Props) {
                                         </div>
                                     </div>
                                 </div>
-                            </Section>
+                            </div>
                         </div>
                     )
                 }

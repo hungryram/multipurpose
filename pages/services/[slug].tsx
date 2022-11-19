@@ -12,6 +12,7 @@ import FeaturedGrid from '../../components/templates/featured-grid'
 import Heading from '../../components/util/heading'
 import Banner from '../../components/templates/banner'
 import DisclosureSection from '../../components/templates/disclosure'
+import Seo from '../../components/global/seo'
 
 import { servicesSlugsQuery, queryServiceCurrentPage } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
@@ -47,11 +48,21 @@ export default function ServicePages(props: Props) {
 
     const defaultText = '#222'
     const defaultHeader = '#222'
+
     return (
         <Layout preview={preview}>
+            <Seo
+                title={page?.services?.seo?.title_tag}
+                description={page?.services?.seo?.meta_description}
+                image={page?.services?.headerImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                company_name={page?.profileSettings?.company_name}
+                twitterHandle={page?.profileSettings?.seo?.twitterHandle}
+                favicon={page?.appearances?.favicon}
+                themeColor={page?.appearances?.themeColor}
+            />
             <Header
                 title={page?.services?.title}
-                image={page?.services?.headerImage}
+                image={page?.services?.headerImage ?? page?.appearances?.defaultImage}
             />
             <div className="section">
                 <div className="container">

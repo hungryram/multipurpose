@@ -47,6 +47,8 @@ export interface LegalProps {
   image: any
   slug?: string
   content?: any
+  header: any
+  seo: any
 }
 
 export interface HomeProps {

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 // TEMPLATES
 import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
+import Seo from '../../components/global/seo'
 
 import { legalSlugsQuery, queryLegalCurrentPage } from '../../lib/queries'
 import { usePreviewSubscription } from '../../lib/sanity'
@@ -15,7 +16,7 @@ import ContentEditor from '../../components/templates/contenteditor'
 
 interface Props {
     data: { legal: LegalProps }
-    preview: any
+    preview: any,
 }
 
 export default function LegalPages(props: Props) {
@@ -35,9 +36,18 @@ export default function LegalPages(props: Props) {
     if (!router.isFallback && !slug) {
         return <ErrorPage statusCode={404} />
     }
-
     return (
         <Layout preview={preview}>
+            <Seo
+                title={page?.seo?.title_tag}
+                description={page?.seo?.meta_description}
+                image={page?.coverImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                company_name={page?.profileSettings?.company_name}
+                twitterHandle={page?.profileSettings?.seo?.twitterHandle}
+                ogType="website"
+                favicon={page?.appearances?.favicon}
+                themeColor={page?.appearances?.themeColor}
+            />
             <Header
                 title={page?.legal?.title}
                 image={page?.legal?.headerImage ?? page?.header?.image}

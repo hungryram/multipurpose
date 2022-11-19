@@ -66,17 +66,11 @@ export default defineType({
             group: 'settings'
         },
         {
-            title: 'Background image or color',
+            title: 'Background Options',
             name: 'background',
-            type: 'imageColor',
-            group: 'settings'
-        },
-        {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'textColor',
-            group: 'settings'
-        },
+            group: 'settings',
+            type: 'backgroundOptions',
+        }
     ],
     preview: {
         select: {
