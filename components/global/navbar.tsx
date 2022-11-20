@@ -9,8 +9,21 @@ import Styles from "../../styles/navbar.module.css"
 import Image from "next/image";
 import HamburgerMenu from "./hamburger-menu";
 import PrimaryButton from "../util/primary-button";
+import AnnouncementBar from "./announcement-bar";
 
-export default function Navbar({ logo, company_name, logoWidth, navItems, ctaText, ctaLink, backgroundColor, mobileLogoWidth }: any) {
+export default function Navbar({ 
+    logo, 
+    company_name, 
+    logoWidth, 
+    navItems, 
+    ctaText, 
+    ctaLink, 
+    backgroundColor, 
+    mobileLogoWidth,
+    announcementText,
+    announcementLinkText,
+    announcementLink
+ }: any) {
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
@@ -27,12 +40,21 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
 
     return (
         <>
+
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
                 role="navigation"
                 aria-label="Site Header"
                 aria-orientation="vertical"
             >
+                {announcementText &&
+                    <AnnouncementBar
+                        classes={'lg:flex lg:visible hidden justify-center'}
+                        announcement={announcementText}
+                        announcementLinkText={announcementLinkText}
+                        announcementLink={announcementLink}
+                    />
+                }
                 <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden p-4">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer inline-block">
@@ -135,11 +157,17 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                 </div>
             </nav>
 
-            <div>
+            <nav>
                 <div>
-                    <div 
+                    <AnnouncementBar
+                        classes={'justify-center bg-indigo-600 lg:hidden'}
+                        announcement={announcementText}
+                        announcementLinkText={announcementLinkText}
+                        announcementLink={announcementLink}
+                    />
+                    <div
                         className={`nav px-4 py-2 lg:hidden ${backgroundColor ? '' : 'absolute'} ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
-                        >
+                    >
                         <div className="flex items-center">
                             <div className="flex-1">
                                 <Link href="/" className="relative cursor-pointer block">
@@ -241,7 +269,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
 
         </>
     )

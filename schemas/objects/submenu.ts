@@ -12,7 +12,7 @@ export default defineType({
         {
             name: "text",
             type: "string",
-            title: "Navigation Text",
+            title: "Text",
             validation: Rule => Rule.required().error('Name your menu item'),
           },
           {

@@ -99,7 +99,7 @@ export default function Form() {
                         </div>
                     </div>
                     <div>
-                        <p className="m-1 text-sm text-black">By submitting the form with your information above you are agreeing to our <Link href="/legal/terms-and-conditions" className="accent font-bold">Terms and Conditions</Link> and <Link href="/legal/privacy-policy/" className="accent font-bold">Privacy Policy</Link></p>
+                        <p className="m-1 text-xs text-black">By clicking submit, I consent to having this website save my information to respond to my inquiry</p>
                     </div>
                     <div className="mt-6">
                         <button

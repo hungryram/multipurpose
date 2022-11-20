@@ -7,3 +7,17 @@
         height: 60vh;
     }
 }
+
+/* FORM */
+
+.formContainer {
+    border-radius: var(--button-radius);
+    @apply block shadow-lg bg-white px-6 pb-12 md:px-12;
+}
+
+/* ANNOUNCEMENT BAR */
+
+.announcementBar {
+    background-color: var(--announcementbar-background-color);
+    color: var(--announcementbar-text-color);
+}

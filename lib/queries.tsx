@@ -172,92 +172,109 @@ export const postBySlugQuery = groq`
 // APPEARANCES PULLED FROM /COMPONENTS/GLOBAL/LAYOUT
 export const appearances = groq`
 {
-    'appearances': *[_type == 'appearances'][0]{
-    'loader': branding.loadingLogo.asset->url,
-    'loaderColor': branding.loadingBackground.hex,
-    'loaderImage': branding.loadingLogo.asset->url,
-    'navColor': header.navColor.hex,
-    'navBgColor': header.headerColor.hex,
-    'websiteTextColor': mainColors.websiteTextColor.hex,
-    'websiteBodyColor': mainColors.websiteBodyColor.hex,
-    'mobileIconColor': header.hamburgerMenuColor.hex,
-    'primaryButtonBg': mainColors.buttonBackgroundColor.hex,
-    'primaryButtonText': mainColors.buttonTextColor.hex,
-    'buttonRadius': globalButtonDesign.buttonCorner,
-    'buttonXPadding': globalButtonDesign.xPadding,
-    'buttonYPadding': globalButtonDesign.yPadding,
-    'footerHeader': footer.headerColor.hex,
-    'footerText': footer.textColor.hex,
-    'footerBg': footer.footerBackgroundColor.hex,
-    'primaryAccent': mainColors.primaryColor.hex,
-    'secondaryColor': mainColors.secondaryColor.hex,
-    'branding': branding {
-            logo,
-            logoWidth,
-            mobileLogoWidth
-        },
-        'header': header {
-            ctaLink,
-            ctaText,
-            '': mainNav->{
-            'navItems':items[]{
-              'subMenu':subMenu[]{
-              newTab,
-              _key,
-              linkType,
-              externalUrl,
-              text,
-              internalLink->{
-              title,
-              'slug': slug.current,
-              _type
-        }
-        },
-              linkType,
-              externalUrl,
-              text,
-              _key,
-              newTab,
-              internalLink->{
-              title,
-              'slug': slug.current,
-              _type
-            }
-            }
+  'appearances': *[_type == 'appearances'][0]{
+  'loader': branding.loadingLogo.asset->url,
+  'loaderColor': branding.loadingBackground.hex,
+  'loaderImage': branding.loadingLogo.asset->url,
+  'navColor': header.navColor.hex,
+  'navBgColor': header.headerColor.hex,
+  'websiteTextColor': mainColors.websiteTextColor.hex,
+  'websiteBodyColor': mainColors.websiteBodyColor.hex,
+  'mobileIconColor': header.hamburgerMenuColor.hex,
+  'primaryButtonBg': mainColors.buttonBackgroundColor.hex,
+  'primaryButtonText': mainColors.buttonTextColor.hex,
+  'buttonRadius': globalButtonDesign.buttonCorner,
+  'buttonXPadding': globalButtonDesign.xPadding,
+  'buttonYPadding': globalButtonDesign.yPadding,
+  'footerHeader': footer.headerColor.hex,
+  'footerText': footer.textColor.hex,
+  'footerBg': footer.footerBackgroundColor.hex,
+  'primaryAccent': mainColors.primaryColor.hex,
+  'secondaryColor': mainColors.secondaryColor.hex,
+  'branding': branding {
+          logo,
+          logoWidth,
+          mobileLogoWidth
+      },
+      'announcementBar': announcementBar {
+        announcement,
+        'announcementBarLink': link {
+                        newTab,
+            _key,
+            linkType,
+            externalUrl,
+            text,
+                        internalLink->{
+            title,
+            'slug': slug.current,
+            _type
           }
-          },
-   footer {
-    ...,
-   quickLinks[]{
-               newTab,
-               linkType,
-               externalUrl,
-               text,
-               internalLink->{
-               title,
-               name,
-               'slug': slug.current,
-               _type
-   }
- }
- },
-  },
-  'legal': *[_type == 'legal']{
-    title,
-    'slug': slug.current,
-    _id
-  },
-    'profileSettings': *[_type == 'profile'][0]{
-        company_name,
-        social,
-        contact_information {
-            ...
         },
-        address {
-            ...
+        'announcementBgColor': backgroundColor.hex,
+        'announcementTextColor': textColor.hex,
+      },
+      'header': header {
+          ctaLink,
+          ctaText,
+          '': mainNav->{
+          'navItems':items[]{
+            'subMenu':subMenu[]{
+            newTab,
+            _key,
+            linkType,
+            externalUrl,
+            text,
+            internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+      }
+      },
+            linkType,
+            externalUrl,
+            text,
+            _key,
+            newTab,
+            internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+          }
+          }
         }
-    },
-  }
+        },
+ footer {
+  ...,
+ quickLinks[]{
+             newTab,
+             linkType,
+             externalUrl,
+             text,
+             internalLink->{
+             title,
+             name,
+             'slug': slug.current,
+             _type
+ }
+}
+},
+},
+'legal': *[_type == 'legal']{
+  title,
+  'slug': slug.current,
+  _id
+},
+  'profileSettings': *[_type == 'profile'][0]{
+      company_name,
+      social,
+      contact_information {
+          ...
+      },
+      address {
+          ...
+      }
+  },
+}
 `
 
 // HOME QUERY

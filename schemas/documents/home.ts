@@ -42,6 +42,7 @@ export default defineType({
                 {type: 'disclosureSection'},
                 {type: 'gallery'},
                 {type: 'fullWidthTextImage'},
+                {type: 'leadForm'},
             ]
         }
     ]

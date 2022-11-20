@@ -13,6 +13,7 @@ import Gallery from '../components/templates/gallery'
 import Testimonials from '../components/templates/testimonials'
 import Hero from '../components/templates/hero'
 import TextImage from '../components/templates/text-and-image'
+import LeadForm from '../components/templates/lead-form'
 
 export default function Index({
   preview,
@@ -33,11 +34,6 @@ export default function Index({
           }
           const bodyColor = {
             color: section?.background?.textColor?.textColor?.hex ?? defaultText
-          }
-
-          const bannerButton = {
-            backgroundColor: section.button?.buttonBackground?.hex ?? '#000000',
-            color: section.button?.buttonTextColor?.hex ?? '#ffffff'
           }
 
           const backgroundStyles = {
@@ -237,6 +233,25 @@ export default function Index({
                 textStyle={bodyColor}
                 headerStyle={headerColor}
                 backgroundStyles={backgroundStyles}
+              />
+            )
+          }
+
+          if (section._type === 'leadForm') {
+            return (
+              <LeadForm 
+                content={section?.content}
+                heading={section?.heading}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+                paddingSize={
+                  section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
+                }
               />
             )
           }

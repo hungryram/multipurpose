@@ -18,6 +18,7 @@ export default function Layout({ children, preview }: any) {
     if (error) return <Error />;
     if (!data) return <Loading />;
     const bgLoader = data.appearances?.loaderImage
+    console.log(data?.appearances.announcementBar.announcementBarLink)
     return (
         <>
             <Head>
@@ -48,7 +49,8 @@ export default function Layout({ children, preview }: any) {
                             --button-y-padding: ${data.appearances.buttonYPadding ?? '16px'};
                             --button-x-padding: ${data.appearances.buttonXPadding ?? '50px'};
                             
-                        
+                            --announcementbar-background-color: ${data.appearances?.announcementBar?.announcementBgColor};
+                            --announcementbar-text-color: ${data.appearances?.announcementBar?.announcementTextColor};
                         }
                     `}
                 </style>
@@ -62,6 +64,11 @@ export default function Layout({ children, preview }: any) {
                 ctaLink={data.appearances.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
                 backgroundColor={data.appearances?.navBgColor}
+                // ANNOUNCEMENT
+                announcementText={data?.appearances?.announcementBar?.announcement}
+                announcementLinkText={data?.appearances.announcementBar.announcementBarLink.text}
+                announcementLink={data?.appearances?.announcementBar?.announcementBarLink}
+                
             />
             {preview && <Alert preview={preview} />}
             <main>
