@@ -58,14 +58,17 @@ export default function Index({
           }
 
           if (section._type === 'hero') {
+            console.log(section.textColor.textColor.hex)
             return (
               <Hero
                 key={section._key}
-                heading={section.heading}
-                subtitle={section.subtitle}
-                headerColor={headerColor}
-                bodyColor={bodyColor}
+                body={section?.content}
+                textStyle={section?.textColor?.textColor?.hex}
                 image={section.image}
+                buttonLink={section?.button?.buttonLink}
+                buttonLabel={section?.button?.buttonText}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
                 blurData={homeSettings.sanityImages.base64 ?? section.image}
                 imageHeight={
                   section?.imageHeight === 'small' && 'h-96' ||

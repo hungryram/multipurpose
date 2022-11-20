@@ -73,13 +73,13 @@ export default function Layout({ children, preview }: any) {
                 company_name={data.profileSettings.company_name}
                 altTag={data.appearances?.footer?.footerLogo?.altTag}
                 email={data.profileSettings?.contact_information?.email}
-                phone={data.profileSettings?.contact_information?.phone_number}
+                phone_number={data.profileSettings?.contact_information?.phone_number}
+                office_number={data.profileSettings?.contact_information?.office_number}
                 website={data.profileSettings?.contact_information?.website}
-                office={data.profileSettings?.contact_information?.office_number}
                 address={data.profileSettings?.address?.address}
                 city={data.profileSettings?.address?.city}
                 state={data.profileSettings?.address?.state}
-                zipCode={data.profileSettings?.address?.zip_code}
+                zip_code={data.profileSettings?.address?.zip_code}
                 content={data.appearances?.footer?.footerText}
                 links={data.appearances?.footer?.quickLinks}
                 facebook={data.profileSettings.social.facebook}

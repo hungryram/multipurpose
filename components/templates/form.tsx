@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 
+import Styles from "../../styles/util.module.css"
+
 export default function Form() {
 
     const [ sending, setSending ] = useState('Idle')
@@ -102,7 +104,7 @@ export default function Form() {
                     <div className="mt-6">
                         <button
                             type="submit"
-                            className="primary-button px-20 w-1/2 hover:bg-black hover:text-white transition-all ease-in"
+                            className={Styles.primaryButton}
                         >
                             { sending === 'Idle' ?
                                 'Submit'

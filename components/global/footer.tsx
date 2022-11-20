@@ -11,18 +11,19 @@ import { MdOutlineLocationOn } from "react-icons/md"
 // UTIL
 import Social from "../templates/social"
 import ContentEditor from "../templates/contenteditor"
+import ContactBlock from "../templates/contact-block"
 
 export default function Footer({
     address,
     city,
     state,
-    zipCode,
+    zip_code,
     company_name,
     links,
     legal,
     footerText,
     footerDisclaimer,
-    phone,
+    phone_number,
     office_number,
     email,
     image,
@@ -42,8 +43,8 @@ export default function Footer({
         <footer className={Styles.footer}>
             <div className="pt-20 pb-10">
                 <div className="container">
-                    <div className="mx-6 py-10 text-left">
-                        <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="mx-6 py-10 md:text-left text-center">
+                        <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 gap-8">
                             <div className="relative">
                                 {image ?
                                     <div>
@@ -56,7 +57,7 @@ export default function Footer({
                                         />
                                     </div>
                                     :
-                                    <h3 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">{company_name}</h3>
+                                    <h3 className="uppercase font-semibold mb-4">{company_name}</h3>
                                 }
                                 <Social
                                     facebook={facebook}
@@ -73,16 +74,19 @@ export default function Footer({
                                 />
                             </div>
                             <div>
-                                <h3 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">Contact Info</h3>
-                                <ul>
-                                    {phone && <li><a href={`tel:${phone}`} className="flex items-center"> <AiOutlineMobile className="mr-2 text-xl" />{phone}</a></li>}
-                                    {office_number && <li><a href={`tel:${office_number}`} className="flex items-center"> <AiOutlinePhone className="mr-2 text-xl" />{office_number}</a></li>}
-                                    {email && <li><a href={`mailto:${email}`} className="flex items-center"><AiOutlineMail className="mr-2 text-xl" />{email}</a></li>}
-                                    {address && <li><a href="" className="flex items-center"><MdOutlineLocationOn className="mr-2 text-2xl" />{address}<br /> {city} {state} {zipCode}</a></li>}
-                                </ul>
+                                <h3 className="uppercase font-semibold mb-4">Contact Info</h3>
+                                <ContactBlock
+                                    email={email}
+                                    phone={phone_number}
+                                    office={office_number}
+                                    address={address}
+                                    city={city}
+                                    state={state}
+                                    zipCode={zip_code}
+                                />
                             </div>
                             <div>
-                                <h3 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">Useful links</h3>
+                                <h3 className="uppercase font-semibold mb-4">Useful links</h3>
                                 <ul>
                                     {links?.map((link, i) => {
                                         return (
@@ -97,7 +101,7 @@ export default function Footer({
                                 </ul>
                             </div>
                             <div>
-                                <h3 className="uppercase font-semibold mb-4 flex justify-center md:justify-start">About</h3>
+                                <h3 className="uppercase font-semibold mb-4">About</h3>
                                 {footerText &&
                                     <PortableText
                                         value={footerText}

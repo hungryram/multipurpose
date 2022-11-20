@@ -60,6 +60,10 @@
 
 /* MOBILE */
 
+.mobileMenu {
+    box-shadow: 0 5px 12px rgb(0 0 0 / 15%);
+}
+
 .mobileMenu li:not(:last-child) {
     border-bottom: 1px solid rgb(222, 222, 222);
 }

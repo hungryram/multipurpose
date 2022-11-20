@@ -116,10 +116,11 @@ export default function Pages(props: Props) {
                             key={section._key}
                             email={page.profileSettings?.contact_information?.email}
                             phone_number={page.profileSettings?.contact_information?.phone_number}
+                            office_number={page.profileSettings?.contact_information?.office_number}
                             address={page.profileSettings?.address?.address}
                             city={page.profileSettings?.address?.city}
                             state={page.profileSettings?.address?.state}
-                            zipCode={page.profileSettings?.address?.zip_code}
+                            zip_code={page.profileSettings?.address?.zip_code}
                             facebook={page.profileSettings?.social?.facebook}
                             youtube={page.profileSettings?.social?.youtube}
                             instagram={page.profileSettings?.social?.instagram}

@@ -12,3 +12,15 @@
     background-position: center;
     background-size: cover;
 }
+
+/* BUTTON */
+
+.primaryButton {
+    background-color: var(--primary-button-background);
+    color: var(--primary-button-text);
+    border-radius: var(--button-radius);
+    padding-left: var(--button-x-padding);
+    padding-right: var(--button-x-padding);
+    padding-top: var(--button-y-padding);
+    padding-bottom: var(--button-y-padding);
+}

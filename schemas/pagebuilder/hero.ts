@@ -10,15 +10,9 @@ export default defineType({
     ],
     fields: [
         {
-            title: 'Heading',
-            name: 'heading',
-            type: 'string',
-            group: 'content'
-        },
-        {
-            title: 'Subtitle',
-            name: 'subtitle',
-            type: 'text',
+            title: 'Content',
+            name: 'content',
+            type: 'contentEditor',
             group: 'content'
         },
         {
@@ -52,24 +46,14 @@ export default defineType({
         {
             title: 'Button',
             name: 'button',
-            type: 'object',
-            group: 'content',
-            options: {
-                collapsible: true,
-                collapsed: true,
-            },
-            fields: [
-                {
-                    title: 'Button Text',
-                    name: 'buttonText',
-                    type: 'string',
-                },
-                {
-                    title: 'Button Link',
-                    name: 'buttonLink',
-                    type: 'string'
-                }
-            ]
+            type: 'buttonSettings',
+            group: 'content'
+        },
+    ],
+    preview: {
+        select: {
+            title: 'content',
+            media: 'image'
         }
-    ]
+    }
 })

@@ -1,0 +1,9 @@
+.contactPage ul li {
+    @apply my-3
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        height: 60vh;
+    }
+}

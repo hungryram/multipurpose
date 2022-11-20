@@ -25,7 +25,7 @@ export default function Testimonials({
     buttonLink,
     buttonBackground,
     buttonTextColor,
-    textLeft
+    textLeft,
 }: any) {
 
     SwiperCore.use([Autoplay, Pagination, Navigation])

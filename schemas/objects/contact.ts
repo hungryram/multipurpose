@@ -15,14 +15,14 @@ export default defineType({
             type: 'string'
         },
         {
+            title: 'Office Number',
+            name: 'office_number',
+            type: 'string'
+        },
+        {
             title: 'Email',
             name: 'email',
             type: 'string'
         },
-        {
-            title: 'Website Domain',
-            name: 'website',
-            type: 'string'
-        }
     ]
 })

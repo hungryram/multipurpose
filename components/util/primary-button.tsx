@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Styles from "../../styles/button.module.css"
+import Styles from "../../styles/util.module.css"
 
 export default function PrimaryButton({ buttonLabel, buttonLink, buttonBackground, buttonTextColor }: any) {
     return <Link href={buttonLink} className={Styles.primaryButton} style={{
