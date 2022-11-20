@@ -90,6 +90,7 @@ export default function Gallery({ images,
                                                     width={fullWidth ? 2000 : 900}
                                                     height={0}
                                                     className={`object-cover h-auto w-full ${fullWidth ? 'md:h-screen' : ''}`}
+                                                    sizes={fullWidth ? '100vw' : '50vw'}
                                                 />
                                             }
                                         </div>
