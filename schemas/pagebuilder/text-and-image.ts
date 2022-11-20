@@ -22,34 +22,19 @@ export default defineType({
             group: 'content'
         },
         {
-            title: 'Button',
-            name: 'button',
-            type: 'object',
-            group: 'content',
-            options: {
-                collapsible: true,
-                collapsed: true
-            },
-            fields: [
-                {
-                    title: 'Button Text',
-                    name: 'buttonText',
-                    type: 'string',
-                },
-                {
-                    title: 'Button Link',
-                    name: 'buttonLink',
-                    type: 'string',
-                },
-            ]
-        },
-        {
             title: 'Image',
             name: 'image',
             type: 'image',
+            group: 'content',
             options: {
                 hotspot: true
             },
+        },
+        {
+            title: 'Button',
+            name: 'button',
+            type: 'buttonSettings',
+            group: 'content'
         },
         {
             title: 'Reverse Column',

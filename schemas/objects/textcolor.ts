@@ -10,7 +10,7 @@ export default defineType({
     },
     fields: [
         {
-            title: 'Header Color',
+            title: 'Heading Color',
             name: 'headerColor',
             type: 'color',
         },

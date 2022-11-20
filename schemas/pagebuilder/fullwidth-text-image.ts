@@ -10,6 +10,12 @@ export default defineType({
     ],
     fields: [
         {
+            title: 'Heading',
+            name: 'heading',
+            type: 'string',
+            group: 'content'
+        },
+        {
             title: 'Content',
             name: 'content',
             type: 'contentEditor',
@@ -31,19 +37,15 @@ export default defineType({
             group: 'content'
         },
         {
-            title: 'Background Color',
-            name: 'backgroundColor',
-            type: 'color'
-        },
-        {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'color'
-        },
-        {
             title: 'Reverse Column',
             name: 'reverseColumn',
             type: 'boolean',
+        },
+        {
+            title: 'Background Options',
+            name: 'background',
+            group: 'settings',
+            type: 'backgroundOptions',
         }
     ],
     preview: {

@@ -10,10 +10,23 @@ export default defineType({
       ],
     fields: [
         {
+            title: 'Heading',
+            name: 'heading',
+            type: 'string',
+            group: 'content',
+            description: 'The testimonials are automatically pulled from the testimonials sidebar'
+        },
+        {
             title: 'Content',
             name: 'content',
             type: 'contentEditor',
             group: 'content',
+        },
+        {
+            title: 'Button',
+            name: 'button',
+            type: 'buttonSettings',
+            group: 'content'
         },
         {
             title: 'Enable Carousel',

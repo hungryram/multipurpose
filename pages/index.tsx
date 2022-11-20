@@ -1,29 +1,26 @@
 
-import Container from '../components/util/container'
-import HeroPost from '../components/hero-post'
-import Layout from '../components/global/layout'
-import MoreStories from '../components/templates/blog/more-stories'
 import { homePageQuery } from '../lib/queries'
-import { getClient, overlayDrafts } from '../lib/sanity.server'
-import Hero from '../components/templates/hero'
-import TextImage from '../components/templates/text-and-image'
+import { getClient } from '../lib/sanity.server'
 import { urlForImage } from '../lib/sanity'
+
+// TEMPLATES
+import Layout from '../components/global/layout'
 import FeaturedGrid from '../components/templates/featured-grid'
-import Section from '../components/util/section'
-import Heading from '../components/util/heading'
 import Banner from '../components/templates/banner'
 import DisclosureSection from '../components/templates/disclosure'
 import FullWidthTextImage from '../components/templates/full-width-text-image'
 import Gallery from '../components/templates/gallery'
 import Testimonials from '../components/templates/testimonials'
+import Hero from '../components/templates/hero'
+import TextImage from '../components/templates/text-and-image'
 
 export default function Index({
   preview,
   homeSettings
 }) {
 
-  const defaultText = '#222'
-  const defaultHeader = '#222'
+  const defaultText = 'var(--website-text-color)'
+  const defaultHeader = 'var(--website-text-color)'
 
 
   return (
@@ -32,7 +29,7 @@ export default function Index({
         {homeSettings?.appearances?.homePage?.pageBuilder?.map((section) => {
 
           const headerColor = {
-            color: section.textColor?.headerColor?.hex ?? defaultHeader
+            color: section?.background?.textColor?.headerColor?.hex ?? defaultHeader
           }
           const bodyColor = {
             color: section?.background?.textColor?.textColor?.hex ?? defaultText
@@ -44,68 +41,68 @@ export default function Index({
           }
 
           const backgroundStyles = {
-            backgroundColor: `${section.background?.background?.backgroundType === 'color' && 
+            backgroundColor: `${section.background?.background?.backgroundType === 'color' &&
               section?.background?.background?.color?.hex}`,
-            backgroundImage: `${section.background?.background?.backgroundType === 'image' && 
+            backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
               `linear-gradient(rgba(
-                ${section?.background?.background?.imageOverlayColor?.rgb.r}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.g}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.b}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.a}), 
+                ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+                ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
                 rgba(
-                  ${section?.background?.background?.imageOverlayColor?.rgb.r}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.g}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.b}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.a})), 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+                  ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
                   url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
-            }
+          }
 
           if (section._type === 'hero') {
             return (
-              <div key={section?._key}>
-                <Hero
-                  heading={section.heading}
-                  subtitle={section.subtitle}
-                  headerColor={headerColor}
-                  bodyColor={bodyColor}
-                  image={section.image}
-                  blurData={homeSettings.sanityImages.base64 ?? section.image}
-                  imageHeight={
-                    section?.imageHeight === 'small' && 'h-96' ||
-                    section?.imageHeight === 'medium' && 'h-[600px]' ||
-                    section?.imageHeight === 'large' && 'h-screen'
-                  }
-                />
-              </div>
+              <Hero
+                key={section._key}
+                heading={section.heading}
+                subtitle={section.subtitle}
+                headerColor={headerColor}
+                bodyColor={bodyColor}
+                image={section.image}
+                blurData={homeSettings.sanityImages.base64 ?? section.image}
+                imageHeight={
+                  section?.imageHeight === 'small' && 'h-96' ||
+                  section?.imageHeight === 'medium' && 'h-[600px]' ||
+                  section?.imageHeight === 'large' && 'h-screen'
+                }
+              />
             )
           }
 
           if (section._type === 'textandImage') {
             return (
-              <div key={section?._key} style={backgroundStyles}>
-                <TextImage
-                  image={section?.image}
-                  altTag={section?.image?.altTag ?? homeSettings?.profileSettings?.company_name}
-                  rowReverse={section?.reverseRow}
-                  content={section?.content}
-                  heading={section?.heading}
-                  buttonLink={section?.button?.buttonLink}
-                  buttonLabel={section?.button?.buttonText}
-                  headerStyle={headerColor}
-                  textStyle={bodyColor}
-                  textLeft={section?.textLeft}
-                  backgroundStyles={backgroundStyles}
-                />
-              </div>
+              <TextImage
+                key={section._key}
+                heading={section?.heading}
+                content={section?.content}
+                image={section?.image}
+                buttonLink={section?.button?.buttonLink}
+                buttonLabel={section?.button?.buttonText}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                altTag={section?.image?.altTag ?? homeSettings?.profileSettings?.company_name}
+                rowReverse={section?.reverseRow}
+                headerStyle={headerColor}
+                textStyle={bodyColor}
+                textLeft={section?.textLeft}
+                backgroundStyles={backgroundStyles}
+              />
             )
           }
 
           if (section._type === 'banner') {
             return (
               <Banner
-                heading={section.heading}
-                text={section?.text}
                 key={section._key}
+                heading={section.heading}
+                content={section?.content}
                 backgroundStyles={backgroundStyles}
                 headerStyle={headerColor}
                 textStyle={bodyColor}
@@ -113,7 +110,8 @@ export default function Index({
                 removePadding={section?.removePadding}
                 buttonText={section?.button?.buttonText}
                 buttonLink={section?.button?.buttonLink}
-                buttonStyle={bannerButton}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
                 twoColumn={section?.twoColumn}
               />
             )
@@ -122,113 +120,100 @@ export default function Index({
           if (section._type === 'fullWidthTextImage') {
             return (
               <FullWidthTextImage
-                key={section?._key}
+                key={section._key}
+                heading={section?.heading}
                 content={section?.content}
                 image={section?.image}
-                backgroundStyles={section?.backgroundColor?.hex}
-                textColor={section?.textColor?.hex}
-                columnReverse={section?.reverseColumn}
                 buttonText={section?.button?.buttonText}
                 buttonLink={section?.button?.buttonLink}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                textLeft='false'
+                columnReverse={section?.reverseColumn}
+                backgroundStyles={backgroundStyles}
               />
             )
           }
 
           if (section._type === 'featuredGrid') {
+            console.log(section.removeGap)
             return (
-              <div key={section?._key} style={backgroundStyles}>
-                <Section>
-                  <div className={section?.fullWidth ? null : 'container'}>
-                    <div className={`${section.twoColumn ? 'md:flex items-center' : ''}`}>
-                      <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                        <Heading
-                          heading={section?.heading}
-                          body={section?.text}
-                          headerStyle={headerColor}
-                          textStyle={bodyColor}
-                          textAlign={section?.headerLeft}
-                        />
-                      </div>
-                      <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                        <div className={`grid lg:grid-cols-${section?.columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${section.removeGap ? 'gap-4' : ''} mt-10`}>
-                          {section?.blocks.map((node) => {
-                            return (
-                              <FeaturedGrid
-                                image={node.image}
-                                value={node.value}
-                                link={node.link}
-                                key={node._key}
-                                content={node.content}
-                                textOutsideImage={section.textOutsideImage}
-                                textLeft={section?.textLeft}
-                                centerTextGrid={section?.centerTextGrid}
-                                blurData={homeSettings.sanityImages[0].base64 ?? node.image}
-                                textColor={node?.textColor?.hex}
-                                borderColor={node?.borderColor?.hex}
-                                backgroundColor={node?.backgroundcolor?.hex}
-                                imageHeight={
-                                  section?.imageHeight === 'small' && '300px' ||
-                                  section?.imageHeight === 'medium' && '400px' ||
-                                  section?.imageHeight === 'large' && '500px'
-                                }
-                              />
-                            )
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Section>
-              </div>
+              <FeaturedGrid
+                key={section._key}
+                heading={section?.heading}
+                content={section?.text}
+                blocks={section?.blocks}
+                textOutsideImage={section?.textOutsideImage}
+                centerTextGrid={section?.centerTextGrid}
+                blockLeft={section?.blockLeft}
+                imageHeight={
+                  section?.imageHeight === 'small' && '300px' ||
+                  section?.imageHeight === 'medium' && '400px' ||
+                  section?.imageHeight === 'large' && '500px'
+                }
+                removeGap={section?.removeGap}
+                removePadding={section?.removePadding}
+                twoColumn={section?.twoColumn}
+                textLeft={section?.textLeft}
+                fullWidth={section?.fullWidth}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
             )
           }
 
           if (section._type === 'disclosureSection') {
             return (
-              <div className="section" key={section?._key} style={backgroundStyles}>
-                <div className="container">
-                  <div className={section?.twoColumn ? 'md:flex md:space-x-20' : ''}>
-                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
-                      <Heading
-                        body={section?.content}
-                        textAlign={section?.textLeft}
-                        fullWidth={section?.twoColumn}
-                      />
-                    </div>
-                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
-                      <div className="mt-10">
-                        <DisclosureSection
-                          disclosure={section?.disclosures}
-                          disclosureBackgroundColor={section?.disclosureBackgroundColor?.hex}
-                          disclosureTextColor={section?.disclosureTextColor?.hex}
-                          disclosureContentColor={section?.disclosureContentColor?.hex}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <DisclosureSection
+                key={section._key}
+                heading={section?.heading}
+                content={section?.content}
+                disclosure={section?.disclosures}
+                disclosureBackgroundColor={section?.disclosureBackgroundColor}
+                disclosureTextColor={section?.disclosureTextColor}
+                disclosureContentColor={section?.disclosureContentColor}
+                twoColumn={section?.twoColumn}
+                textLeft={section?.textLeft}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
+
             )
           }
 
           if (section._type === 'gallery') {
             return (
               <Gallery
-                key={section?._key}
-                images={section?.images}
+                key={section._key}
+                heading={section?.heading}
                 content={section?.content}
+                images={section?.images}
                 animation={section?.animation ?? 'fade'}
                 fullWidth={section?.fullWidth}
                 textColor={section?.textColor?.hex}
-                backgroundColor={section?.background?.hex}
-                buttonLink={section?.button?.buttonLink}
-                buttonText={section?.button?.buttonText}
-                buttonBackground={section?.button?.buttonBackground?.hex}
-                buttonTextColor={section?.button?.buttonTextColor?.hex}
                 disableNavigation={section?.disableNavigation}
                 disablePagination={section?.disablePagination}
+                removePadding={section?.removePadding}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+
               />
             )
           }
@@ -236,13 +221,20 @@ export default function Index({
           if (section._type === 'testimonialBuilder') {
             return (
               <Testimonials
-                key={section?._key}
+                key={section._key}
+                heading={section?.heading}
                 testimonial={homeSettings.testimonialAll}
                 content={section?.content}
                 carousel={section?.carousel}
-                backgroundStyles={backgroundStyles}
                 bodyColor={bodyColor}
                 arrowColor={section?.background?.textColor?.textColor?.hex}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
               />
             )
           }

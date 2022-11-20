@@ -17,8 +17,8 @@ export default defineType({
         },
         {
             title: 'Text',
-            name: 'text',
-            type: 'text',
+            name: 'content',
+            type: 'contentEditor',
             group: 'content'
         },
         {
@@ -42,46 +42,14 @@ export default defineType({
         {
             title: 'Button',
             name: 'button',
-            type: 'object',
-            group: ['settings', 'content'],
-            options: {
-                collapsible: true,
-                collapsed: true
-            },
-            fields: [
-                {
-                    title: 'Button Text',
-                    name: 'buttonText',
-                    type: 'string',
-                },
-                {
-                    title: 'Button Link',
-                    name: 'buttonLink',
-                    type: 'string',
-                },
-                {
-                    title: 'Button Background Color',
-                    name: 'buttonBackground',
-                    type: 'color',
-                },
-                {
-                    title: 'Button Text Color',
-                    name: 'buttonTextColor',
-                    type: 'color',
-                }
-            ]
+            type: 'buttonSettings',
+            group: 'content'
         },
         {
-            title: 'Background image or color',
+            title: 'Background Options',
             name: 'background',
-            type: 'imageColor',
             group: 'settings',
-        },
-        {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'textColor',
-            group: 'settings',
-        },
+            type: 'backgroundOptions',
+        }
     ]
 })

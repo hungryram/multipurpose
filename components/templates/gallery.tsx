@@ -13,38 +13,58 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 // TEMPLATES
 import ContentEditor from './contenteditor';
 import PrimaryButton from '../util/primary-button';
+import BodyText from '../util/body-text';
+import Wrapper from '../util/wrapper';
 
-export default function Gallery({ images, content, fullWidth, animation, backgroundColor, textColor, buttonText, buttonLink, buttonTextColor, buttonBackground, altTag, disablePagination, disableNavigation }: any) {
+export default function Gallery({ images,
+    content,
+    fullWidth,
+    animation,
+    backgroundColor,
+    textColor,
+    buttonText,
+    buttonLink,
+    buttonTextColor,
+    buttonBackground,
+    altTag,
+    disablePagination,
+    disableNavigation,
+    heading,
+    textStyle,
+    headerStyle,
+    textLeft,
+    backgroundStyles,
+    removePadding
+}: any) {
 
     SwiperCore.use([Autoplay, Pagination, Navigation])
 
     return (
-        <div style={{
-            backgroundColor: `${backgroundColor ?? '#ffffff'}`
-        }}>
-            <div className={`${fullWidth ? '' : 'container'}`}>
-                <div className={`${fullWidth ? 'block' : 'md:flex md:space-x-20 md:space-y-0 space-y-10 items-center section'}`}>
-                    {content &&
-                        <div className={`${fullWidth ? 'w-full text-center section' : 'md:w-1/2'} content`}>
-                            <div className="container" style={{
-                                color: `${textColor ?? '#222222'}`
-                            }}>
-                                <ContentEditor
-                                    content={content}
-                                />
-                                {buttonLink &&
-                                    <div className="mt-10">
-                                        <PrimaryButton 
-                                            buttonLabel={buttonText}
-                                            buttonLink={buttonLink}
-                                            buttonBackground={buttonBackground}
-                                            buttonTextColor={buttonTextColor}
-                                        />
-                                    </div>
-                                }
-                            </div>
+        <Wrapper
+            backgroundStyles={backgroundStyles}
+            fullWidthContainer={fullWidth}
+            removePadding={removePadding}
+        >
+            <div className={`${fullWidth ? 'block' : 'md:flex md:space-x-20 md:space-y-0 space-y-10 items-center py-20'}`}>
+                {content &&
+                    <div className={`${fullWidth ? 'text-center pb-20 pt-20' : 'md:w-1/2 text-left'} content`}>
+                        <div>
+                            <BodyText
+                                heading={heading}
+                                body={content}
+                                bodyStyle={textStyle}
+                                headerStyle={headerStyle}
+                                fullWidth={fullWidth ? false : true}
+                                textAlign={fullWidth ? false : true}
+                                buttonText={buttonText}
+                                buttonLink={buttonLink}
+                                buttonBackground={buttonBackground}
+                                buttonTextColor={buttonTextColor}
+                            />
                         </div>
-                    }
+                    </div>
+                }
+                {images ?
                     <div className={`${fullWidth ? 'w-full' : 'md:w-1/2'}`}>
                         <Swiper
                             modules={[EffectFade, Pagination, Navigation]}
@@ -63,21 +83,24 @@ export default function Gallery({ images, content, fullWidth, animation, backgro
                                 return (
                                     <SwiperSlide key={node?._key}>
                                         <div className="w-full relative">
-                                            <Image
-                                                src={urlForImage(node.image).url()}
-                                                alt="test"
-                                                width={fullWidth ? 2000 : 900}
-                                                height={0}
-                                                className={`object-cover h-auto w-full ${fullWidth ? 'md:h-screen' : ''}`}
-                                            />
+                                            {node &&
+                                                <Image
+                                                    src={urlForImage(node).url()}
+                                                    alt="test"
+                                                    width={fullWidth ? 2000 : 900}
+                                                    height={0}
+                                                    className={`object-cover h-auto w-full ${fullWidth ? 'md:h-screen' : ''}`}
+                                                />
+                                            }
                                         </div>
                                     </SwiperSlide>
                                 )
                             })}
                         </Swiper>
                     </div>
-                </div>
+                    : null
+                }
             </div>
-        </div>
+        </Wrapper>
     )
 }

@@ -11,15 +11,10 @@ export default defineType({
     ],
     fields: [
         {
-          title: 'Images',
-          name: 'images',
-          type: 'array',
-          of: [
-            {type: 'photo'}
-          ],
-          options: {
-            layout: 'grid',
-          },
+          title: 'Heading',
+          name: 'heading',
+          type: 'string',
+          group: 'content'
         },
         {
             title: 'Content',
@@ -32,6 +27,21 @@ export default defineType({
             name: 'button',
             type: 'buttonSettings',
             group: 'content'
+        },
+        {
+          title: 'Images',
+          name: 'images',
+          type: 'array',
+          of: [
+            {
+            title: 'Image',
+            name: 'image',
+            type: 'image',
+            }
+          ],
+          options: {
+            layout: 'grid',
+          },
         },
         {
             title: 'Animation',
@@ -64,17 +74,17 @@ export default defineType({
             group: 'settings',
         },
         {
-            title: 'Background Color',
-            name: 'background',
-            type: 'color',
-            group: 'settings',
-        },
+          title: 'Remove Padding',
+          name: 'removePadding',
+          type: 'boolean',
+          group: 'settings',
+      },
         {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'color',
-            group: 'settings',
-        },
+          title: 'Background Options',
+          name: 'background',
+          group: 'settings',
+          type: 'backgroundOptions',
+      }
       ],
       preview: {
         select: {

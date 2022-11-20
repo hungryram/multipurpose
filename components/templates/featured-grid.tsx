@@ -1,49 +1,118 @@
 import Link from "next/link"
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
+import BodyText from "../util/body-text"
 
-
-export default function FeaturedGrid({ link, image, value, backgroundColor, centerTextGrid, borderColor, blurData, content, textOutsideImage, textLeft, imageHeight, textColor }: any) {
+export default function FeaturedGrid({
+    link,
+    value,
+    centerTextGrid,
+    blurData,
+    content,
+    textOutsideImage,
+    textLeft,
+    imageHeight,
+    blockLeft,
+    // SECTION
+    fullWidth,
+    twoColumn,
+    heading,
+    columnNumber,
+    removeGap,
+    removePadding,
+    blocks,
+    backgroundStyles,
+    textStyle,
+    headerStyle,
+    buttonText,
+    buttonLink,
+    buttonBackground,
+    buttonTextColor
+}: any) {
     return (
-        <Link href={link ?? '/'}>
-            <div className="relative overflow-hidden">
-                {image ?
-                    <Image
-                        src={urlForImage(image).url()}
-                        alt={value}
-                        height="0"
-                        width="450"
-                        placeholder="blur"
-                        blurDataURL={blurData ?? urlForImage(image).width(50).height(50).quality(1).url()}
-                        style={{
-                            objectFit: 'cover',
-                            height: `${imageHeight}`,
-                        }}
-                        className="w-full"
-                    />
-                    :
-                    <div style={{
-                        height: `${imageHeight}`,
-                        background: `${backgroundColor}`,
-                        border: `${borderColor ? `1px solid ${borderColor}` : 'undefined'}`,
-                    }}>
-
-                    </div>
-                }
-                {textOutsideImage || !image ? null : <div className="featured-grid-overlay"></div>}
-                <div className={`${textOutsideImage ? null : 'absolute bottom-6 left-0 right-0'} ${centerTextGrid ? 'top-0 flex items-center flex-col' : ''} px-6 py-4 justify-center ${textLeft ? 'text-left' : 'text-center'}`} style={{
-                    color: `${textColor ? textColor : '#ffffff'}`
-                }}>
-                    {value &&
-                        <h3 className="h3">{value}</h3>
-                    }
-                    {content &&
-                        <div className="mt-6">
-                            <p>{content}</p>
+        <div style={backgroundStyles}>
+            <div className={`relative ${removePadding ? 'remove-section' : 'section'}`}>
+                <div className={fullWidth ? 'remove-container' : 'container'}>
+                    <div className={`${twoColumn ? 'md:flex items-center md:space-x-10' : ''}`}>
+                        <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
+                            <div className={fullWidth && 'md:flex justify-center text-center'}>
+                                <div className={fullWidth && 'md:w-3/5 px-4'}>
+                                    <div className="mb-10">
+                                        <BodyText
+                                            heading={heading}
+                                            body={content}
+                                            bodyStyle={textStyle}
+                                            headerStyle={headerStyle}
+                                            fullWidth={textLeft}
+                                            textAlign={textLeft}
+                                            buttonText={buttonText}
+                                            buttonLink={buttonLink}
+                                            buttonBackground={buttonBackground}
+                                            buttonTextColor={buttonTextColor}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    }
+                        {blocks ?
+                            <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
+                                <div className={`grid h-full lg:grid-cols-${columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
+                                    {blocks?.map((node) => {
+                                        return (
+                                            <div className="relative" style={{
+                                                background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
+                                                color: `${node.textColor?.hex ?? '#ffffff'}`,
+                                                border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,
+                                            }}>
+                                                <Link href={link ?? '/'}>
+                                                    <div>
+                                                        {node?.image &&
+                                                            <>
+                                                                <Image
+                                                                    src={urlForImage(node?.image).url()}
+                                                                    alt={value}
+                                                                    height="0"
+                                                                    width="450"
+                                                                    placeholder="blur"
+                                                                    blurDataURL={blurData ?? urlForImage(node?.image).width(50).height(50).quality(1).url()}
+                                                                    style={{
+                                                                        objectFit: 'cover',
+                                                                        height: `${imageHeight}`,
+                                                                    }}
+                                                                    className="w-full"
+                                                                />
+                                                                {!textOutsideImage && <div className="featured-grid-overlay"></div>}
+                                                            </>
+                                                        }
+                                                        <div
+                                                            className={`lg:px-12 px-6 py-4 justify-center
+                                                            ${textOutsideImage ? 'bottom-0 left-0 right-0' : 'absolute bottom-0 left-0 right-0'}
+                                                            ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''}
+                                                            ${blockLeft ? 'text-left' : 'text-center'}
+                                                            `}>
+                                                            {node.value &&
+                                                                <h3 className="h3">{node.value}</h3>
+                                                            }
+                                                            {node.content &&
+                                                                <div className="mt-6">
+                                                                    <p>{node.content}</p>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            :
+                            null
+
+                        }
+                    </div>
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }

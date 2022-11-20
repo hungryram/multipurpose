@@ -1,5 +1,4 @@
 import ContentEditor from "./contenteditor"
-import Heading from "../util/heading"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -10,7 +9,24 @@ import SwiperCore, { EffectFade, Autoplay, Pagination, Navigation } from 'swiper
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Wrapper from "../util/wrapper";
 
-export default function Testimonials({ carousel, testimonial, heading, content, headerColor, bodyColor, backgroundStyles, arrowColor }: any) {
+import BodyText from "../util/body-text";
+
+export default function Testimonials({ 
+    carousel, 
+    testimonial, 
+    heading, 
+    content, 
+    bodyColor, 
+    backgroundStyles, 
+    arrowColor,
+    textStyle,
+    headerStyle,
+    buttonText,
+    buttonLink,
+    buttonBackground,
+    buttonTextColor,
+    textLeft
+}: any) {
 
     SwiperCore.use([Autoplay, Pagination, Navigation])
 
@@ -20,11 +36,17 @@ export default function Testimonials({ carousel, testimonial, heading, content, 
         >
             {content &&
                 <div className="mb-10">
-                    <Heading
+                    <BodyText
                         heading={heading}
                         body={content}
-                        headerStyle={headerColor}
-                        bodyStyle={bodyColor}
+                        bodyStyle={textStyle}
+                        headerStyle={headerStyle}
+                        fullWidth={textLeft}
+                        textAlign={textLeft}
+                        buttonText={buttonText}
+                        buttonLink={buttonLink}
+                        buttonBackground={buttonBackground}
+                        buttonTextColor={buttonTextColor}
                     />
                 </div>
             }

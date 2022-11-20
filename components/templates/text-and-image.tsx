@@ -1,12 +1,11 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
-import Container from "../util/container"
+import BodyText from "../util/body-text"
 import PrimaryButton from "../util/primary-button"
-import Section from "../util/section"
 import Wrapper from "../util/wrapper"
 import ContentEditor from "./contenteditor"
 
-export default function TextImage({ image, heading, content, textLeft, textStyle, headerStyle, buttonLabel, buttonLink, altTag, rowReverse, backgroundStyles }: any) {
+export default function TextImage({ image, heading, content, textLeft, textStyle, headerStyle, buttonLabel, buttonLink, altTag, rowReverse, backgroundStyles, buttonBackground, buttonTextColor }: any) {
     return (
         <Wrapper
             backgroundStyles={backgroundStyles}
@@ -29,22 +28,18 @@ export default function TextImage({ image, heading, content, textLeft, textStyle
                     </div>
                 }
                 <div className={`${image ? 'md:w-1/2' : 'w-full'} ${textLeft || image ? 'text-left' : 'text-center'}`}>
-                    {heading && <h2 className="h2" style={headerStyle}>{heading}</h2>}
-                    {content &&
-                        <div className={`content`} style={textStyle}>
-                            <ContentEditor
-                                content={content}
-                            />
-                        </div>
-                    }
-                    <div className="mt-8">
-                        {buttonLabel &&
-                            <PrimaryButton
-                                buttonLink={buttonLink}
-                                buttonLabel={buttonLabel}
-                            />
-                        }
-                    </div>
+                    <BodyText 
+                            heading={heading}
+                            body={content}
+                            bodyStyle={textStyle}
+                            headerStyle={headerStyle}
+                            fullWidth={textLeft}
+                            textAlign={textLeft}
+                            buttonText={buttonLabel}
+                            buttonLink={buttonLink}
+                            buttonBackground={buttonBackground}
+                            buttonTextColor={buttonTextColor}
+                    />
                 </div>
             </div>
         </Wrapper>

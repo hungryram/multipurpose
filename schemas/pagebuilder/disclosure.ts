@@ -10,13 +10,27 @@ export default defineType({
     ],
     fields: [
         {
+            title: 'Heading',
+            name: 'heading',
+            type: 'string',
+            group: 'content'
+        },
+        {
             title: 'Content',
             name: 'content',
-            type: 'contentEditor'
+            group: 'content',
+            type: 'contentEditor',
+        },
+        {
+            title: 'Button',
+            name: 'button',
+            type: 'buttonSettings',
+            group: 'content'
         },
         {
             title: 'Disclosures',
             name: 'disclosures',
+            group: 'content',
             type: 'array',
             description: 'This section works best for drop downs, like a brief FAQ.',
             of: [
@@ -79,17 +93,11 @@ export default defineType({
             group: 'settings'
         },
         {
-            title: 'Background image or color',
+            title: 'Background Options',
             name: 'background',
-            type: 'imageColor',
-            group: 'settings'
-        },
-        {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'textColor',
-            group: 'settings'
-        },
+            group: 'settings',
+            type: 'backgroundOptions',
+        }
     ],
     preview: {
         select: {

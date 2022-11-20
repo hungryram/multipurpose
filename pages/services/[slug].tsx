@@ -9,7 +9,7 @@ import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
 import Hero from '../../components/templates/hero'
 import FeaturedGrid from '../../components/templates/featured-grid'
-import Heading from '../../components/util/heading'
+import Heading from '../../components/util/body-text'
 import Banner from '../../components/templates/banner'
 import DisclosureSection from '../../components/templates/disclosure'
 import Seo from '../../components/global/seo'
@@ -20,6 +20,7 @@ import { getClient } from '../../lib/sanity.server'
 import ContactPage from '../../components/templates/contact'
 import { ServiceProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
+import BodyText from '../../components/util/body-text'
 
 
 
@@ -156,7 +157,7 @@ export default function ServicePages(props: Props) {
                                                 <div className={section?.fullWidth ? null : 'container'}>
                                                     <div className={`${section.twoColumn ? 'md:flex items-center' : ''}`}>
                                                         <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                                                            <Heading
+                                                            <BodyText
                                                                 heading={section?.heading}
                                                                 body={section?.text}
                                                                 headerStyle={headerColor}
@@ -204,7 +205,7 @@ export default function ServicePages(props: Props) {
                                             <div className="container">
                                                 <div className={section?.twoColumn ? 'md:flex md:space-x-20' : ''}>
                                                     <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
-                                                        <Heading
+                                                        <BodyText
                                                             body={section?.content}
                                                             textAlign={section?.textLeft}
                                                             fullWidth={section?.twoColumn}

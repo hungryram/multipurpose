@@ -22,6 +22,12 @@ export default defineType({
             group: 'content'
         },
         {
+            title: 'Button',
+            name: 'button',
+            type: 'buttonSettings',
+            group: 'content'
+        },
+        {
             title: 'Blocks',
             name: 'blocks',
             type: 'array',
@@ -39,7 +45,8 @@ export default defineType({
                         {
                             title: 'Content',
                             name: 'content',
-                            type: 'text'
+                            type: 'text',
+                            validation: Rule => Rule.required().error('Keep it short and brief, under 150 characters').max(150)
                         },
                         {
                             title: 'Image',
@@ -96,11 +103,12 @@ export default defineType({
             title: 'Text Outside Image',
             name: 'textOutsideImage',
             type: 'boolean',
-            group: 'settings'
+            group: 'settings',
+            description: 'Disabling will apply dark overlay on images'
         },
         {
-            title: 'Header Text Left',
-            name: 'headerLeft',
+            title: 'Block Text Left',
+            name: 'blockLeft',
             type: 'boolean',
             group: 'settings'
         },
@@ -109,15 +117,18 @@ export default defineType({
             name: 'centerTextGrid',
             type: 'boolean',
             group: 'settings',
-            hidden: ({ parent, value }) => !value && parent?.textLeft
-
         },
         {
-            title: 'Text Left',
+            title: 'Remove Padding',
+            name: 'removePadding',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
+            title: 'Content Text Left',
             name: 'textLeft',
             type: 'boolean',
             group: 'settings',
-            hidden: ({ parent, value }) => !value && parent?.centerTextGrid
         },
         {
             title: 'Image Height',
@@ -140,16 +151,10 @@ export default defineType({
             group: 'settings'
         },
         {
-            title: 'Background image or color',
+            title: 'Background Options',
             name: 'background',
-            type: 'imageColor',
-            group: 'settings'
-        },
-        {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'textColor',
-            group: 'settings'
-        },
+            group: 'settings',
+            type: 'backgroundOptions',
+        }
     ]
 })
