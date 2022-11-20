@@ -40,7 +40,6 @@ export default function ServicePages(props: Props) {
         return <ErrorPage statusCode={404} />
     }
 
-    console.log(page)
     return (
         <Layout preview={preview}>
             <Seo

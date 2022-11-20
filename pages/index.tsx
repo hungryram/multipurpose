@@ -138,7 +138,6 @@ export default function Index({
           }
 
           if (section._type === 'featuredGrid') {
-            console.log(section.removeGap)
             return (
               <FeaturedGrid
                 key={section._key}

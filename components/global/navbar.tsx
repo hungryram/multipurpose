@@ -29,6 +29,9 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
         <>
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
+                role="navigation"
+                aria-label="Site Header"
+                aria-orientation="vertical"
             >
                 <div className="md:flex items-center justify-between flex-wrap md:visible hidden p-4">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -46,7 +49,11 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                         </Link>
                     </div>
                     <div className="flex items-center w-auto">
-                        <ul className="items-center text-right md:mr-10 justify-end" role="menu">
+                        <ul 
+                            className="items-center text-right md:mr-10 justify-end" 
+                            role="menu"
+                            aria-label="Main Navigation Menu"    
+                        >
                             {navItems?.map((link) => {
 
                                 const menuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
@@ -85,6 +92,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                                     target={sub.newTab && '_blank'}
                                                                     onClick={() => setDropdownActive(null)}
                                                                     className="py-1 block"
+                                                                    role="menuItem"
                                                                 >
                                                                     {sub.text}
                                                                 </Link>
@@ -99,11 +107,12 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                 else {
                                     return (
                                         <>
-                                            <li className={`relative inline-block mx-4 text-md`} key={link._key}>
+                                            <li className={`relative inline-block mx-4`} key={link._key}>
                                                 <Link
                                                     href={menuLinks ?? '/'}
                                                     target={link.newTab && '_blank'} 
                                                     className={`${router.asPath === menuLinks ? Styles.activeLink : 'false'} ${Styles.navItems}`}
+                                                    role="menuItem"
                                                 >
                                                     {link.text}
                                                 </Link>
@@ -176,6 +185,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                     className="cursor-pointer flex flex-row items-center" 
                                                     onClick={() => setOpenMobileNav(true)}
                                                     aria-expanded={dropdownActive === link ? "true" : "false"}
+                                                    role="menuItem"
                                                 >
                                                     {link.text} <BiCaretDown className="ml-1 inline" />
                                                 </Link>
@@ -194,6 +204,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                                         href={subMenuLinks ?? '/'}
                                                                         target={sub?.newTab && "_blank"} 
                                                                         onClick={() => setOpenMobileNav(false)}
+                                                                        role="menuItem"
                                                                     >
                                                                         {sub.text}
                                                                     </Link>
@@ -213,6 +224,7 @@ export default function Navbar({ logo, company_name, logoWidth, navItems, ctaTex
                                                 href={mobileMenuLinks ?? '/'}
                                                 className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
                                                 target={link?.newTab && "_blank"}
+                                                role="menuItem"
 
                                             >
                                                 {link.text}
