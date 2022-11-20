@@ -14,6 +14,7 @@ import Testimonials from '../components/templates/testimonials'
 import Hero from '../components/templates/hero'
 import TextImage from '../components/templates/text-and-image'
 import LeadForm from '../components/templates/lead-form'
+import Pricing from '../components/templates/pricing'
 
 export default function Index({
   preview,
@@ -146,6 +147,7 @@ export default function Index({
                 textOutsideImage={section?.textOutsideImage}
                 centerTextGrid={section?.centerTextGrid}
                 blockLeft={section?.blockLeft}
+                columnNumber={section?.columnNumber}
                 imageHeight={
                   section?.imageHeight === 'small' && '300px' ||
                   section?.imageHeight === 'medium' && '400px' ||
@@ -239,9 +241,9 @@ export default function Index({
 
           if (section._type === 'leadForm') {
             return (
-              <LeadForm 
-                content={section?.content}
+              <LeadForm
                 heading={section?.heading}
+                content={section?.content}
                 buttonText={section?.button?.buttonText}
                 buttonLink={section?.button?.buttonLink}
                 buttonBackground={section?.button?.buttonBackground?.hex}
@@ -252,6 +254,24 @@ export default function Index({
                 paddingSize={
                   section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
                 }
+              />
+            )
+          }
+
+          if (section._type === 'pricing') {
+            return (
+              <Pricing
+                heading={section?.heading}
+                content={section?.content}
+                packages={section?.packages}
+                columnNumber={section?.columnNumber}
+                buttonText={section?.button?.buttonText}
+                buttonLink={section?.button?.buttonLink}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
               />
             )
           }

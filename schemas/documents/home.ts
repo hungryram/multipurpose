@@ -43,6 +43,7 @@ export default defineType({
                 {type: 'gallery'},
                 {type: 'fullWidthTextImage'},
                 {type: 'leadForm'},
+                {type: 'pricing'},
             ]
         }
     ]

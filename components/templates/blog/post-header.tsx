@@ -16,13 +16,10 @@ export default function PostHeader(props: PostProps) {
           </div>
         }
       </div>
-      <div className="mb-8 sm:mx-0 md:mb-16">
+      <div className="my-8 sm:mx-0 md:mb-16">
         <CoverImage title={title} image={coverImage} priority slug={slug} />
       </div>
       <div className="mx-auto max-w-2xl">
-        <div className="mb-6 block md:hidden">
-          {author && <Avatar name={author.name} picture={author.picture} />}
-        </div>
         <div className="mb-6 text-sm">
           <Date dateString={date} />
         </div>

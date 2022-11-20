@@ -21,3 +21,17 @@
     background-color: var(--announcementbar-background-color);
     color: var(--announcementbar-text-color);
 }
+
+/* PRICE */
+
+.priceContainer {
+    @apply block shadow-lg bg-white h-full;
+    border-radius: var(--button-radius);
+}
+
+.priceCta {
+    background-color: var(--primary-button-background);
+    color: var(--primary-button-text);
+    border-radius: var(--button-radius);
+    @apply px-3 py-2
+}
