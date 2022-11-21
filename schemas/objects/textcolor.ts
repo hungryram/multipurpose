@@ -13,11 +13,17 @@ export default defineType({
             title: 'Heading Color',
             name: 'headerColor',
             type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Text Color',
             name: 'textColor',
             type: 'color',
+            options: {
+                disableAlpha: true
+            }
         }
     ]
 })

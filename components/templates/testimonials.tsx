@@ -89,7 +89,7 @@ export default function Testimonials({
                     })}
                 </Swiper>
                 :
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4 h-full">
                     {testimonial?.map((node) => {
                         return (
                             <div key={node._key}>

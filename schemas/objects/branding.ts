@@ -32,7 +32,10 @@ export default defineType({
         {
             title: 'Loading Background Color',
             name: 'loadingBackground',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Favicon',

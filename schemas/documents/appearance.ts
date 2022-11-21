@@ -47,12 +47,18 @@ export default defineType({
                 {
                     title: 'Background Color',
                     name: 'backgroundColor',
-                    type: 'color'
+                    type: 'color',
+                    options: {
+                        disableAlpha: true
+                    }
                 },
                 {
                     title: 'Text Color',
                     name: 'textColor',
-                    type: 'color'
+                    type: 'color',
+                    options: {
+                        disableAlpha: true
+                    }
                 }
             ],
             group: 'header'

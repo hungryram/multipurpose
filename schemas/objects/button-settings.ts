@@ -18,11 +18,17 @@ export default defineType({
                 title: 'Button Background Color',
                 name: 'buttonBackground',
                 type: 'color',
+                options: {
+                    disableAlpha: true
+                }
             },
             {
                 title: 'Button Text Color',
                 name: 'buttonTextColor',
                 type: 'color',
+                options: {
+                    disableAlpha: true
+                }
             }
         ]
 })

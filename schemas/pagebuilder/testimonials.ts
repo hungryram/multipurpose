@@ -46,12 +46,18 @@ export default defineType({
             name: 'cardBackground',
             group: 'settings',
             type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Testimonial Card Text Color',
             name: 'cardTextColor',
             group: 'settings',
             type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: 'Background Options',

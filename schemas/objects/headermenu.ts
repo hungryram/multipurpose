@@ -19,18 +19,27 @@ export default defineType({
         },
         {
             name: 'headerColor',
-            title: 'Header Color',
-            type: 'color'
+            title: 'Header Background Color',
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             name: 'navColor',
             title: 'Navigation Text Color',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             name: 'hamburgerMenuColor',
             title: 'Mobile Menu Icon Color',
-            type: 'color'
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
         },
         {
             title: "Call to Action",
