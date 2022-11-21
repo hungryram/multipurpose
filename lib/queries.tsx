@@ -40,6 +40,11 @@ export const homePageQuery = groq`
   'homePage': homePage-> {
     pageBuilder[]{
         ...,
+        '': image {
+          '':asset->{
+            'altText':altText
+          }
+        },
       'button':  button.button{
         'buttonText': 
         text,

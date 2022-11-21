@@ -10,6 +10,7 @@ export default function Hero({
     body,
     imageHeight,
     buttonLink,
+    altText,
     textStyle,
     headerStyle,
     buttonText,
@@ -17,14 +18,14 @@ export default function Hero({
     buttonTextColor
 }: any) {
 
-
+console.log(image)
     return (
         <div className="flex items-center relative z-10">
             {image ?
                 <>
                     <Image
                         src={urlForImage(image).height(1000).width(2000).url()}
-                        alt={altTag}
+                        alt={altText}
                         className={`w-full ${Styles.hero}`}
                         priority
                         width={2000}
@@ -43,13 +44,14 @@ export default function Hero({
                 <Image
                     src="/assets/banner.jpg"
                     alt="placeholder"
-                    className={`w-full ${imageHeight}`}
+                    className={`w-full`}
                     width={2000}
                     height={1000}
                     sizes="100vw"
                     priority
                     style={{
-                        objectFit: 'cover'
+                        objectFit: 'cover',
+                        height: `${imageHeight}`
                     }}
                 />
             }

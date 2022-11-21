@@ -1,7 +1,20 @@
 import { urlForImage } from "../../lib/sanity";
 import BodyText from "../util/body-text";
 
-export default function FullWidthTextImage({ content, buttonText, buttonLink, image, backgroundStyles, textColor, columnReverse, buttonBackground, buttonTextColor, textLeft, headerStyle, textStyle, heading }: any) {
+export default function FullWidthTextImage({ 
+    content, 
+    buttonText, 
+    buttonLink, 
+    image, 
+    backgroundStyles, 
+    altText, 
+    columnReverse, 
+    buttonBackground, 
+    buttonTextColor, 
+    textLeft, 
+    headerStyle, 
+    textStyle, 
+    heading }: any) {
     return (
         <div>
             <div className={`md:flex items-center ${columnReverse ? 'flex-row-reverse' : ''}`} style={backgroundStyles}>
@@ -21,7 +34,7 @@ export default function FullWidthTextImage({ content, buttonText, buttonLink, im
                     />
                     </div>
                 </div>
-                <div className="md:w-1/2 md:h-[500px] h-96 bg-cover w-full bg-center" style={{
+                <div className="md:w-1/2 md:h-[500px] h-96 bg-cover w-full bg-center" role="img" aria-label={altText} style={{
                     backgroundImage: `url(${urlForImage(image).url()})`
                 }}>
 

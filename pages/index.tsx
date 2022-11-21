@@ -66,6 +66,7 @@ export default function Index({
               <Hero
                 key={section._key}
                 body={section?.content}
+                altText={section?.altText}
                 textStyle={section?.textColor?.textColor?.hex}
                 image={section.image}
                 buttonLink={section?.button}
@@ -128,6 +129,7 @@ export default function Index({
               <FullWidthTextImage
                 key={section._key}
                 heading={section?.heading}
+                altText={section?.altText}
                 content={section?.content}
                 image={section?.image}
                 buttonText={section?.button?.buttonText}
