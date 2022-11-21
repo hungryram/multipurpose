@@ -77,7 +77,6 @@ export default function Gallery({ images,
                             }}
                         >
                             {images?.map((node, index) => {
-                                console.log(node.lqip)
                                 return (
                                     <>
                                         <SwiperSlide key={node?._key}>

@@ -152,7 +152,7 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.text}
-                blocks={section?.blocks}
+                blocks={section?.blockImages}
                 textOutsideImage={section?.textOutsideImage}
                 centerTextGrid={section?.centerTextGrid}
                 blockLeft={section?.blockLeft}

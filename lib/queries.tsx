@@ -40,6 +40,16 @@ export const homePageQuery = groq`
   'homePage': homePage-> {
     pageBuilder[]{
         ...,
+        'blockImages': blocks[] {
+          ...,
+      image {
+          '':asset-> {
+              'altText':altText,
+              'lqip':metadata.lqip,
+              url
+          }
+      }
+    },
         'childImage': images[] {
           ...,
           '':asset->{

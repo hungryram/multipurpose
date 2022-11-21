@@ -58,6 +58,7 @@ export default function FeaturedGrid({
                             <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
                                 <div className={`grid h-full lg:grid-cols-${columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
                                     {blocks?.map((node) => {
+                                        console.log(node?.image?.lqip)
                                         return (
                                             <div className="relative" key={node._key} style={{
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
@@ -66,24 +67,22 @@ export default function FeaturedGrid({
                                             }}>
                                                 <Link href={link ?? '/'}>
                                                     <div>
-                                                        {node?.image &&
                                                             <>
                                                                 <Image
-                                                                    src={urlForImage(node?.image).url()}
-                                                                    alt={value}
-                                                                    height="0"
-                                                                    width="450"
+                                                                    src={node?.image?.url}
+                                                                    alt={node?.image?.altText}
+                                                                    height={0}
+                                                                    width={450}
                                                                     placeholder="blur"
-                                                                    blurDataURL={blurData ?? urlForImage(node?.image).width(50).height(50).quality(1).url()}
+                                                                    blurDataURL={node?.image?.lqip ?? node?.image?.url}
                                                                     style={{
                                                                         objectFit: 'cover',
-                                                                        height: `${imageHeight}`,
+                                                                        height: `${imageHeight ? imageHeight : '400px'}`,
                                                                     }}
                                                                     className="w-full"
                                                                 />
                                                                 {!textOutsideImage && <div className="featured-grid-overlay"></div>}
                                                             </>
-                                                        }
                                                         <div
                                                             className={`lg:px-12 px-6 py-4 justify-center
                                                             ${textOutsideImage ? 'bottom-0 left-0 right-0' : 'absolute bottom-0 left-0 right-0'}
