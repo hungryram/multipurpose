@@ -10,14 +10,9 @@ export default defineType({
         },
         fields: [
             {
-                title: 'Button Text',
-                name: 'buttonText',
-                type: 'string',
-            },
-            {
-                title: 'Button Link',
-                name: 'buttonLink',
-                type: 'string',
+                title: 'Button',
+                name: 'button',
+                type: 'links',
             },
             {
                 title: 'Button Background Color',

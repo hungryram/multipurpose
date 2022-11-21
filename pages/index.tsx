@@ -62,7 +62,7 @@ export default function Index({
                 body={section?.content}
                 textStyle={section?.textColor?.textColor?.hex}
                 image={section.image}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonLabel={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -83,7 +83,7 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.content}
                 image={section?.image}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonLabel={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -109,7 +109,7 @@ export default function Index({
                 fullWidth={section?.fullWidth}
                 removePadding={section?.removePadding}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 twoColumn={section?.twoColumn}
@@ -125,7 +125,7 @@ export default function Index({
                 content={section?.content}
                 image={section?.image}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -159,7 +159,7 @@ export default function Index({
                 textLeft={section?.textLeft}
                 fullWidth={section?.fullWidth}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -182,7 +182,7 @@ export default function Index({
                 twoColumn={section?.twoColumn}
                 textLeft={section?.textLeft}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -207,7 +207,7 @@ export default function Index({
                 disablePagination={section?.disablePagination}
                 removePadding={section?.removePadding}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -229,7 +229,7 @@ export default function Index({
                 bodyColor={bodyColor}
                 arrowColor={section?.background?.textColor?.textColor?.hex}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -245,7 +245,7 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.content}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
@@ -266,7 +266,7 @@ export default function Index({
                 packages={section?.packages}
                 columnNumber={section?.columnNumber}
                 buttonText={section?.button?.buttonText}
-                buttonLink={section?.button?.buttonLink}
+                buttonLink={section?.button}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}

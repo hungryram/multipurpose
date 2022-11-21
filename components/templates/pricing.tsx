@@ -35,7 +35,7 @@ export default function Pricing({
                 buttonTextColor={buttonTextColor}
             />
             {packages ?
-                <div className={`lg:grid-cols-${columnNumber ?? '3'} grid md:grid-cols-2 grid-cols-1 gap-4`}>
+                <div className={`mt-10 lg:grid-cols-${columnNumber ?? '3'} grid md:grid-cols-2 grid-cols-1 gap-4`}>
                     {packages?.map((node) => {
                         return (
                             <div className={Styles.priceContainer}>

@@ -18,7 +18,6 @@ export default function Layout({ children, preview }: any) {
     if (error) return <Error />;
     if (!data) return <Loading />;
     const bgLoader = data.appearances?.loaderImage
-    console.log(data?.appearances.announcementBar.announcementBarLink)
     return (
         <>
             <Head>

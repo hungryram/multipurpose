@@ -37,8 +37,19 @@ export const homePageQuery = groq`
     'base64': metadata.lqip
   },
   'appearances': *[_type == 'appearances'][0]{
-    'homePage': homePage-> {
-      ...
+  'homePage': homePage-> {
+    pageBuilder[]{
+        ...,
+      'button':  button.button{
+        'buttonText': text,
+        linkType,
+        internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+          }
+      }
+    }
     }
   },
   'testimonialAll': *[_type == 'testimonials']
