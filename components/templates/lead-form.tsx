@@ -22,20 +22,18 @@ export default function LeadForm({
         >
             <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    {content &&
-                        <BodyText
-                            heading={heading}
-                            body={content}
-                            bodyStyle={textStyle}
-                            headerStyle={headerStyle}
-                            fullWidth={true}
-                            textAlign={true}
-                            buttonText={buttonText}
-                            buttonLink={buttonLink}
-                            buttonBackground={buttonBackground}
-                            buttonTextColor={buttonTextColor}
-                        />
-                    }
+                    <BodyText
+                        heading={heading}
+                        body={content}
+                        bodyStyle={textStyle}
+                        headerStyle={headerStyle}
+                        fullWidth={true}
+                        textAlign={true}
+                        buttonText={buttonText}
+                        buttonLink={buttonLink}
+                        buttonBackground={buttonBackground}
+                        buttonTextColor={buttonTextColor}
+                    />
                 </div>
                 <div className="relative">
                     <div className={Styles.formContainer}>

@@ -25,7 +25,7 @@ export default function Hero({
                     <Image
                         src={urlForImage(image).height(1000).width(2000).url()}
                         alt={altTag}
-                        className={`w-full ${imageHeight ? '' : Styles.hero}`}
+                        className={`w-full ${Styles.hero}`}
                         priority
                         width={2000}
                         height={1000}
@@ -34,6 +34,7 @@ export default function Hero({
                         blurDataURL={blurData ?? urlForImage(image).width(100).height(100).quality(1).url()}
                         style={{
                             objectFit: 'cover',
+                            height: `${imageHeight}`
                         }}
                     />
                 </>
@@ -57,16 +58,14 @@ export default function Hero({
             <div className="absolute top-0 bottom-0 left-0 right-0 text-center flex items-center flex-col justify-center" style={{
                 color: `${textStyle}`
             }}>
-                {body &&
-                    <BodyText
-                        body={body}
-                        headerStyle={headerStyle}
-                        buttonText={buttonText}
-                        buttonLink={buttonLink}
-                        buttonBackground={buttonBackground}
-                        buttonTextColor={buttonTextColor}
-                    />
-                }
+                <BodyText
+                    body={body}
+                    headerStyle={headerStyle}
+                    buttonText={buttonText}
+                    buttonLink={buttonLink}
+                    buttonBackground={buttonBackground}
+                    buttonTextColor={buttonTextColor}
+                />
             </div>
         </div>
     )

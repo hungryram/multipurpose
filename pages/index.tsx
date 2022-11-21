@@ -15,6 +15,7 @@ import Hero from '../components/templates/hero'
 import TextImage from '../components/templates/text-and-image'
 import LeadForm from '../components/templates/lead-form'
 import Pricing from '../components/templates/pricing'
+import Seo from '../components/global/seo'
 
 export default function Index({
   preview,
@@ -23,12 +24,18 @@ export default function Index({
 
   const defaultText = 'var(--website-text-color)'
   const defaultHeader = 'var(--website-text-color)'
-
-
   return (
     <>
       <Layout preview={preview}>
-        {homeSettings?.appearances?.homePage?.pageBuilder?.map((section) => {
+        <Seo 
+          title={homeSettings.profileSettings?.seo?.title_tag}
+          description={homeSettings.profileSettings?.seo?.meta_description}
+          company_name={homeSettings.profileSettings?.company_name}
+          twitterHandle={homeSettings?.profileSettings?.seo?.twitterHandle}
+          favicon={homeSettings?.appearances?.favicon}
+          themeColor={homeSettings?.appearances?.themeColor}
+        />
+        {homeSettings?.homeAppearance?.homePage?.pageBuilder?.map((section) => {
 
           const headerColor = {
             color: section?.background?.textColor?.headerColor?.hex ?? defaultHeader
@@ -55,7 +62,6 @@ export default function Index({
           }
 
           if (section._type === 'hero') {
-            console.log(section.textColor.textColor.hex)
             return (
               <Hero
                 key={section._key}
@@ -63,14 +69,14 @@ export default function Index({
                 textStyle={section?.textColor?.textColor?.hex}
                 image={section.image}
                 buttonLink={section?.button}
-                buttonLabel={section?.button?.buttonText}
+                buttonText={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 blurData={homeSettings.sanityImages.base64 ?? section.image}
                 imageHeight={
-                  section?.imageHeight === 'small' && 'h-96' ||
-                  section?.imageHeight === 'medium' && 'h-[600px]' ||
-                  section?.imageHeight === 'large' && 'h-screen'
+                  section?.imageHeight === 'small' && '400px' ||
+                  section?.imageHeight === 'medium' && '600px' ||
+                  section?.imageHeight === 'large' && '100vh'
                 }
               />
             )
@@ -84,7 +90,7 @@ export default function Index({
                 content={section?.content}
                 image={section?.image}
                 buttonLink={section?.button}
-                buttonLabel={section?.button?.buttonText}
+                buttonText={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 altTag={section?.image?.altTag ?? homeSettings?.profileSettings?.company_name}

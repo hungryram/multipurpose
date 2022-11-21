@@ -36,7 +36,7 @@ export const homePageQuery = groq`
   'sanityImages': *[_type == "sanity.imageAsset"][0] {
     'base64': metadata.lqip
   },
-  'appearances': *[_type == 'appearances'][0]{
+  'homeAppearance': *[_type == 'appearances'][0]{
   'homePage': homePage-> {
     pageBuilder[]{
         ...,
@@ -52,7 +52,8 @@ export const homePageQuery = groq`
     }
     }
   },
-  'testimonialAll': *[_type == 'testimonials']
+  'testimonialAll': *[_type == 'testimonials'],
+  ${seoData}
 }
 `
 
@@ -291,7 +292,7 @@ export const appearances = groq`
 // HOME QUERY
 export const queryHome = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"] {
+  'sanityImages': *[_type == "sanity.imageAsset"][0] {
     'base64': metadata.lqip
   },
   'profileSettings': *[_type == 'profile'][0]{
@@ -305,7 +306,21 @@ export const queryHome = groq`
       ...
     }
   },
-    'homeDesign': *[_type == 'homeDesign' && slug.current == $slug][0],
+    'homeDesign': *[_type == 'homeDesign' && slug.current == $slug ][0]{
+      ...,
+      pageBuilder[]{
+        ...,
+      'button':  button.button{
+        'buttonText': text,
+        linkType,
+        internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+          }
+      }
+      }
+    },
     ...,
     'team': *[_type == 'team'][0..6]{
       name,
@@ -321,24 +336,6 @@ export const queryHome = groq`
       date,
       mainImage
     },
-    'listings': *[_type == 'listings'][0..6]{
-      'slug': slug.current,
-      propType,
-      _id,
-      shortTitle,
-      status,
-      price,
-      address,
-      city,
-      state,
-      zipCode,
-      'thumbnail': gallery.images[0],
-      'details': details {
-     bedrooms,
-     bathrooms,
-     squareFootage,
-   }
-    }
 }
 `
 
