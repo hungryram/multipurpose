@@ -1,25 +1,26 @@
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 import BodyText from "../util/body-text"
-import PrimaryButton from "../util/primary-button"
 import Wrapper from "../util/wrapper"
-import ContentEditor from "./contenteditor"
+import Styles from "../../styles/templates.module.css"
 
-export default function TextImage({ image, heading, content, textLeft, textStyle, headerStyle, buttonLabel, buttonLink, altTag, rowReverse, backgroundStyles, buttonBackground, buttonTextColor }: any) {
+export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonLabel, buttonLink, altText, rowReverse, backgroundStyles, buttonBackground, buttonTextColor }: any) {
+    
+
     return (
         <Wrapper
             backgroundStyles={backgroundStyles}
         >
-            <div className={`md:flex items-center ${rowReverse ? 'flex-row-reverse' : ''}`}>
+            <div className={`${Styles.textAndImage} md:flex items-center ${rowReverse ? 'flex-row-reverse' : ''}`}>
                 {image &&
                     <div className="md:w-1/2 text-center">
                         <Image
                             src={urlForImage(image).url()}
                             width={500}
                             height={0}
-                            alt={altTag}
+                            alt={altText}
                             placeholder="blur"
-                            blurDataURL={urlForImage(image).width(50).height(50).quality(1).url()}
+                            blurDataURL={blurData ?? urlForImage(image).height(10).width(10).quality(1).url()}
                             style={{
                                 height: 'auto',
                                 margin: '20px auto',

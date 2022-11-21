@@ -69,11 +69,11 @@ export default function Index({
                 altText={section?.altText}
                 textStyle={section?.textColor?.textColor?.hex}
                 image={section.image}
+                blurData={section?.lqip}
                 buttonLink={section?.button}
                 buttonText={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
-                blurData={homeSettings.sanityImages.base64 ?? section.image}
                 imageHeight={
                   section?.imageHeight === 'small' && '400px' ||
                   section?.imageHeight === 'medium' && '600px' ||
@@ -90,11 +90,12 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.content}
                 image={section?.image}
+                blurData={section.lqip}
                 buttonLink={section?.button}
                 buttonText={section?.button?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
-                altTag={section?.image?.altTag ?? homeSettings?.profileSettings?.company_name}
+                altText={section?.altText}
                 rowReverse={section?.reverseRow}
                 headerStyle={headerColor}
                 textStyle={bodyColor}
@@ -207,7 +208,8 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                images={section?.images}
+                images={section?.childImage}
+                altText={section?.childImage}
                 animation={section?.animation ?? 'fade'}
                 fullWidth={section?.fullWidth}
                 textColor={section?.textColor?.hex}

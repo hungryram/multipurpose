@@ -18,7 +18,6 @@ export default function Hero({
     buttonTextColor
 }: any) {
 
-console.log(image)
     return (
         <div className="flex items-center relative z-10">
             {image ?
@@ -32,7 +31,7 @@ console.log(image)
                         height={1000}
                         sizes="100vw"
                         placeholder="blur"
-                        blurDataURL={blurData ?? urlForImage(image).width(100).height(100).quality(1).url()}
+                        blurDataURL={blurData ?? urlForImage(image).height(10).width(10).quality(1).url()}
                         style={{
                             objectFit: 'cover',
                             height: `${imageHeight}`

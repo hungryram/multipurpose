@@ -27,7 +27,7 @@ export default defineType({
             type: 'image',
             group: 'content',
             options: {
-                hotspot: true
+                hotspot: true,
             },
         },
         {

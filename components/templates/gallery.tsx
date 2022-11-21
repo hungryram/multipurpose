@@ -2,43 +2,82 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { urlForImage } from '../../lib/sanity'
 
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade'
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import SwiperCore, { EffectFade, Autoplay, Pagination, Navigation } from 'swiper'
+import SwiperCore, { EffectFade, Autoplay, Pagination, Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // TEMPLATES
-import ContentEditor from './contenteditor';
-import PrimaryButton from '../util/primary-button';
 import BodyText from '../util/body-text';
 import Wrapper from '../util/wrapper';
+import Modal from './modal';
 
 export default function Gallery({ images,
     content,
     fullWidth,
     animation,
-    backgroundColor,
-    textColor,
     buttonText,
     buttonLink,
     buttonTextColor,
     buttonBackground,
-    altTag,
     disablePagination,
     disableNavigation,
     heading,
     textStyle,
     headerStyle,
-    textLeft,
     backgroundStyles,
     removePadding
 }: any) {
 
-    SwiperCore.use([Autoplay, Pagination, Navigation])
+    SwiperCore.use([Autoplay, Pagination, Navigation, A11y])
+    const [clickedImg, setClickedImg] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(null);
 
+    const handleClick = (item, index) => {
+        setCurrentIndex(index);
+        setClickedImg(urlForImage(item).url());
+    };
+
+    const handelRotationRight = () => {
+        const totalLength = images.length;
+
+        if (currentIndex + 1 >= totalLength) {
+            setCurrentIndex(0);
+            const newUrl = urlForImage(images[0]).url();
+            setClickedImg(newUrl);
+            return;
+        }
+        const newIndex = currentIndex + 1;
+        const newUrl = images?.filter((item) => {
+            return images.indexOf(item) === newIndex;
+        });
+        const newItem = newUrl[0];
+        setClickedImg(urlForImage(newItem)?.url());
+        setCurrentIndex(newIndex);
+        console.log(newUrl)
+
+    };
+
+    const handelRotationLeft = () => {
+        const totalLength = images?.length;
+        if (currentIndex === 0) {
+            setCurrentIndex(totalLength - 1);
+            const newUrl = images[totalLength - 1];
+            setClickedImg(newUrl);
+            return;
+        }
+        const newIndex = currentIndex - 1;
+        const newUrl = images.filter((item) => {
+            return images.indexOf(item) === newIndex;
+        });
+        const newItem = newUrl[0];
+        setClickedImg(urlForImage(newItem).url());
+        setCurrentIndex(newIndex);
+    };
     return (
         <Wrapper
             backgroundStyles={backgroundStyles}
@@ -72,6 +111,7 @@ export default function Gallery({ images,
                             navigation={disableNavigation ? false : true}
                             effect={animation}
                             loop={true}
+                            A11y={true}
                             style={{
                                 "--swiper-navigation-size": "20px",
                                 "--swiper-navigation-color": "#fff",
@@ -79,25 +119,34 @@ export default function Gallery({ images,
                                 "--swiper-pagination-color": "var(--primary-accent)"
                             }}
                         >
-                            {images?.map((node) => {
+                            {images?.map((node, index) => {
                                 return (
-                                    <SwiperSlide key={node?._key}>
-                                        <div className="w-full relative">
-                                            {node &&
+                                    <>
+                                        <SwiperSlide key={node?._key}>
+                                            <div className="w-full relative cursor-pointer">
                                                 <Image
                                                     src={urlForImage(node).url()}
-                                                    alt="test"
+                                                    alt={node.altText}
                                                     width={fullWidth ? 2000 : 900}
                                                     height={0}
-                                                    className={`object-cover h-auto w-full ${fullWidth ? 'md:h-screen' : ''}`}
+                                                    className={`object-cover h-96 w-full ${fullWidth ? 'md:h-screen' : ''}`}
                                                     sizes={fullWidth ? '100vw' : '50vw'}
+                                                    onClick={() => handleClick(node, index)}
                                                 />
-                                            }
-                                        </div>
-                                    </SwiperSlide>
+                                            </div>
+                                        </SwiperSlide>
+                                    </>
                                 )
                             })}
                         </Swiper>
+                        {clickedImg && (
+                            <Modal
+                                clickedImg={clickedImg}
+                                handelRotationRight={handelRotationRight}
+                                setClickedImg={setClickedImg}
+                                handelRotationLeft={handelRotationLeft}
+                            />
+                        )}
                     </div>
                     : null
                 }
