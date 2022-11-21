@@ -33,14 +33,9 @@ export default defineType({
             type: 'color'
         },
         {
-            title: 'Call to Action Button Text',
-            name: 'ctaText',
-            type: 'string',
-        },
-        {
-            title: 'Call to Action Button Link',
-            name: 'ctaLink',
-            type: 'string'
+            title: "Call to Action",
+            name: "cta",
+            type: "subMenu",
         },
         {
             title: 'Default Page Header Image',

@@ -9,7 +9,8 @@ export default function ContactBlock({
     address,
     city,
     state,
-    zipCode
+    zipCode,
+    googleBusiness
 }: any) {
     return (
         <ul>
@@ -45,7 +46,7 @@ export default function ContactBlock({
             }
             {address &&
                 <li>
-                    <a href={`mailto:${email}`}>
+                    <a href={googleBusiness ?? '#'} target={googleBusiness ?? '_blank'}>
                         <div className="flex items-center md:justify-start justify-center">
                             <span><MdOutlineLocationOn className="mr-4" /></span>
                             <span>{address}<br /> {city} {state} {zipCode}</span>

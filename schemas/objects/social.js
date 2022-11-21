@@ -10,6 +10,12 @@ export default defineType({
     },
     fields: [
         {
+            title: 'Google Business Profile',
+            name: 'googleBusiness',
+            type: 'url',
+            description: 'Link your Google Business Profile to help your SEO. No icons are displayed'
+        },
+        {
             title: 'Instagram',
             name: 'instagram',
             type: 'url',

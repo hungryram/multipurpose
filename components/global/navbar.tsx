@@ -11,19 +11,19 @@ import HamburgerMenu from "./hamburger-menu";
 import PrimaryButton from "../util/primary-button";
 import AnnouncementBar from "./announcement-bar";
 
-export default function Navbar({ 
-    logo, 
-    company_name, 
-    logoWidth, 
-    navItems, 
-    ctaText, 
-    ctaLink, 
-    backgroundColor, 
+export default function Navbar({
+    logo,
+    company_name,
+    logoWidth,
+    navItems,
+    ctaText,
+    ctaLink,
+    backgroundColor,
     mobileLogoWidth,
     announcementText,
     announcementLinkText,
     announcementLink
- }: any) {
+}: any) {
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
@@ -37,6 +37,14 @@ export default function Navbar({
     // }, []);
 
     const router = useRouter();
+
+    const ctaLinking =
+        (ctaLink?.internalLink?._type === "pages" && `/${ctaLink?.internalLink.slug}`) ||
+        (ctaLink?.internalLink?._type === "blog" && `/blog/${ctaLink?.internalLink.slug}`) ||
+        (ctaLink?.internalLink?._type === "legal" && `/legal/${ctaLink?.internalLink.slug}`) ||
+        (ctaLink?.internalLink?._type === "author" && `/authors/${ctaLink?.internalLink.slug}`) ||
+        (ctaLink?.internalLink?._type === "services" && `/services/${ctaLink?.internalLink.slug}`) ||
+        (ctaLink?.externalUrl && `${ctaLink?.externalUrl}`)
 
     return (
         <>
@@ -144,12 +152,11 @@ export default function Navbar({
                                     )
                                 }
                             })}
-                            {ctaLink &&
+                            {ctaLinking &&
                                 <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
-                                    <PrimaryButton
-                                        buttonText={ctaText}
-                                        buttonLink={ctaLink}
-                                    />
+                                    <Link href={ctaLinking} className={Styles.navbarCta}>
+                                        {ctaLink.text}
+                                    </Link>
                                 </li>
                             }
                         </ul>

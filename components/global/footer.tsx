@@ -27,6 +27,7 @@ export default function Footer({
     office_number,
     email,
     image,
+    googleBusiness,
     facebook,
     youtube,
     instagram,
@@ -37,8 +38,9 @@ export default function Footer({
     pinterest,
     tiktok,
     zillow,
-    size
-}) {
+    size,
+    website
+}: any) {
     return (
         <footer className={Styles.footer}>
             <div className="pt-20 pb-10">
@@ -47,13 +49,13 @@ export default function Footer({
                         <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 gap-8">
                             <div className="relative">
                                 {image ?
-                                    <div>
+                                    <div className="flex md:justify-start justify-center">
                                         <Image
                                             src={urlForImage(image).url()}
-                                            width="200"
+                                            width={200}
                                             height="50"
-                                            objectFit="contain"
                                             alt={company_name}
+                                            className="mb-6 justify-center flex"
                                         />
                                     </div>
                                     :
@@ -83,16 +85,28 @@ export default function Footer({
                                     city={city}
                                     state={state}
                                     zipCode={zip_code}
+                                    googleBusiness={googleBusiness}
                                 />
                             </div>
                             <div>
-                                <h3 className="uppercase font-semibold mb-4">Useful links</h3>
+                                <h3 className="uppercase font-semibold mb-4">Quick links</h3>
                                 <ul>
                                     {links?.map((link, i) => {
+
+                                        const quickLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) ||
+                                            (link.externalUrl && `${link.externalUrl}`)
+
                                         return (
-                                            <li className="" key={i}>
-                                                <Link href={(link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)} target={link.newTab && '_blank'} aria-label={link?.name ?? link?.title ?? link.text}>
-                                                    {link?.name ?? link?.title ?? link.text}
+                                            <li key={i}>
+                                                <Link
+                                                    href={quickLinks}
+                                                    target={link.newTab && '_blank'}
+                                                    aria-label={link.text}
+                                                >
+                                                    {link.text}
                                                 </Link>
                                             </li>
                                         )
@@ -103,8 +117,8 @@ export default function Footer({
                             <div>
                                 <h3 className="uppercase font-semibold mb-4">About</h3>
                                 {footerText &&
-                                    <PortableText
-                                        value={footerText}
+                                    <ContentEditor
+                                        content={footerText}
                                     />
                                 }
                             </div>
@@ -120,14 +134,13 @@ export default function Footer({
                 </div>
             </div>
             <div className="text-center p-4">
-                <p className="text-xs font-light pt-0">&copy; Copyright {new Date().getFullYear()} &middot; {company_name} &middot; Website built by <a href="https://www.hungryram.com/" className="font-bold" target="_blank" rel="noreferrer">Hungry Ram</a></p>
                 {legal ?
                     <ul>
                         {legal?.map((node) => {
                             return (
-                                <li className="inline text-sm mx-2" key={node._id}>
+                                <li className="inline text-xs mx-2" key={node._id}>
                                     <Link href={`/legal/${node.slug}`}>
-                                        <a>{node.title}</a>
+                                        {node.title}
                                     </Link>
                                 </li>
                             )
@@ -135,6 +148,7 @@ export default function Footer({
                     </ul>
                     : null
                 }
+                <p className="text-xs font-light pt-0">&copy; Copyright {new Date().getFullYear()} &middot; <Link href={website ?? '/'}>{company_name}</Link> &middot; Website built by <a href="https://www.hungryram.com/" className="font-bold" target="_blank" rel="noreferrer">Hungry Ram</a></p>
             </div>
         </footer>
     )

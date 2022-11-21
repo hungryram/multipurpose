@@ -11,6 +11,13 @@
     @apply py-8
 }
 
+.navbarCta {
+    @apply px-4 py-3;
+    background-color: var(--primary-button-background);
+    color: var(--primary-button-text);
+    border-radius: var(--button-radius);
+}
+
 .navigationBurger div {
     width: 25px;
     height: 2px;
@@ -49,8 +56,6 @@
 .activeDropDown li:not(:last-child) {
     border-bottom: 1px solid rgb(222, 222, 222);
 }
-
-
 
 .hideDropDown {
     visibility: hidden;

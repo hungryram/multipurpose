@@ -60,7 +60,7 @@ export default function Layout({ children, preview }: any) {
                 logoWidth={data.appearances?.branding?.logoWidth}
                 mobileLogoWidth={data.appearances?.branding?.mobileLogoWidth}
                 navItems={data.appearances?.header?.navItems}
-                ctaLink={data.appearances.header?.ctaLink}
+                ctaLink={data?.appearances?.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
                 backgroundColor={data.appearances?.navBgColor}
                 // ANNOUNCEMENT
@@ -75,19 +75,19 @@ export default function Layout({ children, preview }: any) {
             </main>
             <Footer 
                 footerText={data.appearances?.footer?.footerText}
-                logos={data.appearances?.footer?.footerLogo}
+                image={data.appearances?.footer?.footerLogo}
                 company_name={data.profileSettings.company_name}
-                altTag={data.appearances?.footer?.footerLogo?.altTag}
+                legal={data.legal}
                 email={data.profileSettings?.contact_information?.email}
                 phone_number={data.profileSettings?.contact_information?.phone_number}
                 office_number={data.profileSettings?.contact_information?.office_number}
-                website={data.profileSettings?.contact_information?.website}
+                website={data.profileSettings?.settings?.websiteName}
                 address={data.profileSettings?.address?.address}
                 city={data.profileSettings?.address?.city}
                 state={data.profileSettings?.address?.state}
                 zip_code={data.profileSettings?.address?.zip_code}
-                content={data.appearances?.footer?.footerText}
                 links={data.appearances?.footer?.quickLinks}
+                googleBusiness={data.profileSettings.social.googleBusiness}
                 facebook={data.profileSettings.social.facebook}
                 youtube={data.profileSettings.social.youtube}
                 instagram={data.profileSettings.social.instagram}

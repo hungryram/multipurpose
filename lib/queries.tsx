@@ -226,8 +226,18 @@ export const appearances = groq`
         'announcementTextColor': textColor.hex,
       },
       'header': header {
-          ctaLink,
-          ctaText,
+          'ctaLink': cta {
+            newTab,
+            _key,
+            linkType,
+            externalUrl,
+            text,
+            internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+      }
+          },
           '': mainNav->{
           'navItems':items[]{
             'subMenu':subMenu[]{
@@ -284,6 +294,9 @@ export const appearances = groq`
       },
       address {
           ...
+      },
+      settings {
+        ...
       }
   },
 }
