@@ -18,7 +18,7 @@ export default function PrimaryButton({ buttonLabel, buttonLink, buttonBackgroun
         <Link href={buttonLinking ?? buttonLink} className={Styles.primaryButton} style={{
           background: `${buttonBackground ?? 'var(--primary-button-background)'}`,
           color: `${buttonTextColor ?? 'var(--primary-button-text)'}`
-        }}>{buttonLabel ?? buttonLink.buttonText }</Link>
+        }} target={buttonLink.newTab && '_blank'}>{buttonLabel ?? buttonLink.buttonText }</Link>
         : null
       }
     </>

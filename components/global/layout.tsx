@@ -17,7 +17,6 @@ export default function Layout({ children, preview }: any) {
     const { data, error } = useSWR(appearances, query => getClient(false).fetch(query))
     if (error) return <Error />;
     if (!data) return <Loading />;
-    const bgLoader = data.appearances?.loaderImage
     return (
         <>
             <Head>
@@ -39,7 +38,7 @@ export default function Layout({ children, preview }: any) {
                             --mobile-icon-color: ${data.appearances?.mobileIconColor ?? '#ffffff'};
 
                             --loading-background-color: ${data.appearances?.loaderColor ?? '#0e0e0e'};
-                            --loading-image: url(${bgLoader});
+                            --loading-image: url(${data.appearances?.loaderImage});
 
                             --website-body-color: ${data.appearances?.websiteBodyColor ?? '#fff'};
                             --website-text-color: ${data.appearances?.websiteTextColor ?? '#222'};

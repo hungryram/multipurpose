@@ -38,7 +38,7 @@ export default function Pricing({
                 <div className={`mt-10 lg:grid-cols-${columnNumber ?? '3'} grid md:grid-cols-2 grid-cols-1 gap-4`}>
                     {packages?.map((node) => {
                         return (
-                            <div className={Styles.priceContainer}>
+                            <div className={Styles.priceContainer} key={node._key}>
                                 <div className="p-6 border-b text-center">
                                     <h3 className="uppercase mb-4 text-sm">
                                         <strong>{node.name}</strong>
@@ -64,7 +64,7 @@ export default function Pricing({
                                     <ol className="list-inside">
                                         {node?.details?.map((node) => {
                                             return (
-                                                <li className="mb-4 flex items-center">
+                                                <li className="mb-4 flex items-center" key={node._key}>
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check"
                                                         className="text-green-600 w-4 h-4 mr-2" role="img" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 512 512">

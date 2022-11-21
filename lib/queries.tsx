@@ -41,8 +41,11 @@ export const homePageQuery = groq`
     pageBuilder[]{
         ...,
       'button':  button.button{
-        'buttonText': text,
+        'buttonText': 
+        text,
+        externalUrl,
         linkType,
+        newTab,
         internalLink->{
             title,
             'slug': slug.current,
@@ -326,6 +329,8 @@ export const queryHome = groq`
       'button':  button.button{
         'buttonText': text,
         linkType,
+        externalUrl,
+        newTab,
         internalLink->{
             title,
             'slug': slug.current,
@@ -349,6 +354,7 @@ export const queryHome = groq`
       date,
       mainImage
     },
+    'testimonialAll': *[_type == 'testimonials']
 }
 `
 

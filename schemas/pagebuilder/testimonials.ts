@@ -36,6 +36,24 @@ export default defineType({
             group: 'settings',
         },
         {
+            title: 'Text Left',
+            name: 'textLeft',
+            type: 'boolean',
+            group: 'settings',
+        },
+        {
+            title: 'Testimonial Card Background Color',
+            name: 'cardBackground',
+            group: 'settings',
+            type: 'color',
+        },
+        {
+            title: 'Testimonial Card Text Color',
+            name: 'cardTextColor',
+            group: 'settings',
+            type: 'color',
+        },
+        {
             title: 'Background Options',
             name: 'background',
             group: 'settings',

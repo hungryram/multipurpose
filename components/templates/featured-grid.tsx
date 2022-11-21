@@ -59,7 +59,7 @@ export default function FeaturedGrid({
                                 <div className={`grid h-full lg:grid-cols-${columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
                                     {blocks?.map((node) => {
                                         return (
-                                            <div className="relative" style={{
+                                            <div className="relative" key={node._key} style={{
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
                                                 color: `${node.textColor?.hex ?? '#ffffff'}`,
                                                 border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,

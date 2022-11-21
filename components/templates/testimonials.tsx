@@ -11,13 +11,15 @@ import Wrapper from "../util/wrapper";
 
 import BodyText from "../util/body-text";
 
-export default function Testimonials({ 
-    carousel, 
-    testimonial, 
-    heading, 
-    content, 
-    bodyColor, 
-    backgroundStyles, 
+export default function Testimonials({
+    carousel,
+    testimonial,
+    heading,
+    content,
+    cardBackground,
+    cardTextColor,
+    bodyColor,
+    backgroundStyles,
     arrowColor,
     textStyle,
     headerStyle,
@@ -34,8 +36,7 @@ export default function Testimonials({
         <Wrapper
             backgroundStyles={backgroundStyles}
         >
-            {content &&
-                <div className="mb-10">
+                <div className="mb-10" style={bodyColor}>
                     <BodyText
                         heading={heading}
                         body={content}
@@ -49,7 +50,6 @@ export default function Testimonials({
                         buttonTextColor={buttonTextColor}
                     />
                 </div>
-            }
             {carousel ?
                 <Swiper
                     modules={[EffectFade, Navigation]}
@@ -73,13 +73,14 @@ export default function Testimonials({
                     {testimonial?.map((node) => {
                         return (
                             <SwiperSlide key={node?._key}>
-                                <div className="p-4 my-2 text-center h-full" style={bodyColor}>
+                                <div className="p-4 my-2 text-center h-full" style={{
+                                    backgroundColor: `${cardBackground}`,
+                                    color: `${cardTextColor}`
+                                }}>
                                     <div className="mb-6 content">
-                                        {node.testimonial &&
-                                            <ContentEditor
-                                                content={node.testimonial}
-                                            />
-                                        }
+                                        <ContentEditor
+                                            content={node.testimonial}
+                                        />
                                     </div>
                                     {node.name && <em className="font-medium">— {node.name}</em>}
                                 </div>
@@ -88,11 +89,14 @@ export default function Testimonials({
                     })}
                 </Swiper>
                 :
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
                     {testimonial?.map((node) => {
                         return (
                             <div key={node._key}>
-                                <div className="border p-4 my-2 h-full" style={bodyColor}>
+                                <div className="border p-4 my-2 h-full" style={{
+                                    backgroundColor: `${cardBackground}`,
+                                    color: `${cardTextColor}`
+                                }}>
                                     <div className="mb-6 content">
                                         {node.testimonial &&
                                             <ContentEditor

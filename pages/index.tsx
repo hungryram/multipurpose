@@ -232,6 +232,9 @@ export default function Index({
                 testimonial={homeSettings.testimonialAll}
                 content={section?.content}
                 carousel={section?.carousel}
+                textLeft={section?.textLeft}
+                cardTextColor={section?.cardTextColor?.hex}
+                cardBackground={section?.cardBackground?.hex}
                 bodyColor={bodyColor}
                 arrowColor={section?.background?.textColor?.textColor?.hex}
                 buttonText={section?.button?.buttonText}
@@ -248,6 +251,7 @@ export default function Index({
           if (section._type === 'leadForm') {
             return (
               <LeadForm
+                key={section._key}
                 heading={section?.heading}
                 content={section?.content}
                 buttonText={section?.button?.buttonText}
@@ -267,6 +271,7 @@ export default function Index({
           if (section._type === 'pricing') {
             return (
               <Pricing
+                key={section._key}
                 heading={section?.heading}
                 content={section?.content}
                 packages={section?.packages}
