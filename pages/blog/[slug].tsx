@@ -39,7 +39,7 @@ export default function Post(props: Props) {
       <Header 
         image={post?.coverImage}
         blurData={post?.lqip}
-        altText={post.altText}
+        altText={post?.altText}
       />
       <Seo 
         title={post?.seo?.title_tag}
@@ -59,11 +59,11 @@ export default function Post(props: Props) {
             <>
               <article>
                 <PostHeader
-                  title={post.title}
+                  title={post?.title}
                   coverImage={post?.coverImage}
-                  date={post.date}
-                  author={post.author}
-                  altText={post.altText}
+                  date={post?.date}
+                  author={post?.author}
+                  altText={post?.altText}
                   blurData={post?.lqip}
                 />
                 <PostBody content={post.content} />
