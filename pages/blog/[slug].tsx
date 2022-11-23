@@ -33,11 +33,12 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+  console.log(post)
   return (
     <Layout preview={preview}>
       <Header 
         image={post?.coverImage}
-        blurData={post.lqip}
+        blurData={post?.lqip}
         altText={post.altText}
       />
       <Seo 

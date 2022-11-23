@@ -214,6 +214,7 @@ export const queryAllPosts = groq`
     'pageSettings': *[_type == 'pageSetting'][0] {
     blog {
     title,
+    _id,
     headerImage {
       ...
     },

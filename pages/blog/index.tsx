@@ -28,8 +28,6 @@ export async function getStaticProps({ preview = false }) {
 
 export default function BlogIndex({ blogQuery }) {
 
-    console.log(blogQuery)
-
     return (
         <Layout>
             <Seo
