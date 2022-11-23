@@ -63,7 +63,7 @@ export default function Post(props: Props) {
                   date={post.date}
                   author={post.author}
                   altText={post.altText}
-                  blurData={post.lqip}
+                  blurData={post?.lqip}
                 />
                 <PostBody content={post.content} />
               </article>
