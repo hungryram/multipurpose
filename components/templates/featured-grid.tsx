@@ -1,13 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import { urlForImage } from "../../lib/sanity"
 import BodyText from "../util/body-text"
 
 export default function FeaturedGrid({
     link,
-    value,
     centerTextGrid,
-    blurData,
     content,
     textOutsideImage,
     textLeft,
@@ -58,7 +55,6 @@ export default function FeaturedGrid({
                             <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
                                 <div className={`grid h-full lg:grid-cols-${columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
                                     {blocks?.map((node) => {
-                                        console.log(node?.image?.lqip)
                                         return (
                                             <div className="relative" key={node._key} style={{
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
@@ -67,7 +63,8 @@ export default function FeaturedGrid({
                                             }}>
                                                 <Link href={link ?? '/'}>
                                                     <div>
-                                                            <>
+                                                        <>
+                                                            {node?.image?.url &&
                                                                 <Image
                                                                     src={node?.image?.url}
                                                                     alt={node?.image?.altText}
@@ -81,8 +78,9 @@ export default function FeaturedGrid({
                                                                     }}
                                                                     className="w-full"
                                                                 />
-                                                                {!textOutsideImage && <div className="featured-grid-overlay"></div>}
-                                                            </>
+                                                            }
+                                                            {!textOutsideImage && <div className="featured-grid-overlay"></div>}
+                                                        </>
                                                         <div
                                                             className={`lg:px-12 px-6 py-4 justify-center
                                                             ${textOutsideImage ? 'bottom-0 left-0 right-0' : 'absolute bottom-0 left-0 right-0'}

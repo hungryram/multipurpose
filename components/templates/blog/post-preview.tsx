@@ -12,6 +12,8 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  altText,
+  blurData,
 }: PostProps) {
   return (
     <div>
@@ -21,6 +23,8 @@ export default function PostPreview({
           title={title}
           image={coverImage}
           priority={false}
+          altText={altText}
+          blurData={blurData}
         />
       </div>
       <h3 className="mb-3 text-2xl leading-snug">

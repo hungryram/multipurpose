@@ -33,11 +33,12 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
-
   return (
     <Layout preview={preview}>
       <Header 
         image={post?.coverImage}
+        blurData={post.lqip}
+        altText={post.altText}
       />
       <Seo 
         title={post?.seo?.title_tag}
@@ -61,6 +62,8 @@ export default function Post(props: Props) {
                   coverImage={post?.coverImage}
                   date={post.date}
                   author={post.author}
+                  altText={post.altText}
+                  blurData={post.lqip}
                 />
                 <PostBody content={post.content} />
               </article>

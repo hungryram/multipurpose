@@ -14,6 +14,9 @@ export interface PostProps {
   seo: any
   profileSettings: any
   appearances: any
+  altText: string
+  blurData: any
+  lqip: any
 }
 
 export interface PageProps {

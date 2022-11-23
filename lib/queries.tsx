@@ -28,14 +28,11 @@ const seoData = groq`
   'favicon': branding.favicon,
   'themeColor': mainColors.primaryColor.hex,
   'defaultImage': header.defaultHeaderImage
-}
+},
 `
 
 export const homePageQuery = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"][0] {
-    'base64': metadata.lqip
-  },
   'homeAppearance': *[_type == 'appearances'][0]{
   'homePage': homePage-> {
     pageBuilder[]{
@@ -55,15 +52,17 @@ export const homePageQuery = groq`
           '':asset->{
             'altText':altText,
             'lqip':metadata.lqip,
+            url
           }
         },
         '': image {
           '':asset->{
             'altText':altText,
             'lqip':metadata.lqip,
+            url
           }
         },
-      'button':  button.button{
+      'buttonLinking':  button.button{
         'buttonText': 
         text,
         externalUrl,
@@ -117,9 +116,62 @@ export const indexQuery = groq`
 
 export const pageQuery = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"][0] {
-    'base64': metadata.lqip
-  },
+  'pages':*[_type == 'pages' && slug.current == $slug][0]{
+    ...,
+    'headerImageData':headerImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+    pageBuilder[]{
+        ...,
+        'blockImages': blocks[] {
+          ...,
+      image {
+          '':asset-> {
+              'altText':altText,
+              'lqip':metadata.lqip,
+              url
+          }
+      }
+    },
+        'childImage': images[] {
+          ...,
+          '':asset->{
+            'altText':altText,
+            'lqip':metadata.lqip,
+            url
+          }
+        },
+        '': image {
+          '':asset->{
+            'altText':altText,
+            'lqip':metadata.lqip,
+            url
+          }
+        },
+      'buttonLinking':  button.button{
+        'buttonText': 
+        text,
+        externalUrl,
+        linkType,
+        newTab,
+        internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+          }
+      }
+    }
+    },
+    'team': *[_type == 'team'][0..6]{
+      name,
+      _id,
+      image,
+      'slug': slug.current
+    },
   'appearances': *[_type == 'appearances'][0]{
     'favicon': branding.favicon,
     'themeColor': mainColors.primaryColor.hex,
@@ -137,22 +189,6 @@ export const pageQuery = groq`
       ...
     }
   },
-    'pages': *[_type == 'pages' && slug.current == $slug][0],
-    ...,
-    'team': *[_type == 'team'][0..6]{
-      name,
-      _id,
-      image,
-      'slug': slug.current
-    },
-    'blog': *[_type == 'blog'][0..4]{
-      'slug': slug.current,
-      title,
-      _id,
-      excerpt,
-      date,
-      mainImage
-    },
 }
 `
 
@@ -169,9 +205,30 @@ export const pagesBySlugQuery = groq`
 // All BLOG QUERY
 export const queryAllPosts = groq`
 {
+  'profileSettings': *[_type == 'profile'][0]{
+    company_name
+  },
   'header': *[_type == 'appearances'][0]{
     'image': header.defaultHeaderImage
   },
+    'pageSettings': *[_type == 'pageSetting'][0] {
+    blog {
+    title,
+    headerImage {
+      ...
+    },
+    'headerImageData':headerImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+      seo {
+        ...
+      }
+    }
+    },
   'blog':*[_type == 'blog'] {
     title,
     'slug': slug.current,
@@ -179,13 +236,28 @@ export const queryAllPosts = groq`
     "author": author->{name, picture},
     date,
     excerpt,
-  }
+    'coverImageData': coverImage {
+      '':asset-> {
+        altText,
+'lqip':metadata.lqip,
+url
+}
+    }
+  },
+  ${seoData}
 }
 `
 
 export const postQuery = groq`
 {
   "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {
+    '':coverImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
     content,
     ${postFields}
   },
@@ -406,14 +478,41 @@ export const homeSlugsQuery = groq`
 
 // SERVICE QUERY
 export const queryServices = groq`
-*[_type == 'services']{
-    name,
-    image,
-    'slug': slug.current,
-    content,
+{
+  'profileSettings': *[_type == 'profile'][0]{
+    company_name
+  },
+  'header': *[_type == 'appearances'][0]{
+    'image': header.defaultHeaderImage
+  },
+    'pageSettings': *[_type == 'pageSetting'][0] {
+    services {
     title,
-    content,
-    _id
+    headerImage {
+      ...
+    },
+    'headerImageData':headerImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+      seo {
+        ...
+      }
+    }
+    },
+  'services':*[_type == 'services']{
+      name,
+      image,
+      'slug': slug.current,
+      content,
+      title,
+      content,
+      _id
+  },
+  ${seoData}
 }
 `
 
@@ -443,9 +542,31 @@ export const servicesSlugsQuery = groq`
 // TEAM QUERY
 export const queryTeam = groq`
 {
+  ${seoData}
+  'profileSettings': *[_type == 'profile'][0]{
+    company_name
+  },
   'header': *[_type == 'appearances'][0]{
     'image': header.defaultHeaderImage
   },
+    'pageSettings': *[_type == 'pageSetting'][0] {
+    team {
+    title,
+    headerImage {
+      ...
+    },
+    'headerImageData':headerImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+      seo {
+        ...
+      }
+    }
+    },
   'team':*[_type == 'team']{
   name,
     _id,
@@ -488,13 +609,32 @@ export const queryLegal = groq`
   'header': *[_type == 'appearances'][0]{
     'image': header.defaultHeaderImage
   },
+    'pageSettings': *[_type == 'pageSetting'][0] {
+    legal {
+    title,
+    headerImage {
+      ...
+    },
+    'headerImageData':headerImage {
+      '':asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+      seo {
+        ...
+      }
+    }
+    },
   'legal':*[_type == 'legal']{
   title,
     _id,
   image,
   'slug': slug.current,
   content,
-}
+},
+${seoData}
 }
 `
 

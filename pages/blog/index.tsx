@@ -4,6 +4,7 @@ import Link from "next/link"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import PostPreview from "../../components/templates/blog/post-preview"
+import Seo from "../../components/global/seo"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -25,36 +26,53 @@ export async function getStaticProps({ preview = false }) {
     }
 }
 
-
 export default function BlogIndex({ blogQuery }) {
+
+    console.log(blogQuery)
+
     return (
         <Layout>
-            <Header 
-                title="Blog"
-                image={blogQuery.header.image}
+            <Seo
+                title={blogQuery?.pageSettings?.blog?.seo?.title_tag || 'The Blog | ' + blogQuery?.profileSettings?.company_name}
+                description={blogQuery?.pageSettings?.blog?.seo?.meta_description}
+                image={blogQuery?.pageSettings?.blog?.headerImage ?? blogQuery.header.image}
+                company_name={blogQuery?.profileSettings?.company_name}
+                twitterHandle={blogQuery?.profileSettings?.seo?.twitterHandle}
+                ogType="website"
+                favicon={blogQuery?.appearances?.favicon}
+                themeColor={blogQuery?.appearances?.themeColor}
+            />
+            <Header
+                title={blogQuery?.pageSettings?.blog?.title || 'The Blog'}
+                image={blogQuery?.pageSettings?.blog?.headerImage ?? blogQuery.header.image}
+                blurData={blogQuery?.pageSettings?.blog?.headerImageData?.lqip}
+                altText={blogQuery?.pageSettings?.blog?.headerImageData?.altText}
             />
             <div className="section">
                 <div className="container">
                     <div className="flex justify-center">
                         <div className="p-10">
                             <div className="grid md:grid-cols-2 gap-10">
-                            {blogQuery.blog ?
+                                {blogQuery.blog ?
                                     blogQuery?.blog.map((node) => {
                                         return (
                                             <>
-                                                <PostPreview 
+                                                <PostPreview
+                                                    key={node._id}
                                                     title={node.title}
                                                     coverImage={node.coverImage}
                                                     slug={node.slug}
                                                     date={node.date}
                                                     author={node.author}
                                                     excerpt={node.excerpt}
+                                                    altText={node.coverImageData?.altText}
+                                                    blurData={node.coverImageData?.lqip}
                                                 />
                                             </>
                                         )
                                     })
                                     :
-                                    <h2 className="h3">No blog found</h2>
+                                    <h2 className="h3">No articles have been published</h2>
                                 }
                             </div>
                         </div>

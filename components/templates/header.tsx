@@ -2,7 +2,7 @@ import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 import Styles from '../../styles/util.module.css'
 
-export default function Header({ image, title, altTag, hideHeader }: any) {
+export default function Header({ image, title, altText, hideHeader, blurData }: any) {
     return (
         <div className={`flex items-center relative ${image ? `` : ` bg-black`} ${hideHeader ? 'hidden': ''}`}>
             {image &&
@@ -11,10 +11,10 @@ export default function Header({ image, title, altTag, hideHeader }: any) {
                         src={urlForImage(image).url()}
                         width={2000}
                         height={0}
-                        alt={altTag}
+                        alt={altText}
                         placeholder="blur"
-                        blurDataURL={urlForImage(image).width(50).height(50).url()}
-                        priority
+                        blurDataURL={blurData ? blurData : urlForImage(image).width(50).height(50).url()}
+                        priority={true}
                         className="lg:h-[20em] h-[15rem]"
                         style={{
                             objectFit: 'cover',

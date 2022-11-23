@@ -38,17 +38,18 @@ export default defineType({
             group: 'settings'
         },
         {
-            title: 'Text Color',
-            name: 'textColor',
-            type: 'textColor',
-            group: 'settings'
-        },
-        {
             title: 'Button',
             name: 'button',
             type: 'buttonSettings',
             group: 'content'
         },
+        {
+            title: 'Text Color',
+            name: 'textColor',
+            type: 'textColor',
+            group: 'settings'
+        },
+
     ],
     preview: {
         select: {

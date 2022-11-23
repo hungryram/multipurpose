@@ -1,12 +1,8 @@
 import Image from "next/image"
-import { PortableText } from "@portabletext/react"
 import Styles from "../../styles/footer.module.css"
 import Link from "next/link"
 import { urlForImage } from "../../lib/sanity"
 
-// ICONS
-import { AiOutlineMobile, AiOutlinePhone, AiOutlineMail } from "react-icons/ai"
-import { MdOutlineLocationOn } from "react-icons/md"
 
 // UTIL
 import Social from "../templates/social"

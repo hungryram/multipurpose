@@ -22,20 +22,8 @@ export default defineType({
             group: 'content'
         },
         {
-            title: 'Full Width',
-            name: 'fullWidth',
-            type: 'boolean',
-            group: 'settings',
-        },
-        {
             title: 'Two Column',
             name: 'twoColumn',
-            type: 'boolean',
-            group: 'settings',
-        },
-        {
-            title: 'Remove Padding',
-            name: 'removePadding',
             type: 'boolean',
             group: 'settings',
         },

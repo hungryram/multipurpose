@@ -2,6 +2,8 @@ import { queryServices } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
 import Link from "next/link"
 import Layout from "../../components/global/layout"
+import Header from "../../components/templates/header"
+import Seo from "../../components/global/seo"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -25,15 +27,31 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function ServiceIndex({ serviceQuery }) {
-
+    console.log(serviceQuery)
     return (
         <Layout>
+            <Seo
+                title={serviceQuery?.pageSettings?.services?.seo?.title_tag || 'Services | ' + serviceQuery?.profileSettings?.company_name}
+                description={serviceQuery?.pageSettings?.services?.seo?.meta_description}
+                image={serviceQuery?.pageSettings?.services?.headerImage ?? serviceQuery.header.image}
+                company_name={serviceQuery?.profileSettings?.company_name}
+                twitterHandle={serviceQuery?.profileSettings?.seo?.twitterHandle}
+                ogType="website"
+                favicon={serviceQuery?.appearances?.favicon}
+                themeColor={serviceQuery?.appearances?.themeColor}
+            />
+            <Header
+                title={serviceQuery?.pageSettings?.services?.title || 'Services'}
+                image={serviceQuery?.pageSettings?.services?.headerImage ?? serviceQuery?.header?.defaultHeaderImage}
+                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.lqip}
+                altText={serviceQuery?.pageSettings?.services?.headerImageData?.altText}
+            />
             <div className="section">
                 <div className="container">
                     <div className="bg-slate-200 flex justify-center">
                         <div className="p-10">
                             <ul>
-                                {serviceQuery.map((node) => {
+                                {serviceQuery.services?.map((node) => {
                                     return (
                                         <>
                                             <li className="bg-white my-2" key={node._id}>

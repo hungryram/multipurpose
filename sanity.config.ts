@@ -31,6 +31,7 @@ import locationsDocument from './schemas/documents/locations'
 import navigationDocument from './schemas/documents/navigation'
 import servicesDocument from './schemas/documents/services'
 import legalDocument from './schemas/documents/legal'
+import pageSettingsDocument from "./schemas/documents/page-settings"
 
 // OBJECTS
 import contentObject from './schemas/objects/content'
@@ -82,6 +83,7 @@ export default createConfig({
       settingsType,
       appearanceDocument,
       profileDocument,
+      pageSettingsDocument,
       homeDocument,
       navigationDocument,
       pagesDocument,
@@ -152,14 +154,25 @@ export default createConfig({
                 .documentId(appearanceDocument.name)
             )
 
+        const PageSettingsListItem = // A singleton not using `documentListItem`, eg no built-in preview
+          S.listItem()
+            .title(pageSettingsDocument.title)
+            .icon(MdOutlineDesignServices)
+            .child(
+              S.editor()
+                .id(pageSettingsDocument.name)
+                .schemaType(pageSettingsDocument.name)
+                .documentId(pageSettingsDocument.name)
+            )
+
         // The default root list items (except custom ones)
         const defaultListItems = S.documentTypeListItems().filter(
-          (listItem) => ![settingsType.name, appearanceDocument.name, profileDocument.name].includes(listItem.getId())
+          (listItem) => ![settingsType.name, appearanceDocument.name, pageSettingsDocument.name, profileDocument.name].includes(listItem.getId())
         )
 
         return S.list()
           .title('Content')
-          .items([profileListItem, appearanceListItem, S.divider(), ...defaultListItems])
+          .items([profileListItem, appearanceListItem, PageSettingsListItem, S.divider(), ...defaultListItems])
       },
 
       // `defaultDocumentNode is responsible for adding a “Preview” tab to the document pane

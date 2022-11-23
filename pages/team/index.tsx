@@ -5,6 +5,7 @@ import Layout from "../../components/global/layout"
 import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 import Header from "../../components/templates/header"
+import Seo from "../../components/global/seo"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -31,9 +32,20 @@ export default function TeamIndex({ teamQuery }) {
 
     return (
         <Layout>
-            <Header 
-                image={teamQuery.header.image}
-                title={"Our Services"}
+            <Seo
+                title={teamQuery?.services?.seo?.title_tag || 'Team | ' + teamQuery?.profileSettings?.company_name}
+                description={teamQuery?.services?.seo?.meta_description}
+                image={teamQuery?.services?.headerImage ?? teamQuery?.profileSettings?.seo?.defaultImageBanner}
+                company_name={teamQuery?.profileSettings?.company_name}
+                twitterHandle={teamQuery?.profileSettings?.seo?.twitterHandle}
+                favicon={teamQuery?.appearances?.favicon}
+                themeColor={teamQuery?.appearances?.themeColor}
+            />
+            <Header
+                title={teamQuery?.pageSettings?.legal?.title || 'Team'}
+                image={teamQuery?.pageSettings?.legal?.headerImage ?? teamQuery.header.image}
+                blurData={teamQuery?.pageSettings?.legal?.headerImageData?.lqip}
+                altText={teamQuery?.pageSettings?.legal?.headerImageData?.altText}
             />
             <div className="section">
                 <div className="container">
@@ -43,7 +55,7 @@ export default function TeamIndex({ teamQuery }) {
                                 <div className="my-2" key={node._id}>
                                     <Link href={`team/${node.slug}`}>
                                         <div>
-                                            <Image 
+                                            <Image
                                                 src={urlForImage(node.image).url()}
                                                 width={600}
                                                 height={0}

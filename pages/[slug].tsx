@@ -49,7 +49,6 @@ export default function Pages(props: Props) {
 
     const defaultText = '#222'
     const defaultHeader = '#222'
-
     return (
         <Layout preview={preview}>
             <Seo
@@ -65,25 +64,33 @@ export default function Pages(props: Props) {
                 title={page?.pages?.title}
                 image={page?.pages?.headerImage}
                 hideHeader={page?.pages?.headerImage?.hideHeader}
+                altText={page?.pages?.headerImageData?.altText}
+                blurData={page?.pages?.headerImageData?.lqip}
             />
             {page?.pages?.pageBuilder?.map((section) => {
 
                 const headerColor = {
-                    color: section.textColor?.headerColor?.hex ?? defaultHeader
+                    color: section?.background?.textColor?.headerColor?.hex ?? defaultHeader
                 }
                 const bodyColor = {
-                    color: section.textColor?.textColor?.hex ?? defaultText
-                }
-
-                const bannerButton = {
-                    backgroundColor: section.button?.buttonBackground?.hex ?? '#000000',
-                    color: section.button?.buttonTextColor?.hex ?? '#ffffff'
+                    color: section?.background?.textColor?.textColor?.hex ?? defaultText
                 }
 
                 const backgroundStyles = {
-                    background: `${section.background?.backgroundType === 'color' && section?.background?.color?.hex || section.background?.backgroundType === 'image' && `url(${section.background.image ? urlForImage(section?.background?.image).url() : undefined})`}`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover'
+                    backgroundColor: `${section.background?.background?.backgroundType === 'color' &&
+                        section?.background?.background?.color?.hex}`,
+                    backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
+                        `linear-gradient(rgba(
+            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
+            rgba(
+            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
+            url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
                 }
 
 
@@ -92,13 +99,14 @@ export default function Pages(props: Props) {
                         <Hero
                             key={section._key}
                             body={section?.content}
+                            altText={section?.altText}
                             textStyle={section?.textColor?.textColor?.hex}
                             image={section.image}
-                            buttonLink={section?.button}
-                            buttonText={section?.button?.buttonText}
+                            blurData={section?.lqip}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.button?.button?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            blurData={page.sanityImages.base64 ?? section.image}
                             imageHeight={
                                 section?.imageHeight === 'small' && '400px' ||
                                 section?.imageHeight === 'medium' && '600px' ||
@@ -115,11 +123,11 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.image}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonText={section?.button?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            altTag={section?.image?.altTag ?? page?.profileSettings?.company_name}
+                            altText={section?.altText}
                             rowReverse={section?.reverseRow}
                             headerStyle={headerColor}
                             textStyle={bodyColor}
@@ -140,8 +148,8 @@ export default function Pages(props: Props) {
                             textStyle={bodyColor}
                             fullWidth={section?.fullWidth}
                             removePadding={section?.removePadding}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.button?.button?.text}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             twoColumn={section?.twoColumn}
@@ -156,8 +164,9 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.image}
+                            altText={section?.altText}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -191,7 +200,7 @@ export default function Pages(props: Props) {
                             textLeft={section?.textLeft}
                             fullWidth={section?.fullWidth}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -214,7 +223,7 @@ export default function Pages(props: Props) {
                             twoColumn={section?.twoColumn}
                             textLeft={section?.textLeft}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -239,7 +248,7 @@ export default function Pages(props: Props) {
                             disablePagination={section?.disablePagination}
                             removePadding={section?.removePadding}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -261,7 +270,7 @@ export default function Pages(props: Props) {
                             bodyColor={bodyColor}
                             arrowColor={section?.background?.textColor?.textColor?.hex}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -278,7 +287,7 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -300,7 +309,7 @@ export default function Pages(props: Props) {
                             packages={section?.packages}
                             columnNumber={section?.columnNumber}
                             buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}

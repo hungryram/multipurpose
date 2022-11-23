@@ -9,10 +9,12 @@ interface CoverImageProps {
   slug?: string
   image: any
   priority?: boolean
+  altText?: string
+  blurData: any
 }
 
 export default function CoverImage(props: CoverImageProps) {
-  const { title, slug, image: source, priority } = props
+  const { title, slug, image: source, priority, altText, blurData } = props
   const image = source?.asset?._ref ? (
     <div
       className={cn('shadow-small', {
@@ -23,12 +25,12 @@ export default function CoverImage(props: CoverImageProps) {
         className="h-auto w-full"
         width={2000}
         height={1000}
-        alt={`Cover Image for ${title}`}
+        alt={altText}
         src={urlForImage(source).height(1000).width(2000).url()}
         sizes="100vw"
         priority={priority}
         placeholder="blur"
-        blurDataURL={urlForImage(source).height(1).width(1).url()}
+        blurDataURL={blurData ? blurData : urlForImage(source).height(1).width(1).url()}
       />
     </div>
   ) : (

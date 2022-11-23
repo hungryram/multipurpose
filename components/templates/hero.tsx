@@ -63,6 +63,7 @@ export default function Hero({
                     body={body}
                     headerStyle={headerStyle}
                     buttonText={buttonText}
+                    fullWidth={false}
                     buttonLink={buttonLink}
                     buttonBackground={buttonBackground}
                     buttonTextColor={buttonTextColor}

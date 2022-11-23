@@ -3,6 +3,7 @@ import { getClient } from "../../lib/sanity.server"
 import Link from "next/link"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
+import Seo from "../../components/global/seo"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -28,7 +29,22 @@ export async function getStaticProps({ preview = false }) {
 export default function LegalIndex({ legalQuery }) {
     return (
         <Layout>
-
+            <Seo
+                title={legalQuery?.pageSettings?.legal?.seo?.title_tag}
+                description={legalQuery?.pageSettings?.legal?.seo?.meta_description}
+                image={legalQuery?.pageSettings?.legal?.headerImage ?? legalQuery.header.image}
+                company_name={legalQuery?.profileSettings?.company_name}
+                twitterHandle={legalQuery?.profileSettings?.seo?.twitterHandle}
+                ogType="website"
+                favicon={legalQuery?.appearances?.favicon}
+                themeColor={legalQuery?.appearances?.themeColor}
+            />
+            <Header
+                title={legalQuery?.pageSettings?.legal?.title || 'Website Policies'}
+                image={legalQuery?.pageSettings?.legal?.headerImage ?? legalQuery.header.image}
+                blurData={legalQuery?.pageSettings?.legal?.headerImageData?.lqip}
+                altText={legalQuery?.pageSettings?.legal?.headerImageData?.altText}
+            />
             <div className="section">
                 <div className="container">
                     <div className="bg-slate-200 flex justify-center">

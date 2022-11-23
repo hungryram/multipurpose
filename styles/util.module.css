@@ -23,4 +23,5 @@
     padding-right: var(--button-x-padding);
     padding-top: var(--button-y-padding);
     padding-bottom: var(--button-y-padding);
+    display: inline-block;
 }

@@ -34,7 +34,7 @@ export default function ContactPage({
                 <div className="md:w-1/3">
                     <div className="bg-slate-100">
                         <div className="p-6">
-                            <div>
+                            <div className={Styles.contactBlock}>
                                 <h3 className="font-bold text-lg">Contact</h3>
                                 <ContactBlock
                                     email={email}
