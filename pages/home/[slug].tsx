@@ -88,8 +88,8 @@ export default function Pages(props: Props) {
                             body={section?.content}
                             textStyle={section?.textColor?.textColor?.hex}
                             image={section.image}
-                            buttonLink={section?.button}
-                            buttonText={section?.button?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             blurData={page.sanityImages.base64 ?? section.image}
@@ -109,8 +109,8 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.image}
-                            buttonLink={section?.button}
-                            buttonText={section?.button?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             altTag={section?.image?.altTag ?? page?.profileSettings?.company_name}
@@ -134,8 +134,8 @@ export default function Pages(props: Props) {
                             textStyle={bodyColor}
                             fullWidth={section?.fullWidth}
                             removePadding={section?.removePadding}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             twoColumn={section?.twoColumn}
@@ -150,8 +150,8 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.image}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -169,7 +169,7 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.text}
-                            blocks={section?.blocks}
+                            blocks={section?.blockImages}
                             textOutsideImage={section?.textOutsideImage}
                             centerTextGrid={section?.centerTextGrid}
                             blockLeft={section?.blockLeft}
@@ -184,8 +184,8 @@ export default function Pages(props: Props) {
                             twoColumn={section?.twoColumn}
                             textLeft={section?.textLeft}
                             fullWidth={section?.fullWidth}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -207,8 +207,8 @@ export default function Pages(props: Props) {
                             disclosureContentColor={section?.disclosureContentColor}
                             twoColumn={section?.twoColumn}
                             textLeft={section?.textLeft}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -225,21 +225,21 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            images={section?.images}
+                            images={section?.childImage}
+                            altText={section?.childImage}
                             animation={section?.animation ?? 'fade'}
                             fullWidth={section?.fullWidth}
                             textColor={section?.textColor?.hex}
                             disableNavigation={section?.disableNavigation}
                             disablePagination={section?.disablePagination}
                             removePadding={section?.removePadding}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
-
                         />
                     )
                 }
@@ -257,8 +257,8 @@ export default function Pages(props: Props) {
                             cardBackground={section?.cardBackground?.hex}
                             bodyColor={bodyColor}
                             arrowColor={section?.background?.textColor?.textColor?.hex}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -274,8 +274,8 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}
@@ -296,8 +296,8 @@ export default function Pages(props: Props) {
                             content={section?.content}
                             packages={section?.packages}
                             columnNumber={section?.columnNumber}
-                            buttonText={section?.button?.buttonText}
-                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             textStyle={bodyColor}

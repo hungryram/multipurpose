@@ -16,6 +16,7 @@ import TextImage from '../components/templates/text-and-image'
 import LeadForm from '../components/templates/lead-form'
 import Pricing from '../components/templates/pricing'
 import Seo from '../components/global/seo'
+import TeamSection from '../components/templates/team-section'
 
 export default function Index({
   preview,
@@ -27,7 +28,7 @@ export default function Index({
   return (
     <>
       <Layout preview={preview}>
-        <Seo 
+        <Seo
           title={homeSettings.profileSettings?.seo?.title_tag}
           description={homeSettings.profileSettings?.seo?.meta_description}
           company_name={homeSettings.profileSettings?.company_name}
@@ -62,6 +63,7 @@ export default function Index({
           }
 
           if (section._type === 'hero') {
+            console.log(section.buttonText)
             return (
               <Hero
                 key={section._key}
@@ -71,7 +73,7 @@ export default function Index({
                 image={section.image}
                 blurData={section?.lqip}
                 buttonLink={section?.buttonLinking}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 imageHeight={
@@ -92,7 +94,7 @@ export default function Index({
                 image={section?.image}
                 blurData={section.lqip}
                 buttonLink={section?.button}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 altText={section?.altText}
@@ -116,7 +118,7 @@ export default function Index({
                 textStyle={bodyColor}
                 fullWidth={section?.fullWidth}
                 removePadding={section?.removePadding}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -133,7 +135,7 @@ export default function Index({
                 altText={section?.altText}
                 content={section?.content}
                 image={section?.image}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -167,7 +169,7 @@ export default function Index({
                 twoColumn={section?.twoColumn}
                 textLeft={section?.textLeft}
                 fullWidth={section?.fullWidth}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -190,7 +192,7 @@ export default function Index({
                 disclosureContentColor={section?.disclosureContentColor}
                 twoColumn={section?.twoColumn}
                 textLeft={section?.textLeft}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -216,7 +218,7 @@ export default function Index({
                 disableNavigation={section?.disableNavigation}
                 disablePagination={section?.disablePagination}
                 removePadding={section?.removePadding}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -241,7 +243,7 @@ export default function Index({
                 cardBackground={section?.cardBackground?.hex}
                 bodyColor={bodyColor}
                 arrowColor={section?.background?.textColor?.textColor?.hex}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -258,7 +260,7 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -280,12 +282,28 @@ export default function Index({
                 content={section?.content}
                 packages={section?.packages}
                 columnNumber={section?.columnNumber}
-                buttonText={section?.button?.buttonText}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}
                 headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
+            )
+          }
+
+          if (section._type === 'teamDisplay') {
+            return (
+              <TeamSection
+                key={section._key}
+                heading={section?.heading}
+                content={section?.content}
+                team={homeSettings.team}
+                buttonLink={section?.buttonLinking}
+                buttonText={section?.buttonLinking?.buttonText}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
                 backgroundStyles={backgroundStyles}
               />
             )

@@ -78,6 +78,16 @@ export const homePageQuery = groq`
     }
   },
   'testimonialAll': *[_type == 'testimonials'],
+  'team': *[_type == 'team'] {
+    ...,
+    'imageData': image {
+      '':asset->{
+        'altText':altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+  },
   ${seoData}
 }
 `
@@ -324,6 +334,11 @@ export const appearances = groq`
         'announcementBgColor': backgroundColor.hex,
         'announcementTextColor': textColor.hex,
       },
+      'topHeaderBar': topHeaderBar {
+        enableTopHeaderBar,
+        'topHeaderBarBgColor': topHeaderBarBgColor.hex,
+        'topHeaderBarTextColor': topHeaderBarTextColor.hex,
+      },
       'header': header {
           'ctaLink': cta {
             newTab,
@@ -422,7 +437,17 @@ export const queryHome = groq`
       ...,
       pageBuilder[]{
         ...,
-      'button':  button.button{
+        'blockImages': blocks[] {
+          ...,
+      image {
+          '':asset-> {
+              'altText':altText,
+              'lqip':metadata.lqip,
+              url
+          }
+      }
+    },
+      'buttonLinking':  button.button{
         'buttonText': text,
         linkType,
         externalUrl,

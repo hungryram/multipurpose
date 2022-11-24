@@ -40,6 +40,7 @@ export default defineType({
                 {type: 'banner'},
                 {type: 'testimonialBuilder'},
                 {type: 'disclosureSection'},
+                {type: 'teamDisplay'},
                 {type: 'gallery'},
                 {type: 'fullWidthTextImage'},
                 {type: 'leadForm'},

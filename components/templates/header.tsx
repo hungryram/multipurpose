@@ -14,11 +14,12 @@ export default function Header({ image, title, altText, hideHeader, blurData }: 
                         alt={altText}
                         placeholder="blur"
                         blurDataURL={blurData ? blurData : urlForImage(image).width(50).height(50).url()}
-                        priority={true}
-                        className="lg:h-[20em] h-[15rem]"
+                        priority
+                        className="lg:h-[20em] h-[15rem] w-full"
                         style={{
                             objectFit: 'cover',
                         }}
+                        sizes="100vw"
                     />
                     <div className={Styles.headerOverlay}></div>
                 </>

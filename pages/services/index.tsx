@@ -27,7 +27,6 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function ServiceIndex({ serviceQuery }) {
-    console.log(serviceQuery)
     return (
         <Layout>
             <Seo

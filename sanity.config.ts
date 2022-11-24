@@ -64,6 +64,7 @@ import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 import leadFormBuilder from './schemas/pagebuilder/lead-form'
 import pricingBuilder from './schemas/pagebuilder/pricing'
+import teamSectionBuilder from './schemas/pagebuilder/team-section'
 
 
 // @TODO: update next-sanity/studio to automatically set this when needed
@@ -118,6 +119,7 @@ export default createConfig({
       testimonialsBuilder,
       imageGalleryBuilder,
       pricingBuilder,
+      teamSectionBuilder,
       contactBuilder,
       bannerBuilder,
       disclosureBuilder,

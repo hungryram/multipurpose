@@ -9,7 +9,7 @@
 /* FORM */
 
 .formContainer {
-    border-radius: var(--button-radius);
+    border-radius: 5px;
     @apply block shadow-lg bg-white px-6 pb-12 md:px-12;
 }
 
@@ -30,7 +30,7 @@
 .priceCta {
     background-color: var(--primary-button-background);
     color: var(--primary-button-text);
-    border-radius: var(--button-radius);
+    border-radius: 5px;
     @apply px-3 py-2
 }
 

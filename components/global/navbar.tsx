@@ -16,13 +16,22 @@ export default function Navbar({
     company_name,
     logoWidth,
     navItems,
-    ctaText,
     ctaLink,
     backgroundColor,
     mobileLogoWidth,
     announcementText,
     announcementLinkText,
-    announcementLink
+    announcementLink,
+    phone_number,
+    office,
+    email,
+    address,
+    city,
+    state,
+    zipCode,
+    topHeaderText,
+    topHeaderBackground,
+    enableTopHeader
 }: any) {
 
     const [dropdownActive, setDropdownActive] = useState(null);
@@ -62,6 +71,20 @@ export default function Navbar({
                         announcementLinkText={announcementLinkText}
                         announcementLink={announcementLink}
                     />
+                }
+                {enableTopHeader &&
+                    <div className="p-2 lg:flex lg:visible hidden justify-center'" style={{
+                        backgroundColor: `${topHeaderBackground}`,
+                        color: `${topHeaderText}`
+                    }}>
+                        <div className="container">
+                            <div className="text-right">
+                                {phone_number && <a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a>}
+                                {office && <a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a>}
+                                {email && <a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a>}
+                            </div>
+                        </div>
+                    </div>
                 }
                 <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden p-4">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -167,12 +190,28 @@ export default function Navbar({
 
             <nav>
                 <div>
+                    {announcementText &&
                     <AnnouncementBar
                         classes={'justify-center bg-indigo-600 lg:hidden'}
                         announcement={announcementText}
                         announcementLinkText={announcementLinkText}
                         announcementLink={announcementLink}
                     />
+                    }
+                    {enableTopHeader &&
+                        <div className="p-2 justify-center bg-indigo-600 lg:hidden" style={{
+                            backgroundColor: `${topHeaderBackground}`,
+                            color: `${topHeaderText}`
+                        }}>
+                            <div className="container">
+                                <div className="text-right">
+                                    {phone_number && <a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a>}
+                                    {office && <a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a>}
+                                    {email && <a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a>}
+                                </div>
+                            </div>
+                        </div>
+                    }
                     <div
                         className={`nav px-4 py-2 lg:hidden ${backgroundColor ? '' : 'absolute'} ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
                     >

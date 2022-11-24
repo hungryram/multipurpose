@@ -64,6 +64,40 @@ export default defineType({
             group: 'header'
         },
         {
+            title: 'Top Header Bar',
+            name: 'topHeaderBar',
+            type: 'object',
+            group: 'header',
+            options: {
+                collapsible: true,
+                collapsed: true
+            },
+            fields: [
+                {
+                    title: 'Enable Top Header Bar',
+                    name: 'enableTopHeaderBar',
+                    type: 'boolean',
+                    description: 'Displays the contact information in the header'
+                },
+                {
+                    title: 'Top Header Contact Bar Background Color',
+                    name: 'topHeaderBarBgColor',
+                    type: 'color',
+                    options: {
+                        disableAlpha: true
+                    }
+                },
+                {
+                    title: 'Top Header Contact Bar Text Color',
+                    name: 'topHeaderBarTextColor',
+                    type: 'color',
+                    options: {
+                        disableAlpha: true
+                    }
+                },
+            ]
+        },
+        {
             title: 'Header',
             name: 'header',
             type: 'headerMenu',

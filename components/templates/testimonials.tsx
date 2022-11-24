@@ -57,14 +57,7 @@ export default function Testimonials({
                     effect={"slide"}
                     loop={true}
                     spaceBetween={20}
-                    breakpoints={{
-                        "@0.00": {
-                            slidesPerView: 1,
-                        },
-                        "@0.75": {
-                            slidesPerView: 2,
-                        },
-                    }}
+                    slidesPerView={1}
                     style={{
                         "--swiper-navigation-size": "20px",
                         "--swiper-navigation-color": `${arrowColor}`,

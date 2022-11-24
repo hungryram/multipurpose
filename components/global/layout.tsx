@@ -43,7 +43,7 @@ export default function Layout({ children, preview }: any) {
                             --website-body-color: ${data.appearances?.websiteBodyColor ?? '#fff'};
                             --website-text-color: ${data.appearances?.websiteTextColor ?? '#222'};
 
-                            --button-radius: ${data.appearances.buttonRadius ?? '4px'};
+                            --button-radius: ${data.appearances.buttonRadius + 'px' ?? '4px'};
                             --button-y-padding: ${data.appearances.buttonYPadding ?? '16px'};
                             --button-x-padding: ${data.appearances.buttonXPadding ?? '50px'};
                             
@@ -62,11 +62,16 @@ export default function Layout({ children, preview }: any) {
                 ctaLink={data?.appearances?.header?.ctaLink}
                 ctaText={data.appearances.header?.ctaText}
                 backgroundColor={data.appearances?.navBgColor}
+                phone_number={data.profileSettings?.contact_information?.phone_number}
+                email={data.profileSettings?.contact_information?.email}
+                office_number={data.profileSettings?.contact_information?.office_number}
                 // ANNOUNCEMENT
                 announcementText={data?.appearances?.announcementBar?.announcement}
                 announcementLinkText={data?.appearances.announcementBar.announcementBarLink.text}
                 announcementLink={data?.appearances?.announcementBar?.announcementBarLink}
-                
+                topHeaderBackground={data?.appearances?.topHeaderBar?.topHeaderBarBgColor}
+                topHeaderText={data?.appearances?.topHeaderBar?.topHeaderBarTextColor}
+                enableTopHeader={data?.appearances?.topHeaderBar?.enableTopHeaderBar}
             />
             {preview && <Alert preview={preview} />}
             <main>
