@@ -55,17 +55,19 @@ export default function TeamIndex({ teamQuery }) {
                                 <div className="my-2" key={node._id}>
                                     <Link href={`team/${node.slug}`}>
                                         <div>
-                                            <Image
-                                                src={urlForImage(node.image).url()}
-                                                width={600}
-                                                height={0}
-                                                alt={node.name}
-                                                style={{
-                                                    width: '100%',
-                                                    height: '400px',
-                                                    objectFit: 'cover'
-                                                }}
-                                            />
+                                            {node?.image &&
+                                                <Image
+                                                    src={urlForImage(node.image).url()}
+                                                    width={600}
+                                                    height={0}
+                                                    alt={node.name}
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '400px',
+                                                        objectFit: 'cover'
+                                                    }}
+                                                />
+                                            }
                                         </div>
                                         <div className="bg-gray-100 p-4 text-center">
                                             <h3 className="font-bold text-lg">{node.name}</h3>
