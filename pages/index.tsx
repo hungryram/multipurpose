@@ -300,6 +300,7 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.content}
                 team={homeSettings.team}
+                carousel={section?.carousel}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}

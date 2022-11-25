@@ -13,6 +13,7 @@ import BodyText from "../util/body-text";
 import Image from "next/image";
 import { urlForImage } from "../../lib/sanity";
 import Link from "next/link";
+import { BiUser } from 'react-icons/bi'
 
 export default function TeamSection({
     carousel,
@@ -57,11 +58,24 @@ export default function TeamSection({
                     modules={[EffectFade, Navigation]}
                     navigation={true}
                     effect={"slide"}
-                    loop={true}
+                    loop={false}
                     spaceBetween={20}
-                    slidesPerView={1}
+                    breakpoints={{
+                        "@0.00": {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                        },
+                        "@0.75": {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                        },
+                        "@1.00": {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                        },
+                    }}
                     style={{
-                        "--swiper-navigation-size": "20px",
+                        "--swiper-navigation-size": "30px",
                         "--swiper-navigation-color": `${arrowColor}`,
                     }}
                 >
@@ -82,7 +96,11 @@ export default function TeamSection({
                                                     blurDataURL={node?.imageData?.lqip}
                                                 />
                                                 :
-                                                <div className="bg-slate-300"></div>
+                                                <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
+                                                    <div>
+                                                        <BiUser className="text-6xl text-white" />
+                                                    </div>
+                                                </div>
                                             }
                                             <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-md bg-white">
                                                 <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.name}</h3>
@@ -113,7 +131,11 @@ export default function TeamSection({
                                                 blurDataURL={node?.imageData?.lqip}
                                             />
                                             :
-                                            <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400"></div>
+                                            <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
+                                                <div>
+                                                    <BiUser className="text-6xl text-white" />
+                                                </div>
+                                            </div>
                                         }
                                         <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-sm bg-white">
                                             <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.name}</h3>
