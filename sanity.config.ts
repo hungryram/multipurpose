@@ -27,7 +27,6 @@ import appearanceDocument from './schemas/documents/appearance'
 import testimonialsDocument from './schemas/documents/testimonials'
 import pressDocument from './schemas/documents/press'
 import teamDocument from './schemas/documents/team'
-import locationsDocument from './schemas/documents/locations'
 import navigationDocument from './schemas/documents/navigation'
 import servicesDocument from './schemas/documents/services'
 import legalDocument from './schemas/documents/legal'
@@ -65,6 +64,8 @@ import textImageBuilder from './schemas/pagebuilder/text-and-image'
 import leadFormBuilder from './schemas/pagebuilder/lead-form'
 import pricingBuilder from './schemas/pagebuilder/pricing'
 import teamSectionBuilder from './schemas/pagebuilder/team-section'
+import blogSectionBuilder from './schemas/pagebuilder/blog-section'
+import iconSectionBuilder from './schemas/pagebuilder/icon-section'
 
 
 // @TODO: update next-sanity/studio to automatically set this when needed
@@ -90,7 +91,6 @@ export default createConfig({
       pagesDocument,
       servicesDocument,
       teamDocument,
-      locationsDocument,
       testimonialsDocument,
       pressDocument,
       postType,
@@ -120,8 +120,10 @@ export default createConfig({
       imageGalleryBuilder,
       pricingBuilder,
       teamSectionBuilder,
+      blogSectionBuilder,
       contactBuilder,
       bannerBuilder,
+      iconSectionBuilder,
       disclosureBuilder,
       fullWidthTextImageBuilder,
       leadFormBuilder,

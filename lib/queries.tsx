@@ -88,6 +88,16 @@ export const homePageQuery = groq`
       }
     },
   },
+  'allBlog': *[_type == 'blog'][0...4] {
+    ...,
+    'coverImageData': coverImage {
+      '':asset->{
+        'altText':altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+  },
   ${seoData}
 }
 `

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
 import { PostProps } from '../../../types'
-import Avatar from './avatar'
 import CoverImage from './cover-image'
 import Date from './date'
+import { FiCameraOff } from "react-icons/fi"
 
 export default function PostPreview({
   title,
@@ -18,14 +18,22 @@ export default function PostPreview({
   return (
     <div>
       <div className="mb-5">
-        <CoverImage
-          slug={slug}
-          title={title}
-          image={coverImage}
-          priority={false}
-          altText={altText}
-          blurData={blurData}
-        />
+        {coverImage ?
+          <CoverImage
+            slug={slug}
+            title={title}
+            image={coverImage}
+            priority={false}
+            altText={altText}
+            blurData={blurData}
+          />
+          :
+          <div className="pt-[50%] relative bg-slate-400 flex justify-center items-center">
+            <div className="absolute top-1/2">
+              <FiCameraOff className="text-white text-6xl"/>
+            </div>
+          </div>
+        }
       </div>
       <h3 className="mb-3 text-2xl leading-snug">
         <Link href={`/blog/${slug}`} className="hover:underline">
@@ -36,7 +44,6 @@ export default function PostPreview({
         <Date dateString={date} />
       </div>
       <p className="mb-4 leading-relaxed">{excerpt}</p>
-      {author && <Avatar name={author.name} picture={author.picture} />}
     </div>
   )
 }

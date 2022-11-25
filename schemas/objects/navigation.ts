@@ -39,7 +39,7 @@ export default defineType({
                 { type: 'blog' },
                 { type: 'author' },
                 { type: 'pages' },
-                { type: 'locations' },
+                { type: 'location' },
                 { type: 'services' }
             ],
         },

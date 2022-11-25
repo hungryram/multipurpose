@@ -17,6 +17,8 @@ import LeadForm from '../components/templates/lead-form'
 import Pricing from '../components/templates/pricing'
 import Seo from '../components/global/seo'
 import TeamSection from '../components/templates/team-section'
+import BlogSection from '../components/templates/blog-section'
+import IconSection from '../components/templates/icon-section'
 
 export default function Index({
   preview,
@@ -305,6 +307,47 @@ export default function Index({
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
+            )
+          }
+
+          if (section._type === 'blogDisplay') {
+            return (
+              <BlogSection
+                key={section._key}
+                heading={section?.heading}
+                content={section?.content}
+                blog={homeSettings.allBlog}
+                carousel={section?.carousel}
+                buttonLink={section?.buttonLinking}
+                buttonText={section?.buttonLinking?.buttonText}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
+            )
+          }
+
+          if (section._type === 'iconSection') {
+            return (
+              <IconSection
+                key={section._key}
+                heading={section?.heading}
+                content={section?.text}
+                blocks={section?.blocks}
+                blockLeft={section?.blockLeft}
+                textLeft={section?.textLeft}
+                buttonText={section?.buttonLinking?.buttonText}
+                buttonLink={section?.buttonLinking}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
                 backgroundStyles={backgroundStyles}
               />
             )
