@@ -16,7 +16,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@portabletext/react": "^2.0.0",
-    "@sanity/color-input": "^3.0.0-v3-studio.11",
+    "@sanity/color-input": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
     "@sanity/vision": "3.0.0-rc.0",
     "@sanity/webhook": "^2.0.0",
@@ -30,7 +30,7 @@
     "react-icons": "^4.6.0",
     "react-is": "^18.2.0",
     "sanity": "3.0.0-rc.0",
-    "sanity-plugin-asset-source-unsplash": "3.0.0-v3-studio.13",
+    "sanity-plugin-asset-source-unsplash": "1.0.1",
     "sanity-plugin-media": "^2.0.0-v3-studio.3",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.4",
