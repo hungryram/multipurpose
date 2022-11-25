@@ -342,6 +342,7 @@ export default function Index({
                 blocks={section?.blocks}
                 blockLeft={section?.blockLeft}
                 textLeft={section?.textLeft}
+                columnNumber={section?.columnNumber}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
                 buttonBackground={section?.button?.buttonBackground?.hex}

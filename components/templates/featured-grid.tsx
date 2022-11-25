@@ -53,7 +53,7 @@ export default function FeaturedGrid({
                         </div>
                         {blocks ?
                             <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                                <div className={`grid h-full lg:grid-cols-${columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
+                                <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
                                     {blocks?.map((node) => {
                                         return (
                                             <div className="relative" key={node._key} style={{
