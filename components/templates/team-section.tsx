@@ -81,7 +81,7 @@ export default function TeamSection({
                 >
                     {team?.map((node) => {
                         return (
-                            <SwiperSlide key={node?._key}>
+                            <SwiperSlide key={node._key}>
                                 <div className="h-full">
                                     <Link href={`team/${node.slug.current}`} arial-label={`Visit profile information for ${node?.name}`}>
                                         <div className="relative overflow-hidden rounded-md">
@@ -117,7 +117,7 @@ export default function TeamSection({
                 <div className="grid md:grid-cols-3 gap-4 h-full">
                     {team?.map((node) => {
                         return (
-                            <div className="h-full">
+                            <div className="h-full" key={node._key}>
                                 <Link href={`team/${node.slug.current}`} arial-label={`Visit profile information for ${node?.name}`}>
                                     <div className="relative overflow-hidden rounded-sm">
                                         {node?.image ?
