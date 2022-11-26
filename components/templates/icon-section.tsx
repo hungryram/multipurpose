@@ -42,51 +42,52 @@ export default function IconSection({
                     buttonBackground={buttonBackground}
                     buttonTextColor={buttonTextColor}
                 />
-                <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 gap-4`}>
-                    {blocks?.map((node) => {
-                        return (
-                            <div className="relative" key={node._key}>
-                                <div>
-                                    <>
-                                        {node?.image?.url &&
-                                            <Image
-                                                src={node?.image?.url}
-                                                alt={node?.image?.altText}
-                                                height={0}
-                                                width={450}
-                                                placeholder="blur"
-                                                blurDataURL={node?.image?.lqip ?? node?.image?.url}
-                                                style={{
-                                                    objectFit: 'cover',
-                                                    height: `${imageHeight ? imageHeight : '400px'}`,
-                                                }}
-                                                className="w-full"
-                                            />
-                                        }
-                                        {node?.iconSvg &&
-                                            <div
-                                                className="w-40"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: `${node?.iconSvg}`
-                                                }} />
-                                        }
-                                    </>
-                                    <div
-                                        className={`py-4 justify-center`}>
-                                        {node.heading &&
-                                            <h3 className="h3 font-bold">{node.heading}</h3>
-                                        }
-                                        {node.content &&
-                                            <div className="mt-6">
-                                                <p>{node.content}</p>
-                                            </div>
-                                        }
+                {blocks &&
+                    <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 gap-10 mt-20`}>
+                        {blocks?.map((node) => {
+                            return (
+                                <div className="relative" key={node._key}>
+                                    <div>
+                                        <>
+                                            {node?.image?.url &&
+                                                <Image
+                                                    src={node?.image?.url}
+                                                    alt={node?.image?.altText}
+                                                    height={0}
+                                                    width={450}
+                                                    placeholder="blur"
+                                                    blurDataURL={node?.image?.lqip ?? node?.image?.url}
+                                                    style={{
+                                                        objectFit: 'contain',
+                                                    }}
+                                                    className="w-full h-40"
+                                                />
+                                            }
+                                            {node?.iconSvg &&
+                                                <div
+                                                    className="w-40 h-40"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: `${node?.iconSvg}`
+                                                    }} />
+                                            }
+                                        </>
+                                        <div
+                                            className={`py-4 justify-center`}>
+                                            {node.heading &&
+                                                <h3 className="h3 font-bold">{node.heading}</h3>
+                                            }
+                                            {node.content &&
+                                                <div className="mt-6">
+                                                    <p>{node.content}</p>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })}
-                </div>
+                            )
+                        })}
+                    </div>
+                }
             </div>
         </Wrapper>
     )
