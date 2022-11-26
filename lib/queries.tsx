@@ -39,6 +39,17 @@ export const homePageQuery = groq`
         ...,
         'blockImages': blocks[] {
           ...,
+          'blockLinking':  button{
+            'buttonText': text,
+            externalUrl,
+            linkType,
+            newTab,
+            internalLink->{
+                title,
+                'slug': slug.current,
+                _type
+              }
+          },
       image {
           '':asset-> {
               'altText':altText,
@@ -449,6 +460,17 @@ export const queryHome = groq`
         ...,
         'blockImages': blocks[] {
           ...,
+          'blockLinking':  button{
+            'buttonText': text,
+            externalUrl,
+            linkType,
+            newTab,
+            internalLink->{
+                title,
+                'slug': slug.current,
+                _type
+              }
+          },
       image {
           '':asset-> {
               'altText':altText,
@@ -471,21 +493,27 @@ export const queryHome = groq`
       }
     },
     ...,
-    'team': *[_type == 'team'][0..6]{
-      name,
-      _id,
-      image,
-      'slug': slug.current
+    'testimonialAll': *[_type == 'testimonials'],
+    'team': *[_type == 'team'] {
+      ...,
+      'imageData': image {
+        '':asset->{
+          'altText':altText,
+          'lqip':metadata.lqip,
+          url
+        }
+      },
     },
-    'blog': *[_type == 'blog'][0..4]{
-      'slug': slug.current,
-      title,
-      _id,
-      excerpt,
-      date,
-      mainImage
+    'allBlog': *[_type == 'blog'][0...4] {
+      ...,
+      'coverImageData': coverImage {
+        '':asset->{
+          'altText':altText,
+          'lqip':metadata.lqip,
+          url
+        }
+      },
     },
-    'testimonialAll': *[_type == 'testimonials']
 }
 `
 

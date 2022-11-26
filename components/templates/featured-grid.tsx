@@ -55,13 +55,20 @@ export default function FeaturedGrid({
                             <div className={`${twoColumn ? 'md:w-1/2' : 'w-full'}`}>
                                 <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 ${removeGap ? '' : 'gap-4'}`}>
                                     {blocks?.map((node) => {
+                                        const blockLinks =
+                                            (node.blockLinking?.internalLink?._type === "pages" && `/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "blog" && `/blog/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "legal" && `/legal/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "author" && `/authors/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "services" && `/services/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.externalUrl && `${node.blockLinking?.externalUrl}`)
                                         return (
                                             <div className="relative" key={node._key} style={{
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
                                                 color: `${node.textColor?.hex ?? '#ffffff'}`,
                                                 border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,
                                             }}>
-                                                <Link href={link ?? '/'}>
+                                                <Link href={blockLinks ?? '/'} target={node.blockLinking.newTab && '_blank'} aria-label={`Learn more about ${node?.value}`}>
                                                     <div>
                                                         <>
                                                             {node?.image?.url &&
@@ -87,10 +94,10 @@ export default function FeaturedGrid({
                                                             ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''}
                                                             ${blockLeft ? 'text-left' : 'text-center'}
                                                             `}>
-                                                            {node.value &&
+                                                            {node?.value &&
                                                                 <h3 className="h3">{node.value}</h3>
                                                             }
-                                                            {node.content &&
+                                                            {node?.content &&
                                                                 <div className="mt-6">
                                                                     <p>{node.content}</p>
                                                                 </div>

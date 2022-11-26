@@ -57,6 +57,11 @@ export default defineType({
                             name: 'content',
                             type: 'text',
                         },
+                        {
+                            title: 'Button',
+                            name: 'button',
+                            type: 'links',
+                        },
                     ]
                 }
             ]

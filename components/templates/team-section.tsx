@@ -116,6 +116,7 @@ export default function TeamSection({
                 :
                 <div className="grid md:grid-cols-3 gap-4 h-full">
                     {team?.map((node) => {
+
                         return (
                             <div className="h-full" key={node._key}>
                                 <Link href={`team/${node.slug.current}`} arial-label={`Visit profile information for ${node?.name}`}>
@@ -128,7 +129,7 @@ export default function TeamSection({
                                                 height={0}
                                                 className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700"
                                                 placeholder="blur"
-                                                blurDataURL={node?.imageData?.lqip}
+                                                blurDataURL={node?.imageData?.lqip ?? node?.imageData?.url}
                                             />
                                             :
                                             <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">

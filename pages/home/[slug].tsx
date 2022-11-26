@@ -14,6 +14,9 @@ import LeadForm from '../../components/templates/lead-form'
 import Pricing from '../../components/templates/pricing'
 import Gallery from '../../components/templates/gallery'
 import Testimonials from '../../components/templates/testimonials'
+import BlogSection from '../../components/templates/blog-section'
+import IconSection from '../../components/templates/icon-section'
+import TeamSection from '../../components/templates/team-section'
 
 import { homeSlugsQuery, queryHome } from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
@@ -83,229 +86,291 @@ export default function Pages(props: Props) {
 
                 if (section._type === 'hero') {
                     return (
-                        <Hero
-                            key={section._key}
-                            body={section?.content}
-                            textStyle={section?.textColor?.textColor?.hex}
-                            image={section.image}
-                            buttonLink={section?.buttonLinking}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            blurData={page.sanityImages.base64 ?? section.image}
-                            imageHeight={
-                                section?.imageHeight === 'small' && '400px' ||
-                                section?.imageHeight === 'medium' && '600px' ||
-                                section?.imageHeight === 'large' && '100vh'
-                            }
-                        />
+                      <Hero
+                        key={section._key}
+                        body={section?.content}
+                        altText={section?.altText}
+                        textStyle={section?.textColor?.textColor?.hex}
+                        image={section.image}
+                        blurData={section?.lqip}
+                        buttonLink={section?.buttonLinking}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        imageHeight={
+                          section?.imageHeight === 'small' && '400px' ||
+                          section?.imageHeight === 'medium' && '600px' ||
+                          section?.imageHeight === 'large' && '100vh'
+                        }
+                      />
                     )
-                }
-
-                if (section._type === 'textandImage') {
+                  }
+        
+                  if (section._type === 'textandImage') {
                     return (
-                        <TextImage
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            image={section?.image}
-                            buttonLink={section?.buttonLinking}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            altTag={section?.image?.altTag ?? page?.profileSettings?.company_name}
-                            rowReverse={section?.reverseRow}
-                            headerStyle={headerColor}
-                            textStyle={bodyColor}
-                            textLeft={section?.textLeft}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <TextImage
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        image={section?.image}
+                        blurData={section.lqip}
+                        buttonLink={section?.button}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        altText={section?.altText}
+                        rowReverse={section?.reverseRow}
+                        headerStyle={headerColor}
+                        textStyle={bodyColor}
+                        textLeft={section?.textLeft}
+                        backgroundStyles={backgroundStyles}
+                      />
                     )
-                }
-
-                if (section._type === 'banner') {
+                  }
+        
+                  if (section._type === 'banner') {
                     return (
-                        <Banner
-                            key={section._key}
-                            heading={section.heading}
-                            content={section?.content}
-                            backgroundStyles={backgroundStyles}
-                            headerStyle={headerColor}
-                            textStyle={bodyColor}
-                            fullWidth={section?.fullWidth}
-                            removePadding={section?.removePadding}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            twoColumn={section?.twoColumn}
-                        />
+                      <Banner
+                        key={section._key}
+                        heading={section.heading}
+                        content={section?.content}
+                        backgroundStyles={backgroundStyles}
+                        headerStyle={headerColor}
+                        textStyle={bodyColor}
+                        fullWidth={section?.fullWidth}
+                        removePadding={section?.removePadding}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        twoColumn={section?.twoColumn}
+                      />
                     )
-                }
-
-                if (section._type === 'fullWidthTextImage') {
+                  }
+        
+                  if (section._type === 'fullWidthTextImage') {
                     return (
-                        <FullWidthTextImage
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            image={section?.image}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            textLeft='false'
-                            columnReverse={section?.reverseColumn}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <FullWidthTextImage
+                        key={section._key}
+                        heading={section?.heading}
+                        altText={section?.altText}
+                        content={section?.content}
+                        image={section?.image}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        textLeft='false'
+                        columnReverse={section?.reverseColumn}
+                        backgroundStyles={backgroundStyles}
+                      />
                     )
-                }
-
-                if (section._type === 'featuredGrid') {
+                  }
+        
+                  if (section._type === 'featuredGrid') {
                     return (
-                        <FeaturedGrid
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.text}
-                            blocks={section?.blockImages}
-                            textOutsideImage={section?.textOutsideImage}
-                            centerTextGrid={section?.centerTextGrid}
-                            blockLeft={section?.blockLeft}
-                            columnNumber={section?.columnNumber}
-                            imageHeight={
-                                section?.imageHeight === 'small' && '300px' ||
-                                section?.imageHeight === 'medium' && '400px' ||
-                                section?.imageHeight === 'large' && '500px'
-                            }
-                            removeGap={section?.removeGap}
-                            removePadding={section?.removePadding}
-                            twoColumn={section?.twoColumn}
-                            textLeft={section?.textLeft}
-                            fullWidth={section?.fullWidth}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <FeaturedGrid
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.text}
+                        blocks={section?.blockImages}
+                        textOutsideImage={section?.textOutsideImage}
+                        centerTextGrid={section?.centerTextGrid}
+                        blockLeft={section?.blockLeft}
+                        columnNumber={section?.columnNumber}
+                        imageHeight={
+                          section?.imageHeight === 'small' && '300px' ||
+                          section?.imageHeight === 'medium' && '400px' ||
+                          section?.imageHeight === 'large' && '500px'
+                        }
+                        removeGap={section?.removeGap}
+                        removePadding={section?.removePadding}
+                        twoColumn={section?.twoColumn}
+                        textLeft={section?.textLeft}
+                        fullWidth={section?.fullWidth}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
                     )
-                }
-
-                if (section._type === 'disclosureSection') {
+                  }
+        
+                  if (section._type === 'disclosureSection') {
                     return (
-                        <DisclosureSection
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            disclosure={section?.disclosures}
-                            disclosureBackgroundColor={section?.disclosureBackgroundColor}
-                            disclosureTextColor={section?.disclosureTextColor}
-                            disclosureContentColor={section?.disclosureContentColor}
-                            twoColumn={section?.twoColumn}
-                            textLeft={section?.textLeft}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                        />
-
+                      <DisclosureSection
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        disclosure={section?.disclosures}
+                        disclosureBackgroundColor={section?.disclosureBackgroundColor}
+                        disclosureTextColor={section?.disclosureTextColor}
+                        disclosureContentColor={section?.disclosureContentColor}
+                        twoColumn={section?.twoColumn}
+                        textLeft={section?.textLeft}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
+        
                     )
-                }
-
-                if (section._type === 'gallery') {
+                  }
+        
+                  if (section._type === 'gallery') {
                     return (
-                        <Gallery
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            images={section?.childImage}
-                            altText={section?.childImage}
-                            animation={section?.animation ?? 'fade'}
-                            fullWidth={section?.fullWidth}
-                            textColor={section?.textColor?.hex}
-                            disableNavigation={section?.disableNavigation}
-                            disablePagination={section?.disablePagination}
-                            removePadding={section?.removePadding}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <Gallery
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        images={section?.childImage}
+                        altText={section?.childImage}
+                        animation={section?.animation ?? 'fade'}
+                        fullWidth={section?.fullWidth}
+                        textColor={section?.textColor?.hex}
+                        disableNavigation={section?.disableNavigation}
+                        disablePagination={section?.disablePagination}
+                        removePadding={section?.removePadding}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+        
+                      />
                     )
-                }
-
-                if (section._type === 'testimonialBuilder') {
+                  }
+        
+                  if (section._type === 'testimonialBuilder') {
                     return (
-                        <Testimonials
-                            key={section._key}
-                            heading={section?.heading}
-                            testimonial={page.testimonialAll}
-                            content={section?.content}
-                            carousel={section?.carousel}
-                            textLeft={section?.textLeft}
-                            cardTextColor={section?.cardTextColor?.hex}
-                            cardBackground={section?.cardBackground?.hex}
-                            bodyColor={bodyColor}
-                            arrowColor={section?.background?.textColor?.textColor?.hex}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <Testimonials
+                        key={section._key}
+                        heading={section?.heading}
+                        testimonial={page.testimonialAll}
+                        content={section?.content}
+                        carousel={section?.carousel}
+                        textLeft={section?.textLeft}
+                        cardTextColor={section?.cardTextColor?.hex}
+                        cardBackground={section?.cardBackground?.hex}
+                        bodyColor={bodyColor}
+                        arrowColor={section?.background?.textColor?.textColor?.hex}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
                     )
-                }
-
-                if (section._type === 'leadForm') {
+                  }
+        
+                  if (section._type === 'leadForm') {
                     return (
-                        <LeadForm
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                            paddingSize={
-                                section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
-                            }
-                        />
+                      <LeadForm
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                        paddingSize={
+                          section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
+                        }
+                      />
                     )
-                }
-
-                if (section._type === 'pricing') {
+                  }
+        
+                  if (section._type === 'pricing') {
                     return (
-                        <Pricing
-                            key={section._key}
-                            heading={section?.heading}
-                            content={section?.content}
-                            packages={section?.packages}
-                            columnNumber={section?.columnNumber}
-                            buttonText={section?.buttonLinking?.buttonText}
-                            buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            textStyle={bodyColor}
-                            headerStyle={headerColor}
-                            backgroundStyles={backgroundStyles}
-                        />
+                      <Pricing
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        packages={section?.packages}
+                        columnNumber={section?.columnNumber}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
                     )
-                }
+                  }
+        
+                  if (section._type === 'teamDisplay') {
+                    return (
+                      <TeamSection
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        team={page.team}
+                        carousel={section?.carousel}
+                        buttonLink={section?.buttonLinking}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
+                    )
+                  }
+        
+                  if (section._type === 'blogDisplay') {
+                    return (
+                      <BlogSection
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.content}
+                        blog={page?.allBlog}
+                        carousel={section?.carousel}
+                        buttonLink={section?.buttonLinking}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
+                    )
+                  }
+        
+                  if (section._type === 'iconSection') {
+                    return (
+                      <IconSection
+                        key={section._key}
+                        heading={section?.heading}
+                        content={section?.text}
+                        blocks={section?.blockImages}
+                        textLeft={section?.textLeft}
+                        columnNumber={section?.columnNumber}
+                        buttonText={section?.buttonLinking?.buttonText}
+                        buttonLink={section?.buttonLinking}
+                        buttonBackground={section?.button?.buttonBackground?.hex}
+                        buttonTextColor={section?.button?.buttonTextColor?.hex}
+                        textStyle={bodyColor}
+                        headerStyle={headerColor}
+                        backgroundStyles={backgroundStyles}
+                      />
+                    )
+                  }
 
                 if (section._type === 'codeBlock') {
                     return (

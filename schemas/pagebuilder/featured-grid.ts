@@ -57,9 +57,9 @@ export default defineType({
                             }
                         },
                         {
-                            title: 'Link',
-                            name: 'link',
-                            type: 'string'
+                            title: 'Button',
+                            name: 'button',
+                            type: 'links',
                         },
                         {
                             title: 'Border Color',

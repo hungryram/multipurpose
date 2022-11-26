@@ -65,7 +65,6 @@ export default function Index({
           }
 
           if (section._type === 'hero') {
-            console.log(section.buttonText)
             return (
               <Hero
                 key={section._key}
@@ -340,7 +339,6 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.text}
                 blocks={section?.blockImages}
-                blockLeft={section?.blockLeft}
                 textLeft={section?.textLeft}
                 columnNumber={section?.columnNumber}
                 buttonText={section?.buttonLinking?.buttonText}

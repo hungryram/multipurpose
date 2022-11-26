@@ -47,6 +47,9 @@ export default defineType({
                 {type: 'fullWidthTextImage'},
                 {type: 'leadForm'},
                 {type: 'pricing'},
+                {type: 'codeBlock'},
+                {type: 'contactPage'},
+
             ]
         }
     ]

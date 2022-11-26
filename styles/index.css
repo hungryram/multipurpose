@@ -21,7 +21,9 @@ body {
   @apply px-4
 }
 
-
+.accent {
+  color: var(--primary-accent)
+}
 
 /* PAGINATION */
 span.swiper-pagination-bullet {

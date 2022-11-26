@@ -4,20 +4,10 @@ import BodyText from "../util/body-text"
 import Wrapper from "../util/wrapper"
 
 export default function IconSection({
-    link,
-    centerTextGrid,
     content,
-    textOutsideImage,
     textLeft,
-    imageHeight,
-    blockLeft,
-    // SECTION
-    fullWidth,
-    twoColumn,
     heading,
     columnNumber,
-    removeGap,
-    removePadding,
     blocks,
     backgroundStyles,
     textStyle,
@@ -28,7 +18,9 @@ export default function IconSection({
     buttonTextColor
 }: any) {
     return (
-        <Wrapper>
+        <Wrapper
+        backgroundStyles={backgroundStyles}
+        >
             <div>
                 <BodyText
                     heading={heading}
@@ -45,9 +37,18 @@ export default function IconSection({
                 {blocks &&
                     <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 gap-10 mt-20`}>
                         {blocks?.map((node) => {
+
+                            const blockLinks =
+                                (node.blockLinking?.internalLink?._type === "pages" && `/${node.blockLinking?.internalLink.slug}`) ||
+                                (node.blockLinking?.internalLink?._type === "blog" && `/blog/${node.blockLinking?.internalLink.slug}`) ||
+                                (node.blockLinking?.internalLink?._type === "legal" && `/legal/${node.blockLinking?.internalLink.slug}`) ||
+                                (node.blockLinking?.internalLink?._type === "author" && `/authors/${node.blockLinking?.internalLink.slug}`) ||
+                                (node.blockLinking?.internalLink?._type === "services" && `/services/${node.blockLinking?.internalLink.slug}`) ||
+                                (node.blockLinking?.externalUrl && `${node.blockLinking?.externalUrl}`)
+
                             return (
                                 <div className="relative" key={node._key}>
-                                    <div>
+                                    <div className={`${textLeft ? 'text-left' : 'text-center'}`}>
                                         <>
                                             {node?.image?.url &&
                                                 <Image
@@ -65,20 +66,27 @@ export default function IconSection({
                                             }
                                             {node?.iconSvg &&
                                                 <div
-                                                    className="w-40 h-40"
+                                                    className={`w-40 h-40 relative ${textLeft ? 'text-left' : 'mx-auto'}`}
                                                     dangerouslySetInnerHTML={{
                                                         __html: `${node?.iconSvg}`
                                                     }} />
                                             }
                                         </>
                                         <div
-                                            className={`py-4 justify-center`}>
+                                            className={`py-4`} style={textStyle}>
                                             {node.heading &&
                                                 <h3 className="h3 font-bold">{node.heading}</h3>
                                             }
                                             {node.content &&
                                                 <div className="mt-6">
                                                     <p>{node.content}</p>
+                                                </div>
+                                            }
+                                            {node?.blockLinking &&
+                                                <div className="mt-5">
+                                                    <Link href={blockLinks} className="accent font-bold" aria-label={`Learn more about ${node.heading}`} target={node.blockLinking.newTab && '_blank'}>
+                                                        {node.blockLinking.buttonText}
+                                                    </Link>
                                                 </div>
                                             }
                                         </div>
