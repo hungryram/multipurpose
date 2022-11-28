@@ -37,11 +37,37 @@ export default defineType({
             options: {
                 hotspot: true
             },
+            fields: [
+                {
+                    title: 'Hide Header',
+                    name: 'hideHeader',
+                    type: 'boolean'
+                }
+            ]
         },
         {
-            title: 'Content',
-            name: 'content',
-            type: 'contentEditor'
+            title: 'Page Builder',
+            name: 'pageBuilder',
+            type: 'array',
+            group: 'content',
+            of: [
+                {type: 'hero'},
+                {type: 'textandImage'},
+                {type: 'featuredGrid'},
+                {type: 'iconSection'},
+                {type: 'banner'},
+                {type: 'testimonialBuilder'},
+                {type: 'disclosureSection'},
+                {type: 'teamDisplay'},
+                {type: 'blogDisplay'},
+                {type: 'servicesDisplay'},
+                {type: 'gallery'},
+                {type: 'fullWidthTextImage'},
+                {type: 'leadForm'},
+                {type: 'pricing'},
+                {type: 'codeBlock'},
+                {type: 'contactPage'},
+            ]
         },
         {
             title: 'Search Engine Optimization',

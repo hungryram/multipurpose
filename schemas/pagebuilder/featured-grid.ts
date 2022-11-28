@@ -38,7 +38,7 @@ export default defineType({
                     type: 'object',
                     fields: [
                         {
-                            title: 'Name',
+                            title: 'Heading',
                             name: 'value',
                             type: 'string'
                         },

@@ -15,9 +15,13 @@ import Gallery from '../components/templates/gallery'
 import Testimonials from '../components/templates/testimonials'
 import Pricing from '../components/templates/pricing'
 import LeadForm from '../components/templates/lead-form'
+import TeamSection from '../components/templates/team-section'
+import BlogSection from '../components/templates/blog-section'
+import IconSection from '../components/templates/icon-section'
+import ServiceSection from '../components/templates/service-section'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../lib/sanity'
+import { usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import { PageProps } from '../types'
@@ -81,16 +85,16 @@ export default function Pages(props: Props) {
                         section?.background?.background?.color?.hex}`,
                     backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
                         `linear-gradient(rgba(
-            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
-            rgba(
-            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
-            url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
+  ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
+  rgba(
+  ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+  ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
+  url(${section.backgroundImage?.image?.asset?.url})`}`,
                 }
 
 
@@ -99,12 +103,12 @@ export default function Pages(props: Props) {
                         <Hero
                             key={section._key}
                             body={section?.content}
-                            altText={section?.altText}
+                            altText={section?.imageData?.asset?.altText}
                             textStyle={section?.textColor?.textColor?.hex}
-                            image={section.image}
-                            blurData={section?.lqip}
+                            image={section?.imageData?.asset?.url}
+                            blurData={section?.imageData?.lqip}
                             buttonLink={section?.buttonLinking}
-                            buttonText={section?.button?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             imageHeight={
@@ -122,12 +126,13 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            image={section?.image}
-                            buttonLink={section?.buttonLinking}
-                            buttonText={section?.button?.buttonText}
+                            image={section?.imageData?.asset?.url}
+                            blurData={section?.imageData?.lqip}
+                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
-                            altText={section?.altText}
+                            altText={section?.imageData?.asset?.altText}
                             rowReverse={section?.reverseRow}
                             headerStyle={headerColor}
                             textStyle={bodyColor}
@@ -148,7 +153,7 @@ export default function Pages(props: Props) {
                             textStyle={bodyColor}
                             fullWidth={section?.fullWidth}
                             removePadding={section?.removePadding}
-                            buttonText={section?.button?.button?.text}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -162,10 +167,10 @@ export default function Pages(props: Props) {
                         <FullWidthTextImage
                             key={section._key}
                             heading={section?.heading}
+                            altText={section?.altText}
                             content={section?.content}
                             image={section?.image}
-                            altText={section?.altText}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -184,7 +189,7 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.text}
-                            blocks={section?.blocks}
+                            blocks={section?.blockImages}
                             textOutsideImage={section?.textOutsideImage}
                             centerTextGrid={section?.centerTextGrid}
                             blockLeft={section?.blockLeft}
@@ -199,7 +204,7 @@ export default function Pages(props: Props) {
                             twoColumn={section?.twoColumn}
                             textLeft={section?.textLeft}
                             fullWidth={section?.fullWidth}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -222,7 +227,7 @@ export default function Pages(props: Props) {
                             disclosureContentColor={section?.disclosureContentColor}
                             twoColumn={section?.twoColumn}
                             textLeft={section?.textLeft}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -240,14 +245,15 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            images={section?.images}
+                            images={section?.childImage}
+                            altText={section?.childImage}
                             animation={section?.animation ?? 'fade'}
                             fullWidth={section?.fullWidth}
                             textColor={section?.textColor?.hex}
                             disableNavigation={section?.disableNavigation}
                             disablePagination={section?.disablePagination}
                             removePadding={section?.removePadding}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -267,9 +273,12 @@ export default function Pages(props: Props) {
                             testimonial={page.testimonialAll}
                             content={section?.content}
                             carousel={section?.carousel}
+                            textLeft={section?.textLeft}
+                            cardTextColor={section?.cardTextColor?.hex}
+                            cardBackground={section?.cardBackground?.hex}
                             bodyColor={bodyColor}
                             arrowColor={section?.background?.textColor?.textColor?.hex}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -286,7 +295,7 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -308,7 +317,65 @@ export default function Pages(props: Props) {
                             content={section?.content}
                             packages={section?.packages}
                             columnNumber={section?.columnNumber}
-                            buttonText={section?.button?.buttonText}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'teamDisplay') {
+                    return (
+                        <TeamSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            team={page.team}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'blogDisplay') {
+                    return (
+                        <BlogSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            blog={page?.allBlog}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'iconSection') {
+                    return (
+                        <IconSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.text}
+                            blocks={section?.blockImages}
+                            textLeft={section?.textLeft}
+                            columnNumber={section?.columnNumber}
+                            buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
@@ -358,42 +425,21 @@ export default function Pages(props: Props) {
                     )
                 }
 
-                if (section._type === 'codeBlock') {
+                if (section._type === 'servicesDisplay') {
                     return (
-                        <div key={section._key}>
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: `${section?.code}`
-                                }}
-                            />
-                        </div>
-                    )
-                }
-
-                if (section._type === 'contactPage') {
-                    return (
-                        <ContactPage
-                            heading={section.heading}
-                            content={section.text}
+                        <ServiceSection
                             key={section._key}
-                            email={page.profileSettings?.contact_information?.email}
-                            phone_number={page.profileSettings?.contact_information?.phone_number}
-                            office_number={page.profileSettings?.contact_information?.office_number}
-                            address={page.profileSettings?.address?.address}
-                            city={page.profileSettings?.address?.city}
-                            state={page.profileSettings?.address?.state}
-                            zip_code={page.profileSettings?.address?.zip_code}
-                            facebook={page.profileSettings?.social?.facebook}
-                            youtube={page.profileSettings?.social?.youtube}
-                            instagram={page.profileSettings?.social?.instagram}
-                            twitter={page.profileSettings?.social?.twitter}
-                            reddit={page.profileSettings?.social?.reddit}
-                            linkedin={page.profileSettings?.social?.linkedin}
-                            yelp={page.profileSettings?.social?.yelp}
-                            pinterest={page.profileSettings?.social?.pinterest}
-                            tiktok={page.profileSettings?.social?.tiktok}
-                            zillow={page.profileSettings?.social?.zillow}
-                            size={page.profileSettings?.social?.size}
+                            heading={section?.heading}
+                            content={section?.content}
+                            services={page.services}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
                         />
                     )
                 }

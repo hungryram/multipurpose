@@ -19,6 +19,8 @@ import Seo from '../components/global/seo'
 import TeamSection from '../components/templates/team-section'
 import BlogSection from '../components/templates/blog-section'
 import IconSection from '../components/templates/icon-section'
+import ServiceSection from '../components/templates/service-section'
+import ContactPage from '../components/templates/contact'
 
 export default function Index({
   preview,
@@ -52,27 +54,28 @@ export default function Index({
               section?.background?.background?.color?.hex}`,
             backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
               `linear-gradient(rgba(
-                ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-                ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
-                rgba(
-                  ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-                  ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
-                  url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
+          ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
+          rgba(
+          ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
+          url(${section.backgroundImage?.image?.asset?.url})`}`,
           }
+
 
           if (section._type === 'hero') {
             return (
               <Hero
                 key={section._key}
                 body={section?.content}
-                altText={section?.altText}
+                altText={section?.imageData?.asset?.altText}
                 textStyle={section?.textColor?.textColor?.hex}
-                image={section.image}
-                blurData={section?.lqip}
+                image={section?.imageData?.asset?.url}
+                blurData={section?.imageData?.lqip}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
@@ -92,13 +95,13 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                image={section?.image}
-                blurData={section.lqip}
+                image={section?.imageData?.asset?.url}
+                blurData={section?.imageData?.lqip}
                 buttonLink={section?.button}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
-                altText={section?.altText}
+                altText={section?.imageData?.asset?.altText}
                 rowReverse={section?.reverseRow}
                 headerStyle={headerColor}
                 textStyle={bodyColor}
@@ -319,7 +322,7 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                blog={homeSettings.allBlog}
+                blog={homeSettings?.allBlog}
                 carousel={section?.carousel}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
@@ -343,6 +346,64 @@ export default function Index({
                 columnNumber={section?.columnNumber}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonLink={section?.buttonLinking}
+                buttonBackground={section?.button?.buttonBackground?.hex}
+                buttonTextColor={section?.button?.buttonTextColor?.hex}
+                textStyle={bodyColor}
+                headerStyle={headerColor}
+                backgroundStyles={backgroundStyles}
+              />
+            )
+          }
+
+          if (section._type === 'codeBlock') {
+            return (
+              <div key={section._key}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `${section?.code}`
+                  }}
+                />
+              </div>
+            )
+          }
+
+          if (section._type === 'contactPage') {
+            return (
+              <ContactPage
+                heading={section.heading}
+                content={section.text}
+                key={section._key}
+                email={homeSettings.profileSettings?.contact_information?.email}
+                phone_number={homeSettings.profileSettings?.contact_information?.phone_number}
+                address={homeSettings.profileSettings?.address?.address}
+                city={homeSettings.profileSettings?.address?.city}
+                state={homeSettings.profileSettings?.address?.state}
+                zipCode={homeSettings.profileSettings?.address?.zip_code}
+                facebook={homeSettings.profileSettings?.social?.facebook}
+                youtube={homeSettings.profileSettings?.social?.youtube}
+                instagram={homeSettings.profileSettings?.social?.instagram}
+                twitter={homeSettings.profileSettings?.social?.twitter}
+                reddit={homeSettings.profileSettings?.social?.reddit}
+                linkedin={homeSettings.profileSettings?.social?.linkedin}
+                yelp={homeSettings.profileSettings?.social?.yelp}
+                pinterest={homeSettings.profileSettings?.social?.pinterest}
+                tiktok={homeSettings.profileSettings?.social?.tiktok}
+                zillow={homeSettings.profileSettings?.social?.zillow}
+                size={homeSettings.profileSettings?.social?.size}
+              />
+            )
+          }
+
+          if (section._type === 'servicesDisplay') {
+            return (
+              <ServiceSection
+                key={section._key}
+                heading={section?.heading}
+                content={section?.content}
+                services={homeSettings.services}
+                carousel={section?.carousel}
+                buttonLink={section?.buttonLinking}
+                buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}
                 textStyle={bodyColor}

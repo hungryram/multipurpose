@@ -109,5 +109,12 @@ export default {
                 
             ]
         }
-    ]
+    ],
+    preview: {
+        prepare(){
+            return {
+                title: 'Profile Settings'
+            }
+        }
+    }
 }

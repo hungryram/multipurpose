@@ -15,12 +15,12 @@ export default function TextImage({ image, heading, blurData, content, textLeft,
                 {image &&
                     <div className="md:w-1/2 text-center">
                         <Image
-                            src={urlForImage(image).url()}
+                            src={image}
                             width={500}
                             height={0}
                             alt={altText}
-                            placeholder="blur"
-                            blurDataURL={blurData ?? urlForImage(image).height(10).width(10).quality(1).url()}
+                            placeholder={blurData ? 'blur' : 'empty'}
+                            blurDataURL={blurData}
                             style={{
                                 height: 'auto',
                                 margin: '20px auto',

@@ -15,13 +15,11 @@ import { urlForImage } from "../../lib/sanity";
 import Link from "next/link";
 import { BiUser } from 'react-icons/bi'
 
-export default function TeamSection({
+export default function ServiceSection({
     carousel,
-    team,
+    services,
     heading,
     content,
-    cardBackground,
-    cardTextColor,
     bodyColor,
     backgroundStyles,
     arrowColor,
@@ -79,32 +77,31 @@ export default function TeamSection({
                         "--swiper-navigation-color": `${arrowColor}`,
                     }}
                 >
-                    {team?.map((node) => {
+                    {services?.map((node) => {
                         return (
                             <SwiperSlide key={node._key}>
                                 <div className="h-full">
-                                    <Link href={`team/${node.slug.current}`} arial-label={`Visit profile information for ${node?.name}`}>
-                                        <div className="relative overflow-hidden rounded-md">
-                                            {node?.image ?
+                                    <Link href={`team/${node.slug.current}`} arial-label={`Link to more information on ${node.title}`}>
+                                        <div className="relative overflow-hidden rounded-sm">
+                                            {node?.headerImage ?
                                                 <Image
-                                                    src={urlForImage(node?.image).url()}
-                                                    alt={node?.imageData?.altText ?? node?.name}
+                                                    src={urlForImage(node?.headerImage).url()}
+                                                    alt={node?.imageData?.asset?.altText ?? node?.name}
                                                     width={800}
                                                     height={0}
-                                                    className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700"
+                                                    className="h-[350px] object-cover transform hover:scale-105 transition ease-in-out duration-700"
                                                     placeholder="blur"
-                                                    blurDataURL={node?.imageData?.lqip ?? urlForImage(node?.image).width(1).height(1).quality(1).url()}
-                                                    />
+                                                    blurDataURL={node?.imageData?.asset?.lqip ?? urlForImage(node?.headerImage).width(1).height(1).quality(1).url()}
+                                                />
                                                 :
-                                                <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
+                                                <div className="h-[350px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
                                                     <div>
                                                         <BiUser className="text-6xl text-white" />
                                                     </div>
                                                 </div>
                                             }
-                                            <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-md bg-white">
-                                                <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.name}</h3>
-                                                {node?.position && <p className="text-gray-600 font-medium">{node.position}</p>}
+                                            <div className="left-0 right-0 p-4 rounded-sm bg-white">
+                                                <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.title}</h3>
                                             </div>
                                         </div>
                                     </Link>
@@ -115,31 +112,30 @@ export default function TeamSection({
                 </Swiper>
                 :
                 <div className="grid md:grid-cols-3 gap-4 h-full">
-                    {team?.map((node) => {
+                    {services?.map((node) => {
                         return (
-                            <div className="h-full" key={node._key}>
-                                <Link href={`team/${node.slug.current}`} arial-label={`Visit profile information for ${node?.name}`}>
+                            <div className="h-full shadow-md" key={node._key}>
+                                <Link href={`team/${node.slug.current}`} arial-label={`Link to more information on ${node.title}`}>
                                     <div className="relative overflow-hidden rounded-sm">
-                                        {node?.image ?
+                                        {node?.headerImage ?
                                             <Image
-                                                src={urlForImage(node?.image).url()}
-                                                alt={node?.imageData?.altText ?? node?.name}
+                                                src={urlForImage(node?.headerImage).url()}
+                                                alt={node?.imageData?.asset?.altText ?? node?.name}
                                                 width={800}
                                                 height={0}
-                                                className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700"
+                                                className="h-[350px] object-cover transform hover:scale-105 transition ease-in-out duration-700"
                                                 placeholder="blur"
-                                                blurDataURL={node?.imageData?.lqip ?? urlForImage(node?.image).width(1).height(1).quality(1).url()}
-                                                />
+                                                blurDataURL={node?.imageData?.asset?.lqip ?? urlForImage(node?.headerImage).width(1).height(1).quality(1).url()}
+                                            />
                                             :
-                                            <div className="h-[450px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
+                                            <div className="h-[350px] object-cover transform hover:scale-105 transition ease-in-out duration-700 bg-slate-400 flex justify-center items-center">
                                                 <div>
                                                     <BiUser className="text-6xl text-white" />
                                                 </div>
                                             </div>
                                         }
-                                        <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-sm bg-white">
-                                            <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.name}</h3>
-                                            {node?.position && <p className="text-gray-600 font-medium">{node.position}</p>}
+                                        <div className="left-0 right-0 p-4 rounded-sm bg-white">
+                                            <h3 className="mb-1 text-xl font-semibold leading-snug">{node?.title}</h3>
                                         </div>
                                     </div>
                                 </Link>

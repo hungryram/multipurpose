@@ -130,12 +130,12 @@ export default function Gallery({ images,
                                         <SwiperSlide key={node?._key}>
                                             <div className="w-full relative">
                                                 <Image
-                                                    src={node?.url}
-                                                    alt={node.altText}
+                                                    src={node?.asset?.url}
+                                                    alt={node?.asset?.altText}
                                                     width={fullWidth ? 2000 : 900}
                                                     height={0}
-                                                    placeholder="blur"
-                                                    blurDataURL={node.lqip ?? urlForImage(node).height(10).width(10).quality(1).url()}
+                                                    placeholder={node?.asset?.lqip ? 'blur' : 'empty'}
+                                                    blurDataURL={node?.asset?.lqip}                                  
                                                     className={`object-cover h-96 w-full ${fullWidth ? 'md:h-screen' : ''}`}
                                                     sizes={fullWidth ? '100vw' : '50vw'}
                                                     // onClick={() => handleClick(node, index)}

@@ -9,9 +9,19 @@ import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
 import Hero from '../../components/templates/hero'
 import FeaturedGrid from '../../components/templates/featured-grid'
-import Heading from '../../components/util/body-text'
 import Banner from '../../components/templates/banner'
 import DisclosureSection from '../../components/templates/disclosure'
+import TeamSection from '../../components/templates/team-section'
+import IconSection from '../../components/templates/icon-section'
+import BlogSection from '../../components/templates/blog-section'
+import ServiceSection from '../../components/templates/service-section'
+import Pricing from '../../components/templates/pricing'
+import LeadForm from '../../components/templates/lead-form'
+import TextImage from '../../components/templates/text-and-image'
+import Testimonials from '../../components/templates/testimonials'
+import FullWidthTextImage from '../../components/templates/full-width-text-image'
+import Gallery from '../../components/templates/gallery'
+
 import Seo from '../../components/global/seo'
 
 import { servicesSlugsQuery, queryServiceCurrentPage } from '../../lib/queries'
@@ -19,8 +29,6 @@ import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import ContactPage from '../../components/templates/contact'
 import { ServiceProps } from '../../types'
-import ContentEditor from '../../components/templates/contenteditor'
-import BodyText from '../../components/util/body-text'
 
 
 
@@ -64,174 +72,346 @@ export default function ServicePages(props: Props) {
             <Header
                 title={page?.services?.title}
                 image={page?.services?.headerImage ?? page?.appearances?.defaultImage}
+                hideHeader={page?.services?.headerImage?.hideHeader}
+
             />
-            <div className="section">
-                <div className="container">
-                    <div className="md:flex md:space-x-10 space-y-10">
-                        <div className="md:w-1/3">
-                            <div className="p-10 bg-slate-200">
-                                <h3 className="font-bold text-xl mb-8">More Services</h3>
-                                <ul>
-                                    {page?.allServices?.map((node) => {
-                                        return (
-                                            <>
-                                                <li className="bg-white my-2"><Link href={"/services/" + node.slug.current} className="flex items-center px-4 py-4 hover:bg-orange-600 hover:text-white transition-all ease-linear font-bold">{node.title}</Link></li>
-                                            </>
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="md:w-2/3">
-                            {page.services?.content &&
-                                <ContentEditor
-                                    content={page?.services?.content}
-                                />
+
+            {page?.services?.pageBuilder?.map((section) => {
+
+                const headerColor = {
+                    color: section?.background?.textColor?.headerColor?.hex ?? defaultHeader
+                }
+                const bodyColor = {
+                    color: section?.background?.textColor?.textColor?.hex ?? defaultText
+                }
+
+                const backgroundStyles = {
+                    backgroundColor: `${section.background?.background?.backgroundType === 'color' &&
+                        section?.background?.background?.color?.hex}`,
+                    backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
+                        `linear-gradient(rgba(
+        ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+        ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+        ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+        ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
+        rgba(
+          ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+          ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
+          url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
+                }
+
+                if (section._type === 'hero') {
+                    return (
+                        <Hero
+                            key={section._key}
+                            body={section?.content}
+                            altText={section?.altText}
+                            textStyle={section?.textColor?.textColor?.hex}
+                            image={section.imageData?.url}
+                            blurData={section?.lqip}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            imageHeight={
+                                section?.imageHeight === 'small' && '400px' ||
+                                section?.imageHeight === 'medium' && '600px' ||
+                                section?.imageHeight === 'large' && '100vh'
                             }
-                            {page?.services?.pageBuilder?.map((section) => {
+                        />
+                    )
+                }
 
-                                const headerColor = {
-                                    color: section.textColor?.headerColor?.hex ?? defaultHeader
-                                }
-                                const bodyColor = {
-                                    color: section.textColor?.textColor?.hex ?? defaultText
-                                }
+                if (section._type === 'textandImage') {
 
-                                const bannerButton = {
-                                    backgroundColor: section.button?.buttonBackground?.hex ?? '#000000',
-                                    color: section.button?.buttonTextColor?.hex ?? '#ffffff'
-                                }
+                    return (
+                        <TextImage
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            image={section?.imageData?.asset?.url}
+                            blurData={section.imageData?.asset?.lqip}
+                            buttonLink={section?.button}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            altText={section?.altText}
+                            rowReverse={section?.reverseRow}
+                            headerStyle={headerColor}
+                            textStyle={bodyColor}
+                            textLeft={section?.textLeft}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
 
-                                const backgroundStyles = {
-                                    background: `${section.background?.backgroundType === 'color' && section?.background?.color?.hex || section.background?.backgroundType === 'image' && `url(${section.background.image ? urlForImage(section?.background?.image).url() : undefined})`}`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover'
-                                }
+                if (section._type === 'banner') {
+                    return (
+                        <Banner
+                            key={section._key}
+                            heading={section.heading}
+                            content={section?.content}
+                            backgroundStyles={backgroundStyles}
+                            headerStyle={headerColor}
+                            textStyle={bodyColor}
+                            fullWidth={section?.fullWidth}
+                            removePadding={section?.removePadding}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            twoColumn={section?.twoColumn}
+                        />
+                    )
+                }
 
+                if (section._type === 'fullWidthTextImage') {
+                    return (
+                        <FullWidthTextImage
+                            key={section._key}
+                            heading={section?.heading}
+                            altText={section?.altText}
+                            content={section?.content}
+                            image={section?.image}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            textLeft='false'
+                            columnReverse={section?.reverseColumn}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
 
-                                if (section._type === 'hero') {
-                                    return (
-                                        <Hero
-                                            heading={section.heading}
-                                            subtitle={section.subtitle}
-                                            image={section.image}
-                                            key={section._key}
-                                            headerColor={headerColor}
-                                            bodyColor={bodyColor}
-                                        />
-                                    )
-                                }
+                if (section._type === 'featuredGrid') {
+                    return (
+                        <FeaturedGrid
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.text}
+                            blocks={section?.blockImages}
+                            textOutsideImage={section?.textOutsideImage}
+                            centerTextGrid={section?.centerTextGrid}
+                            blockLeft={section?.blockLeft}
+                            columnNumber={section?.columnNumber}
+                            imageHeight={
+                                section?.imageHeight === 'small' && '300px' ||
+                                section?.imageHeight === 'medium' && '400px' ||
+                                section?.imageHeight === 'large' && '500px'
+                            }
+                            removeGap={section?.removeGap}
+                            removePadding={section?.removePadding}
+                            twoColumn={section?.twoColumn}
+                            textLeft={section?.textLeft}
+                            fullWidth={section?.fullWidth}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
 
-                                if (section._type === 'contactPage') {
-                                    return (
-                                        <ContactPage
-                                            heading={section.heading}
-                                            key={section._key}
-                                        />
-                                    )
-                                }
+                if (section._type === 'disclosureSection') {
+                    return (
+                        <DisclosureSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            disclosure={section?.disclosures}
+                            disclosureBackgroundColor={section?.disclosureBackgroundColor}
+                            disclosureTextColor={section?.disclosureTextColor}
+                            disclosureContentColor={section?.disclosureContentColor}
+                            twoColumn={section?.twoColumn}
+                            textLeft={section?.textLeft}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
 
-                                if (section._type === 'banner') {
-                                    return (
-                                        <Banner
-                                            heading={section.heading}
-                                            text={section?.text}
-                                            key={section._key}
-                                            backgroundStyles={backgroundStyles}
-                                            headerStyle={headerColor}
-                                            textStyle={bodyColor}
-                                            fullWidth={section?.fullWidth}
-                                            removePadding={section?.removePadding}
-                                            buttonText={section?.button?.buttonText}
-                                            buttonLink={section?.button?.buttonLink}
-                                            buttonStyle={bannerButton}
-                                            twoColumn={section?.twoColumn}
-                                        />
-                                    )
-                                }
+                    )
+                }
 
-                                if (section._type === 'featuredGrid') {
-                                    return (
-                                        <div key={section?._key} style={backgroundStyles}>
-                                            <div className="section">
-                                                <div className={section?.fullWidth ? null : 'container'}>
-                                                    <div className={`${section.twoColumn ? 'md:flex items-center' : ''}`}>
-                                                        <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                                                            <BodyText
-                                                                heading={section?.heading}
-                                                                body={section?.text}
-                                                                headerStyle={headerColor}
-                                                                textStyle={bodyColor}
-                                                                textAlign={section?.headerLeft}
-                                                            />
-                                                        </div>
-                                                        <div className={`${section?.twoColumn ? 'md:w-1/2' : 'w-full'}`}>
-                                                            <div className={`grid lg:grid-cols-${section?.columnNumber ?? '2'} md:grid-cols-2 grid-cols-1 ${section.removeGap ? 'gap-4' : ''} mt-10`}>
-                                                                {section?.blocks.map((node) => {
-                                                                    return (
-                                                                        <FeaturedGrid
-                                                                            image={node.image}
-                                                                            value={node.value}
-                                                                            link={node.link}
-                                                                            key={node._key}
-                                                                            content={node.content}
-                                                                            textOutsideImage={section.textOutsideImage}
-                                                                            textLeft={section?.textLeft}
-                                                                            centerTextGrid={section?.centerTextGrid}
-                                                                            blurData={homeSettings.sanityImages.base64 ?? node.image}
-                                                                            textColor={node?.textColor?.hex}
-                                                                            borderColor={node?.borderColor?.hex}
-                                                                            backgroundColor={node?.backgroundcolor?.hex}
-                                                                            imageHeight={
-                                                                                section?.imageHeight === 'small' && '300px' ||
-                                                                                section?.imageHeight === 'medium' && '400px' ||
-                                                                                section?.imageHeight === 'large' && '500px'
-                                                                            }
-                                                                        />
-                                                                    )
-                                                                })}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                if (section._type === 'gallery') {
+                    return (
+                        <Gallery
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            images={section?.childImage}
+                            altText={section?.childImage}
+                            animation={section?.animation ?? 'fade'}
+                            fullWidth={section?.fullWidth}
+                            textColor={section?.textColor?.hex}
+                            disableNavigation={section?.disableNavigation}
+                            disablePagination={section?.disablePagination}
+                            removePadding={section?.removePadding}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
 
-                                if (section._type === 'disclosureSection') {
-                                    return (
-                                        <div className="section" key={section?._key} style={backgroundStyles}>
-                                            <div className="container">
-                                                <div className={section?.twoColumn ? 'md:flex md:space-x-20' : ''}>
-                                                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
-                                                        <BodyText
-                                                            body={section?.content}
-                                                            textAlign={section?.textLeft}
-                                                            fullWidth={section?.twoColumn}
-                                                        />
-                                                    </div>
-                                                    <div className={section?.twoColumn ? 'md:w-1/2' : ''}>
-                                                        <div className="mt-10">
-                                                            <DisclosureSection
-                                                                disclosure={section?.disclosures}
-                                                                disclosureBackgroundColor={section?.disclosureBackgroundColor?.hex}
-                                                                disclosureTextColor={section?.disclosureTextColor?.hex}
-                                                                disclosureContentColor={section?.disclosureContentColor?.hex}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                        />
+                    )
+                }
 
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </div>
+                if (section._type === 'testimonialBuilder') {
+                    return (
+                        <Testimonials
+                            key={section._key}
+                            heading={section?.heading}
+                            testimonial={page.testimonialAll}
+                            content={section?.content}
+                            carousel={section?.carousel}
+                            textLeft={section?.textLeft}
+                            cardTextColor={section?.cardTextColor?.hex}
+                            cardBackground={section?.cardBackground?.hex}
+                            bodyColor={bodyColor}
+                            arrowColor={section?.background?.textColor?.textColor?.hex}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'leadForm') {
+                    return (
+                        <LeadForm
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                            paddingSize={
+                                section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
+                            }
+                        />
+                    )
+                }
+
+                if (section._type === 'pricing') {
+                    return (
+                        <Pricing
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            packages={section?.packages}
+                            columnNumber={section?.columnNumber}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'teamDisplay') {
+                    return (
+                        <TeamSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            team={page.team}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'blogDisplay') {
+                    return (
+                        <BlogSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            blog={page.allBlog}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'iconSection') {
+                    return (
+                        <IconSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.text}
+                            blocks={section?.blockImages}
+                            textLeft={section?.textLeft}
+                            columnNumber={section?.columnNumber}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonLink={section?.buttonLinking}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+                if (section._type === 'servicesDisplay') {
+                    return (
+                        <ServiceSection
+                            key={section._key}
+                            heading={section?.heading}
+                            content={section?.content}
+                            services={page.services}
+                            carousel={section?.carousel}
+                            buttonLink={section?.buttonLinking}
+                            buttonText={section?.buttonLinking?.buttonText}
+                            buttonBackground={section?.button?.buttonBackground?.hex}
+                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            textStyle={bodyColor}
+                            headerStyle={headerColor}
+                            backgroundStyles={backgroundStyles}
+                        />
+                    )
+                }
+
+            })}
+
         </Layout>
     )
 }

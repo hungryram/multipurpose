@@ -17,9 +17,10 @@ import Testimonials from '../../components/templates/testimonials'
 import BlogSection from '../../components/templates/blog-section'
 import IconSection from '../../components/templates/icon-section'
 import TeamSection from '../../components/templates/team-section'
+import ServiceSection from '../../components/templates/service-section'
 
 import { homeSlugsQuery, queryHome } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
+import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import ContactPage from '../../components/templates/contact'
 import { HomeProps } from '../../types'
@@ -80,7 +81,7 @@ export default function Pages(props: Props) {
                             ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
                             ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
                             ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
-                            url(${section.background?.background.image ? urlForImage(section?.background?.background?.image).url() : undefined})`}`,
+                            url(${section.backgroundImage?.image?.asset?.url})`}`,
                 }
 
 
@@ -89,10 +90,10 @@ export default function Pages(props: Props) {
                       <Hero
                         key={section._key}
                         body={section?.content}
-                        altText={section?.altText}
+                        altText={section?.imageData?.asset?.altText}
                         textStyle={section?.textColor?.textColor?.hex}
-                        image={section.image}
-                        blurData={section?.lqip}
+                        image={section?.imageData?.asset?.url}
+                        blurData={section?.imageData?.lqip}
                         buttonLink={section?.buttonLinking}
                         buttonText={section?.buttonLinking?.buttonText}
                         buttonBackground={section?.button?.buttonBackground?.hex}
@@ -112,13 +113,13 @@ export default function Pages(props: Props) {
                         key={section._key}
                         heading={section?.heading}
                         content={section?.content}
-                        image={section?.image}
-                        blurData={section.lqip}
+                        image={section?.imageData?.asset?.url}
+                        blurData={section?.imageData?.lqip}
                         buttonLink={section?.button}
                         buttonText={section?.buttonLinking?.buttonText}
                         buttonBackground={section?.button?.buttonBackground?.hex}
                         buttonTextColor={section?.button?.buttonTextColor?.hex}
-                        altText={section?.altText}
+                        altText={section?.imageData?.asset?.altText}
                         rowReverse={section?.reverseRow}
                         headerStyle={headerColor}
                         textStyle={bodyColor}
@@ -409,6 +410,25 @@ export default function Pages(props: Props) {
                             size={page.profileSettings?.social?.size}
                         />
                     )
+                }
+
+                if (section._type === 'servicesDisplay') {
+                  return (
+                    <ServiceSection
+                      key={section._key}
+                      heading={section?.heading}
+                      content={section?.content}
+                      services={page.services}
+                      carousel={section?.carousel}
+                      buttonLink={section?.buttonLinking}
+                      buttonText={section?.buttonLinking?.buttonText}
+                      buttonBackground={section?.button?.buttonBackground?.hex}
+                      buttonTextColor={section?.button?.buttonTextColor?.hex}
+                      textStyle={bodyColor}
+                      headerStyle={headerColor}
+                      backgroundStyles={backgroundStyles}
+                    />
+                  )
                 }
 
             })}

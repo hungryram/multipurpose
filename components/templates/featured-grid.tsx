@@ -68,17 +68,17 @@ export default function FeaturedGrid({
                                                 color: `${node.textColor?.hex ?? '#ffffff'}`,
                                                 border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,
                                             }}>
-                                                <Link href={blockLinks ?? '/'} target={node.blockLinking.newTab && '_blank'} aria-label={`Learn more about ${node?.value}`}>
+                                                <Link href={blockLinks ?? '/'} target={node?.blockLinking?.newTab && '_blank'} aria-label={`Learn more about ${node?.value}`}>
                                                     <div>
                                                         <>
-                                                            {node?.image?.url &&
+                                                            {node?.image?.asset?.url &&
                                                                 <Image
-                                                                    src={node?.image?.url}
-                                                                    alt={node?.image?.altText}
+                                                                    src={node?.image?.asset?.url}
+                                                                    alt={node?.image?.asset?.altText}
                                                                     height={0}
                                                                     width={450}
-                                                                    placeholder="blur"
-                                                                    blurDataURL={node?.image?.lqip ?? node?.image?.url}
+                                                                    placeholder={node?.image?.asset?.lqip  ? 'blur' : 'empty'}
+                                                                    blurDataURL={node?.image?.asset?.lqip ?? node?.image?.asset?.url}
                                                                     style={{
                                                                         objectFit: 'cover',
                                                                         height: `${imageHeight ? imageHeight : '400px'}`,

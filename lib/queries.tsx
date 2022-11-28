@@ -14,6 +14,105 @@ const postFields = groq`
   }
 `
 
+const pageBuilderData = groq`
+'backgroundImage': background.background {    //START Section backgroundSettings Option 
+  image {
+    asset-> {
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  }
+},                                  // END Section backgroundSettings Option
+'imageData': image {                // FIRST PARENT IMAGE DATA
+  asset-> {
+    'altText':altText,
+    'lqip':metadata.lqip,
+    url
+  }
+},                                  // END PARENT IMAGE DATA
+'blockImages': blocks[] {           // START BLOCK IMAGE DATA
+  ...,
+'blockLinking':  button{
+  'buttonText': text,
+  externalUrl,
+  linkType,
+  newTab,
+  internalLink->{
+      title,
+      'slug': slug.current,
+      _type
+    }
+},
+image {
+  asset-> {
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+  }
+}
+},                                    // END BLOCK IMAGE DATA
+'childImage': images[] {              // START GALLERY DATA
+...,
+asset->{
+'altText':altText,
+'lqip':metadata.lqip,
+url
+}
+},                                    // END GALLERY DATA
+'buttonLinking':  button.button{      // START BUTTONSETTINGS DATA
+'buttonText': text,
+linkType,
+externalUrl,
+newTab,
+internalLink->{
+    title,
+    'slug': slug.current,
+    _type
+  }
+}                                     // END BUTTONSETTINGS DATA
+`
+
+const otherDocumentSections = groq`
+'profileSettings': *[_type == 'profile'][0],
+'services': *[_type == 'services'] {
+  ...,
+  'imageData': headerImage {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'team': *[_type == 'team'] {
+  ...,
+  'imageData': image {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'allBlog': *[_type == 'blog'][0...4] {
+  ...,
+  'coverImageData': coverImage {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'testimonialAll': *[_type == 'testimonials'],
+'appearances': *[_type == 'appearances'][0]{
+  'favicon': branding.favicon,
+  'themeColor': mainColors.primaryColor.hex,
+  'defaultImage': header.defaultHeaderImage
+},
+`
+
 const seoData = groq`
 'sanityImages': *[_type == "sanity.imageAsset"][0]{
   'base64': metadata.lqip
@@ -37,78 +136,11 @@ export const homePageQuery = groq`
   'homePage': homePage-> {
     pageBuilder[]{
         ...,
-        'blockImages': blocks[] {
-          ...,
-          'blockLinking':  button{
-            'buttonText': text,
-            externalUrl,
-            linkType,
-            newTab,
-            internalLink->{
-                title,
-                'slug': slug.current,
-                _type
-              }
-          },
-      image {
-          '':asset-> {
-              'altText':altText,
-              'lqip':metadata.lqip,
-              url
-          }
-      }
-    },
-        'childImage': images[] {
-          ...,
-          '':asset->{
-            'altText':altText,
-            'lqip':metadata.lqip,
-            url
-          }
-        },
-        '': image {
-          '':asset->{
-            'altText':altText,
-            'lqip':metadata.lqip,
-            url
-          }
-        },
-      'buttonLinking':  button.button{
-        'buttonText': 
-        text,
-        externalUrl,
-        linkType,
-        newTab,
-        internalLink->{
-            title,
-            'slug': slug.current,
-            _type
-          }
-      }
+        ${pageBuilderData}
     }
     }
   },
-  'testimonialAll': *[_type == 'testimonials'],
-  'team': *[_type == 'team'] {
-    ...,
-    'imageData': image {
-      '':asset->{
-        'altText':altText,
-        'lqip':metadata.lqip,
-        url
-      }
-    },
-  },
-  'allBlog': *[_type == 'blog'][0...4] {
-    ...,
-    'coverImageData': coverImage {
-      '':asset->{
-        'altText':altText,
-        'lqip':metadata.lqip,
-        url
-      }
-    },
-  },
+  ${otherDocumentSections},
   ${seoData}
 }
 `
@@ -158,68 +190,9 @@ export const pageQuery = groq`
     },
     pageBuilder[]{
         ...,
-        'blockImages': blocks[] {
-          ...,
-      image {
-          '':asset-> {
-              'altText':altText,
-              'lqip':metadata.lqip,
-              url
-          }
-      }
+        ${pageBuilderData}
     },
-        'childImage': images[] {
-          ...,
-          '':asset->{
-            'altText':altText,
-            'lqip':metadata.lqip,
-            url
-          }
-        },
-        '': image {
-          '':asset->{
-            'altText':altText,
-            'lqip':metadata.lqip,
-            url
-          }
-        },
-      'buttonLinking':  button.button{
-        'buttonText': 
-        text,
-        externalUrl,
-        linkType,
-        newTab,
-        internalLink->{
-            title,
-            'slug': slug.current,
-            _type
-          }
-      }
-    }
-    },
-    'team': *[_type == 'team'][0..6]{
-      name,
-      _id,
-      image,
-      'slug': slug.current
-    },
-  'appearances': *[_type == 'appearances'][0]{
-    'favicon': branding.favicon,
-    'themeColor': mainColors.primaryColor.hex,
-    'defaultImage': header.defaultHeaderImage
-  },
-  'profileSettings': *[_type == 'profile'][0]{
-    company_name,
-    contact_information {
-      ...
-    },
-    address {
-      ...
-    },
-    social {
-      ...
-    }
-  },
+    ${otherDocumentSections}
 }
 `
 
@@ -437,83 +410,17 @@ export const appearances = groq`
 }
 `
 
-// HOME QUERY
+// HOME QUERY -> /pages/home/[slug]
 export const queryHome = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"][0] {
-    'base64': metadata.lqip
-  },
-  'profileSettings': *[_type == 'profile'][0]{
-    contact_information {
-      ...
-    },
-    address {
-      ...
-    },
-    social {
-      ...
-    }
-  },
     'homeDesign': *[_type == 'homeDesign' && slug.current == $slug ][0]{
       ...,
       pageBuilder[]{
         ...,
-        'blockImages': blocks[] {
-          ...,
-          'blockLinking':  button{
-            'buttonText': text,
-            externalUrl,
-            linkType,
-            newTab,
-            internalLink->{
-                title,
-                'slug': slug.current,
-                _type
-              }
-          },
-      image {
-          '':asset-> {
-              'altText':altText,
-              'lqip':metadata.lqip,
-              url
-          }
+        ${pageBuilderData}
       }
     },
-      'buttonLinking':  button.button{
-        'buttonText': text,
-        linkType,
-        externalUrl,
-        newTab,
-        internalLink->{
-            title,
-            'slug': slug.current,
-            _type
-          }
-      }
-      }
-    },
-    ...,
-    'testimonialAll': *[_type == 'testimonials'],
-    'team': *[_type == 'team'] {
-      ...,
-      'imageData': image {
-        '':asset->{
-          'altText':altText,
-          'lqip':metadata.lqip,
-          url
-        }
-      },
-    },
-    'allBlog': *[_type == 'blog'][0...4] {
-      ...,
-      'coverImageData': coverImage {
-        '':asset->{
-          'altText':altText,
-          'lqip':metadata.lqip,
-          url
-        }
-      },
-    },
+  ${otherDocumentSections}
 }
 `
 
@@ -589,13 +496,85 @@ export const servicesBySlugQuery = groq`
 
 export const queryServiceCurrentPage = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"][0]{
-    'base64': metadata.lqip
+
+  'profileSettings': *[_type == 'profile'][0]{
+    contact_information {
+      ...
+    },
+    address {
+      ...
+    },
+    social {
+      ...
+    }
   },
-  'services': *[_type == 'services' && slug.current == $slug][0],
-  ...,
-  'allServices': *[_type == 'services'],
-  ${seoData}
+    'services': *[_type == 'services' && slug.current == $slug ][0]{
+      ...,
+      pageBuilder[]{
+        ...,
+        'imageData': image {
+          asset-> {
+              'altText':altText,
+              'lqip':metadata.lqip,
+              url
+          }
+        },
+        'blockImages': blocks[] {
+          ...,
+          'blockLinking':  button{
+            'buttonText': text,
+            externalUrl,
+            linkType,
+            newTab,
+            internalLink->{
+                title,
+                'slug': slug.current,
+                _type
+              }
+          },
+      'imageData':image {
+          asset-> {
+              'altText':altText,
+              'lqip':metadata.lqip,
+              url
+          }
+      }
+    },
+      'buttonLinking':  button.button{
+        'buttonText': text,
+        linkType,
+        externalUrl,
+        newTab,
+        internalLink->{
+            title,
+            'slug': slug.current,
+            _type
+          }
+      }
+      }
+    },
+    ...,
+    'testimonialAll': *[_type == 'testimonials'],
+    'team': *[_type == 'team'] {
+      ...,
+      'imageData': image {
+        asset->{
+          'altText':altText,
+          'lqip':metadata.lqip,
+          url
+        }
+      },
+    },
+    'allBlog': *[_type == 'blog'][0...4] {
+      ...,
+      'coverImageData': coverImage {
+        asset->{
+          'altText':altText,
+          'lqip':metadata.lqip,
+          url
+        }
+      },
+    },
 }
 `
 

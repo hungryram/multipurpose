@@ -5,7 +5,6 @@ import Styles from "../../styles/templates.module.css"
 
 export default function Hero({
     image,
-    altTag,
     blurData,
     body,
     imageHeight,
@@ -20,39 +19,22 @@ export default function Hero({
 
     return (
         <div className="flex items-center relative z-10">
-            {image ?
-                <>
-                    <Image
-                        src={urlForImage(image).height(1000).width(2000).url()}
-                        alt={altText}
-                        className={`w-full ${Styles.hero}`}
-                        priority
-                        width={2000}
-                        height={1000}
-                        sizes="100vw"
-                        placeholder="blur"
-                        blurDataURL={blurData ?? urlForImage(image).height(10).width(10).quality(1).url()}
-                        style={{
-                            objectFit: 'cover',
-                            height: `${imageHeight}`
-                        }}
-                    />
-                </>
-
-                :
+            {image &&
                 <Image
-                    src="/assets/banner.jpg"
-                    alt="placeholder"
-                    className={`w-full`}
-                    width={2000}
-                    height={1000}
-                    sizes="100vw"
-                    priority
-                    style={{
-                        objectFit: 'cover',
-                        height: `${imageHeight}`
-                    }}
-                />
+                src={image}
+                alt={altText}
+                className={`w-full ${Styles.hero}`}
+                priority
+                width={2000}
+                height={1000}
+                sizes="100vw"
+                placeholder={blurData ? 'blur' : 'empty'}
+                blurDataURL={blurData}
+                style={{
+                    objectFit: 'cover',
+                    height: `${imageHeight}`
+                }}
+            />
             }
             <div className="hero-overlay"></div>
 

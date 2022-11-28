@@ -57,6 +57,7 @@ export default defineType({
                 {type: 'disclosureSection'},
                 {type: 'teamDisplay'},
                 {type: 'blogDisplay'},
+                {type: 'servicesDisplay'},
                 {type: 'gallery'},
                 {type: 'fullWidthTextImage'},
                 {type: 'leadForm'},

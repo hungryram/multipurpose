@@ -25,7 +25,7 @@ import profileDocument from './schemas/documents/profile'
 import pagesDocument from './schemas/documents/pages'
 import appearanceDocument from './schemas/documents/appearance'
 import testimonialsDocument from './schemas/documents/testimonials'
-import pressDocument from './schemas/documents/press'
+// import pressDocument from './schemas/documents/press'
 import teamDocument from './schemas/documents/team'
 import navigationDocument from './schemas/documents/navigation'
 import servicesDocument from './schemas/documents/services'
@@ -66,6 +66,7 @@ import pricingBuilder from './schemas/pagebuilder/pricing'
 import teamSectionBuilder from './schemas/pagebuilder/team-section'
 import blogSectionBuilder from './schemas/pagebuilder/blog-section'
 import iconSectionBuilder from './schemas/pagebuilder/icon-section'
+import servicesSectionBuilder from './schemas/pagebuilder/service-section'
 
 
 // @TODO: update next-sanity/studio to automatically set this when needed
@@ -82,7 +83,7 @@ export default createConfig({
     // If you want more content types, you can add them to this array
     types: [
       // DOCUMENTS
-      settingsType,
+      // settingsType,
       appearanceDocument,
       profileDocument,
       pageSettingsDocument,
@@ -92,7 +93,7 @@ export default createConfig({
       servicesDocument,
       teamDocument,
       testimonialsDocument,
-      pressDocument,
+      // pressDocument,
       postType,
       authorType,
       legalDocument,
@@ -129,6 +130,7 @@ export default createConfig({
       leadFormBuilder,
       textImageBuilder,
       featuredGridBuilder,
+      servicesSectionBuilder
     ],
   },
   plugins: [
@@ -255,6 +257,8 @@ export default createConfig({
             break
           case appearanceDocument.name:
             break
+          case pageSettingsDocument.name:
+            break
           case homeDocument.name:
             url.searchParams.set('slug', (document.slug as Slug).current!)
             break
@@ -288,16 +292,17 @@ export default createConfig({
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === 'global') {
         return prev.filter(
-          (templateItem) => templateItem.templateId !== settingsType.name
+          (templateItem) => templateItem.templateId !== appearanceDocument.name,
         )
       }
 
       return prev
     },
+    
 
     // Removes the "duplicate" action on the "settings" singleton
     actions: (prev, { schemaType }) => {
-      if (schemaType === settingsType.name) {
+      if (schemaType === profileDocument.name) {
         return prev.filter(({ action }) => action !== 'duplicate')
       }
 
