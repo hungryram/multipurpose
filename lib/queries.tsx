@@ -136,12 +136,116 @@ export const homePageQuery = groq`
   'homePage': homePage-> {
     pageBuilder[]{
         ...,
-        ${pageBuilderData}
+'backgroundImage': background.background {    //START Section backgroundSettings Option 
+  image {
+    asset-> {
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  }
+},                                  // END Section backgroundSettings Option
+'imageData': image {                // FIRST PARENT IMAGE DATA
+  asset-> {
+    'altText':altText,
+    'lqip':metadata.lqip,
+    url
+  }
+},                                  // END PARENT IMAGE DATA
+'blockImages': blocks[] {           // START BLOCK IMAGE DATA
+  ...,
+'blockLinking':  button{
+  'buttonText': text,
+  externalUrl,
+  linkType,
+  newTab,
+  internalLink->{
+      title,
+      'slug': slug.current,
+      _type
+    }
+},
+image {
+  asset-> {
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+  }
+}
+},                                    // END BLOCK IMAGE DATA
+'childImage': images[] {              // START GALLERY DATA
+...,
+asset->{
+'altText':altText,
+'lqip':metadata.lqip,
+url
+}
+},                                    // END GALLERY DATA
+'buttonLinking':  button.button{      // START BUTTONSETTINGS DATA
+'buttonText': text,
+linkType,
+externalUrl,
+newTab,
+internalLink->{
+    title,
+    'slug': slug.current,
+    _type
+  }
+}           
     }
     }
   },
-  ${otherDocumentSections},
-  ${seoData}
+'profileSettings': *[_type == 'profile'][0],
+'services': *[_type == 'services'] {
+  ...,
+  'imageData': headerImage {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'team': *[_type == 'team'] {
+  ...,
+  'imageData': image {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'allBlog': *[_type == 'blog'][0...4] {
+  ...,
+  'coverImageData': coverImage {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+},
+'testimonialAll': *[_type == 'testimonials'],
+'appearances': *[_type == 'appearances'][0]{
+  'favicon': branding.favicon,
+  'themeColor': mainColors.primaryColor.hex,
+  'defaultImage': header.defaultHeaderImage
+},
+'sanityImages': *[_type == "sanity.imageAsset"][0]{
+  'base64': metadata.lqip
+},
+'profileSettings': *[_type == 'profile'][0]{
+  company_name,
+  seo {
+    ...
+  }
+},
+'appearances': *[_type == 'appearances'][0]{
+  'favicon': branding.favicon,
+  'themeColor': mainColors.primaryColor.hex,
+  'defaultImage': header.defaultHeaderImage
+},
 }
 `
 
