@@ -74,7 +74,7 @@ internalLink->{
 `
 
 const otherDocumentSections = groq`
-'profileSettings': *[_type == 'profile'][0],
+'profile': *[_type == 'profile'][0],
 'services': *[_type == 'services'] {
   ...,
   'imageData': headerImage {
@@ -106,17 +106,9 @@ const otherDocumentSections = groq`
   },
 },
 'testimonialAll': *[_type == 'testimonials'],
-'appearances': *[_type == 'appearances'][0]{
-  'favicon': branding.favicon,
-  'themeColor': mainColors.primaryColor.hex,
-  'defaultImage': header.defaultHeaderImage
-},
 `
 
 const seoData = groq`
-'sanityImages': *[_type == "sanity.imageAsset"][0]{
-  'base64': metadata.lqip
-},
 'profileSettings': *[_type == 'profile'][0]{
   company_name,
   seo {
@@ -141,6 +133,7 @@ export const homePageQuery = groq`
     }
   },
 ${otherDocumentSections}
+${seoData}
 }
 `
 
