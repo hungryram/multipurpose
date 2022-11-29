@@ -191,8 +191,10 @@ export const pageQuery = groq`
     pageBuilder[]{
         ...,
         ${pageBuilderData}
+    }
     },
     ${otherDocumentSections}
+
 }
 `
 
