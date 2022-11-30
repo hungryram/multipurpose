@@ -120,7 +120,6 @@ export default function Navbar({
                                             className={`${desktopMenuParentItems}`}
                                             onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
                                             onMouseLeave={() => setDropdownActive(null)}
-                                            role="none"
                                         >
                                             <Link
                                                 href="#"
@@ -141,7 +140,7 @@ export default function Navbar({
 
                                                     return (
                                                         <>
-                                                            <li className="whitespace-nowrap text-black" key={sub._key} role="none">
+                                                            <li className="whitespace-nowrap text-black" key={sub._key}>
                                                                 <Link
                                                                     href={subMenuLinks ?? '/'}
                                                                     target={sub.newTab && '_blank'}
@@ -162,7 +161,7 @@ export default function Navbar({
                                 else {
                                     return (
                                         <>
-                                            <li className={`relative inline-block mx-4`} key={link._key} role="none">
+                                            <li className={`relative inline-block mx-4`} key={link._key}>
                                                 <Link
                                                     href={menuLinks ?? '/'}
                                                     target={link.newTab && '_blank'}
@@ -177,7 +176,7 @@ export default function Navbar({
                                 }
                             })}
                             {ctaLinking &&
-                                <li className={desktopMenuParentItems} key="ctaButtonheadernavigation" role="none">
+                                <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
                                     <Link href={ctaLinking} className={Styles.navbarCta} role="menuitem">
                                         {ctaLink.text}
                                     </Link>
@@ -257,7 +256,6 @@ export default function Navbar({
                                                 <li
                                                     key={link._key}
                                                     onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
-                                                    role="none"
                                                 >
                                                     <Link
                                                         href="#"
@@ -278,7 +276,7 @@ export default function Navbar({
                                                             const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
                                                             return (
                                                                 <>
-                                                                    <li key={sub._key} role="none">
+                                                                    <li key={sub._key}>
                                                                         <Link
                                                                             href={subMenuLinks ?? '/'}
                                                                             target={sub?.newTab && "_blank"}
@@ -298,7 +296,7 @@ export default function Navbar({
                                     }
                                     else {
                                         return (
-                                            <li key={link._key} onClick={() => setOpenMobileNav(false)} role="none">
+                                            <li key={link._key} onClick={() => setOpenMobileNav(false)}>
                                                 <Link
                                                     href={mobileMenuLinks ?? '/'}
                                                     className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
