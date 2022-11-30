@@ -59,7 +59,6 @@ export default function Navbar({
         <>
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
-                aria-orientation="vertical"
             >
                 {announcementText &&
                     <AnnouncementBar
