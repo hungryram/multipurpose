@@ -70,7 +70,7 @@ import servicesSectionBuilder from './schemas/pagebuilder/service-section'
 
 
 // @TODO: update next-sanity/studio to automatically set this when needed
-const basePath = '/studio'
+const basePath = '/admin'
 
 export default createConfig({
   basePath,
