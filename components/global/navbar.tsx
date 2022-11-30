@@ -74,10 +74,10 @@ export default function Navbar({
                         color: `${topHeaderText}`
                     }}>
                         <div className="container">
-                            <div className="text-right">
-                                {phone_number && <a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a>}
-                                {office && <a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a>}
-                                {email && <a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a>}
+                            <div className="text-right text-sm">
+                                {phone_number && <a href={`tel:${phone_number}`} className="mx-2 inline">Direct: <span className="font-thin">{phone_number}</span></a>}
+                                {office && <a href={`tel:${office}`} className="mx-2 inline">Office: <span className="font-thin">{office}</span></a>}
+                                {email && <a href={`mailto:${email}`} className="mx-2 inline">Email: <span className="font-thin">{email}</span></a>}
                             </div>
                         </div>
                     </div>
@@ -181,23 +181,25 @@ export default function Navbar({
             <nav>
                 <div>
                     {announcementText &&
-                    <AnnouncementBar
-                        classes={'justify-center bg-indigo-600 lg:hidden'}
-                        announcement={announcementText}
-                        announcementLinkText={announcementLinkText}
-                        announcementLink={announcementLink}
-                    />
+                        <AnnouncementBar
+                            classes={'justify-center bg-indigo-600 lg:hidden'}
+                            announcement={announcementText}
+                            announcementLinkText={announcementLinkText}
+                            announcementLink={announcementLink}
+                        />
                     }
                     {enableTopHeader &&
-                        <div className="p-2 justify-center bg-indigo-600 lg:hidden" style={{
+                        <div className="lg:hidden" style={{
                             backgroundColor: `${topHeaderBackground}`,
                             color: `${topHeaderText}`
                         }}>
                             <div className="container">
-                                <div className="text-right">
-                                    {phone_number && <a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a>}
-                                    {office && <a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a>}
-                                    {email && <a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a>}
+                                <div className="text-right text-sm">
+                                    <ul>
+                                        {phone_number && <li className="inline"><a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a></li>}
+                                        {office && <li className="inline"><a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a></li>}
+                                        {email && <li className="inline"><a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a></li>}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +225,7 @@ export default function Navbar({
                                     id="toggle"
                                     className="cursor-pointer flex justify-end z-50"
                                     onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
-                                    // aria-expanded={openMobileNav ? 'true' : 'false'}
+                                // aria-expanded={openMobileNav ? 'true' : 'false'}
                                 >
                                     <HamburgerMenu
                                         isOpen={openMobileNav}
