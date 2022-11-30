@@ -57,7 +57,6 @@ export default function Navbar({
 
     return (
         <>
-
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
                 role="navigation"
