@@ -8,7 +8,7 @@ import PostBody from '../../components/templates/blog/post-body'
 import PostHeader from '../../components/templates/blog/post-header'
 import PostTitle from '../../components/templates/blog/post-title'
 import { postQuery, postSlugsQuery } from '../../lib/queries'
-import { usePreviewSubscription } from '../../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 import { PostProps } from '../../types'
 import Seo from '../../components/global/seo'
@@ -35,9 +35,12 @@ export default function Post(props: Props) {
   }
   return (
     <Layout preview={preview}>
-      <Header
+      <Header 
+        image={urlForImage(post?.coverImage).url()}
+        blurData={post?.lqip}
+        altText={post?.altText}
       />
-      <Seo
+      <Seo 
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
         image={post?.coverImage ?? post?.profileSettings?.seo?.defaultImageBanner}
@@ -49,16 +52,24 @@ export default function Post(props: Props) {
       />
       <div className="section">
         <div className="container">
-          <article>
-            <PostHeader
-              title={post?.title}
-              coverImage={post?.coverImage}
-              date={post?.date}
-              author={post?.author}
-            />
-            <PostBody content={post.content} />
-          </article>
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {router.isFallback ? (
+            <PostTitle>Loading…</PostTitle>
+          ) : (
+            <>
+              <article>
+                <PostHeader
+                  title={post?.title}
+                  coverImage={post?.coverImage}
+                  date={post?.date}
+                  author={post?.author}
+                  altText={post?.altText}
+                  blurData={post?.lqip}
+                />
+                <PostBody content={post.content} />
+              </article>
+              {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            </>
+          )}
         </div>
       </div>
     </Layout>
