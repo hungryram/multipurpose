@@ -258,8 +258,6 @@ url
 
 export const postQuery = groq`
 {
-  ${otherDocumentSections}
-  ${seoData}
   "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {
     'coverImageData':coverImage {
       asset-> {
@@ -282,7 +280,8 @@ export const postQuery = groq`
     },
     ${postFields}
   },
-
+  ${otherDocumentSections}
+  ${seoData}
 }
 `
 
