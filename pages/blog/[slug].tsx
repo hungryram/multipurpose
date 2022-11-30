@@ -36,12 +36,16 @@ export default function Post(props: Props) {
   console.log(post?.coverImageData?.asset?.url)
   return (
     <Layout preview={preview}>
-      <Header 
+      <Header
+        image={post?.coverImageData?.asset?.url}
+        blurData={post?.coverImageData?.asset?.lqip}
+
       />
       <Seo 
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
         image={post?.coverImageData?.asset?.url}
+        altText={post?.coverImageData?.asset?.altText}
         company_name={profileSettings?.company_name}
         twitterHandle={profileSettings?.seo?.twitterHandle}
         ogType="article"
