@@ -1,16 +1,17 @@
 import Head from "next/head";
 import { urlForImage } from "../../lib/sanity";
 
-export default function Seo({ 
-    title, 
-    description, 
-    image, 
+export default function Seo({
+    title,
+    description,
+    image,
     company_name,
     twitterHandle,
     favicon,
     themeColor,
-    ogType = "website", 
-    robotIndex = "index,follow" 
+    altText,
+    ogType = "website",
+    robotIndex = "index,follow"
 }: any) {
 
     const defaultTitle = company_name
@@ -28,21 +29,23 @@ export default function Seo({
             <meta name="theme-color" content={themeColor} />
 
             {favicon &&
-            <link rel="shortcut icon" href={urlForImage(favicon).url()} />
+                <link rel="shortcut icon" href={urlForImage(favicon).url()} />
             }
-            
+
             {image &&
-            <meta
-                key="og_image"
-                property="og:image"
-                content={urlForImage(image).width(1200).height(630).fit('crop').url()}
-            />
+                <meta
+                    key="og_image"
+                    property="og:image"
+                    content={image}
+                />
             }
-            <meta
-                key="og_image:alt"
-                property="og:image:alt"
-                content={title}
-            />
+            {altText &&
+                <meta
+                    key="og_image:alt"
+                    property="og:image:alt"
+                    content={altText}
+                />
+            }
             <meta key="og_image:width" property="og:image:width" content="1200" />
             <meta key="og_image:height" property="og:image:height" content="630" />
             <meta

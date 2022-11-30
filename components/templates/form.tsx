@@ -5,7 +5,7 @@ import { FaSpinner } from 'react-icons/fa'
 
 import Styles from "../../styles/util.module.css"
 
-export default function Form() {
+export default function Form({ emailAlerts, sendFrom, emailCc, emailBcc }: any) {
 
     const [ sending, setSending ] = useState('Idle')
 
@@ -18,7 +18,11 @@ export default function Form() {
           name: e.target.fullName.value,
           email: e.target.emailAddress.value,
           phone: e.target.phone.value,
-          message: e.target.about.value
+          message: e.target.message.value,
+          emailAlerts: e.target.emailAlerts.value,
+          sendFrom: e.target.sendFrom.value,
+          emailBcc: e.target.emailBcc.value,
+          emailCc: e.target.emailCc.value,
         }
         const JSONdata = JSON.stringify(data)
         const endpoint = '/api/postmark-contact'
@@ -47,6 +51,10 @@ export default function Form() {
             <form onSubmit={handleSubmit}>    
                 <input type="text" name="name" id="name" className="h-0 w-0 opacity-0" />   
                 <input type="email" name="email" id="email" className="h-0 w-0 opacity-0" />   
+                <input type="hidden" name="emailAlerts" value={emailAlerts} id="emailAlerts" />   
+                <input type="hidden" name="sendFrom" value={sendFrom} id="sendFrom"/>
+                <input type="hidden" name="emailBcc" value={emailBcc} id="emailBcc"/>
+                <input type="hidden" name="emailCc" value={emailCc} id="emailCc"/>
                 <div>
                     <div className="py-5">
                         <div>
@@ -90,7 +98,7 @@ export default function Form() {
                             <div>
                                 <textarea
                                     id="about"
-                                    name="about"
+                                    name="message"
                                     rows={4}
                                     className="mt-3 w-full border bg-transparent p-2 border-slate-300"
                                     placeholder="Message"

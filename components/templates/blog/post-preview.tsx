@@ -28,7 +28,7 @@ export default function PostPreview({
             blurData={blurData}
           />
           :
-          <div className="pt-[50%] relative bg-slate-400 flex justify-center items-center">
+          <div className="pt-[50%] relative bg-secondary flex justify-center items-center">
             <div className="absolute top-1/2">
               <FiCameraOff className="text-white text-6xl"/>
             </div>

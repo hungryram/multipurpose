@@ -6,6 +6,7 @@ import Image from "next/image"
 import { urlForImage } from "../../lib/sanity"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
+import TeamCard from "../../components/templates/team-card"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -29,52 +30,37 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function TeamIndex({ teamQuery }) {
-
     return (
         <Layout>
             <Seo
-                title={teamQuery?.services?.seo?.title_tag || 'Team | ' + teamQuery?.profileSettings?.company_name}
+                title={teamQuery?.services?.seo?.title_tag ?? 'Team | ' + teamQuery?.profileSettings?.company_name}
                 description={teamQuery?.services?.seo?.meta_description}
-                image={teamQuery?.services?.headerImage ?? teamQuery?.profileSettings?.seo?.defaultImageBanner}
+                image={teamQuery?.pageSettings?.team?.headerImageData?.asset?.url ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={teamQuery?.profileSettings?.company_name}
                 twitterHandle={teamQuery?.profileSettings?.seo?.twitterHandle}
                 favicon={teamQuery?.appearances?.favicon}
                 themeColor={teamQuery?.appearances?.themeColor}
+                altText={teamQuery?.pageSettings?.team?.headerImageData?.asset?.altText ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
             />
             <Header
-                title={teamQuery?.pageSettings?.legal?.title || 'Team'}
-                image={teamQuery?.pageSettings?.legal?.headerImage ?? teamQuery.header.image}
-                blurData={teamQuery?.pageSettings?.legal?.headerImageData?.lqip}
-                altText={teamQuery?.pageSettings?.legal?.headerImageData?.altText}
+                title={teamQuery?.pageSettings?.team?.title || 'Team'}
+                image={teamQuery?.pageSettings?.team?.headerImageData?.asset?.url ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                blurData={teamQuery?.pageSettings?.team?.headerImageData?.asset?.lqip ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.lqip}
+                altText={teamQuery?.pageSettings?.team?.headerImageData?.asset?.altText ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
             />
             <div className="section">
                 <div className="container">
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
                         {teamQuery.team.map((node) => {
                             return (
-                                <div className="my-2" key={node._id}>
-                                    <Link href={`team/${node.slug}`}>
-                                        <div>
-                                            {node?.image &&
-                                                <Image
-                                                    src={urlForImage(node.image).url()}
-                                                    width={600}
-                                                    height={0}
-                                                    alt={node.name}
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '400px',
-                                                        objectFit: 'cover'
-                                                    }}
-                                                />
-                                            }
-                                        </div>
-                                        <div className="bg-gray-100 p-4 text-center">
-                                            <h3 className="font-bold text-lg">{node.name}</h3>
-                                            <p>{node.position}</p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                <TeamCard 
+                                    name={node.name}
+                                    position={node?.position}
+                                    image={node?.imageData?.asset?.url}
+                                    blurData={node?.imageData?.asset?.lqip}
+                                    altText={node?.imageData?.asset?.altText}
+                                    slug={node?.slug}
+                                />
                             )
                         })}
                     </div>

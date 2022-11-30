@@ -39,6 +39,8 @@ export default function Index({
           twitterHandle={homeSettings?.profileSettings?.seo?.twitterHandle}
           favicon={homeSettings?.appearances?.favicon}
           themeColor={homeSettings?.appearances?.themeColor}
+          image={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+          altText={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
         />
         {homeSettings?.homeAppearance?.homePage?.pageBuilder?.map((section) => {
 
@@ -75,7 +77,7 @@ export default function Index({
                 altText={section?.imageData?.asset?.altText}
                 textStyle={section?.textColor?.textColor?.hex}
                 image={section?.imageData?.asset?.url}
-                blurData={section?.imageData?.lqip}
+                blurData={section?.imageData?.asset?.lqip}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
@@ -96,7 +98,7 @@ export default function Index({
                 heading={section?.heading}
                 content={section?.content}
                 image={section?.imageData?.asset?.url}
-                blurData={section?.imageData?.lqip}
+                blurData={section?.imageData?.asset?.lqip}
                 buttonLink={section?.button}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
@@ -239,7 +241,7 @@ export default function Index({
               <Testimonials
                 key={section._key}
                 heading={section?.heading}
-                testimonial={homeSettings.testimonialAll}
+                testimonial={homeSettings.allTestimonial}
                 content={section?.content}
                 carousel={section?.carousel}
                 textLeft={section?.textLeft}
@@ -274,6 +276,11 @@ export default function Index({
                 paddingSize={
                   section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
                 }
+                // FORMS
+                emailAlerts={homeSettings.profileSettings?.settings?.emailAlerts}
+                sendFrom={homeSettings.profileSettings?.settings?.sendFrom}
+                emailBcc={homeSettings.profileSettings?.settings?.emailBcc}
+                emailCc={homeSettings.profileSettings?.settings?.emailCc}
               />
             )
           }
@@ -303,7 +310,7 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                team={homeSettings.team}
+                team={homeSettings.allTeam}
                 carousel={section?.carousel}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
@@ -390,6 +397,11 @@ export default function Index({
                 tiktok={homeSettings.profileSettings?.social?.tiktok}
                 zillow={homeSettings.profileSettings?.social?.zillow}
                 size={homeSettings.profileSettings?.social?.size}
+                // FORMS
+                emailAlerts={homeSettings.profileSettings?.settings?.emailAlerts}
+                sendFrom={homeSettings.profileSettings?.settings?.sendFrom}
+                emailBcc={homeSettings.profileSettings?.settings?.emailBcc}
+                emailCc={homeSettings.profileSettings?.settings?.emailCc}
               />
             )
           }
@@ -400,7 +412,7 @@ export default function Index({
                 key={section._key}
                 heading={section?.heading}
                 content={section?.content}
-                services={homeSettings.services}
+                services={homeSettings.allServices}
                 carousel={section?.carousel}
                 buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}

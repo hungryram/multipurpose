@@ -14,6 +14,7 @@ import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { TeamProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
+import TeamCard from '../../components/templates/team-card'
 
 
 
@@ -39,41 +40,40 @@ export default function ServicePages(props: Props) {
     if (!router.isFallback && !slug) {
         return <ErrorPage statusCode={404} />
     }
-
     return (
         <Layout preview={preview}>
             <Seo
-                title={page?.team?.seo?.title_tag}
+                title={page?.team?.seo?.title_tag ?? page?.team?.name + ' | ' + page?.profileSettings?.company_name}
                 description={page?.team?.seo?.meta_description}
-                image={page?.team?.headerImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                image={page.team?.imageData?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
-            />
+                altText={page.team?.imageData?.asset?.altText ?? page.team?.name}
+                />
             <Header
                 title={page?.team?.name}
-                image={page?.team?.headerImage ?? page?.appearances?.defaultImage}
+                image={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                altText={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+                blurData={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.lqip}
             />
             <div className="section">
                 <div className="container">
-                    <div className="md:flex md:space-x-10 space-y-10">
+                    <div className="md:flex md:space-x-10 md:space-y-0 space-y-10">
                         <div className="md:w-1/3">
-                            {page?.team?.image &&
-                                <Image
-                                    src={urlForImage(page?.team?.image).url()}
-                                    width={500}
-                                    height={0}
-                                    alt={page?.team?.name}
-                                    style={{
-                                        width: '100%',
-                                        height: '500px',
-                                        objectFit: 'cover'
-                                    }}
-                                />
-                            }
+                            <TeamCard 
+                                name={page.team?.name}
+                                position={page.team?.position}
+                                image={page.team?.imageData?.asset?.url}
+                                blurData={page.team?.imageData?.asset?.lqip}
+                                altText={page.team?.imageData?.asset?.altText}
+                                phone={page.team?.contactInformation?.phoneNumber}
+                                email={page.team?.contactInformation?.email}
+
+                            />
                         </div>
-                        <div className="md:w-2/3">
+                        <div className="md:w-2/3 content">
                             {page.team?.about &&
                                 <ContentEditor
                                     content={page?.team?.about}

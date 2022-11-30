@@ -7,7 +7,7 @@ import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 
 import { legalSlugsQuery, queryLegalCurrentPage } from '../../lib/queries'
-import { usePreviewSubscription } from '../../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { LegalProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
@@ -36,21 +36,25 @@ export default function LegalPages(props: Props) {
     if (!router.isFallback && !slug) {
         return <ErrorPage statusCode={404} />
     }
+
     return (
         <Layout preview={preview}>
             <Seo
-                title={page?.seo?.title_tag}
+                title={page?.seo?.title_tag ?? page?.legal?.title + ' | ' + page.profileSettings?.company_name}
                 description={page?.seo?.meta_description}
-                image={page?.coverImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                image={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
-                ogType="website"
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
+                altText={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+
             />
             <Header
                 title={page?.legal?.title}
-                image={page?.legal?.headerImage ?? page?.header?.image}
+                image={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                altText={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+
             />
             <div className="section">
                 <div className="container content">

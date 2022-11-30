@@ -30,20 +30,20 @@ export default function LegalIndex({ legalQuery }) {
     return (
         <Layout>
             <Seo
-                title={legalQuery?.pageSettings?.legal?.seo?.title_tag}
+                title={legalQuery?.pageSettings?.legal?.seo?.title_tag ?? legalQuery?.pageSettings?.legal?.title + ' | ' + legalQuery.profileSettings?.company_name}
                 description={legalQuery?.pageSettings?.legal?.seo?.meta_description}
-                image={legalQuery?.pageSettings?.legal?.headerImage ?? legalQuery.header.image}
+                image={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.url ?? legalQuery.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={legalQuery?.profileSettings?.company_name}
                 twitterHandle={legalQuery?.profileSettings?.seo?.twitterHandle}
-                ogType="website"
                 favicon={legalQuery?.appearances?.favicon}
                 themeColor={legalQuery?.appearances?.themeColor}
+                altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText}
             />
             <Header
                 title={legalQuery?.pageSettings?.legal?.title || 'Website Policies'}
-                image={legalQuery?.pageSettings?.legal?.headerImage ?? legalQuery.header.image}
-                blurData={legalQuery?.pageSettings?.legal?.headerImageData?.lqip}
-                altText={legalQuery?.pageSettings?.legal?.headerImageData?.altText}
+                image={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.url ?? legalQuery.header.image}
+                blurData={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.lqip}
+                altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText}
             />
             <div className="section">
                 <div className="container">

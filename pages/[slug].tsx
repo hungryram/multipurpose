@@ -21,7 +21,7 @@ import IconSection from '../components/templates/icon-section'
 import ServiceSection from '../components/templates/service-section'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
-import { usePreviewSubscription } from '../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import { PageProps } from '../types'
@@ -51,25 +51,26 @@ export default function Pages(props: Props) {
         return <ErrorPage statusCode={404} />
     }
 
-    const defaultText = '#222'
-    const defaultHeader = '#222'
+    const defaultText = 'var(--website-text-color)'
+    const defaultHeader = 'var(--website-text-color)'
     return (
         <Layout preview={preview}>
             <Seo
-                title={page?.pages?.seo?.title_tag}
+                title={page?.pages?.seo?.title_tag ?? page?.pages?.title + ' | ' + page?.profileSettings?.company_name}
                 description={page?.pages?.seo?.meta_description}
-                image={page?.pages?.headerImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                image={page?.pages?.headerImageData?.asset?.url ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
+                altText={page?.pages?.headerImageData?.asset?.altText ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
             />
             <Header
                 title={page?.pages?.title}
-                image={page?.pages?.headerImage}
+                image={page?.pages?.headerImageData?.asset?.url ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 hideHeader={page?.pages?.headerImage?.hideHeader}
-                altText={page?.pages?.headerImageData?.altText}
-                blurData={page?.pages?.headerImageData?.lqip}
+                altText={page?.pages?.headerImageData?.asset?.altText ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+                blurData={page?.pages?.headerImageData?.asset?.lqip ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.lqip}
             />
             {page?.pages?.pageBuilder?.map((section) => {
 
@@ -106,7 +107,7 @@ export default function Pages(props: Props) {
                             altText={section?.imageData?.asset?.altText}
                             textStyle={section?.textColor?.textColor?.hex}
                             image={section?.imageData?.asset?.url}
-                            blurData={section?.imageData?.lqip}
+                            blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
@@ -127,7 +128,7 @@ export default function Pages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.imageData?.asset?.url}
-                            blurData={section?.imageData?.lqip}
+                            blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.button}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
@@ -270,7 +271,7 @@ export default function Pages(props: Props) {
                         <Testimonials
                             key={section._key}
                             heading={section?.heading}
-                            testimonial={page.testimonialAll}
+                            testimonial={page.allTestimonial}
                             content={section?.content}
                             carousel={section?.carousel}
                             textLeft={section?.textLeft}
@@ -305,6 +306,11 @@ export default function Pages(props: Props) {
                             paddingSize={
                                 section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
                             }
+                            // FORMS
+                            emailAlerts={page.profileSettings?.settings?.emailAlerts}
+                            sendFrom={page.profileSettings?.settings?.sendFrom}
+                            emailBcc={page.profileSettings?.settings?.emailBcc}
+                            emailCc={page.profileSettings?.settings?.emailCc}
                         />
                     )
                 }
@@ -334,7 +340,7 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            team={page.team}
+                            team={page.allTeam}
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
@@ -409,7 +415,7 @@ export default function Pages(props: Props) {
                             address={page.profileSettings?.address?.address}
                             city={page.profileSettings?.address?.city}
                             state={page.profileSettings?.address?.state}
-                            zipCode={page.profileSettings?.address?.zip_code}
+                            zip_code={page.profileSettings?.address?.zip_code}
                             facebook={page.profileSettings?.social?.facebook}
                             youtube={page.profileSettings?.social?.youtube}
                             instagram={page.profileSettings?.social?.instagram}
@@ -421,6 +427,11 @@ export default function Pages(props: Props) {
                             tiktok={page.profileSettings?.social?.tiktok}
                             zillow={page.profileSettings?.social?.zillow}
                             size={page.profileSettings?.social?.size}
+                            // FORMS
+                            emailAlerts={page.profileSettings?.settings?.emailAlerts}
+                            sendFrom={page.profileSettings?.settings?.sendFrom}
+                            emailBcc={page.profileSettings?.settings?.emailBcc}
+                            emailCc={page.profileSettings?.settings?.emailCc}
                         />
                     )
                 }
@@ -431,7 +442,7 @@ export default function Pages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            services={page.services}
+                            services={page.allServices}
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}

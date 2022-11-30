@@ -1,9 +1,10 @@
 import { queryServices } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
-import Link from "next/link"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
+import { urlForImage } from "../../lib/sanity"
+import ServiceCard from "../../components/templates/service-card"
 
 export async function getStaticProps({ preview = false }) {
 
@@ -32,7 +33,8 @@ export default function ServiceIndex({ serviceQuery }) {
             <Seo
                 title={serviceQuery?.pageSettings?.services?.seo?.title_tag || 'Services | ' + serviceQuery?.profileSettings?.company_name}
                 description={serviceQuery?.pageSettings?.services?.seo?.meta_description}
-                image={serviceQuery?.pageSettings?.services?.headerImage ?? serviceQuery.header.image}
+                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? urlForImage(serviceQuery?.profileSettings?.seo?.defaultImageBanner).url()}
+                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText}
                 company_name={serviceQuery?.profileSettings?.company_name}
                 twitterHandle={serviceQuery?.profileSettings?.seo?.twitterHandle}
                 ogType="website"
@@ -41,26 +43,27 @@ export default function ServiceIndex({ serviceQuery }) {
             />
             <Header
                 title={serviceQuery?.pageSettings?.services?.title || 'Services'}
-                image={serviceQuery?.pageSettings?.services?.headerImage ?? serviceQuery?.header?.defaultHeaderImage}
-                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.lqip}
-                altText={serviceQuery?.pageSettings?.services?.headerImageData?.altText}
+                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? urlForImage(serviceQuery?.profileSettings?.seo?.defaultImageBanner).url()}
+                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.lqip}
+                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText}
             />
             <div className="section">
                 <div className="container">
-                    <div className="bg-slate-200 flex justify-center">
-                        <div className="p-10">
-                            <ul>
-                                {serviceQuery.services?.map((node) => {
-                                    return (
-                                        <>
-                                            <li className="bg-white my-2" key={node._id}>
-                                                <Link href={`services/${node.slug}`} className="flex items-center px-20 py-4 hover:bg-orange-600 hover:text-white transition-all ease-linear font-bold"> {node.title}</Link>
-                                            </li>
-                                        </>
-                                    )
-                                })}
-                            </ul>
-                        </div>
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+                        {serviceQuery.services?.map((node) => {
+                            return (
+                                <>
+                                    <ServiceCard
+                                        key={node._id}
+                                        title={node.title}
+                                        slug={node.slug}
+                                        headerImage={node.headerImageData?.asset?.url}
+                                        blurData={node.headerImageData?.asset?.lqip}
+                                        altText={node.headerImageData?.asset?.altText}
+                                    />
+                                </>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

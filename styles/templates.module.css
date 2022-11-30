@@ -23,8 +23,7 @@
 /* PRICE */
 
 .priceContainer {
-    @apply block shadow-lg bg-white h-full;
-    border-radius: var(--button-radius);
+    @apply block shadow-lg bg-white h-full rounded-md;
 }
 
 .priceCta {

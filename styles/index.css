@@ -25,6 +25,10 @@ body {
   color: var(--primary-accent)
 }
 
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
 /* PAGINATION */
 span.swiper-pagination-bullet {
   opacity: .7;

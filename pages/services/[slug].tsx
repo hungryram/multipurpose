@@ -55,25 +55,25 @@ export default function ServicePages(props: Props) {
         return <ErrorPage statusCode={404} />
     }
 
-    const defaultText = '#222'
-    const defaultHeader = '#222'
-
+    const defaultText = 'var(--website-text-color)'
+    const defaultHeader = 'var(--website-text-color)'
     return (
         <Layout preview={preview}>
             <Seo
                 title={page?.services?.seo?.title_tag}
                 description={page?.services?.seo?.meta_description}
-                image={page?.services?.headerImage ?? page?.profileSettings?.seo?.defaultImageBanner}
+                image={page?.services?.headerImageData?.asset?.url ?? urlForImage(page?.profileSettings?.seo?.defaultImageBanner).url()}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
+                altText={page?.services?.headerImageData?.asset?.altText}
             />
             <Header
                 title={page?.services?.title}
-                image={page?.services?.headerImage ?? page?.appearances?.defaultImage}
+                image={page?.services?.headerImageData?.asset?.url ?? urlForImage(page?.profileSettings?.seo?.defaultImageBanner).url()}
                 hideHeader={page?.services?.headerImage?.hideHeader}
-
+                blurData={page?.services?.headerImageData?.asset?.lqip}
             />
 
             {page?.services?.pageBuilder?.map((section) => {
@@ -107,10 +107,10 @@ export default function ServicePages(props: Props) {
                         <Hero
                             key={section._key}
                             body={section?.content}
-                            altText={section?.altText}
+                            altText={section?.imageData?.asset?.altText}
                             textStyle={section?.textColor?.textColor?.hex}
-                            image={section.imageData?.url}
-                            blurData={section?.lqip}
+                            image={section?.imageData?.asset?.url}
+                            blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
@@ -132,7 +132,7 @@ export default function ServicePages(props: Props) {
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.imageData?.asset?.url}
-                            blurData={section.imageData?.asset?.lqip}
+                            blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.button}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonBackground={section?.button?.buttonBackground?.hex}
@@ -310,6 +310,11 @@ export default function ServicePages(props: Props) {
                             paddingSize={
                                 section?.paddingSizing === 'large' ? 'md:py-32 py-20' : 'py-0'
                             }
+                            // FORMS
+                            emailAlerts={page.profileSettings?.settings?.emailAlerts}
+                            sendFrom={page.profileSettings?.settings?.sendFrom}
+                            emailBcc={page.profileSettings?.settings?.emailBcc}
+                            emailCc={page.profileSettings?.settings?.emailCc}
                         />
                     )
                 }
@@ -339,7 +344,7 @@ export default function ServicePages(props: Props) {
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            team={page.team}
+                            team={page.allTeam}
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
@@ -391,13 +396,45 @@ export default function ServicePages(props: Props) {
                     )
                 }
 
+                if (section._type === 'contactPage') {
+                    return (
+                        <ContactPage
+                            heading={section.heading}
+                            content={section.text}
+                            key={section._key}
+                            email={page.profileSettings?.contact_information?.email}
+                            phone_number={page.profileSettings?.contact_information?.phone_number}
+                            address={page.profileSettings?.address?.address}
+                            city={page.profileSettings?.address?.city}
+                            state={page.profileSettings?.address?.state}
+                            zipCode={page.profileSettings?.address?.zip_code}
+                            facebook={page.profileSettings?.social?.facebook}
+                            youtube={page.profileSettings?.social?.youtube}
+                            instagram={page.profileSettings?.social?.instagram}
+                            twitter={page.profileSettings?.social?.twitter}
+                            reddit={page.profileSettings?.social?.reddit}
+                            linkedin={page.profileSettings?.social?.linkedin}
+                            yelp={page.profileSettings?.social?.yelp}
+                            pinterest={page.profileSettings?.social?.pinterest}
+                            tiktok={page.profileSettings?.social?.tiktok}
+                            zillow={page.profileSettings?.social?.zillow}
+                            size={page.profileSettings?.social?.size}
+                            // FORMS
+                            emailAlerts={page.profileSettings?.settings?.emailAlerts}
+                            sendFrom={page.profileSettings?.settings?.sendFrom}
+                            emailBcc={page.profileSettings?.settings?.emailBcc}
+                            emailCc={page.profileSettings?.settings?.emailCc}
+                        />
+                    )
+                }
+
                 if (section._type === 'servicesDisplay') {
                     return (
                         <ServiceSection
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            services={page.services}
+                            services={page.allServices}
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}

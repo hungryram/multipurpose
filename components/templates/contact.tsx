@@ -1,6 +1,5 @@
 import Wrapper from "../util/wrapper";
 import ContactBlock from "./contact-block";
-import ContentEditor from "./contenteditor";
 import Form from "./form";
 import Social from "./social";
 
@@ -27,7 +26,13 @@ export default function ContactPage({
     pinterest,
     tiktok,
     zillow,
-    size }: any) {
+    size,
+    emailAlerts,
+    sendFrom,
+    emailBcc,
+    emailCc
+
+}: any) {
     return (
         <Wrapper>
             <div className={`md:flex md:space-x-20 md:space-y-0 space-y-10 ${Styles.contactPage}`}>
@@ -71,7 +76,12 @@ export default function ContactPage({
                         textAlign="false"
                         fullWidth="false"
                     />
-                    <Form />
+                    <Form 
+                        emailAlerts={emailAlerts}
+                        sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
+                        emailBcc={emailBcc}
+                        emailCc={emailCc}
+                    />
                 </div>
             </div>
         </Wrapper>

@@ -14,6 +14,16 @@ const postFields = groq`
   }
 `
 
+const headerImageData = groq`
+'headerImageData': headerImage {
+  asset-> {
+    'altText':altText,
+    'lqip':metadata.lqip,
+    url
+  }
+}
+`
+
 const pageBuilderData = groq`
 'backgroundImage': background.background {    //START Section backgroundSettings Option 
   image {
@@ -74,8 +84,7 @@ internalLink->{
 `
 
 const otherDocumentSections = groq`
-'profile': *[_type == 'profile'][0],
-'services': *[_type == 'services'] {
+'allServices': *[_type == 'services'] {
   ...,
   'imageData': headerImage {
     asset->{
@@ -85,7 +94,7 @@ const otherDocumentSections = groq`
     }
   },
 },
-'team': *[_type == 'team'] {
+'allTeam': *[_type == 'team'] {
   ...,
   'imageData': image {
     asset->{
@@ -105,14 +114,20 @@ const otherDocumentSections = groq`
     }
   },
 },
-'testimonialAll': *[_type == 'testimonials'],
+'allTestimonial': *[_type == 'testimonials'],
 `
 
 const seoData = groq`
 'profileSettings': *[_type == 'profile'][0]{
-  company_name,
-  seo {
-    ...
+  ...,
+  'defaultImageData': seo {
+    defaultImageBanner {
+      asset->{
+        'altText':altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    }
   }
 },
 'appearances': *[_type == 'appearances'][0]{
@@ -173,20 +188,14 @@ export const pageQuery = groq`
 {
   'pages':*[_type == 'pages' && slug.current == $slug][0]{
     ...,
-    'headerImageData':headerImage {
-      '':asset-> {
-                altText,
-        'lqip':metadata.lqip,
-        url
-      }
-    },
+    ${headerImageData},
     pageBuilder[]{
         ...,
         ${pageBuilderData}
     }
     },
     ${otherDocumentSections}
-
+    ${seoData}
 }
 `
 
@@ -444,12 +453,6 @@ export const homeSlugsQuery = groq`
 // SERVICE QUERY
 export const queryServices = groq`
 {
-  'profileSettings': *[_type == 'profile'][0]{
-    company_name
-  },
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
     'pageSettings': *[_type == 'pageSetting'][0] {
     services {
     title,
@@ -457,7 +460,7 @@ export const queryServices = groq`
       ...
     },
     'headerImageData':headerImage {
-      '':asset-> {
+      asset-> {
                 altText,
         'lqip':metadata.lqip,
         url
@@ -469,12 +472,10 @@ export const queryServices = groq`
     }
     },
   'services':*[_type == 'services']{
-      name,
-      image,
+      ${headerImageData},
       'slug': slug.current,
       content,
       title,
-      content,
       _id
   },
   ${seoData}
@@ -490,85 +491,17 @@ export const servicesBySlugQuery = groq`
 
 export const queryServiceCurrentPage = groq`
 {
-
-  'profileSettings': *[_type == 'profile'][0]{
-    contact_information {
-      ...
-    },
-    address {
-      ...
-    },
-    social {
-      ...
-    }
-  },
     'services': *[_type == 'services' && slug.current == $slug ][0]{
+      ${headerImageData},
       ...,
       pageBuilder[]{
         ...,
-        'imageData': image {
-          asset-> {
-              'altText':altText,
-              'lqip':metadata.lqip,
-              url
-          }
-        },
-        'blockImages': blocks[] {
-          ...,
-          'blockLinking':  button{
-            'buttonText': text,
-            externalUrl,
-            linkType,
-            newTab,
-            internalLink->{
-                title,
-                'slug': slug.current,
-                _type
-              }
-          },
-      'imageData':image {
-          asset-> {
-              'altText':altText,
-              'lqip':metadata.lqip,
-              url
-          }
-      }
-    },
-      'buttonLinking':  button.button{
-        'buttonText': text,
-        linkType,
-        externalUrl,
-        newTab,
-        internalLink->{
-            title,
-            'slug': slug.current,
-            _type
-          }
-      }
+        ${pageBuilderData}
       }
     },
     ...,
-    'testimonialAll': *[_type == 'testimonials'],
-    'team': *[_type == 'team'] {
-      ...,
-      'imageData': image {
-        asset->{
-          'altText':altText,
-          'lqip':metadata.lqip,
-          url
-        }
-      },
-    },
-    'allBlog': *[_type == 'blog'][0...4] {
-      ...,
-      'coverImageData': coverImage {
-        asset->{
-          'altText':altText,
-          'lqip':metadata.lqip,
-          url
-        }
-      },
-    },
+    ${otherDocumentSections}
+    ${seoData}
 }
 `
 
@@ -579,45 +512,40 @@ export const servicesSlugsQuery = groq`
 // TEAM QUERY
 export const queryTeam = groq`
 {
-  ${seoData}
-  'profileSettings': *[_type == 'profile'][0]{
-    company_name
-  },
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
-    'pageSettings': *[_type == 'pageSetting'][0] {
+  'pageSettings': *[_type == 'pageSetting'][0]{
     team {
-    title,
-    headerImage {
-      ...
-    },
-    'headerImageData':headerImage {
-      '':asset-> {
-                altText,
-        'lqip':metadata.lqip,
-        url
-      }
-    },
-      seo {
-        ...
+      ...,
+      'headerImageData': headerImage {
+        asset-> {
+          altText,
+          'lqip':metadata.lqip,
+          url
+        }
       }
     }
-    },
-  'team':*[_type == 'team']{
-  name,
-    _id,
-  image,
-  'slug': slug.current,
-  about,
-  position,
-  contactInformation {
-    ...
   },
-  social {
-    ...
+  'team':*[_type == 'team']{
+name,
+  _id,
+image,
+'imageData': image {
+  asset-> {
+    altText,
+    'lqip':metadata.lqip,
+    url
   }
+},
+'slug': slug.current,
+about,
+position,
+contactInformation {
+  ...
+},
+social {
+  ...
 }
+},
+${seoData}
 }
 `
 
@@ -629,7 +557,16 @@ export const teamBySlugQuery = groq`
 
 export const queryTeamCurrentPage = groq`
 {
-  'team': *[_type == 'team' && slug.current == $slug][0],
+  'team': *[_type == 'team' && slug.current == $slug][0]{
+    ...,
+    'imageData': image {
+      asset-> {
+        altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
+  },
   ...,
   'allTeam': *[_type == 'team'],
   ${seoData}
@@ -643,17 +580,14 @@ export const teamSlugsQuery = groq`
 // LEGAL QUERY
 export const queryLegal = groq`
 {
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
-    'pageSettings': *[_type == 'pageSetting'][0] {
+  'pageSettings': *[_type == 'pageSetting'][0] {
     legal {
     title,
     headerImage {
       ...
     },
     'headerImageData':headerImage {
-      '':asset-> {
+      asset-> {
                 altText,
         'lqip':metadata.lqip,
         url
@@ -683,12 +617,6 @@ export const legalBySlugQuery = groq`
 
 export const queryLegalCurrentPage = groq`
 {
-  'sanityImages': *[_type == "sanity.imageAsset"] {
-    'base64': metadata.lqip
-  },
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
   'legal': *[_type == 'legal' && slug.current == $slug][0],
   ...,
   'allLegal': *[_type == 'legal'],

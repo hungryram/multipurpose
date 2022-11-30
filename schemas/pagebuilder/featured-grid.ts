@@ -46,7 +46,7 @@ export default defineType({
                             title: 'Content',
                             name: 'content',
                             type: 'text',
-                            validation: Rule => Rule.required().error('Keep it short and brief, under 150 characters').max(150)
+                            validation: Rule => Rule.error('Keep it short and brief, under 150 characters').max(150)
                         },
                         {
                             title: 'Image',
@@ -54,7 +54,7 @@ export default defineType({
                             type: 'image',
                             options: {
                                 hotspot: true
-                            }
+                            },
                         },
                         {
                             title: 'Button',

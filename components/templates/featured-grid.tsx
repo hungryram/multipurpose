@@ -63,7 +63,7 @@ export default function FeaturedGrid({
                                             (node.blockLinking?.internalLink?._type === "services" && `/services/${node.blockLinking?.internalLink.slug}`) ||
                                             (node.blockLinking?.externalUrl && `${node.blockLinking?.externalUrl}`)
                                         return (
-                                            <div className="relative" key={node._key} style={{
+                                            <div className="relative bg-secondary h-full" key={node._key} style={{
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
                                                 color: `${node.textColor?.hex ?? '#ffffff'}`,
                                                 border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,
@@ -89,13 +89,10 @@ export default function FeaturedGrid({
                                                             {!textOutsideImage && <div className="featured-grid-overlay"></div>}
                                                         </>
                                                         <div
-                                                            className={`lg:px-12 px-6 py-4 justify-center
-                                                            ${textOutsideImage ? 'bottom-0 left-0 right-0' : 'absolute bottom-0 left-0 right-0'}
-                                                            ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''}
-                                                            ${blockLeft ? 'text-left' : 'text-center'}
+                                                            className={`lg:px-12 px-6 py-4 justify-center ${textOutsideImage ? '' : 'absolute bottom-0 left-0 right-0'} ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''} ${blockLeft ? 'text-left' : 'text-center'}
                                                             `}>
                                                             {node?.value &&
-                                                                <h3 className="h3">{node.value}</h3>
+                                                                <h3 className="text-2xl">{node.value}</h3>
                                                             }
                                                             {node?.content &&
                                                                 <div className="mt-6">

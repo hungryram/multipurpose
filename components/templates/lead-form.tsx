@@ -13,7 +13,11 @@ export default function LeadForm({
     buttonLink,
     buttonBackground,
     buttonTextColor,
-    backgroundStyles
+    backgroundStyles,
+    emailAlerts,
+    sendFrom,
+    emailBcc,
+    emailCc
 }: any) {
     return (
         <Wrapper
@@ -37,7 +41,12 @@ export default function LeadForm({
                 </div>
                 <div className="relative">
                     <div className={Styles.formContainer}>
-                        <Form />
+                        <Form
+                            emailAlerts={emailAlerts}
+                            sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
+                            emailBcc={emailBcc}
+                            emailCc={emailCc}
+                        />
                     </div>
                 </div>
             </div>

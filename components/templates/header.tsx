@@ -4,16 +4,16 @@ import Styles from '../../styles/util.module.css'
 
 export default function Header({ image, title, altText, hideHeader, blurData }: any) {
     return (
-        <div className={`flex items-center relative ${image ? `` : ` bg-black`} ${hideHeader ? 'hidden': ''}`}>
+        <div className={`flex items-center relative ${image ? '' : 'bg-secondary lg:h-[20em] h-[15rem] w-full'} ${hideHeader ? 'hidden': ''}`}>
             {image &&
                 <>
                     <Image
-                        src={urlForImage(image).url()}
+                        src={image}
                         width={2000}
                         height={0}
                         alt={altText}
-                        placeholder="blur"
-                        blurDataURL={blurData ? blurData : urlForImage(image).width(50).height(50).url()}
+                        placeholder={blurData ? 'blur' : 'empty'}
+                        blurDataURL={blurData}
                         priority
                         className="lg:h-[20em] h-[15rem] w-full"
                         style={{
