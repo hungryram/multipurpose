@@ -59,7 +59,6 @@ export default function Navbar({
         <>
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
-                role="navigation"
                 aria-orientation="vertical"
             >
                 {announcementText &&
@@ -102,7 +101,6 @@ export default function Navbar({
                     <div className="flex items-center w-auto">
                         <ul
                             className="items-center text-right md:mr-10 justify-end"
-                            role="menu"
                             aria-label="Main Navigation Menu"
                         >
                             {navItems?.map((link) => {
@@ -123,14 +121,12 @@ export default function Navbar({
                                                 href="#"
                                                 className={`cursor-pointer flex flex-row items-center ${Styles.navItems}`}
                                                 aria-expanded={dropdownActive === link ? "true" : "false"}
-                                                role="menuitem"
                                             >
                                                 {link.text} <BiCaretDown className="ml-1 text-lg" />
                                             </Link>
 
                                             <ul
                                                 className={`${Styles.dropDown} ${dropdownActive === link ? Styles.activeDropDown : Styles.hideDropDown}`}
-                                                role="menu"
                                             >
                                                 {link.subMenu.map((sub) => {
 
@@ -144,7 +140,6 @@ export default function Navbar({
                                                                     target={sub.newTab && '_blank'}
                                                                     onClick={() => setDropdownActive(null)}
                                                                     className="py-1 block"
-                                                                    role="menuitem"
                                                                 >
                                                                     {sub.text}
                                                                 </Link>
@@ -164,7 +159,6 @@ export default function Navbar({
                                                     href={menuLinks ?? '/'}
                                                     target={link.newTab && '_blank'}
                                                     className={`${router.asPath === menuLinks ? Styles.activeLink : 'false'} ${Styles.navItems}`}
-                                                    role="menuitem"
                                                 >
                                                     {link.text}
                                                 </Link>
@@ -175,7 +169,7 @@ export default function Navbar({
                             })}
                             {ctaLinking &&
                                 <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
-                                    <Link href={ctaLinking} className={Styles.navbarCta} role="menuitem">
+                                    <Link href={ctaLinking} className={Styles.navbarCta}>
                                         {ctaLink.text}
                                     </Link>
                                 </li>
@@ -259,14 +253,12 @@ export default function Navbar({
                                                         className="cursor-pointer flex flex-row items-center"
                                                         onClick={() => setOpenMobileNav(true)}
                                                         aria-expanded={dropdownActive === link ? "true" : "false"}
-                                                        role="menuitem"
                                                     >
                                                         {link.text} <BiCaretDown className="ml-1 inline" />
                                                     </Link>
 
                                                     <ul
                                                         className={`${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
-                                                        role="menu"
                                                     >
                                                         {link.subMenu.map((sub) => {
 
@@ -278,7 +270,6 @@ export default function Navbar({
                                                                             href={subMenuLinks ?? '/'}
                                                                             target={sub?.newTab && "_blank"}
                                                                             onClick={() => setOpenMobileNav(false)}
-                                                                            role="menuitem"
                                                                         >
                                                                             {sub.text}
                                                                         </Link>
@@ -298,7 +289,6 @@ export default function Navbar({
                                                     href={mobileMenuLinks ?? '/'}
                                                     className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
                                                     target={link?.newTab && "_blank"}
-                                                    role="menuitem"
 
                                                 >
                                                     {link.text}
