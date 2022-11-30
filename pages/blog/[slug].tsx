@@ -36,9 +36,9 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header 
-        image={post?.coverImage}
-        blurData={post?.lqip}
-        altText={post?.altText}
+        image={post.coverImageData?.asset?.url}
+        blurData={post.coverImageData?.asset?.lqip}
+        altText={post.coverImageData?.asset?.altText}
       />
       <Seo 
         title={post?.seo?.title_tag}
@@ -62,8 +62,8 @@ export default function Post(props: Props) {
                   coverImage={post?.coverImage}
                   date={post?.date}
                   author={post?.author}
-                  altText={post?.altText}
-                  blurData={post?.lqip}
+                  altText={post.coverImageData?.asset?.altText}
+                  blurData={post.coverImageData?.asset?.lqip}
                 />
                 <PostBody content={post.content} />
               </article>
