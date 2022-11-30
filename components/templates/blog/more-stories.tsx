@@ -17,6 +17,7 @@ export default function MoreStories({ posts }: { posts: PostProps[] }) {
             author={post.author}
             slug={post.slug}
             excerpt={post.excerpt}
+            altText={post.coverImageData?.asset?.altText}
           />
         ))}
       </div>

@@ -258,9 +258,11 @@ url
 
 export const postQuery = groq`
 {
+  ${otherDocumentSections}
+  ${seoData}
   "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {
-    '':coverImage {
-      '':asset-> {
+    'coverImageData':coverImage {
+      asset-> {
                 altText,
         'lqip':metadata.lqip,
         url
@@ -271,9 +273,16 @@ export const postQuery = groq`
   },
   "morePosts": *[_type == "blog" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
     content,
+    'coverImageData':coverImage {
+      asset-> {
+                altText,
+        'lqip':metadata.lqip,
+        url
+      }
+    },
     ${postFields}
   },
-  ${seoData}
+
 }
 `
 

@@ -29,8 +29,8 @@ export default function CoverImage(props: CoverImageProps) {
         src={urlForImage(source).height(1000).width(2000).url()}
         sizes="100vw"
         priority={priority}
-        placeholder="blur"
-        blurDataURL={blurData ? blurData : urlForImage(source).height(1).width(1).url()}
+        placeholder={blurData ? 'blur' : 'empty'}
+        blurDataURL={blurData}
       />
     </div>
   ) : (

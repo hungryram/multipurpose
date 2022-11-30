@@ -6,7 +6,7 @@ import { AuthorProps } from '../../../types'
 export default function Avatar(props: AuthorProps) {
   const { name, picture } = props
   return (
-    <div className="flex items-center">
+    <div className="flex items-center" aria-label={`Author image of ${name}`}>
       <div className="relative mr-4 h-12 w-12">
         <Image
           src={
