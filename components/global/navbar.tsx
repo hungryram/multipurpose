@@ -223,7 +223,7 @@ export default function Navbar({
                                     id="toggle"
                                     className="cursor-pointer flex justify-end z-50"
                                     onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
-                                    aria-expanded={openMobileNav ? 'true' : 'false'}
+                                    aria-expanded={openMobileNav ? 'false' : 'true'}
                                 >
                                     <HamburgerMenu
                                         isOpen={openMobileNav}
