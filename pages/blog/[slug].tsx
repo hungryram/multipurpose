@@ -33,6 +33,7 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+  console.log(post?.coverImageData?.asset?.url)
   return (
     <Layout preview={preview}>
       <Header 
@@ -40,7 +41,7 @@ export default function Post(props: Props) {
       <Seo 
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
-        image={post?.coverImage}
+        image={post?.coverImageData?.asset?.url}
         company_name={profileSettings?.company_name}
         twitterHandle={profileSettings?.seo?.twitterHandle}
         ogType="article"

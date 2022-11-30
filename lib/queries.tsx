@@ -2,6 +2,14 @@ import groq from 'groq'
 
 const postFields = groq`
   _id,
+  'coverImageData':coverImage {
+    asset-> {
+              altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  },
+  content,
   name,
   title,
   date,
@@ -259,14 +267,6 @@ url
 export const postQuery = groq`
 {
   "post": *[_type == "blog" && slug.current == $slug] | order(_updatedAt desc) [0] {
-    'coverImageData':coverImage {
-      asset-> {
-                altText,
-        'lqip':metadata.lqip,
-        url
-      }
-    },
-    content,
     ${postFields}
   },
   "morePosts": *[_type == "blog" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
