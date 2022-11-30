@@ -35,12 +35,12 @@ export default function Post(props: Props) {
   }
   return (
     <Layout preview={preview}>
-      <Header 
+      <Header
         image={post.coverImageData?.asset?.url}
         blurData={post.coverImageData?.asset?.lqip}
         altText={post.coverImageData?.asset?.altText}
       />
-      <Seo 
+      <Seo
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
         image={post?.coverImage ?? post?.profileSettings?.seo?.defaultImageBanner}
@@ -52,24 +52,18 @@ export default function Post(props: Props) {
       />
       <div className="section">
         <div className="container">
-          {router.isFallback ? (
-            <PostTitle>Loading…</PostTitle>
-          ) : (
-            <>
-              <article>
-                <PostHeader
-                  title={post?.title}
-                  coverImage={post?.coverImage}
-                  date={post?.date}
-                  author={post?.author}
-                  altText={post.coverImageData?.asset?.altText}
-                  blurData={post.coverImageData?.asset?.lqip}
-                />
-                <PostBody content={post.content} />
-              </article>
-              {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-            </>
-          )}
+          <article>
+            <PostHeader
+              title={post?.title}
+              coverImage={post?.coverImage}
+              date={post?.date}
+              author={post?.author}
+              altText={post.coverImageData?.asset?.altText}
+              blurData={post.coverImageData?.asset?.lqip}
+            />
+            <PostBody content={post.content} />
+          </article>
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
       </div>
     </Layout>
