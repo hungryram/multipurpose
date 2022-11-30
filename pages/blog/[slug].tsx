@@ -33,6 +33,7 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+  console.log(profileSettings.defaultImageData?.defaultImageBanner?.asset?.altText)
   return (
     <Layout preview={preview}>
       <Header 
