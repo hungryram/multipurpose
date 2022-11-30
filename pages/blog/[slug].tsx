@@ -58,8 +58,6 @@ export default function Post(props: Props) {
               coverImage={post?.coverImage}
               date={post?.date}
               author={post?.author}
-              altText={post.coverImageData?.asset?.altText}
-              blurData={post.coverImageData?.asset?.lqip}
             />
             <PostBody content={post.content} />
           </article>
