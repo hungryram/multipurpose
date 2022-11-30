@@ -291,8 +291,10 @@ export default createConfig({
     // https://user-images.githubusercontent.com/81981/195728798-e0c6cf7e-d442-4e58-af3a-8cd99d7fcc28.png
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === 'global') {
+
         return prev.filter(
-          (templateItem) => templateItem.templateId !== appearanceDocument.name,
+          (templateItem) => ![templateItem]
+
         )
       }
 
@@ -300,10 +302,10 @@ export default createConfig({
     },
     
 
-    // Removes the "duplicate" action on the "settings" singleton
+    // Removes the "duplicate" action on the document
     actions: (prev, { schemaType }) => {
-      if (schemaType === profileDocument.name) {
-        return prev.filter(({ action }) => action !== 'duplicate')
+      if (schemaType === appearanceDocument.name) {
+        return prev.filter(({ action }) => action !== 'delete')
       }
 
       return prev

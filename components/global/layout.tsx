@@ -43,9 +43,9 @@ export default function Layout({ children, preview }: any) {
                             --website-body-color: ${data.appearances?.websiteBodyColor ?? '#fff'};
                             --website-text-color: ${data.appearances?.websiteTextColor ?? '#222'};
 
-                            --button-radius: ${data.appearances.buttonRadius + 'px' ?? '4px'};
-                            --button-y-padding: ${data.appearances.buttonYPadding ?? '16px'};
-                            --button-x-padding: ${data.appearances.buttonXPadding ?? '50px'};
+                            --button-radius: ${data.appearances?.buttonRadius + 'px' ?? '4px'};
+                            --button-y-padding: ${data.appearances?.buttonYPadding ?? '16px'};
+                            --button-x-padding: ${data.appearances?.buttonXPadding ?? '50px'};
                             
                             --announcementbar-background-color: ${data.appearances?.announcementBar?.announcementBgColor};
                             --announcementbar-text-color: ${data.appearances?.announcementBar?.announcementTextColor};
@@ -60,14 +60,14 @@ export default function Layout({ children, preview }: any) {
                 mobileLogoWidth={data.appearances?.branding?.mobileLogoWidth}
                 navItems={data.appearances?.header?.navItems}
                 ctaLink={data?.appearances?.header?.ctaLink}
-                ctaText={data.appearances.header?.ctaText}
+                ctaText={data.appearances?.header?.ctaText}
                 backgroundColor={data.appearances?.navBgColor}
                 phone_number={data.profileSettings?.contact_information?.phone_number}
                 email={data.profileSettings?.contact_information?.email}
                 office_number={data.profileSettings?.contact_information?.office_number}
                 // ANNOUNCEMENT
                 announcementText={data?.appearances?.announcementBar?.announcement}
-                announcementLinkText={data?.appearances.announcementBar.announcementBarLink.text}
+                announcementLinkText={data?.appearances?.announcementBar?.announcementBarLink.text}
                 announcementLink={data?.appearances?.announcementBar?.announcementBarLink}
                 topHeaderBackground={data?.appearances?.topHeaderBar?.topHeaderBarBgColor}
                 topHeaderText={data?.appearances?.topHeaderBar?.topHeaderBarTextColor}
@@ -80,7 +80,7 @@ export default function Layout({ children, preview }: any) {
             <Footer 
                 footerText={data.appearances?.footer?.footerText}
                 image={data.appearances?.footer?.footerLogo}
-                company_name={data.profileSettings.company_name}
+                company_name={data.profileSettings?.company_name}
                 legal={data.legal}
                 email={data.profileSettings?.contact_information?.email}
                 phone_number={data.profileSettings?.contact_information?.phone_number}
@@ -91,19 +91,19 @@ export default function Layout({ children, preview }: any) {
                 state={data.profileSettings?.address?.state}
                 zip_code={data.profileSettings?.address?.zip_code}
                 links={data.appearances?.footer?.quickLinks}
-                googleBusiness={data.profileSettings.social.googleBusiness}
-                facebook={data.profileSettings.social.facebook}
-                youtube={data.profileSettings.social.youtube}
-                instagram={data.profileSettings.social.instagram}
-                twitter={data.profileSettings.social.twitter}
-                reddit={data.profileSettings.social.reddit}
-                linkedin={data.profileSettings.social.linkedin}
-                yelp={data.profileSettings.social.yelp}
-                pinterest={data.profileSettings.social.pinterest}
-                tiktok={data.profileSettings.social.tiktok}
-                zillow={data.profileSettings.social.zillow}
-                size={data.profileSettings.social.size}
-                footerDisclaimer={data.appearances.footer.footerDisclaimer}
+                googleBusiness={data.profileSettings?.social?.googleBusiness}
+                facebook={data.profileSettings?.social?.facebook}
+                youtube={data.profileSettings?.social?.youtube}
+                instagram={data.profileSettings?.social?.instagram}
+                twitter={data.profileSettings?.social?.twitter}
+                reddit={data.profileSettings?.social?.reddit}
+                linkedin={data.profileSettings?.social?.linkedin}
+                yelp={data.profileSettings?.social?.yelp}
+                pinterest={data.profileSettings?.social?.pinterest}
+                tiktok={data.profileSettings?.social?.tiktok}
+                zillow={data.profileSettings?.social?.zillow}
+                size={data.profileSettings?.social?.size}
+                footerDisclaimer={data.appearances?.footer?.footerDisclaimer}
             />
         </>
     )
