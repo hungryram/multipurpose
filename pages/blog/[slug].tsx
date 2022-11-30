@@ -36,7 +36,6 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header 
-        image={urlForImage(post?.coverImage).url()}
         blurData={post?.lqip}
         altText={post?.altText}
       />
