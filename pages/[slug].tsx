@@ -67,10 +67,10 @@ export default function Pages(props: Props) {
             />
             <Header
                 title={page?.pages?.title}
-                image={page?.pages?.headerImageData?.asset?.url ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                image={page?.pages?.headerImageData?.asset?.url ?? page.appearances?.defaultHeaderBanner?.asset?.url}
                 hideHeader={page?.pages?.headerImage?.hideHeader}
-                altText={page?.pages?.headerImageData?.asset?.altText ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
-                blurData={page?.pages?.headerImageData?.asset?.lqip ?? page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.lqip}
+                altText={page?.pages?.headerImageData?.asset?.altText ?? page.appearances?.defaultHeaderBanner?.asset?.altText}
+                blurData={page?.pages?.headerImageData?.asset?.lqip ?? page.appearances?.defaultHeaderBanner?.asset?.lqip}
             />
             {page?.pages?.pageBuilder?.map((section) => {
 

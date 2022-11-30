@@ -30,7 +30,7 @@ export default function LegalIndex({ legalQuery }) {
     return (
         <Layout>
             <Seo
-                title={legalQuery?.pageSettings?.legal?.seo?.title_tag ?? legalQuery?.pageSettings?.legal?.title + ' | ' + legalQuery.profileSettings?.company_name}
+                title={legalQuery?.pageSettings?.legal?.seo?.title_tag ?? legalQuery?.pageSettings?.legal?.title ?? 'Website Policies' + ' | ' + legalQuery.profileSettings?.company_name}
                 description={legalQuery?.pageSettings?.legal?.seo?.meta_description}
                 image={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.url ?? legalQuery.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={legalQuery?.profileSettings?.company_name}
@@ -41,16 +41,16 @@ export default function LegalIndex({ legalQuery }) {
             />
             <Header
                 title={legalQuery?.pageSettings?.legal?.title || 'Website Policies'}
-                image={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.url ?? legalQuery.header.image}
-                blurData={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.lqip}
-                altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText}
+                image={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.url ?? legalQuery?.appearances?.defaultHeaderBanner?.asset?.url}
+                blurData={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.lqip ?? legalQuery?.appearances?.defaultHeaderBanner?.asset?.lqip}
+                altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText ?? legalQuery?.appearances?.defaultHeaderBanner?.asset?.altText}
             />
             <div className="section">
                 <div className="container">
                     <div className="bg-slate-200 flex justify-center">
                         <div className="p-10">
                             <ul>
-                                {legalQuery?.legal ?
+                                {legalQuery?.legal > 0 ?
                                     legalQuery?.legal.map((node) => {
                                         return (
                                             <>
@@ -61,7 +61,7 @@ export default function LegalIndex({ legalQuery }) {
                                         )
                                     })
                                     :
-                                    <h2 className="h3">No policies found</h2>
+                                    <h2 className="h3">No policies found. Check back later</h2>
                                 }
                             </ul>
                         </div>

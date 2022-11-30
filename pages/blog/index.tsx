@@ -27,13 +27,12 @@ export async function getStaticProps({ preview = false }) {
 }
 
 export default function BlogIndex({ blogQuery }) {
-
     return (
         <Layout>
             <Seo
                 title={blogQuery?.pageSettings?.blog?.seo?.title_tag || 'The Blog | ' + blogQuery?.profileSettings?.company_name}
                 description={blogQuery?.pageSettings?.blog?.seo?.meta_description}
-                image={blogQuery?.pageSettings?.blog?.headerImage ?? blogQuery.header.image}
+                image={blogQuery?.pageSettings?.blog?.headerImageData?.asset?.url ?? blogQuery.appearances?.defaultHeaderBanner?.asset?.url}
                 company_name={blogQuery?.profileSettings?.company_name}
                 twitterHandle={blogQuery?.profileSettings?.seo?.twitterHandle}
                 ogType="website"
@@ -42,16 +41,16 @@ export default function BlogIndex({ blogQuery }) {
             />
             <Header
                 title={blogQuery?.pageSettings?.blog?.title || 'The Blog'}
-                image={blogQuery?.pageSettings?.blog?.headerImage ?? blogQuery.header.image}
-                blurData={blogQuery?.pageSettings?.blog?.headerImageData?.lqip}
-                altText={blogQuery?.pageSettings?.blog?.headerImageData?.altText}
+                image={blogQuery?.pageSettings?.blog?.headerImageData?.asset?.url ?? blogQuery.appearances?.defaultHeaderBanner?.asset?.url}
+                blurData={blogQuery?.pageSettings?.blog?.headerImageData?.asset?.lqip ?? blogQuery.appearances?.defaultHeaderBanner?.asset?.lqip}
+                altText={blogQuery?.pageSettings?.blog?.headerImageData?.asset?.altText ?? blogQuery.appearances?.defaultHeaderBanner?.asset?.altText}
             />
             <div className="section">
                 <div className="container">
                     <div className="flex justify-center">
                         <div className="p-10">
-                            <div className="grid md:grid-cols-2 gap-10">
-                                {blogQuery.blog ?
+                            <div className={`grid gap-10 ${blogQuery.blog > 0 ? 'md:grid-cols-2' : ''}`}>
+                                {blogQuery.blog > 0 ?
                                     blogQuery?.blog.map((node) => {
                                         return (
                                             <>
@@ -70,7 +69,7 @@ export default function BlogIndex({ blogQuery }) {
                                         )
                                     })
                                     :
-                                    <h2 className="h3">No articles have been published</h2>
+                                    <h2 className="h3 text-center">No articles have been published check back later</h2>
                                 }
                             </div>
                         </div>

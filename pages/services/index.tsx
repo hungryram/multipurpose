@@ -31,10 +31,10 @@ export default function ServiceIndex({ serviceQuery }) {
     return (
         <Layout>
             <Seo
-                title={serviceQuery?.pageSettings?.services?.seo?.title_tag || 'Services | ' + serviceQuery?.profileSettings?.company_name}
+                title={serviceQuery?.pageSettings?.services?.seo?.title_tag ?? serviceQuery?.pageSettings?.services?.title ?? 'Services | ' + serviceQuery?.profileSettings?.company_name}
                 description={serviceQuery?.pageSettings?.services?.seo?.meta_description}
-                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? urlForImage(serviceQuery?.profileSettings?.seo?.defaultImageBanner).url()}
-                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText}
+                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? serviceQuery?.profileSettings?.seo?.defaultImageData?.defaultImageBanner?.asset?.url}
+                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText ?? serviceQuery?.profileSettings?.seo?.defaultImageData?.defaultImageBanner?.asset?.altText}
                 company_name={serviceQuery?.profileSettings?.company_name}
                 twitterHandle={serviceQuery?.profileSettings?.seo?.twitterHandle}
                 ogType="website"
@@ -42,29 +42,33 @@ export default function ServiceIndex({ serviceQuery }) {
                 themeColor={serviceQuery?.appearances?.themeColor}
             />
             <Header
-                title={serviceQuery?.pageSettings?.services?.title || 'Services'}
-                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? urlForImage(serviceQuery?.profileSettings?.seo?.defaultImageBanner).url()}
-                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.lqip}
-                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText}
+                title={serviceQuery?.pageSettings?.services?.title ?? 'Services'}
+                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.url}
+                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.lqip ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.lqip}
+                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.altText}
             />
             <div className="section">
                 <div className="container">
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-                        {serviceQuery.services?.map((node) => {
-                            return (
-                                <>
-                                    <ServiceCard
-                                        key={node._id}
-                                        title={node.title}
-                                        slug={node.slug}
-                                        headerImage={node.headerImageData?.asset?.url}
-                                        blurData={node.headerImageData?.asset?.lqip}
-                                        altText={node.headerImageData?.asset?.altText}
-                                    />
-                                </>
-                            )
-                        })}
-                    </div>
+                    {serviceQuery?.services > 0 ?
+                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+                            {serviceQuery.services?.map((node) => {
+                                return (
+                                    <>
+                                        <ServiceCard
+                                            key={node._id}
+                                            title={node.title}
+                                            slug={node.slug}
+                                            headerImage={node.headerImageData?.asset?.url}
+                                            blurData={node.headerImageData?.asset?.lqip}
+                                            altText={node.headerImageData?.asset?.altText}
+                                        />
+                                    </>
+                                )
+                            })}
+                        </div>
+                        :
+                        <h2 className="h2 text-center">No Services added. Check back later</h2>
+                    }
                 </div>
             </div>
         </Layout>

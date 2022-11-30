@@ -141,7 +141,13 @@ const seoData = groq`
 'appearances': *[_type == 'appearances'][0]{
   'favicon': branding.favicon,
   'themeColor': mainColors.primaryColor.hex,
-  'defaultImage': header.defaultHeaderImage
+  'defaultHeaderBanner': header.defaultHeaderImage {
+    asset->{
+      'altText':altText,
+      'lqip':metadata.lqip,
+      url
+    }
+  }
 },
 `
 
@@ -220,12 +226,6 @@ export const pagesBySlugQuery = groq`
 // All BLOG QUERY
 export const queryAllPosts = groq`
 {
-  'profileSettings': *[_type == 'profile'][0]{
-    company_name
-  },
-  'header': *[_type == 'appearances'][0]{
-    'image': header.defaultHeaderImage
-  },
     'pageSettings': *[_type == 'pageSetting'][0] {
     blog {
     title,
@@ -234,7 +234,7 @@ export const queryAllPosts = groq`
       ...
     },
     'headerImageData':headerImage {
-      '':asset-> {
+      asset-> {
                 altText,
         'lqip':metadata.lqip,
         url

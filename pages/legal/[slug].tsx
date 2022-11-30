@@ -52,8 +52,9 @@ export default function LegalPages(props: Props) {
             />
             <Header
                 title={page?.legal?.title}
-                image={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
-                altText={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+                image={page.appearances?.defaultHeaderBanner?.asset?.url}
+                altText={page.appearances?.defaultHeaderBanner?.asset?.altText}
+                blurData={page.appearances?.defaultHeaderBanner?.asset?.lqip}
 
             />
             <div className="section">
