@@ -40,7 +40,7 @@ export default function Post(props: Props) {
       <Seo 
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
-        image={urlForImage(post?.coverImage).url()}
+        image={post?.coverImage}
         company_name={profileSettings?.company_name}
         twitterHandle={profileSettings?.seo?.twitterHandle}
         ogType="article"
