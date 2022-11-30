@@ -61,7 +61,6 @@ export default function Navbar({
             <nav
                 className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
                 role="navigation"
-                aria-label="Site Header"
                 aria-orientation="vertical"
             >
                 {announcementText &&
@@ -232,7 +231,6 @@ export default function Navbar({
                                     id="toggle"
                                     className="cursor-pointer flex justify-end z-50"
                                     onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
-                                    aria-label={openMobileNav ? 'menu is open' : 'menu is closed'}
                                     aria-expanded={openMobileNav ? 'true' : 'false'}
                                 >
                                     <HamburgerMenu
