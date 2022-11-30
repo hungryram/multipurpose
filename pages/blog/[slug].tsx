@@ -33,6 +33,7 @@ export default function Post(props: Props) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+  console.log(post?.coverImageData?.asset?.url)
   return (
     <Layout preview={preview}>
       <Header 
