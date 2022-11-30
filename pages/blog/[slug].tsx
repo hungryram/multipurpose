@@ -36,13 +36,11 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header 
-        blurData={post?.lqip}
-        altText={post?.altText}
       />
       <Seo 
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
-        image={post?.coverImage ?? post?.profileSettings?.seo?.defaultImageBanner}
+        image={urlForImage(post?.coverImage).url()}
         company_name={profileSettings?.company_name}
         twitterHandle={profileSettings?.seo?.twitterHandle}
         ogType="article"
