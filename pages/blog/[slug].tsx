@@ -36,15 +36,15 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header 
-        image={post?.coverImageData?.asset?.url}
-        blurData={post?.coverImageData?.asset?.lqip}
-        altText={post?.coverImageData?.asset?.altText}
+        image={post?.coverImageData?.asset?.url ?? profileSettings.defaultImageData?.defaultImageBanner?.asset?.url}
+        blurData={post?.coverImageData?.asset?.lqip ?? profileSettings.defaultImageData?.defaultImageBanner?.asset?.lqip}
+        altText={post?.coverImageData?.asset?.altText ?? profileSettings.defaultImageData?.defaultImageBanner?.asset?.altText}
       />
       <Seo 
         title={post?.seo?.title_tag ?? post.title + ' | ' + profileSettings?.company_name}
         description={post?.seo?.meta_description}
-        image={post?.coverImageData?.asset?.url}
-        altText={post?.coverImageData?.asset?.altText}
+        image={post?.coverImageData?.asset?.url ?? profileSettings.defaultImageData?.defaultImageBanner?.asset?.url}
+        altText={post?.coverImageData?.asset?.altText ?? profileSettings.defaultImageData?.defaultImageBanner?.asset?.altText}
         company_name={profileSettings?.company_name}
         twitterHandle={profileSettings?.seo?.twitterHandle}
         ogType="article"
