@@ -67,7 +67,7 @@ export default function Layout({ children, preview }: any) {
                 office_number={data.profileSettings?.contact_information?.office_number}
                 // ANNOUNCEMENT
                 announcementText={data?.appearances?.announcementBar?.announcement}
-                announcementLinkText={data?.appearances?.announcementBar?.announcementBarLink.text}
+                announcementLinkText={data?.appearances?.announcementBar?.announcementBarLink?.text}
                 announcementLink={data?.appearances?.announcementBar?.announcementBarLink}
                 topHeaderBackground={data?.appearances?.topHeaderBar?.topHeaderBarBgColor}
                 topHeaderText={data?.appearances?.topHeaderBar?.topHeaderBarTextColor}
