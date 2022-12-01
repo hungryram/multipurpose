@@ -1,4 +1,3 @@
-import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
 // TEMPLATES
@@ -7,10 +6,11 @@ import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 
 import { legalSlugsQuery, queryLegalCurrentPage } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
+import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { LegalProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
+import NotFound from '../404'
 
 
 
@@ -34,7 +34,7 @@ export default function LegalPages(props: Props) {
 
 
     if (!router.isFallback && !slug) {
-        return <ErrorPage statusCode={404} />
+        return <NotFound />
     }
 
     return (

@@ -1,8 +1,4 @@
-import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
-
-// UTIL
-import Image from 'next/image'
 
 // TEMPLATES
 import Header from '../../components/templates/header'
@@ -10,11 +6,12 @@ import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 
 import { teamSlugsQuery, queryTeamCurrentPage } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
+import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { TeamProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
 import TeamCard from '../../components/templates/team-card'
+import NotFound from '../404'
 
 
 
@@ -38,7 +35,7 @@ export default function ServicePages(props: Props) {
 
 
     if (!router.isFallback && !slug) {
-        return <ErrorPage statusCode={404} />
+        return <NotFound />
     }
     return (
         <Layout preview={preview}>

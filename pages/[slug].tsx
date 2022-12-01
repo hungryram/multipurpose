@@ -1,4 +1,3 @@
-import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
 // TEMPLATES
@@ -21,11 +20,11 @@ import IconSection from '../components/templates/icon-section'
 import ServiceSection from '../components/templates/service-section'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../lib/sanity'
+import { usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import { PageProps } from '../types'
-
+import NotFound from "../pages/404"
 
 
 interface Props {
@@ -48,7 +47,7 @@ export default function Pages(props: Props) {
 
 
     if (!router.isFallback && !slug) {
-        return <ErrorPage statusCode={404} />
+        return <NotFound />
     }
 
     const defaultText = 'var(--website-text-color)'

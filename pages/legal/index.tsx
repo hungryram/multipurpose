@@ -53,11 +53,9 @@ export default function LegalIndex({ legalQuery }) {
                                 {legalQuery?.legal > 0 ?
                                     legalQuery?.legal.map((node) => {
                                         return (
-                                            <>
-                                                <li className="bg-white my-2" key={node._id}>
-                                                    <Link href={`legal/${node.slug}`} className="flex items-center px-20 py-4 transition-all ease-linear font-bold"> {node.title}</Link>
-                                                </li>
-                                            </>
+                                            <li className="bg-white my-2" key={node._id}>
+                                                <Link href={`legal/${node.slug}`} className="flex items-center px-20 py-4 transition-all ease-linear font-bold">{node.title}</Link>
+                                            </li>
                                         )
                                     })
                                     :

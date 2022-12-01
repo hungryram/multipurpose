@@ -1,9 +1,6 @@
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
-// UTIL
-import Link from 'next/link'
-
 // TEMPLATES
 import Header from '../../components/templates/header'
 import Layout from '../../components/global/layout'
@@ -73,8 +70,8 @@ export default function ServicePages(props: Props) {
                 title={page?.services?.title}
                 image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.url}
                 hideHeader={page?.services?.headerImage?.hideHeader}
-                blurData={page?.services?.headerImageData?.asset?.lqip ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.lqip}
-                altText={page?.services?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.altText}
+                blurData={page?.services?.headerImageData?.asset?.lqip ?? page?.appearances?.defaultHeaderBanner?.asset?.lqip}
+                altText={page?.services?.headerImageData?.asset?.altText ?? page?.appearances?.defaultHeaderBanner?.asset?.altText}
             />
 
             {page?.services?.pageBuilder?.map((section) => {

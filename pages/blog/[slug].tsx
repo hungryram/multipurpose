@@ -1,4 +1,3 @@
-import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
 import Layout from '../../components/global/layout'
@@ -8,10 +7,11 @@ import PostBody from '../../components/templates/blog/post-body'
 import PostHeader from '../../components/templates/blog/post-header'
 import PostTitle from '../../components/templates/blog/post-title'
 import { postQuery, postSlugsQuery } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
+import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 import { PostProps } from '../../types'
 import Seo from '../../components/global/seo'
+import NotFound from '../404'
 
 interface Props {
   data: { post: PostProps; morePosts: any; appearances: any, profileSettings: any }
@@ -31,7 +31,7 @@ export default function Post(props: Props) {
   const { post, morePosts, appearances, profileSettings } = data || {}
 
   if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
+    return <NotFound/>
   }
   return (
     <Layout preview={preview}>

@@ -3,7 +3,6 @@ import { getClient } from "../../lib/sanity.server"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
-import { urlForImage } from "../../lib/sanity"
 import ServiceCard from "../../components/templates/service-card"
 
 export async function getStaticProps({ preview = false }) {

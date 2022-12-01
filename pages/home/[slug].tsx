@@ -1,4 +1,3 @@
-import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 
 // TEMPLATES
@@ -24,6 +23,7 @@ import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import ContactPage from '../../components/templates/contact'
 import { HomeProps } from '../../types'
+import NotFound from '../404'
 
 
 
@@ -46,7 +46,7 @@ export default function Pages(props: Props) {
   const page = data || {}
 
   if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
+    return <NotFound />
   }
 
   const defaultText = 'var(--website-text-color)'
