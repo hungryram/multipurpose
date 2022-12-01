@@ -44,16 +44,14 @@ export default function ContactBlock({
                     </a>
                 </li>
             }
-            {address &&
                 <li>
-                    <a href={googleBusiness ?? '#'} target={googleBusiness ?? '_blank'}>
+                    <a href={googleBusiness ?? '#'} target={googleBusiness && '_blank'}>
                         <div className="flex items-center md:justify-start justify-center">
                             <span><MdOutlineLocationOn className="mr-4" /></span>
-                            <span>{address}<br /> {city} {state} {zipCode}</span>
+                            <span>{address ? `${address}<br/>` : '' } {city} {state} {zipCode}</span>
                         </div>
                     </a>
                 </li>
-            }
         </ul>
     )
 }
