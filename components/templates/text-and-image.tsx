@@ -4,7 +4,7 @@ import BodyText from "../util/body-text"
 import Wrapper from "../util/wrapper"
 import Styles from "../../styles/templates.module.css"
 
-export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonLabel, buttonLink, altText, rowReverse, backgroundStyles, buttonBackground, buttonTextColor }: any) {
+export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonText, buttonLink, altText, rowReverse, backgroundStyles, buttonBackground, buttonTextColor }: any) {
     
 
     return (
@@ -36,7 +36,7 @@ export default function TextImage({ image, heading, blurData, content, textLeft,
                             headerStyle={headerStyle}
                             fullWidth={textLeft}
                             textAlign={textLeft}
-                            buttonText={buttonLabel}
+                            buttonText={buttonText}
                             buttonLink={buttonLink}
                             buttonBackground={buttonBackground}
                             buttonTextColor={buttonTextColor}

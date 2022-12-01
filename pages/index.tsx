@@ -92,6 +92,7 @@ export default function Index({
           }
 
           if (section._type === 'textandImage') {
+            console.log(section.buttonLinking.buttonText)
             return (
               <TextImage
                 key={section._key}
