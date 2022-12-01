@@ -70,18 +70,20 @@ export default function ContactPage({
                     </div>
                 </div>
                 <div className="md:w-2/3">
-                    <BodyText 
+                    <BodyText
                         heading={heading}
-                        content={content}
+                        body={content}
                         textAlign="false"
                         fullWidth="false"
                     />
-                    <Form 
-                        emailAlerts={emailAlerts}
-                        sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
-                        emailBcc={emailBcc}
-                        emailCc={emailCc}
-                    />
+                    <div className="px-4">
+                        <Form
+                            emailAlerts={emailAlerts}
+                            sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
+                            emailBcc={emailBcc}
+                            emailCc={emailCc}
+                        />
+                    </div>
                 </div>
             </div>
         </Wrapper>

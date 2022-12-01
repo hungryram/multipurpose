@@ -405,6 +405,7 @@ export default function Pages(props: Props) {
                 }
 
                 if (section._type === 'contactPage') {
+                    console.log(section.text)
                     return (
                         <ContactPage
                             heading={section.heading}

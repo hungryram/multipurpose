@@ -92,7 +92,6 @@ export default function Index({
           }
 
           if (section._type === 'textandImage') {
-            console.log(section.buttonLinking.buttonText)
             return (
               <TextImage
                 key={section._key}
@@ -100,7 +99,7 @@ export default function Index({
                 content={section?.content}
                 image={section?.imageData?.asset?.url}
                 blurData={section?.imageData?.asset?.lqip}
-                buttonLink={section?.button}
+                buttonLink={section?.buttonLinking}
                 buttonText={section?.buttonLinking?.buttonText}
                 buttonBackground={section?.button?.buttonBackground?.hex}
                 buttonTextColor={section?.button?.buttonTextColor?.hex}

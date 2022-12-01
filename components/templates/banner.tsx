@@ -14,6 +14,7 @@ export default function Banner({ twoColumn, heading, content, headerStyle, remov
                 <div>
                     <div className={twoColumn ? 'md:flex items-center' : ''}>
                         <div className={twoColumn ? 'md:w-1/2' : 'md:px-32 px-4 text-center'}>
+                            {heading && <h2 className="h2" style={headerStyle}>{heading}</h2>}
                             {content &&
                                 <div className="content" style={textStyle}>
                                     <ContentEditor

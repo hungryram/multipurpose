@@ -235,7 +235,7 @@ export default function Navbar({
                         </div>
                     </div>
                     <div className="relative">
-                        <div className={`absolute z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-20 opacity-100" : "-top-96 opacity-0"}`}>
+                        <div className={`absolute z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-0 opacity-100" : "-top-96 opacity-0"}`}>
                             <ul className={Styles.mobileMenu}>
                                 {navItems?.map((link) => {
 
