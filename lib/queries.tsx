@@ -139,6 +139,9 @@ const seoData = groq`
   }
 },
 'appearances': *[_type == 'appearances'][0]{
+  header {
+    defaultHeaderImage
+  },
   'favicon': branding.favicon,
   'themeColor': mainColors.primaryColor.hex,
   'defaultHeaderBanner': header.defaultHeaderImage {

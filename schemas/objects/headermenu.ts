@@ -23,7 +23,7 @@ export default defineType({
             type: 'color',
             options: {
                 disableAlpha: true
-            }
+            },
         },
         {
             name: 'navColor',
@@ -31,7 +31,7 @@ export default defineType({
             type: 'color',
             options: {
                 disableAlpha: true
-            }
+            },
         },
         {
             name: 'hamburgerMenuColor',
@@ -39,7 +39,7 @@ export default defineType({
             type: 'color',
             options: {
                 disableAlpha: true
-            }
+            },
         },
         {
             title: "Call to Action",
@@ -50,9 +50,6 @@ export default defineType({
             title: 'Default Page Header Image',
             name: 'defaultHeaderImage',
             type: 'image',
-            options: {
-                hotspot: true
-            }
         },
     ]
 })

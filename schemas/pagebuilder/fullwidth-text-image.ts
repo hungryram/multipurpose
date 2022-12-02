@@ -26,9 +26,6 @@ export default defineType({
             name: 'image',
             type: 'image',
             validation: (Rule) => Rule.required(),
-            options: {
-                hotspot: true
-            }
         },
         {
             title: 'Button',

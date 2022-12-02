@@ -3,7 +3,6 @@ import Styles from "../../styles/footer.module.css"
 import Link from "next/link"
 import { urlForImage } from "../../lib/sanity"
 
-
 // UTIL
 import Social from "../templates/social"
 import ContentEditor from "../templates/contenteditor"

@@ -7,11 +7,13 @@ import PostBody from '../../components/templates/blog/post-body'
 import PostHeader from '../../components/templates/blog/post-header'
 import PostTitle from '../../components/templates/blog/post-title'
 import { postQuery, postSlugsQuery } from '../../lib/queries'
-import { usePreviewSubscription } from '../../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 import { PostProps } from '../../types'
 import Seo from '../../components/global/seo'
 import NotFound from '../404'
+import ShareSocial from '../../components/templates/share'
+
 
 interface Props {
   data: { post: PostProps; morePosts: any; appearances: any, profileSettings: any }
@@ -31,16 +33,15 @@ export default function Post(props: Props) {
   const { post, morePosts, appearances, profileSettings } = data || {}
 
   if (!router.isFallback && !slug) {
-    return <NotFound/>
+    return <NotFound />
   }
   return (
     <Layout preview={preview}>
       <Header
         image={post?.coverImageData?.asset?.url}
         blurData={post?.coverImageData?.asset?.lqip}
-
       />
-      <Seo 
+      <Seo
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
         image={post?.coverImageData?.asset?.url}
@@ -68,6 +69,12 @@ export default function Post(props: Props) {
                 />
                 <PostBody content={post.content} />
               </article>
+
+              <div className="my-10 mx-auto max-w-2xl">
+                <ShareSocial
+                  url={profileSettings.settings.websiteName + router.asPath}
+                />
+              </div>
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
             </>
           )}

@@ -66,7 +66,6 @@ import { defineType } from "sanity"
       // as a block type.
       {
         type: 'image',
-        options: {hotspot: true},
         fields: [
           {
             title: 'Image Width',
@@ -76,7 +75,8 @@ import { defineType } from "sanity"
           {
             title: 'Alt Tag',
             name: 'altTag',
-            type: 'string'
+            type: 'string',
+            validation: (Rule) => Rule.required().error('Required for accessibility')
           },
         ]
       },

@@ -35,7 +35,7 @@ export default defineType({
             type: 'color',
             options: {
                 disableAlpha: true
-            }
+            },
         },
         {
             title: 'Favicon',

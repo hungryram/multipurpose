@@ -1,3 +1,4 @@
+
 export default {
     name: 'profile',
     title: 'Profile Settings',
@@ -11,7 +12,7 @@ export default {
             title: 'Company Name',
             name: 'company_name',
             type: 'string',
-            group: 'contact'
+            group: 'contact',
         },
         {
             title: 'Contact Information',
@@ -105,8 +106,19 @@ export default {
                     name: 'sendFrom',
                     type: 'string',
                     description: 'Use forms@hungryramwebdesign.com as default. Enter in a verified domain name to receive email. Contact support@hungryram.com to verify'
-                }
-                
+                },
+                {
+                    title: 'Google Analytics ID',
+                    name: 'googleID',
+                    type: 'string',
+                    description: 'Only include the Google ID, not the code. Ex. G-4XXXXXXX'
+                },
+                {
+                    title: 'Facebook Pixel ID',
+                    name: 'facebookPixel',
+                    type: 'string',
+                    description: 'Only include the facebook pixel ID, not the code. This is also the business ID'
+                }, 
             ]
         }
     ],

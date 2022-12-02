@@ -7,9 +7,8 @@
  * https://portabletext.org/
  *
  */
-import { PortableText } from '@portabletext/react'
-import ShareSocial from '../share'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import ContentEditor from '../contenteditor'
 
 import portableTextStyles from './portable-text-styles.module.css'
 
@@ -19,13 +18,9 @@ export default function PostBody({ content }) {
   return (
     <>
       <div className={`mx-auto max-w-2xl ${portableTextStyles.portableText}`}>
-        <PortableText value={content} />
+        <ContentEditor content={content} />
       </div>
-      <div className="my-10 mx-auto max-w-2xl">
-        <ShareSocial
-          url={process.env.VERCEL_URL + router.asPath}
-        />
-      </div>
+
     </>
   )
 }

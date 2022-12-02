@@ -17,7 +17,7 @@ export default function TextImage({ image, heading, blurData, content, textLeft,
                         <Image
                             src={image}
                             width={500}
-                            height={0}
+                            height={200}
                             alt={altText}
                             placeholder={blurData ? 'blur' : 'empty'}
                             blurDataURL={blurData}

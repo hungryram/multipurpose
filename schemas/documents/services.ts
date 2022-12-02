@@ -27,16 +27,14 @@ export default defineType({
             options: {
               source: "title",
             },
-            group: 'settings'
+            group: 'settings',
+            validation: (Rule) => Rule.required(),
         },
         {
             title: 'Header Image',
             name: 'headerImage',
             type: 'image',
             group: 'settings',
-            options: {
-                hotspot: true
-            },
             fields: [
                 {
                     title: 'Hide Header',

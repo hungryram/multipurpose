@@ -12,7 +12,6 @@ export default defineType({
       description: 'This field is the title of your blog.',
       title: 'Title',
       type: 'string',
-      initialValue: 'Blog.',
       validation: (rule) => rule.required(),
     },
   ],

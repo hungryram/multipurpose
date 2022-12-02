@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import useSWR from "swr"
 import { appearances } from "../../lib/queries";
-import SanityClient from "@sanity/client";
 import { getClient } from '../../lib/sanity.server';
 
 // TEMPLATES
@@ -10,10 +9,11 @@ import Navbar from "./navbar";
 import Footer from "./footer"
 import Error from '../templates/error';
 import Alert from '../alert';
+import Analytics from './analytics';
 
 export default function Layout({ children, preview }: any) {
 
-    
+
     const { data, error } = useSWR(appearances, query => getClient(false).fetch(query))
     if (error) return <Error />;
     if (!data) return <Loading />;
@@ -26,7 +26,7 @@ export default function Layout({ children, preview }: any) {
 
                             --primary-accent: ${data.appearances?.primaryAccent ?? '#cccccc'};
 
-                            --footer-background-color: ${data.appearances?.footerBg ?? '0e0e0e'};
+                            --footer-background-color: ${data.appearances?.footerBg ?? '#0d1321'};
                             --footer-header-color: ${data.appearances?.footerHeader ?? '#ffffff'};
                             --footer-text-color: ${data.appearances?.footerText ?? '#9b9b9b'};
                             --primary-button-background: ${data.appearances?.primaryButtonBg ?? '#000000'};
@@ -43,9 +43,9 @@ export default function Layout({ children, preview }: any) {
                             --website-body-color: ${data.appearances?.websiteBodyColor ?? '#fff'};
                             --website-text-color: ${data.appearances?.websiteTextColor ?? '#222'};
 
-                            --button-radius: ${data.appearances?.buttonRadius + 'px' ?? '4px'};
-                            --button-y-padding: ${data.appearances?.buttonYPadding ?? '16px'};
-                            --button-x-padding: ${data.appearances?.buttonXPadding ?? '50px'};
+                            --button-radius: ${`${data.appearances?.buttonRadius ?? 4}px`};
+                            --button-y-padding: ${`${data.appearances?.buttonYPadding ?? 16}px`};
+                            --button-x-padding: ${`${data.appearances?.buttonXPadding ?? 50}px`};
                             
                             --announcementbar-background-color: ${data.appearances?.announcementBar?.announcementBgColor};
                             --announcementbar-text-color: ${data.appearances?.announcementBar?.announcementTextColor};
@@ -53,7 +53,11 @@ export default function Layout({ children, preview }: any) {
                     `}
                 </style>
             </Head>
-            <Navbar 
+                <Analytics
+                    googleID={data.profileSettings?.settings?.googleID}
+                    facebookPixel={data.profileSettings?.settings?.facebookPixel}
+                />
+            <Navbar
                 company_name={data.profileSettings?.company_name}
                 logo={data.appearances?.branding?.logo}
                 logoWidth={data.appearances?.branding?.logoWidth}
@@ -77,7 +81,7 @@ export default function Layout({ children, preview }: any) {
             <main>
                 {children}
             </main>
-            <Footer 
+            <Footer
                 footerText={data.appearances?.footer?.footerText}
                 image={data.appearances?.footer?.footerLogo}
                 company_name={data.profileSettings?.company_name}

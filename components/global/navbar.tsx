@@ -93,7 +93,7 @@ export default function Navbar({
                                     alt={company_name}
                                 />
                                 :
-                                <h1 className="text-3xl">{company_name ? company_name : 'Company Name'}</h1>
+                                <h1 className="text-3xl">{company_name}</h1>
                             }
                         </Link>
                     </div>
@@ -220,18 +220,20 @@ export default function Navbar({
                                     }
                                 </Link>
                             </div>
-                            <div className="flex-1 text-right">
-                                <div
-                                    id="toggle"
-                                    className="cursor-pointer flex justify-end z-50"
-                                    onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
-                                // aria-expanded={openMobileNav ? 'true' : 'false'}
-                                >
-                                    <HamburgerMenu
-                                        isOpen={openMobileNav}
-                                    />
+                            {navItems &&
+                                <div className="flex-1 text-right">
+                                    <div
+                                        id="toggle"
+                                        className="cursor-pointer flex justify-end z-50"
+                                        onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
+                                    // aria-expanded={openMobileNav ? 'true' : 'false'}
+                                    >
+                                        <HamburgerMenu
+                                            isOpen={openMobileNav}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div className="relative">

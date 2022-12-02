@@ -59,16 +59,16 @@ export default function ServicePages(props: Props) {
             <Seo
                 title={page?.services?.seo?.title_tag}
                 description={page?.services?.seo?.meta_description}
-                image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.url}
+                image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
-                altText={page?.services?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.altText}
+                altText={page?.services?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
             />
             <Header
                 title={page?.services?.title}
-                image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData.defaultImageBanner?.asset?.url}
+                image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 hideHeader={page?.services?.headerImage?.hideHeader}
                 blurData={page?.services?.headerImageData?.asset?.lqip ?? page?.appearances?.defaultHeaderBanner?.asset?.lqip}
                 altText={page?.services?.headerImageData?.asset?.altText ?? page?.appearances?.defaultHeaderBanner?.asset?.altText}

@@ -17,15 +17,12 @@ export default defineType({
                 {
                     title: 'Title',
                     name: 'title',
-                    type: 'string'
+                    type: 'string',
                 },
                 {
                     title: 'Header Image',
                     name: 'headerImage',
                     type: 'image',
-                    options: {
-                        hotspot: true
-                    }
                 },
                 {
                     title: 'Search Engine Optimization',
@@ -52,9 +49,6 @@ export default defineType({
                     title: 'Header Image',
                     name: 'headerImage',
                     type: 'image',
-                    options: {
-                        hotspot: true
-                    }
                 },
                 {
                     title: 'Search Engine Optimization',
@@ -81,9 +75,6 @@ export default defineType({
                     title: 'Header Image',
                     name: 'headerImage',
                     type: 'image',
-                    options: {
-                        hotspot: true
-                    }
                 },
                 {
                     title: 'Search Engine Optimization',
@@ -110,9 +101,6 @@ export default defineType({
                     title: 'Header Image',
                     name: 'headerImage',
                     type: 'image',
-                    options: {
-                        hotspot: true
-                    }
                 },
                 {
                     title: 'Search Engine Optimization',

@@ -1,6 +1,6 @@
 import { FaFacebookF, FaTwitter, FaPinterestP, FaLinkedinIn, FaEnvelope} from 'react-icons/fa'
 
-export default function ShareSocial({ url }) {
+export default function ShareSocial({ url }: any) {
     return (
         <div className="text-sm">
             <a

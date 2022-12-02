@@ -26,9 +26,6 @@ export default defineType({
             name: 'image',
             type: 'image',
             group: 'content',
-            options: {
-                hotspot: true,
-            },
         },
         {
             title: 'Button',

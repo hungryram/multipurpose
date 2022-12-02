@@ -28,15 +28,13 @@ export default defineType({
             options: {
               source: "name",
             },
+            validation: (Rule) => Rule.required(),
         },
         {
             title: 'Image',
             name: 'image',
             type: 'image',
             group: 'content',
-            options: {
-                hotspot: true,
-            }
         },
         {
             title: 'Position',

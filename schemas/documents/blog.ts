@@ -61,9 +61,6 @@ export default defineType({
       title: 'Cover Image',
       type: 'image',
       group: 'content',
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: 'date',

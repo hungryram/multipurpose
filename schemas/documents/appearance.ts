@@ -166,7 +166,7 @@ export default defineType({
                 {
                     title: 'Footer Disclaimer',
                     name: 'footerDisclaimer',
-                    type: 'contentEditor'
+                    type: 'contentEditor',
                 },
                 {
                     title: "Quick links",
