@@ -38,7 +38,7 @@ export default function Post(props: Props) {
   return (
     <Layout preview={preview}>
       <Header
-        image={post?.coverImageData?.asset?.url}
+        image={post?.coverImage?.asset !== undefined && urlForImage(post?.coverImage).url()}
         blurData={post?.coverImageData?.asset?.lqip}
       />
       <Seo

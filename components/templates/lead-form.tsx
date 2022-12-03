@@ -43,7 +43,7 @@ export default function LeadForm({
                     <div className={Styles.formContainer}>
                         <Form
                             emailAlerts={emailAlerts}
-                            sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
+                            sendFrom={sendFrom}
                             emailBcc={emailBcc}
                             emailCc={emailCc}
                         />

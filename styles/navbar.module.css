@@ -6,9 +6,13 @@
 .navItems {
     color: var(--header-navigation-color)!important;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
     transition: all .2s linear;
     @apply py-8
+}
+
+.desktopParentNavItem {
+    @apply relative inline-block mx-3
 }
 
 .navbarCta {
@@ -31,7 +35,7 @@
 }
 
 .dropDown {
-    @apply absolute bottom-0 left-0 translate-y-full bg-white text-left min-w-[200px] z-50
+    @apply absolute bottom-0 left-0 translate-y-full bg-white text-left min-w-[150px] z-50
 }
 
 .dropDown li {
@@ -40,7 +44,7 @@
 }
 
 .dropDown li:hover {
-    background: var(--primary-accent);
+    background: rgb(227, 227, 227);
     transition: all .2s linear;
 
 }
@@ -73,13 +77,14 @@
     border-bottom: 1px solid rgb(222, 222, 222);
 }
 
-.mobileMenu li a {
+.mobileMenu li a,
+.mobileMenu li button {
     @apply py-3 px-6 block;
     transition: all .3s linear;
 }
 
 .mobileMenu li:hover:not(.mobileDropDown) {
-    background: var(--primary-accent);
+    background: rgb(227, 227, 227);
     transition: all .2s linear;
 }
 

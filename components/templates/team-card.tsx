@@ -44,7 +44,7 @@ export default function TeamCard({
     return (
         <div className="h-full">
             {slug ? (
-                <Link href={`team/${slug}`} arial-label={`Visit profile information for ${name}`}>
+                <Link href={`/team/${slug}`} arial-label={`Visit profile information for ${name}`}>
                     {card}
                 </Link>
             ) :

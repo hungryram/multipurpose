@@ -35,6 +35,9 @@ export default defineType({
             name: 'headerImage',
             type: 'image',
             group: 'settings',
+            options: {
+                hotspot: true
+            },
             fields: [
                 {
                     title: 'Hide Header',

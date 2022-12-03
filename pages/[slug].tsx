@@ -20,7 +20,7 @@ import IconSection from '../components/templates/icon-section'
 import ServiceSection from '../components/templates/service-section'
 
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
-import { usePreviewSubscription } from '../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
 import ContactPage from '../components/templates/contact'
 import { PageProps } from '../types'
@@ -66,7 +66,7 @@ export default function Pages(props: Props) {
             />
             <Header
                 title={page?.pages?.title}
-                image={page?.pages?.headerImageData?.asset?.url ?? page.appearances?.defaultHeaderBanner?.asset?.url}
+                image={page?.pages?.headerImage?.asset !== undefined ? urlForImage(page?.pages?.headerImage).url() : page.appearances?.defaultHeaderBanner?.asset?.url}
                 hideHeader={page?.pages?.headerImage?.hideHeader}
                 altText={page?.pages?.headerImageData?.asset?.altText ?? page.appearances?.defaultHeaderBanner?.asset?.altText}
                 blurData={page?.pages?.headerImageData?.asset?.lqip ?? page.appearances?.defaultHeaderBanner?.asset?.lqip}
@@ -112,9 +112,9 @@ export default function Pages(props: Props) {
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             imageHeight={
-                                section?.imageHeight === 'small' && '400px' ||
-                                section?.imageHeight === 'medium' && '600px' ||
-                                section?.imageHeight === 'large' && '100vh'
+                                section?.imageHeight === 'small' && 'py-12 sm:py-16 lg:pt-48 lg:pb-16' ||
+                                section?.imageHeight === 'medium' && 'py-12 sm:py-16 lg:pt-60 lg:pb-32' ||
+                                section?.imageHeight === 'large' && 'h-screen'
                             }
                         />
                     )

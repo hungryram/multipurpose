@@ -36,6 +36,7 @@ import pageSettingsDocument from "./schemas/documents/page-settings"
 import contentObject from './schemas/objects/content'
 import seoObject from './schemas/objects/seo'
 import contactObject from './schemas/objects/contact'
+import youtubeObject from './schemas/objects/youtube'
 import locationObject from './schemas/objects/location'
 import socialObject from './schemas/objects/social'
 import mainColorObject from './schemas/objects/maincolors'
@@ -46,6 +47,7 @@ import submenuObject from './schemas/objects/submenu'
 import navigationObject from './schemas/objects/navigation'
 import textcolorObject from './schemas/objects/textcolor'
 import linksObject from './schemas/objects/links'
+import editorLinkObject from './schemas/objects/editorLink'
 import buttonSettingsObject from './schemas/objects/button-settings'
 import imageObject from './schemas/objects/image'
 import backgroundTextOptionsObject from './schemas/objects/background-text-option'
@@ -100,6 +102,8 @@ export default createConfig({
       // OBJECTS
       textcolorObject,
       contentObject,
+      editorLinkObject,
+      youtubeObject,
       buttonSettingsObject,
       imageObject,
       seoObject,
@@ -163,7 +167,6 @@ export default createConfig({
         const PageSettingsListItem = // A singleton not using `documentListItem`, eg no built-in preview
           S.listItem()
             .title(pageSettingsDocument.title)
-            .icon(MdOutlineDesignServices)
             .child(
               S.editor()
                 .id(pageSettingsDocument.name)

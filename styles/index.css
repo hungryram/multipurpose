@@ -25,6 +25,10 @@ body {
   color: var(--primary-accent)
 }
 
+iframe {
+  max-width: 100%;
+}
+
 .bg-secondary {
   background-color: var(--secondary-color);
 }

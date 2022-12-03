@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { IoIosMenu } from "react-icons/io"
-import { AiOutlineClose } from "react-icons/ai"
 import { BiCaretDown } from "react-icons/bi"
 import { urlForImage } from "../../lib/sanity";
 import Styles from "../../styles/navbar.module.css"
 import Image from "next/image";
 import HamburgerMenu from "./hamburger-menu";
-import PrimaryButton from "../util/primary-button";
 import AnnouncementBar from "./announcement-bar";
 
 export default function Navbar({
@@ -36,7 +33,6 @@ export default function Navbar({
 
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
-    const desktopMenuParentItems = `relative inline-block mx-4`
 
     // const [scroll, setScroll] = useState(false);
     // useEffect(() => {
@@ -58,7 +54,7 @@ export default function Navbar({
     return (
         <>
             <nav
-                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute top-0'}`}
+                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} absolute top-0`}
             >
                 {announcementText &&
                     <AnnouncementBar
@@ -69,7 +65,7 @@ export default function Navbar({
                     />
                 }
                 {enableTopHeader &&
-                    <div className="p-2 lg:flex lg:visible hidden justify-center'" style={{
+                    <div className="p-2 lg:flex lg:visible hidden justify-center" style={{
                         backgroundColor: `${topHeaderBackground}`,
                         color: `${topHeaderText}`
                     }}>
@@ -82,7 +78,7 @@ export default function Navbar({
                         </div>
                     </div>
                 }
-                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden p-4">
+                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden p-4 container relative">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer inline-block">
                             {logo ?
@@ -112,17 +108,16 @@ export default function Navbar({
                                     return (
                                         <li
                                             key={link._key}
-                                            className={`${desktopMenuParentItems}`}
+                                            className={Styles.desktopParentNavItem}
                                             onMouseEnter={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
                                             onMouseLeave={() => setDropdownActive(null)}
                                         >
-                                            <Link
-                                                href="#"
+                                            <button
                                                 className={`cursor-pointer flex flex-row items-center ${Styles.navItems}`}
                                                 aria-expanded={dropdownActive === link ? "true" : "false"}
                                             >
                                                 {link.text} <BiCaretDown className="ml-1 text-lg" />
-                                            </Link>
+                                            </button>
 
                                             <ul
                                                 className={`${Styles.dropDown} ${dropdownActive === link ? Styles.activeDropDown : Styles.hideDropDown}`}
@@ -137,7 +132,6 @@ export default function Navbar({
                                                                 <Link
                                                                     href={subMenuLinks ?? '/'}
                                                                     target={sub.newTab && '_blank'}
-                                                                    onClick={() => setDropdownActive(null)}
                                                                     className="py-1 block"
                                                                 >
                                                                     {sub.text}
@@ -153,7 +147,7 @@ export default function Navbar({
                                 else {
                                     return (
                                         <>
-                                            <li className={`relative inline-block mx-4`} key={link._key}>
+                                            <li className={Styles.desktopParentNavItem} key={link._key}>
                                                 <Link
                                                     href={menuLinks ?? '/'}
                                                     target={link.newTab && '_blank'}
@@ -167,7 +161,7 @@ export default function Navbar({
                                 }
                             })}
                             {ctaLinking &&
-                                <li className={desktopMenuParentItems} key="ctaButtonheadernavigation">
+                                <li className={Styles.desktopParentNavItem} key="ctaButtonheadernavigation">
                                     <Link href={ctaLinking} className={Styles.navbarCta}>
                                         {ctaLink.text}
                                     </Link>
@@ -178,7 +172,10 @@ export default function Navbar({
                 </div>
             </nav>
 
-            <nav>
+            <nav
+                className={`nav lg:hidden absolute ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
+
+            >
                 <div>
                     {announcementText &&
                         <AnnouncementBar
@@ -189,7 +186,7 @@ export default function Navbar({
                         />
                     }
                     {enableTopHeader &&
-                        <div className="lg:hidden" style={{
+                        <div className="p-2 lg:hidden" style={{
                             backgroundColor: `${topHeaderBackground}`,
                             color: `${topHeaderText}`
                         }}>
@@ -204,10 +201,8 @@ export default function Navbar({
                             </div>
                         </div>
                     }
-                    <div
-                        className={`nav px-4 py-2 lg:hidden ${backgroundColor ? '' : 'absolute'} ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
-                    >
-                        <div className="flex items-center">
+                    <div className="px-4 py-2">
+                        <div className="flex items-center relative">
                             <div className="flex-1">
                                 <Link href="/" className="relative cursor-pointer block">
                                     {logo &&
@@ -236,8 +231,8 @@ export default function Navbar({
                             }
                         </div>
                     </div>
-                    <div className="relative">
-                        <div className={`absolute z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-0 opacity-100" : "-top-96 opacity-0"}`}>
+                    <div>
+                        <div className={`mx-2 relative z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-5 opacity-100" : "-top-52 opacity-0"}`}>
                             <ul className={Styles.mobileMenu}>
                                 {navItems?.map((link) => {
 
@@ -251,14 +246,13 @@ export default function Navbar({
                                                     key={link._key}
                                                     onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
                                                 >
-                                                    <Link
-                                                        href="#"
+                                                    <button
                                                         className="cursor-pointer flex flex-row items-center"
                                                         onClick={() => setOpenMobileNav(true)}
                                                         aria-expanded={dropdownActive === link ? "true" : "false"}
                                                     >
                                                         {link.text} <BiCaretDown className="ml-1 inline" />
-                                                    </Link>
+                                                    </button>
 
                                                     <ul
                                                         className={`${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}

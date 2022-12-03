@@ -68,7 +68,7 @@ export default function ServicePages(props: Props) {
             />
             <Header
                 title={page?.services?.title}
-                image={page?.services?.headerImageData?.asset?.url ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                image={page?.services?.headerImage?.asset !== undefined ? urlForImage(page?.services?.headerImage).url() : page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 hideHeader={page?.services?.headerImage?.hideHeader}
                 blurData={page?.services?.headerImageData?.asset?.lqip ?? page?.appearances?.defaultHeaderBanner?.asset?.lqip}
                 altText={page?.services?.headerImageData?.asset?.altText ?? page?.appearances?.defaultHeaderBanner?.asset?.altText}
@@ -114,9 +114,9 @@ export default function ServicePages(props: Props) {
                             buttonBackground={section?.button?.buttonBackground?.hex}
                             buttonTextColor={section?.button?.buttonTextColor?.hex}
                             imageHeight={
-                                section?.imageHeight === 'small' && '400px' ||
-                                section?.imageHeight === 'medium' && '600px' ||
-                                section?.imageHeight === 'large' && '100vh'
+                                section?.imageHeight === 'small' && 'py-12 sm:py-16 lg:pt-48 lg:pb-16' ||
+                                section?.imageHeight === 'medium' && 'py-12 sm:py-16 lg:pt-60 lg:pb-32' ||
+                                section?.imageHeight === 'large' && 'h-screen'
                             }
                         />
                     )

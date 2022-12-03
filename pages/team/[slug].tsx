@@ -6,7 +6,7 @@ import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 
 import { teamSlugsQuery, queryTeamCurrentPage } from '../../lib/queries'
-import { usePreviewSubscription } from '../../lib/sanity'
+import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { TeamProps } from '../../types'
 import ContentEditor from '../../components/templates/contenteditor'
@@ -62,7 +62,7 @@ export default function ServicePages(props: Props) {
                             <TeamCard 
                                 name={page.team?.name}
                                 position={page.team?.position}
-                                image={page.team?.imageData?.asset?.url}
+                                image={page.team?.image?.asset !== undefined && urlForImage(page.team?.image).url()}
                                 blurData={page.team?.imageData?.asset?.lqip}
                                 altText={page.team?.imageData?.asset?.altText}
                                 phone={page.team?.contactInformation?.phoneNumber}

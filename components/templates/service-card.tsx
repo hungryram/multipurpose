@@ -12,7 +12,7 @@ export default function ServiceCard({
 }: any) {
     return (
         <div className="h-full">
-        <Link href={`services/${slug}`} arial-label={`Link to more information on ${title}`}>
+        <Link href={`/services/${slug}`} arial-label={`Link to more information on ${title}`}>
             <div className="relative overflow-hidden rounded-sm">
                 {headerImage ?
                     <Image

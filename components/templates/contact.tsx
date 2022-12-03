@@ -79,7 +79,7 @@ export default function ContactPage({
                     <div className="px-4">
                         <Form
                             emailAlerts={emailAlerts}
-                            sendFrom={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'}
+                            sendFrom={sendFrom}
                             emailBcc={emailBcc}
                             emailCc={emailCc}
                         />

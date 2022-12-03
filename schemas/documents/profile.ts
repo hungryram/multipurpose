@@ -105,7 +105,6 @@ export default {
                     title: 'Send From',
                     name: 'sendFrom',
                     type: 'string',
-                    description: 'Use forms@hungryramwebdesign.com as default. Enter in a verified domain name to receive email. Contact support@hungryram.com to verify'
                 },
                 {
                     title: 'Google Analytics ID',
