@@ -1,7 +1,6 @@
 
 import { homePageQuery } from '../lib/queries'
 import { getClient } from '../lib/sanity.server'
-import { urlForImage } from '../lib/sanity'
 
 // TEMPLATES
 import Layout from '../components/global/layout'
@@ -29,12 +28,36 @@ export default function Index({
 
   const defaultText = 'var(--website-text-color)'
   const defaultHeader = 'var(--website-text-color)'
+
+  console.log(homeSettings.profileSettings)
+
+  const schemaMarkup =
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `${homeSettings.profileSettings.company_name}`,
+    "description": `${homeSettings.profileSettings?.seo?.meta_description}`,
+    "image": `${homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}`,
+    "url": `${homeSettings.profileSettings?.settings?.websiteName}`,
+    "telephone": `${homeSettings.profileSettings.contact_information?.phone_number}`,
+    "email": `${homeSettings.profileSettings.contact_information?.email}`,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": `${homeSettings.profileSettings?.address?.address}`,
+      "addressLocality": `${homeSettings.profileSettings?.address?.city}`,
+      "addressRegion": `${homeSettings.profileSettings?.address?.state}`,
+      "postalCode": `${homeSettings.profileSettings?.address?.zip_code}`,
+      "addressCountry": `${homeSettings.profileSettings?.address?.state}`
+    },
+  }
+
   return (
     <>
       <Layout preview={preview}>
         <Seo
           title={homeSettings.profileSettings?.seo?.title_tag}
           description={homeSettings.profileSettings?.seo?.meta_description}
+          schemaMarkup={schemaMarkup}
           company_name={homeSettings.profileSettings?.company_name}
           twitterHandle={homeSettings?.profileSettings?.seo?.twitterHandle}
           favicon={homeSettings?.appearances?.favicon}

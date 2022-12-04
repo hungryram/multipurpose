@@ -431,6 +431,15 @@ export default function Pages(props: Props) {
                             sendFrom={page.profileSettings?.settings?.sendFrom}
                             emailBcc={page.profileSettings?.settings?.emailBcc}
                             emailCc={page.profileSettings?.settings?.emailCc}
+                            // HOURS
+                            hours={section?.hours}
+                            monday={page.profileSettings?.hours?.monday}
+                            tuesday={page.profileSettings?.hours?.tuesday}
+                            wednesday={page.profileSettings?.hours?.wednesday}
+                            thursday={page.profileSettings?.hours?.thursday}
+                            friday={page.profileSettings?.hours?.friday}
+                            saturday={page.profileSettings?.hours?.saturday}
+                            sunday={page.profileSettings?.hours?.sunday}
                         />
                     )
                 }

@@ -84,6 +84,14 @@ export default function Layout({ children, preview }: any) {
             <Footer
                 footerText={data.appearances?.footer?.footerText}
                 image={data.appearances?.footer?.footerLogo}
+                hours={data?.appearances?.footer?.hours}
+                monday={data.profileSettings?.hours?.monday}
+                tuesday={data.profileSettings?.hours?.tuesday}
+                wednesday={data.profileSettings?.hours?.wednesday}
+                thursday={data.profileSettings?.hours?.thursday}
+                friday={data.profileSettings?.hours?.friday}
+                saturday={data.profileSettings?.hours?.saturday}
+                sunday={data.profileSettings?.hours?.sunday}
                 company_name={data.profileSettings?.company_name}
                 legal={data.legal}
                 email={data.profileSettings?.contact_information?.email}

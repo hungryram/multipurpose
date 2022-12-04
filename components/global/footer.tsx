@@ -7,6 +7,7 @@ import { urlForImage } from "../../lib/sanity"
 import Social from "../templates/social"
 import ContentEditor from "../templates/contenteditor"
 import ContactBlock from "../templates/contact-block"
+import Hours from "../templates/hours"
 
 export default function Footer({
     address,
@@ -34,14 +35,23 @@ export default function Footer({
     tiktok,
     zillow,
     size,
-    website
+    website,
+
+    hours,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
 }: any) {
     return (
         <footer className={Styles.footer}>
             <div className="pt-20 pb-10">
                 <div className="container">
                     <div className="mx-6 py-10 md:text-left text-center">
-                        <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 gap-8">
+                        <div className={`grid grid-1 md:grid-cols-2 lg:grid-cols-${hours ? '5' : '4'} md:gap-4 gap-8`}>
                             <div className="relative">
                                 {image ?
                                     <div className="flex md:justify-start justify-center">
@@ -117,6 +127,19 @@ export default function Footer({
                                     />
                                 }
                             </div>
+                            {hours &&
+                                <div>
+                                    <Hours
+                                        monday={monday}
+                                        tuesday={tuesday}
+                                        wednesday={wednesday}
+                                        thursday={thursday}
+                                        friday={friday}
+                                        saturday={saturday}
+                                        sunday={sunday}
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                     {footerDisclaimer &&

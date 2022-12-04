@@ -30,7 +30,16 @@ export default function ContactPage({
     emailAlerts,
     sendFrom,
     emailBcc,
-    emailCc
+    emailCc,
+
+    hours,
+    monday, 
+    tuesday, 
+    wednesday, 
+    thursday, 
+    friday, 
+    saturday, 
+    sunday
 
 }: any) {
     return (
@@ -40,7 +49,7 @@ export default function ContactPage({
                     <div className="bg-slate-100">
                         <div className="p-6">
                             <div className={Styles.contactBlock}>
-                                <h3 className="font-bold text-lg">Contact</h3>
+                            <h3 className="uppercase font-semibold mb-4">CONTACT</h3>
                                 <ContactBlock
                                     email={email}
                                     phone={phone_number}
@@ -49,6 +58,14 @@ export default function ContactPage({
                                     city={city}
                                     state={state}
                                     zipCode={zip_code}
+                                    hours={hours}
+                                    monday={monday}
+                                    tuesday={tuesday}
+                                    wednesday={wednesday}
+                                    thursday={thursday}
+                                    friday={friday}
+                                    saturday={saturday}
+                                    sunday={sunday}
                                 />
                             </div>
                             <div className="mt-6">

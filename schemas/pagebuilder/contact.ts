@@ -14,6 +14,11 @@ export default defineType({
             title: 'Text',
             name: 'text',
             type: 'contentEditor'
-        }
+        },
+        {
+            title: 'Display Hours',
+            name: 'hours',
+            type: 'boolean'
+        },
     ]
 })

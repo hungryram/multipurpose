@@ -11,7 +11,8 @@ export default function Seo({
     themeColor,
     altText,
     ogType = "website",
-    robotIndex = "index,follow"
+    robotIndex = "index,follow",
+    schemaMarkup
 }: any) {
 
     const defaultTitle = company_name
@@ -77,6 +78,9 @@ export default function Seo({
                 property="twitter:description"
                 content={description}
             />
+            {schemaMarkup &&
+                <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
+            }
         </Head>
     );
 }

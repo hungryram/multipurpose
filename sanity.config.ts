@@ -9,7 +9,7 @@ import { MdOutlineDesignServices, MdPersonOutline } from "react-icons/md"
 import { colorInput } from '@sanity/color-input'
 import { media } from "sanity-plugin-media"
 import { visionTool } from '@sanity/vision'
-import { createConfig, Slug } from 'sanity'
+import { defineConfig, Slug } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
@@ -74,7 +74,7 @@ import servicesSectionBuilder from './schemas/pagebuilder/service-section'
 // @TODO: update next-sanity/studio to automatically set this when needed
 const basePath = '/admin'
 
-export default createConfig({
+export default defineConfig({
   basePath,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,

@@ -169,6 +169,11 @@ export default defineType({
                     type: 'contentEditor',
                 },
                 {
+                    title: 'Display Hours',
+                    name: 'hours',
+                    type: 'boolean',
+                },
+                {
                     title: "Quick links",
                     name: "quickLinks",
                     type: "array",

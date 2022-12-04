@@ -409,6 +409,7 @@ export const appearances = groq`
   _id
 },
   'profileSettings': *[_type == 'profile'][0]{
+    ...,
       company_name,
       social,
       contact_information {
