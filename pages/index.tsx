@@ -29,13 +29,11 @@ export default function Index({
   const defaultText = 'var(--website-text-color)'
   const defaultHeader = 'var(--website-text-color)'
 
-  console.log(homeSettings.profileSettings)
-
   const schemaMarkup =
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": `${homeSettings.profileSettings.company_name}`,
+    "name": `${homeSettings.profileSettings?.company_name}`,
     "description": `${homeSettings.profileSettings?.seo?.meta_description}`,
     "image": `${homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}`,
     "url": `${homeSettings.profileSettings?.settings?.websiteName}`,
