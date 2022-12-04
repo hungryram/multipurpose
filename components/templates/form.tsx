@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
@@ -49,8 +48,8 @@ export default function Form({ emailAlerts, sendFrom, emailCc, emailBcc }: any) 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input type="hidden" name="name" id="name" className="h-0 w-0 opacity-0" />
-                <input type="hidden" name="email" id="email" className="h-0 w-0 opacity-0" />
+                <input type="hidden" name="name" id="name" className="h-0 w-0 opacity-0" autoComplete="off"/>
+                <input type="hidden" name="email" id="email" className="h-0 w-0 opacity-0" autoComplete="off"/>
                 <input type="hidden" name="emailAlerts" value={emailAlerts ? emailAlerts : 'submissions@hungryramwebdesign.com'} id="emailAlerts" className="h-0 w-0 opacity-0" />
                 <input type="hidden" name="sendFrom" value={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'} id="sendFrom" className="h-0 w-0 opacity-0" />
                 <input type="hidden" name="emailBcc" value={emailBcc} id="emailBcc" className="h-0 w-0 opacity-0" />
