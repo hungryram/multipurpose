@@ -15,7 +15,7 @@ export default function BodyText({
 }: any) {
     return (
         <div className="md:flex justify-center py-6">
-            <div className={fullWidth ? 'w-full' : 'md:w-3/5'}>
+            <div className={fullWidth ? 'w-full' : 'md:w-3/4'}>
                 <div className={`px-4 ${textAlign ? 'text-left': 'text-center'}`}>
                     {heading && <h2 className="h2 mb-6" style={headerStyle}>{heading}</h2>}
                     {body &&

@@ -45,7 +45,7 @@ export default function Hero({
             }
 
 
-            <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div className="relative mx-auto sm:px-6">
                 <div className="mx-auto" style={{
                     color: `${textStyle}`
                 }}>
@@ -53,7 +53,7 @@ export default function Hero({
                         body={body}
                         headerStyle={headerStyle}
                         buttonText={buttonText}
-                        fullWidth={false}
+                        fullWidth={true}
                         buttonLink={buttonLink}
                         buttonBackground={buttonBackground}
                         buttonTextColor={buttonTextColor}
