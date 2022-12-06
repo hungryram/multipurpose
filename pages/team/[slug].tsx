@@ -20,7 +20,7 @@ interface Props {
     preview: any
 }
 
-export default function ServicePages(props: Props) {
+export default function TeamPages(props: Props) {
 
     const { data: initialData, preview } = props
     const router = useRouter()
@@ -31,7 +31,7 @@ export default function ServicePages(props: Props) {
         initialData: initialData?.team,
         enabled: preview && !!slug,
     })
-    const page = data || {}
+    const page = data
 
 
     if (!router.isFallback && !slug) {
@@ -42,12 +42,12 @@ export default function ServicePages(props: Props) {
             <Seo
                 title={page?.team?.seo?.title_tag ?? page?.team?.name + ' | ' + page?.profileSettings?.company_name}
                 description={page?.team?.seo?.meta_description}
-                image={page.team?.imageData?.asset?.url}
+                image={page?.team?.imageData?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
-                altText={page.team?.imageData?.asset?.altText ?? page.team?.name}
+                altText={page?.team?.imageData?.asset?.altText ?? page?.team?.name}
                 />
             <Header
                 title={page?.team?.name}
@@ -60,18 +60,18 @@ export default function ServicePages(props: Props) {
                     <div className="md:flex md:space-x-10 md:space-y-0 space-y-10">
                         <div className="md:w-1/3">
                             <TeamCard 
-                                name={page.team?.name}
-                                position={page.team?.position}
-                                image={page.team?.image?.asset !== undefined && urlForImage(page.team?.image).url()}
-                                blurData={page.team?.imageData?.asset?.lqip}
-                                altText={page.team?.imageData?.asset?.altText}
-                                phone={page.team?.contactInformation?.phoneNumber}
-                                email={page.team?.contactInformation?.email}
+                                name={page?.team?.name}
+                                position={page?.team?.position}
+                                image={page?.team?.image?.asset !== undefined && urlForImage(page.team?.image).url()}
+                                blurData={page?.team?.imageData?.asset?.lqip}
+                                altText={page?.team?.imageData?.asset?.altText}
+                                phone={page?.team?.contactInformation?.phoneNumber}
+                                email={page?.team?.contactInformation?.email}
 
                             />
                         </div>
                         <div className="md:w-2/3 content">
-                            {page.team?.about &&
+                            {page?.team?.about &&
                                 <ContentEditor
                                     content={page?.team?.about}
                                 />

@@ -33,11 +33,6 @@
     @apply px-3 py-2
 }
 
-/* TEXT AND IMAGE */
-
-.textAndImage img {
-    box-shadow: 0 5px 12px rgb(0 0 0 / 15%);
-}
 
 /* CONTACT */
 

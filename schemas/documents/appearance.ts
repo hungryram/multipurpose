@@ -177,7 +177,7 @@ export default defineType({
                     title: "Quick links",
                     name: "quickLinks",
                     type: "array",
-                    of: [{ type: "navigationItem" }]
+                    of: [{ type: "links" }]
                 },
                 {
                     title: 'Footer Background Color',

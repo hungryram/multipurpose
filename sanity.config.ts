@@ -49,6 +49,7 @@ import textcolorObject from './schemas/objects/textcolor'
 import linksObject from './schemas/objects/links'
 import editorLinkObject from './schemas/objects/editorLink'
 import buttonSettingsObject from './schemas/objects/button-settings'
+import secondaryButtonObject from './schemas/objects/secondary-button'
 import imageObject from './schemas/objects/image'
 import backgroundTextOptionsObject from './schemas/objects/background-text-option'
 
@@ -65,6 +66,7 @@ import featuredGridBuilder from './schemas/pagebuilder/featured-grid'
 import textImageBuilder from './schemas/pagebuilder/text-and-image'
 import leadFormBuilder from './schemas/pagebuilder/lead-form'
 import pricingBuilder from './schemas/pagebuilder/pricing'
+import logosBuilder from './schemas/pagebuilder/logos'
 import teamSectionBuilder from './schemas/pagebuilder/team-section'
 import blogSectionBuilder from './schemas/pagebuilder/blog-section'
 import iconSectionBuilder from './schemas/pagebuilder/icon-section'
@@ -105,6 +107,7 @@ export default defineConfig({
       editorLinkObject,
       youtubeObject,
       buttonSettingsObject,
+      secondaryButtonObject,
       imageObject,
       seoObject,
       contactObject,
@@ -134,7 +137,8 @@ export default defineConfig({
       leadFormBuilder,
       textImageBuilder,
       featuredGridBuilder,
-      servicesSectionBuilder
+      servicesSectionBuilder,
+      logosBuilder
     ],
   },
   plugins: [

@@ -30,7 +30,7 @@ export default function LegalPages(props: Props) {
         initialData: initialData?.legal,
         enabled: preview && !!slug,
     })
-    const page = data || {}
+    const page = data
 
 
     if (!router.isFallback && !slug) {
@@ -40,26 +40,26 @@ export default function LegalPages(props: Props) {
     return (
         <Layout preview={preview}>
             <Seo
-                title={page?.seo?.title_tag ?? page?.legal?.title + ' | ' + page.profileSettings?.company_name}
+                title={page?.seo?.title_tag ?? page?.legal?.title + ' | ' + page?.profileSettings?.company_name}
                 description={page?.seo?.meta_description}
-                image={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+                image={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
                 company_name={page?.profileSettings?.company_name}
                 twitterHandle={page?.profileSettings?.seo?.twitterHandle}
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
-                altText={page.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+                altText={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
 
             />
             <Header
                 title={page?.legal?.title}
-                image={page.appearances?.defaultHeaderBanner?.asset?.url}
-                altText={page.appearances?.defaultHeaderBanner?.asset?.altText}
-                blurData={page.appearances?.defaultHeaderBanner?.asset?.lqip}
+                image={page?.appearances?.defaultHeaderBanner?.asset?.url}
+                altText={page?.appearances?.defaultHeaderBanner?.asset?.altText}
+                blurData={page?.appearances?.defaultHeaderBanner?.asset?.lqip}
 
             />
             <div className="section">
                 <div className="container content">
-                    {page.legal?.content &&
+                    {page?.legal?.content &&
                         <ContentEditor
                             content={page?.legal?.content}
                         />

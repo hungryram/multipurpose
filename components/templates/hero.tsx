@@ -13,30 +13,37 @@ export default function Hero({
     buttonText,
     buttonBackground,
     buttonTextColor,
+    secondButtonText,
+    secondButtonLink,
+    secondButtonBackground,
+    secondButtonTextColor
 }: any) {
 
 
     return (
 
-        <div className={`relative flex items-center justify-center ${imageHeight ?? 'py-12 sm:py-16 lg:pt-60 lg:pb-32'}`}>
-            <div className="absolute inset-0">
-                <Image
-                    src={image}
-                    alt={altText}
-                    className="object-cover w-full h-full object-center"
-                    priority
-                    width={2000}
-                    height={1000}
-                    sizes="100vw"
-                    placeholder={blurData ? 'blur' : 'empty'}
-                    blurDataURL={blurData}
-                    style={{
-                        objectFit: 'cover',
-                    }}
-                />
-            </div>
+        <div className={`relative flex items-center justify-center ${imageHeight ? imageHeight : 'py-12 lg:py-40'}`}>
+            {image &&
+                <div className="absolute inset-0">
+                    <Image
+                        src={image}
+                        alt={altText}
+                        className="object-cover w-full h-full object-center"
+                        priority
+                        width={2000}
+                        height={1000}
+                        sizes="100vw"
+                        placeholder={blurData ? 'blur' : 'empty'}
+                        blurDataURL={blurData}
+                        style={{
+                            objectFit: 'cover',
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
 
-            <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
+                </div>
+            }
+
 
             <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="mx-auto" style={{
@@ -50,6 +57,10 @@ export default function Hero({
                         buttonLink={buttonLink}
                         buttonBackground={buttonBackground}
                         buttonTextColor={buttonTextColor}
+                        secondButtonText={secondButtonText}
+                        secondButtonLink={secondButtonLink}
+                        secondButtonBackground={secondButtonBackground}
+                        secondButtonTextColor={secondButtonTextColor}
                     />
                 </div>
             </div>

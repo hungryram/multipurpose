@@ -39,6 +39,7 @@ export default defineType({
                 {type: 'featuredGrid'},
                 {type: 'iconSection'},
                 {type: 'banner'},
+                {type: 'logos'},
                 {type: 'testimonialBuilder'},
                 {type: 'disclosureSection'},
                 {type: 'teamDisplay'},

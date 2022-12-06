@@ -11,12 +11,11 @@ export interface PostProps {
   author: AuthorProps
   slug?: string
   content?: any
-  seo: any
-  profileSettings: any
-  appearances: any
   altText: string
-  blurData: any
-  lqip: any
+  blurData?: any
+  lqip?: any
+  coverImageData?: any
+  seo?: any
 }
 
 export interface PageProps {
@@ -26,6 +25,11 @@ export interface PageProps {
   content?: any
   pages?: any
   profileSettings?: any
+  appearances?: any
+  allServices?: any
+  allTestimonial?: any
+  allBlog?: any
+  allTeam?: any
 }
 
 export interface ServiceProps {
@@ -34,6 +38,12 @@ export interface ServiceProps {
   slug?: string
   content?: any
   services: any
+  profileSettings?: any
+  appearances?: any
+  allServices?: any
+  allTestimonial?: any
+  allBlog?: any
+  allTeam?: any
 }
 
 export interface TeamProps {
@@ -43,6 +53,9 @@ export interface TeamProps {
   slug?: string
   content?: any
   about?: any
+  profileSettings?: any
+  appearances?: any
+  team?: any
 }
 
 export interface LegalProps {
@@ -52,6 +65,9 @@ export interface LegalProps {
   content?: any
   header: any
   seo: any
+  profileSettings?: any
+  appearances?: any
+  legal?: any
 }
 
 export interface HomeProps {
@@ -60,6 +76,11 @@ export interface HomeProps {
   slug?: string
   content?: any
   pages?: any
-  profileSettings: any
+  profileSettings?: any
+  appearances?: any
+  allServices?: any
+  allTestimonial?: any
+  allBlog?: any
+  allTeam?: any
   homeDesign?: any
 }

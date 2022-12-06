@@ -88,7 +88,18 @@ internalLink->{
     'slug': slug.current,
     _type
   }
-}                                     // END BUTTONSETTINGS DATA
+},                                     // END BUTTONSETTINGS DATA
+'secondButtonLinking':  secondaryButton.button{      // START SECONDARY BUTTON DATA
+  'buttonText': text,
+  linkType,
+  externalUrl,
+  newTab,
+  internalLink->{
+      title,
+      'slug': slug.current,
+      _type
+    }
+  }                                     // END SECONDARY BUTTON DATA
 `
 
 const otherDocumentSections = groq`
@@ -312,6 +323,8 @@ export const appearances = groq`
   'mobileIconColor': header.hamburgerMenuColor.hex,
   'primaryButtonBg': mainColors.buttonBackgroundColor.hex,
   'primaryButtonText': mainColors.buttonTextColor.hex,
+  'secondaryButtonBg': mainColors.secondaryButtonBackgroundColor.hex,
+  'secondaryButtonText': mainColors.secondaryButtonTextColor.hex,
   'buttonRadius': globalButtonDesign.buttonCorner,
   'buttonXPadding': globalButtonDesign.xPadding,
   'buttonYPadding': globalButtonDesign.yPadding,

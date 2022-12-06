@@ -28,9 +28,15 @@ export default defineType({
             group: 'content',
         },
         {
-            title: 'Button',
+            title: 'Primary Button',
             name: 'button',
             type: 'buttonSettings',
+            group: 'content'
+        },
+        {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
             group: 'content'
         },
         {
@@ -45,6 +51,25 @@ export default defineType({
             name: 'textLeft',
             type: 'boolean',
             description: 'Defaults to center when no image is set',
+            group: 'settings'
+        },
+        {
+            title: 'Two Column Text',
+            name: 'twoColumnText',
+            type: 'boolean',
+            description: 'Split content into two columns',
+            group: 'settings'
+        },
+        {
+            title: 'Remove Padding',
+            name: 'removePadding',
+            type: 'boolean',
+            group: 'settings'
+        },
+        {
+            title: 'Remove Image Shadow',
+            name: 'removeShadow',
+            type: 'boolean',
             group: 'settings'
         },
         {

@@ -29,8 +29,10 @@ export default function Layout({ children, preview }: any) {
                             --footer-background-color: ${data.appearances?.footerBg ?? '#0d1321'};
                             --footer-header-color: ${data.appearances?.footerHeader ?? '#ffffff'};
                             --footer-text-color: ${data.appearances?.footerText ?? '#9b9b9b'};
-                            --primary-button-background: ${data.appearances?.primaryButtonBg ?? '#000000'};
-                            --primary-button-text: ${data.appearances?.primaryButtonText ?? '#ffffff'};
+                            --primary-button-background: ${data.appearances?.primaryButtonBg ?? 'transparent'};
+                            --primary-button-text: ${data.appearances?.primaryButtonText ?? '#000000'};
+                            --secondary-button-background: ${data.appearances?.secondaryButtonBg ?? 'transparent'};
+                            --secondary-button-text: ${data.appearances?.secondaryButtonText ?? '#cccccc'};
                             --secondary-color: ${data.appearances?.secondaryColor ?? '#cccccc'};
 
                             --header-background-color: ${data.appearances?.navBgColor ? data.appearances?.navBgColor : 'transparent'};

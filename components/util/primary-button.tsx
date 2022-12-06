@@ -14,7 +14,7 @@ export default function PrimaryButton({ buttonLabel, buttonLink, buttonBackgroun
 
   return (
     <>
-      {buttonLinking || buttonLink ?
+      {buttonLabel || buttonLink.buttonText ?
         <Link href={buttonLinking ?? buttonLink} className={Styles.primaryButton} style={{
           background: `${buttonBackground ?? 'var(--primary-button-background)'}`,
           color: `${buttonTextColor ?? 'var(--primary-button-text)'}`

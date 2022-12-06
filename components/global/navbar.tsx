@@ -54,7 +54,7 @@ export default function Navbar({
     return (
         <>
             <nav
-                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} absolute top-0`}
+                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} top-0 ${backgroundColor ? '' : 'absolute'}`}
             >
                 {announcementText &&
                     <AnnouncementBar
@@ -173,7 +173,7 @@ export default function Navbar({
             </nav>
 
             <nav
-                className={`nav lg:hidden absolute ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
+                className={`nav lg:hidden ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'}`}
 
             >
                 <div>
@@ -201,7 +201,7 @@ export default function Navbar({
                             </div>
                         </div>
                     }
-                    <div className="px-4 py-2">
+                    <div className={`px-4 py-2 `}>
                         <div className="flex items-center relative">
                             <div className="flex-1">
                                 <Link href="/" className="relative cursor-pointer block">
@@ -232,7 +232,7 @@ export default function Navbar({
                         </div>
                     </div>
                     <div>
-                        <div className={`mx-2 relative z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-5 opacity-100" : "-top-52 opacity-0"}`}>
+                        <div className={`mx-2 z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "relative top-5 opacity-100" : "absolute -top-52 opacity-0"}`}>
                             <ul className={Styles.mobileMenu}>
                                 {navItems?.map((link) => {
 

@@ -27,7 +27,7 @@ export default defineType({
             }
         },
         {
-            title: 'Button Background Color',
+            title: 'Primary Button Background Color',
             name: 'buttonBackgroundColor',
             type: 'color',
             options: {
@@ -35,8 +35,24 @@ export default defineType({
             }
         },
         {
-            title: 'Button Text Color',
+            title: 'Primary Button Text Color',
             name: 'buttonTextColor',
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
+        },
+        {
+            title: 'Secondary Button Background Color',
+            name: 'secondaryButtonBackgroundColor',
+            type: 'color',
+            options: {
+                disableAlpha: true
+            }
+        },
+        {
+            title: 'Secondary Button Text Color',
+            name: 'secondaryButtonTextColor',
             type: 'color',
             options: {
                 disableAlpha: true

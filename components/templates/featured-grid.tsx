@@ -61,6 +61,8 @@ export default function FeaturedGrid({
                                             (node.blockLinking?.internalLink?._type === "legal" && `/legal/${node.blockLinking?.internalLink.slug}`) ||
                                             (node.blockLinking?.internalLink?._type === "author" && `/authors/${node.blockLinking?.internalLink.slug}`) ||
                                             (node.blockLinking?.internalLink?._type === "services" && `/services/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "portfolio" && `/portfolio/${node.blockLinking?.internalLink.slug}`) ||
+                                            (node.blockLinking?.internalLink?._type === "locations" && `/locations/${node.blockLinking?.internalLink.slug}`) ||
                                             (node.blockLinking?.externalUrl && `${node.blockLinking?.externalUrl}`)
                                         return (
                                             <div className="relative bg-secondary h-full" key={node._key} style={{
@@ -79,17 +81,17 @@ export default function FeaturedGrid({
                                                                     width={450}
                                                                     placeholder={node?.image?.asset?.lqip  ? 'blur' : 'empty'}
                                                                     blurDataURL={node?.image?.asset?.lqip ?? node?.image?.asset?.url}
+                                                                    className="w-full object-cover h-full"
                                                                     style={{
-                                                                        objectFit: 'cover',
-                                                                        height: `${imageHeight ? imageHeight : '400px'}`,
+                                                                        height: `${imageHeight ? imageHeight : '200px'}`,
+
                                                                     }}
-                                                                    className="w-full"
                                                                 />
                                                             }
                                                             {!textOutsideImage && <div className="featured-grid-overlay"></div>}
                                                         </>
                                                         <div
-                                                            className={`lg:px-12 px-6 py-4 justify-center ${textOutsideImage ? '' : 'absolute bottom-0 left-0 right-0'} ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''} ${blockLeft ? 'text-left' : 'text-center'}
+                                                            className={`lg:p-12 p-6 justify-center ${textOutsideImage ? '' : 'absolute bottom-0 left-0 right-0'} ${centerTextGrid ? 'top-0 flex flex-col absolute' : ''} ${blockLeft ? 'text-left' : 'text-center'}
                                                             `}>
                                                             {node?.value &&
                                                                 <h3 className="text-2xl">{node.value}</h3>
