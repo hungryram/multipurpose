@@ -421,6 +421,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             content={section?.text}
                             blocks={section?.blockImages}
                             textLeft={section?.textLeft}
+                            blockLeft={section?.blockLeft}
                             columnNumber={section?.columnNumber}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}

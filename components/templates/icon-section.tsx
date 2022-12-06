@@ -15,7 +15,8 @@ export default function IconSection({
     buttonText,
     buttonLink,
     buttonBackground,
-    buttonTextColor
+    buttonTextColor,
+    blockLeft,
 }: any) {
     return (
         <Wrapper
@@ -72,10 +73,9 @@ export default function IconSection({
                                                     }} />
                                             }
                                         </>
-                                        <div
-                                            className={`py-4`} style={textStyle}>
+                                        <div className={`py-4 content ${blockLeft ? 'text-left': 'text-center'}`} style={textStyle}>
                                             {node.heading &&
-                                                <h3 className="h3 font-bold">{node.heading}</h3>
+                                                <h3 className="h3 font-[600]">{node.heading}</h3>
                                             }
                                             {node.content &&
                                                 <div className="mt-6">
