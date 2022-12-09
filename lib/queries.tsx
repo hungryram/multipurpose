@@ -186,7 +186,6 @@ export const homeQuery = groq`
   'sanityImages': *[_type == "sanity.imageAsset"][0] {
     'base64': metadata.lqip
   },
-	'homeDesign': *[_type == 'homeDesign'][0],
   'team': *[_type == 'team'][0..6]{
     name,
     _id,
@@ -472,7 +471,6 @@ export const queryHomeCurrentPage = groq`
 export const homeSlugsQuery = groq`
 *[_type == "homeDesign" && defined(slug.current)][].slug.current
 `
-
 
 
 // SERVICE QUERY

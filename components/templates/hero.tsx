@@ -11,12 +11,10 @@ export default function Hero({
     textStyle,
     headerStyle,
     buttonText,
-    buttonBackground,
-    buttonTextColor,
+    buttonStyle,
     secondButtonText,
     secondButtonLink,
-    secondButtonBackground,
-    secondButtonTextColor
+    secondaryButtonStyle,
 }: any) {
 
 
@@ -55,12 +53,11 @@ export default function Hero({
                         buttonText={buttonText}
                         fullWidth={true}
                         buttonLink={buttonLink}
-                        buttonBackground={buttonBackground}
-                        buttonTextColor={buttonTextColor}
+                        buttonStyle={buttonStyle}
+                        // SECONDARY BUTTON
                         secondButtonText={secondButtonText}
                         secondButtonLink={secondButtonLink}
-                        secondButtonBackground={secondButtonBackground}
-                        secondButtonTextColor={secondButtonTextColor}
+                        secondaryButtonStyle={secondaryButtonStyle}
                     />
                 </div>
             </div>

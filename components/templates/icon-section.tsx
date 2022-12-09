@@ -12,11 +12,13 @@ export default function IconSection({
     backgroundStyles,
     textStyle,
     headerStyle,
+    blockLeft,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor,
-    blockLeft,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
     return (
         <Wrapper
@@ -32,8 +34,10 @@ export default function IconSection({
                     textAlign={textLeft}
                     buttonText={buttonText}
                     buttonLink={buttonLink}
-                    buttonBackground={buttonBackground}
-                    buttonTextColor={buttonTextColor}
+                    buttonStyle={buttonStyle}
+                    secondButtonText={secondButtonText}
+                    secondButtonLink={secondButtonLink}
+                    secondaryButtonStyle={secondaryButtonStyle}
                 />
                 {blocks &&
                     <div className={`grid h-full lg:grid-cols-${columnNumber ? columnNumber : '2'} md:grid-cols-2 grid-cols-1 gap-10 mt-20`}>

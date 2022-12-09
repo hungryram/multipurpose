@@ -6,6 +6,8 @@ import Styles from "../../styles/templates.module.css"
 export default function LeadForm({
     content,
     heading,
+    formBackground,
+    formTextColor,
     paddingSize,
     textStyle,
     headerStyle,
@@ -40,13 +42,17 @@ export default function LeadForm({
                     />
                 </div>
                 <div className="relative">
-                    <div className={Styles.formContainer}>
-                        <Form
-                            emailAlerts={emailAlerts}
-                            sendFrom={sendFrom}
-                            emailBcc={emailBcc}
-                            emailCc={emailCc}
-                        />
+                    <div className={Styles.formContainer} style={formBackground}>
+                        <div style={{
+                            color: `${formTextColor}`
+                        }}>
+                            <Form
+                                emailAlerts={emailAlerts}
+                                sendFrom={sendFrom}
+                                emailBcc={emailBcc}
+                                emailCc={emailCc}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { urlForImage } from "../../lib/sanity";
 import BodyText from "../util/body-text";
+import Styles from "../../styles/templates.module.css"
 
 export default function FullWidthTextImage({ 
     content, 
@@ -7,10 +8,12 @@ export default function FullWidthTextImage({
     buttonLink, 
     image, 
     backgroundStyles, 
-    altText, 
+    altText,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle,
     columnReverse, 
-    buttonBackground, 
-    buttonTextColor, 
+    buttonStyle, 
     textLeft, 
     headerStyle, 
     textStyle, 
@@ -29,13 +32,15 @@ export default function FullWidthTextImage({
                             textAlign={textLeft}
                             buttonText={buttonText}
                             buttonLink={buttonLink}
-                            buttonBackground={buttonBackground}
-                            buttonTextColor={buttonTextColor}
+                            buttonStyle={buttonStyle}
+                            secondButtonText={secondButtonText}
+                            secondButtonLink={secondButtonLink}
+                            secondaryButtonStyle={secondaryButtonStyle}
                     />
                     </div>
                 </div>
                 <div className="md:w-1/2 md:h-[500px] h-96 bg-cover w-full bg-center" role="img" aria-label={altText} style={{
-                    backgroundImage: `url(${urlForImage(image).url()})`
+                    backgroundImage: `url(${image?.asset !== undefined && urlForImage(image).url()})`
                 }}>
 
                 </div>

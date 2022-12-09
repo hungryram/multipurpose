@@ -20,8 +20,6 @@ export default function Gallery({ images,
     content,
     fullWidth,
     animation,
-    buttonText,
-    buttonLink,
     buttonTextColor,
     buttonBackground,
     disablePagination,
@@ -30,7 +28,13 @@ export default function Gallery({ images,
     textStyle,
     headerStyle,
     backgroundStyles,
-    removePadding
+    removePadding,
+    buttonText,
+    buttonLink,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
 
     SwiperCore.use([Autoplay, Pagination, Navigation, A11y])
@@ -102,8 +106,10 @@ export default function Gallery({ images,
                                 textAlign={fullWidth ? false : true}
                                 buttonText={buttonText}
                                 buttonLink={buttonLink}
-                                buttonBackground={buttonBackground}
-                                buttonTextColor={buttonTextColor}
+                                buttonStyle={buttonStyle}
+                                secondButtonText={secondButtonText}
+                                secondButtonLink={secondButtonLink}
+                                secondaryButtonStyle={secondaryButtonStyle}
                             />
                         </div>
                     </div>

@@ -3,11 +3,13 @@
 }
 
 .footer h3 {
-    color: var(--footer-header-color)
+    color: var(--footer-header-color);
+    font-family: var(--heading-font-family);
 }
 
 .footer p,
 .footer li {
     color: var(--footer-text-color);
     margin: 10px 0;
+    font-family: var(--content-font-family)
 }

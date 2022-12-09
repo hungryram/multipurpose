@@ -4,9 +4,9 @@ export default function Header({ image, title, altText, hideHeader, blurData }: 
     return (
         <>
             {hideHeader ?
-                <div className="pt-40"></div>
+                <div></div>
                 :
-                <div className={`relative pt-52 pb-10 lg:pt-80 lg:pb-10 ${image ? '' : 'bg-secondary'}`}>
+                <div className={`relative pt-52 pb-10 lg:pt-72 lg:pb-10 ${image ? '' : 'bg-secondary'}`}>
                     {image &&
                         <>
                             <div className="absolute inset-0">

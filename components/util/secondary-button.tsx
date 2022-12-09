@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Styles from "../../styles/util.module.css"
 
-export default function SecondaryButton({ buttonLabel, buttonLink, secondaryButtonLink, buttonBackground, buttonTextColor }: any) {
+export default function SecondaryButton({ buttonLabel, buttonLink, secondaryButtonLink, secondaryButtonStyle }: any) {
 
     const secondaryButtonLinking =
     (buttonLink?.internalLink?._type === "pages" && `/${buttonLink?.internalLink.slug}`) ||
@@ -15,11 +15,8 @@ export default function SecondaryButton({ buttonLabel, buttonLink, secondaryButt
 
   return (
     <>
-      {buttonLabel || secondaryButtonLink.buttonText ?
-        <Link href={secondaryButtonLinking ?? buttonLink} className={Styles.secondaryButton} style={{
-          background: `${buttonBackground ?? 'var(--secondary-button-background)'}`,
-          color: `${buttonTextColor ?? 'var(--secondary-button-text)'}`
-        }} target={buttonLink.newTab && '_blank'}>{buttonLabel ?? secondaryButtonLink.buttonText }</Link>
+      {buttonLabel || secondaryButtonLink?.buttonText ?
+        <Link href={secondaryButtonLinking ?? buttonLink ?? '/'} className={Styles.secondaryButton} style={secondaryButtonStyle} target={buttonLink?.newTab && '_blank'}>{buttonLabel ?? secondaryButtonLink?.buttonText }</Link>
         : null
       }
     </>

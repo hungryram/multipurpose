@@ -16,11 +16,13 @@ export default function TeamSection({
     arrowColor,
     textStyle,
     headerStyle,
+    textLeft,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor,
-    textLeft,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
 
     return (
@@ -37,8 +39,10 @@ export default function TeamSection({
                     textAlign={textLeft}
                     buttonText={buttonText}
                     buttonLink={buttonLink}
-                    buttonBackground={buttonBackground}
-                    buttonTextColor={buttonTextColor}
+                    buttonStyle={buttonStyle}
+                    secondButtonText={secondButtonText}
+                    secondButtonLink={secondButtonLink}
+                    secondaryButtonStyle={secondaryButtonStyle}
                 />
             </div>
             {carousel ?

@@ -50,11 +50,10 @@ export default function Navbar({
         (ctaLink?.internalLink?._type === "author" && `/authors/${ctaLink?.internalLink.slug}`) ||
         (ctaLink?.internalLink?._type === "services" && `/services/${ctaLink?.internalLink.slug}`) ||
         (ctaLink?.externalUrl && `${ctaLink?.externalUrl}`)
-
     return (
         <>
             <nav
-                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} top-0 ${backgroundColor ? '' : 'absolute'}`}
+                className={`${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'} top-0`}
             >
                 {announcementText &&
                     <AnnouncementBar
@@ -78,7 +77,7 @@ export default function Navbar({
                         </div>
                     </div>
                 }
-                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden p-4 container relative">
+                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden py-6 container relative">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer inline-block">
                             {logo ?
@@ -100,7 +99,14 @@ export default function Navbar({
                         >
                             {navItems?.map((link) => {
 
-                                const menuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
+                                const menuLinks = 
+                                    (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || 
+                                    (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || 
+                                    (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || 
+                                    (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || 
+                                    (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || 
+                                    (link.internalLink?._type === "locations" && `/locations/${link.internalLink.slug}`) || 
+                                    (link.externalUrl && `${link.externalUrl}`)
 
 
                                 if (link.subMenu?.length > 0) {
@@ -124,7 +130,13 @@ export default function Navbar({
                                             >
                                                 {link.subMenu.map((sub) => {
 
-                                                    const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
+                                                    const subMenuLinks = 
+                                                        (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "services" && `/services/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "locations" && `/locations${sub.internalLink.slug}`) || 
+                                                        (sub.externalUrl && `${sub.externalUrl}`)
 
                                                     return (
                                                         <>
@@ -173,131 +185,140 @@ export default function Navbar({
             </nav>
 
             <nav
-                className={`nav lg:hidden ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`} ${backgroundColor ? '' : 'absolute'}`}
+                className={`nav lg:hidden ${backgroundColor ? '' : 'absolute'} ${Styles.navbar} ${scroll ? `${Styles.bgScroll}` : `${Styles.bgDefault}`}`}
 
             >
-                <div>
-                    {announcementText &&
-                        <AnnouncementBar
-                            classes={'justify-center bg-indigo-600 lg:hidden'}
-                            announcement={announcementText}
-                            announcementLinkText={announcementLinkText}
-                            announcementLink={announcementLink}
-                        />
-                    }
-                    {enableTopHeader &&
-                        <div className="p-2 lg:hidden" style={{
-                            backgroundColor: `${topHeaderBackground}`,
-                            color: `${topHeaderText}`
-                        }}>
-                            <div className="container">
-                                <div className="text-right text-sm">
-                                    <ul>
-                                        {phone_number && <li className="inline"><a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a></li>}
-                                        {office && <li className="inline"><a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a></li>}
-                                        {email && <li className="inline"><a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a></li>}
-                                    </ul>
-                                </div>
+                {announcementText &&
+                    <AnnouncementBar
+                        classes={'justify-center bg-indigo-600 lg:hidden'}
+                        announcement={announcementText}
+                        announcementLinkText={announcementLinkText}
+                        announcementLink={announcementLink}
+                    />
+                }
+                {enableTopHeader &&
+                    <div className="p-2 lg:hidden" style={{
+                        backgroundColor: `${topHeaderBackground}`,
+                        color: `${topHeaderText}`
+                    }}>
+                        <div className="container">
+                            <div className="text-right text-sm">
+                                <ul>
+                                    {phone_number && <li className="inline"><a href={`tel:${phone_number}`} className="mx-2">Direct: <span className="font-thin">{phone_number}</span></a></li>}
+                                    {office && <li className="inline"><a href={`tel:${office}`} className="mx-2">Office: <span className="font-thin">{office}</span></a></li>}
+                                    {email && <li className="inline"><a href={`mailto:${email}`} className="mx-2">Email: <span className="font-thin">{email}</span></a></li>}
+                                </ul>
                             </div>
                         </div>
-                    }
-                    <div className={`px-4 py-2 `}>
-                        <div className="flex items-center relative">
-                            <div className="flex-1">
-                                <Link href="/" className="relative cursor-pointer block">
-                                    {logo &&
-                                        <Image
-                                            src={urlForImage(logo).url()}
-                                            width={mobileLogoWidth ?? 100}
-                                            height={50}
-                                            alt={company_name}
-                                        />
-                                    }
-                                </Link>
-                            </div>
-                            {navItems &&
-                                <div className="flex-1 text-right">
-                                    <div
-                                        id="toggle"
-                                        className="cursor-pointer flex justify-end z-50"
-                                        onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
-                                    // aria-expanded={openMobileNav ? 'true' : 'false'}
-                                    >
-                                        <HamburgerMenu
-                                            isOpen={openMobileNav}
-                                        />
-                                    </div>
+                    </div>
+                }
+                <div className="px-4 py-6">
+                    <div className="flex items-center relative">
+                        <div className="flex-1">
+                            <Link href="/" className="relative cursor-pointer block">
+                                {logo &&
+                                    <Image
+                                        src={urlForImage(logo).url()}
+                                        width={mobileLogoWidth ?? 100}
+                                        height={50}
+                                        alt={company_name}
+                                    />
+                                }
+                            </Link>
+                        </div>
+                        {navItems &&
+                            <div className="flex-1 text-right">
+                                <div
+                                    id="toggle"
+                                    className="cursor-pointer flex justify-end z-50"
+                                    onClick={openMobileNav ? () => setOpenMobileNav(false) : () => setOpenMobileNav(true)}
+                                // aria-expanded={openMobileNav ? 'true' : 'false'}
+                                >
+                                    <HamburgerMenu
+                                        isOpen={openMobileNav}
+                                    />
                                 </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div className={`mx-2 z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "top-5 opacity-100 relative" : "-top-96 opacity-0 -z-50 absolute"}`}>
+                    <ul className={Styles.mobileMenu}>
+                        {navItems?.map((link) => {
+
+                            const mobileMenuLinks = 
+                                (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || 
+                                (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || 
+                                (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || 
+                                (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || 
+                                (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || 
+                                (link.internalLink?._type === "locations" && `/locations/${link.internalLink.slug}`) || 
+                                (link.externalUrl && `${link.externalUrl}`)
+
+
+                            if (link.subMenu?.length > 0) {
+                                return (
+                                    <>
+                                        <li
+                                            key={link._key}
+                                            onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
+                                        >
+                                            <button
+                                                className="cursor-pointer flex flex-row items-center"
+                                                onClick={() => setOpenMobileNav(true)}
+                                                aria-expanded={dropdownActive === link ? "true" : "false"}
+                                            >
+                                                {link.text} <BiCaretDown className="ml-1 inline" />
+                                            </button>
+
+                                            <ul
+                                                className={`${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
+                                            >
+                                                {link.subMenu.map((sub) => {
+
+                                                    const subMenuLinks = 
+                                                        (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "services" && `/services/${sub.internalLink.slug}`) || 
+                                                        (sub.internalLink?._type === "locations" && `/locations/${sub.internalLink.slug}`) || 
+                                                        (sub.externalUrl && `${sub.externalUrl}`)
+                                                    return (
+                                                        <>
+                                                            <li key={sub._key}>
+                                                                <Link
+                                                                    href={subMenuLinks ?? '/'}
+                                                                    target={sub?.newTab && "_blank"}
+                                                                    onClick={() => setOpenMobileNav(false)}
+                                                                >
+                                                                    {sub.text}
+                                                                </Link>
+                                                            </li>
+                                                        </>
+                                                    )
+                                                })}
+                                            </ul>
+                                        </li>
+                                    </>
+                                )
                             }
-                        </div>
-                    </div>
-                    <div>
-                        <div className={`mx-2 z-50 bg-white left-0 right-0 h-auto transition-all duration-200 ease-linear ${openMobileNav ? "relative top-5 opacity-100" : "absolute -top-52 opacity-0"}`}>
-                            <ul className={Styles.mobileMenu}>
-                                {navItems?.map((link) => {
+                            else {
+                                return (
+                                    <li key={link._key} onClick={() => setOpenMobileNav(false)}>
+                                        <Link
+                                            href={mobileMenuLinks ?? '/'}
+                                            className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
+                                            target={link?.newTab && "_blank"}
 
-                                    const mobileMenuLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) || (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) || (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) || (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) || (link.internalLink?._type === "services" && `/services/${link.internalLink.slug}`) || (link.externalUrl && `${link.externalUrl}`)
+                                        >
+                                            {link.text}
 
-
-                                    if (link.subMenu?.length > 0) {
-                                        return (
-                                            <>
-                                                <li
-                                                    key={link._key}
-                                                    onClick={dropdownActive === link ? () => setDropdownActive(null) : () => setDropdownActive(link)}
-                                                >
-                                                    <button
-                                                        className="cursor-pointer flex flex-row items-center"
-                                                        onClick={() => setOpenMobileNav(true)}
-                                                        aria-expanded={dropdownActive === link ? "true" : "false"}
-                                                    >
-                                                        {link.text} <BiCaretDown className="ml-1 inline" />
-                                                    </button>
-
-                                                    <ul
-                                                        className={`${dropdownActive === link ? Styles.mobileDropDown : Styles.mobileHideDropDown}`}
-                                                    >
-                                                        {link.subMenu.map((sub) => {
-
-                                                            const subMenuLinks = (sub.internalLink?._type === "blog" && `/blog/${sub.internalLink.slug}`) || (sub.internalLink?._type === "legal" && `/legal/${sub.internalLink.slug}`) || (sub.internalLink?._type === "pages" && `/${sub.internalLink.slug}`) || (sub.externalUrl && `${sub.externalUrl}`)
-                                                            return (
-                                                                <>
-                                                                    <li key={sub._key}>
-                                                                        <Link
-                                                                            href={subMenuLinks ?? '/'}
-                                                                            target={sub?.newTab && "_blank"}
-                                                                            onClick={() => setOpenMobileNav(false)}
-                                                                        >
-                                                                            {sub.text}
-                                                                        </Link>
-                                                                    </li>
-                                                                </>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            </>
-                                        )
-                                    }
-                                    else {
-                                        return (
-                                            <li key={link._key} onClick={() => setOpenMobileNav(false)}>
-                                                <Link
-                                                    href={mobileMenuLinks ?? '/'}
-                                                    className={`${router.asPath === mobileMenuLinks ? Styles.activeLink : 'false'}`}
-                                                    target={link?.newTab && "_blank"}
-
-                                                >
-                                                    {link.text}
-
-                                                </Link>
-                                            </li>
-                                        )
-                                    }
-                                })}
-                            </ul>
-                        </div>
-                    </div>
+                                        </Link>
+                                    </li>
+                                )
+                            }
+                        })}
+                    </ul>
                 </div>
             </nav>
 

@@ -33,8 +33,8 @@ export default function TeamCard({
                     </div>
                 </div>
             }
-            <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-sm bg-white">
-                <h3 className="mb-1 text-xl font-semibold leading-snug">{name}</h3>
+            <div className="absolute bottom-0 left-0 right-0 p-4 m-2 rounded-sm bg-white text-black">
+                <h3 className="mb-1 text-xl font-[500] leading-snug">{name}</h3>
                 {position && <p className="text-gray-600 font-medium">{position}</p>}
                 {phone && <p className="text-gray-600 font-medium"><a href={`tel:${phone}`}>{phone}</a></p>}
                 {email && <p className="text-gray-600 font-medium"><a href={`mailto:${email}`}>{email}</a></p>}

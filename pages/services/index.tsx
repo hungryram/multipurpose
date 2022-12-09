@@ -48,7 +48,7 @@ export default function ServiceIndex({ serviceQuery }) {
             />
             <div className="section">
                 <div className="container">
-                    {serviceQuery?.services > 0 ?
+                    {serviceQuery?.services !== 0 ?
                         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
                             {serviceQuery.services?.map((node) => {
                                 return (

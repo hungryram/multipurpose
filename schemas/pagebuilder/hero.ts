@@ -35,16 +35,25 @@ export default defineType({
             group: 'settings'
         },
         {
-            title: 'Button',
+            title: 'Primary Button',
             name: 'button',
             type: 'buttonSettings',
+            group: 'content'
+        },
+        {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
             group: 'content'
         },
         {
             title: 'Text Color',
             name: 'textColor',
             type: 'textColor',
-            group: 'settings'
+            group: 'settings',
+            options: {
+                disableAlpha: true
+            }
         },
 
     ],

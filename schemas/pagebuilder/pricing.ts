@@ -4,26 +4,40 @@ export default defineType({
     title: 'Pricing',
     name: 'pricing',
     type: 'object',
+    groups: [
+        {title: 'Content', name: 'content'},
+        {title: 'Settings', name: 'settings'},
+    ],
     fields: [
         {
             title: 'Heading',
             name: 'heading',
             type: 'string',
+            group: 'content'
         },
         {
             title: 'Content',
             name: 'content',
+            group: 'content',
             type: 'contentEditor'
         },
         {
-            title: 'Button',
+            title: 'Primary Button',
             name: 'button',
             type: 'buttonSettings',
+            group: 'content'
+        },
+        {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
+            group: 'content'
         },
         {
             title: 'Packages',
-            name: 'packages',
+            name: 'blocks',
             type: 'array',
+            group: 'content',
             of: [
                 {
                     title: 'Package',
@@ -51,14 +65,9 @@ export default defineType({
                             type: 'text',
                         },
                         {
-                            title: 'Button Text',
-                            name: 'buttonText',
-                            type: 'string',
-                        },
-                        {
                             title: 'Link',
-                            name: 'link',
-                            type: 'string',
+                            name: 'button',
+                            type: 'links',
                         },
                         {
                             title: 'Details',
@@ -77,11 +86,19 @@ export default defineType({
             name: 'columnNumber',
             type: 'number',
             validation: Rule => Rule.min(1).max(4),
+            group: 'settings'
         },
         {
             title: 'Background Options',
             name: 'background',
             type: 'backgroundOptions',
+            group: 'settings'
+        },
+        {
+            title: 'Pricing Background',
+            name: 'secondaryBackground',
+            group: 'settings',
+            type: 'color',
         },
     ]
 })

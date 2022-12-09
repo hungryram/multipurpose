@@ -18,9 +18,11 @@ export default function ServiceSection({
     headerStyle,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor,
     textLeft,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
 
     return (
@@ -37,8 +39,10 @@ export default function ServiceSection({
                     textAlign={textLeft}
                     buttonText={buttonText}
                     buttonLink={buttonLink}
-                    buttonBackground={buttonBackground}
-                    buttonTextColor={buttonTextColor}
+                    buttonStyle={buttonStyle}
+                    secondButtonText={secondButtonText}
+                    secondButtonLink={secondButtonLink}
+                    secondaryButtonStyle={secondaryButtonStyle}
                 />
             </div>
             {carousel ?

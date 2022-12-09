@@ -10,7 +10,7 @@
 
 .formContainer {
     border-radius: 5px;
-    @apply block shadow-lg bg-white px-6 pb-12 md:px-12;
+    @apply block shadow-lg px-6 pb-12 md:px-12;
 }
 
 /* ANNOUNCEMENT BAR */
@@ -32,7 +32,6 @@
     border-radius: 5px;
     @apply px-3 py-2
 }
-
 
 /* CONTACT */
 

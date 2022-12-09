@@ -20,5 +20,15 @@ export default defineType({
             name: 'hours',
             type: 'boolean'
         },
+        {
+            title: 'Background Color',
+            name: 'backgroundColor',
+            type: 'color'
+        },
+        {
+            title: 'Text Color',
+            name: 'textColor',
+            type: 'color'
+        }
     ]
 })

@@ -49,8 +49,8 @@ export default function BlogIndex({ blogQuery }) {
                 <div className="container">
                     <div className="flex justify-center">
                         <div className="p-10">
-                            <div className={`grid gap-10 ${blogQuery.blog > 0 ? 'md:grid-cols-2' : ''}`}>
-                                {blogQuery.blog > 0 ?
+                            <div className={`grid gap-10 ${blogQuery.blog !== 0 ? 'md:grid-cols-2' : ''}`}>
+                                {blogQuery.blog !== 0 ?
                                     blogQuery?.blog.map((node) => {
                                         return (
                                             <>

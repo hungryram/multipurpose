@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Styles from "../../styles/util.module.css"
 
-export default function PrimaryButton({ buttonLabel, buttonLink, buttonBackground, buttonTextColor }: any) {
+export default function PrimaryButton({ buttonLabel, buttonLink, buttonStyle }: any) {
 
 
   const buttonLinking =
@@ -14,11 +14,8 @@ export default function PrimaryButton({ buttonLabel, buttonLink, buttonBackgroun
 
   return (
     <>
-      {buttonLabel || buttonLink.buttonText ?
-        <Link href={buttonLinking ?? buttonLink} className={Styles.primaryButton} style={{
-          background: `${buttonBackground ?? 'var(--primary-button-background)'}`,
-          color: `${buttonTextColor ?? 'var(--primary-button-text)'}`
-        }} target={buttonLink.newTab && '_blank'}>{buttonLabel ?? buttonLink.buttonText }</Link>
+      {buttonLabel || buttonLink?.buttonText ?
+        <Link href={buttonLinking ?? buttonLink ?? '/'} className={Styles.primaryButton} style={buttonStyle} target={buttonLink?.newTab && '_blank'}>{buttonLabel ?? buttonLink?.buttonText }</Link>
         : null
       }
     </>

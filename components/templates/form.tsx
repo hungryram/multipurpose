@@ -108,7 +108,7 @@ export default function Form({ emailAlerts, sendFrom, emailCc, emailBcc }: any) 
                         </div>
                     </div>
                     <div>
-                        <p className="m-1 text-xs text-black">By clicking submit, I consent to having this website save my information to respond to my inquiry</p>
+                        <p className="m-1 text-xs">By clicking submit, I consent to having this website save my information to respond to my inquiry</p>
                     </div>
                     <div className="mt-6">
                         <button

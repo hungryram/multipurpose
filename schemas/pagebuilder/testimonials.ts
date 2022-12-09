@@ -23,10 +23,22 @@ export default defineType({
             group: 'content',
         },
         {
-            title: 'Button',
+            title: 'Primary Button',
             name: 'button',
             type: 'buttonSettings',
             group: 'content'
+        },
+        {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
+            group: 'content'
+        },
+        {
+            title: 'Number of Columns',
+            name: 'columnNumber',
+            type: 'number',
+            group: 'settings'
         },
         {
             title: 'Enable Carousel',
@@ -64,7 +76,8 @@ export default defineType({
             name: 'background',
             group: 'settings',
             type: 'backgroundOptions',
-        }
+        },
+
     ],
     preview: {
         select: {

@@ -25,9 +25,12 @@ export default function Testimonials({
     headerStyle,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor,
     textLeft,
+    columnNumber,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
 
     SwiperCore.use([Autoplay, Pagination, Navigation])
@@ -46,8 +49,10 @@ export default function Testimonials({
                         textAlign={textLeft}
                         buttonText={buttonText}
                         buttonLink={buttonLink}
-                        buttonBackground={buttonBackground}
-                        buttonTextColor={buttonTextColor}
+                        buttonStyle={buttonStyle}
+                        secondButtonText={secondButtonText}
+                        secondButtonLink={secondButtonLink}
+                        secondaryButtonStyle={secondaryButtonStyle}
                     />
                 </div>
             {carousel ?
@@ -82,15 +87,15 @@ export default function Testimonials({
                     })}
                 </Swiper>
                 :
-                <div className="grid md:grid-cols-3 gap-4 h-full">
+                <div className={`grid lg:grid-cols-${columnNumber ? columnNumber : '2'} gap-4 h-full`}>
                     {testimonial?.map((node) => {
                         return (
                             <div key={node._key}>
-                                <div className="border p-4 my-2 h-full" style={{
+                                <div className="p-4 my-2 h-full" style={{
                                     backgroundColor: `${cardBackground}`,
                                     color: `${cardTextColor}`
                                 }}>
-                                    <div className="mb-6 content">
+                                    <div className="mb-4 content">
                                         {node.testimonial &&
                                             <ContentEditor
                                                 content={node.testimonial}

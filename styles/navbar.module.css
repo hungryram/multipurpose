@@ -81,6 +81,7 @@
 .mobileMenu li button {
     @apply py-3 px-6 block;
     transition: all .3s linear;
+    color: #000;
 }
 
 .mobileMenu li:hover:not(.mobileDropDown) {

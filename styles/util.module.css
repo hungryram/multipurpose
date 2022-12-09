@@ -19,7 +19,7 @@
     background-color: var(--primary-button-background);
     color: var(--primary-button-text);
     border-radius: var(--button-radius);
-    border: 1px solid var(--primary-button-text);
+    /* border: 1px solid var(--primary-button-text); */
     padding-left: var(--button-x-padding);
     padding-right: var(--button-x-padding);
     padding-top: var(--button-y-padding);
@@ -32,7 +32,7 @@
     background-color: var(--secondary-button-background);
     color: var(--secondary-button-text);
     border-radius: var(--button-radius);
-    border: 1px solid var(--secondary-button-text);
+    /* border: 1px solid var(--secondary-button-text); */
     padding-left: var(--button-x-padding);
     padding-right: var(--button-x-padding);
     padding-top: var(--button-y-padding);

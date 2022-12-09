@@ -18,8 +18,10 @@ export default function DisclosureSection({
     headerStyle,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
     return (
             <Wrapper
@@ -36,8 +38,10 @@ export default function DisclosureSection({
                             textAlign={textLeft}
                             buttonText={buttonText}
                             buttonLink={buttonLink}
-                            buttonBackground={buttonBackground}
-                            buttonTextColor={buttonTextColor}
+                            buttonStyle={buttonStyle}
+                            secondButtonText={secondButtonText}
+                            secondButtonLink={secondButtonLink}
+                            secondaryButtonStyle={secondaryButtonStyle}
                         />
                     </div>
                     {disclosure ?

@@ -8,6 +8,8 @@ import BodyText from "../util/body-text";
 
 export default function ContactPage({
     heading,
+    backgroundColor,
+    textColor,
     phone_number,
     office_number,
     email,
@@ -46,9 +48,13 @@ export default function ContactPage({
         <Wrapper>
             <div className={`md:flex md:space-x-20 md:space-y-0 space-y-10 ${Styles.contactPage}`}>
                 <div className="md:w-1/3">
-                    <div className="bg-slate-100">
+                    <div style={{
+                        backgroundColor: `${backgroundColor}`
+                    }}>
                         <div className="p-6">
-                            <div className={Styles.contactBlock}>
+                            <div className={Styles.contactBlock} style={{
+                                color: `${textColor}`
+                            }}>
                             <h3 className="uppercase font-semibold mb-4">CONTACT</h3>
                                 <ContactBlock
                                     email={email}

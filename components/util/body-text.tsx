@@ -1,5 +1,6 @@
 import ContentEditor from "../templates/contenteditor";
 import PrimaryButton from "./primary-button";
+import SecondaryButton from "./secondary-button";
 
 export default function BodyText({
     heading,
@@ -10,35 +11,42 @@ export default function BodyText({
     textAlign,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor
+    buttonStyle,
+    secondButtonLink,
+    secondButtonText,
+    secondaryButtonStyle,
+    twoColumnText
 }: any) {
     return (
-        <div className="md:flex justify-center py-6">
-            <div className={fullWidth ? 'w-full' : 'md:w-3/5'}>
-                <div className={`px-4 ${textAlign ? 'text-left' : 'text-center'}`}>
-                    <div className="content">
+        <>
+            <div className={`md:flex justify-center`}>
+                <div className={fullWidth ? 'w-full' : 'md:w-3/4'}>
+                    <div className={`px-4 ${textAlign ? 'text-left' : 'text-center'}`}>
                         {heading && <h2 className="h2 mb-6" style={headerStyle}>{heading}</h2>}
                         {body &&
-                            <div className="content" style={bodyStyle}>
+                            <div className={`content mb-10 ${twoColumnText && 'md:columns-2'}`} style={bodyStyle}>
                                 <ContentEditor
                                     content={body}
                                 />
                             </div>
                         }
-                    </div>
-                    {buttonLink &&
-                        <div className="mt-10">
+                        {buttonText &&
                             <PrimaryButton
                                 buttonLabel={buttonText}
                                 buttonLink={buttonLink}
-                                buttonBackground={buttonBackground}
-                                buttonTextColor={buttonTextColor}
+                                buttonStyle={buttonStyle}
                             />
-                        </div>
-                    }
+                        }
+                        {secondButtonText &&
+                            <SecondaryButton
+                                buttonLabel={secondButtonText}
+                                buttonLink={secondButtonLink}
+                                secondaryButtonStyle={secondaryButtonStyle}
+                            />
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

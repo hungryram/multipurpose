@@ -34,8 +34,15 @@ export default defineType({
             group: 'content'
         },
         {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
+            group: 'content'
+        },
+        {
             title: 'Reverse Column',
             name: 'reverseColumn',
+            group: 'settings',
             type: 'boolean',
         },
         {

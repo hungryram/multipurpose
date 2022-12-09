@@ -70,9 +70,9 @@ export default defineType({
         },
         {
             title: 'Search Engine Optimization',
+            description: 'Not needed if page is set to be the home page',
             name: 'seo',
             type: 'seo',
-            validation: Rule => Rule.required().error('Required for search engines'),
             group: 'settings'
         }
     ],
@@ -86,7 +86,6 @@ export default defineType({
             const { title, subtitle, media } = selection
             return {
                 title: title,
-                subtitle: `/${subtitle}`,
                 media: media
                 
             }

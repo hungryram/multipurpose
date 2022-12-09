@@ -44,6 +44,18 @@ export default defineType({
             name: 'background',
             group: 'settings',
             type: 'backgroundOptions',
+        },
+        {
+            title: 'Form Background',
+            name: 'secondaryBackground',
+            group: 'settings',
+            type: 'color',
+        },
+        {
+            title: 'Form Text Color',
+            name: 'formTextColor',
+            group: 'settings',
+            type: 'color',
         }
     ]
 })

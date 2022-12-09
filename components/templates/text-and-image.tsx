@@ -3,7 +3,7 @@ import BodyText from "../util/body-text"
 import Wrapper from "../util/wrapper"
 import Styles from "../../styles/templates.module.css"
 
-export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonText, buttonLink, removePadding, altText, rowReverse, backgroundStyles, buttonBackground, buttonTextColor, secondButtonBackground, secondButtonLink, secondButtonText, secondButtonTextColor, twoColumnText, removeShadow }: any) {
+export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonText, buttonLink, removePadding, altText, rowReverse, backgroundStyles, buttonStyle, buttonTextColor, secondaryButtonStyle, secondButtonLink, secondButtonText, twoColumnText, removeShadow }: any) {
     
     return (
         <Wrapper
@@ -35,16 +35,14 @@ export default function TextImage({ image, heading, blurData, content, textLeft,
                             body={content}
                             bodyStyle={textStyle}
                             headerStyle={headerStyle}
-                            fullWidth={textLeft}
+                            fullWidth={true}
                             textAlign={textLeft}
                             buttonText={buttonText}
                             buttonLink={buttonLink}
-                            buttonBackground={buttonBackground}
-                            buttonTextColor={buttonTextColor}
+                            buttonStyle={buttonStyle}
                             secondButtonText={secondButtonText}
                             secondButtonLink={secondButtonLink}
-                            secondButtonBackground={secondButtonBackground}
-                            secondButtonTextColor={secondButtonTextColor}
+                            secondaryButtonStyle={secondaryButtonStyle}
                             twoColumnText={twoColumnText}
                     />
                 </div>

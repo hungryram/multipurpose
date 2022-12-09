@@ -3,7 +3,6 @@ import Image from "next/image"
 import BodyText from "../util/body-text"
 
 export default function FeaturedGrid({
-    link,
     centerTextGrid,
     content,
     textOutsideImage,
@@ -23,8 +22,10 @@ export default function FeaturedGrid({
     headerStyle,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
     return (
         <div style={backgroundStyles}>
@@ -44,8 +45,10 @@ export default function FeaturedGrid({
                                             textAlign={textLeft}
                                             buttonText={buttonText}
                                             buttonLink={buttonLink}
-                                            buttonBackground={buttonBackground}
-                                            buttonTextColor={buttonTextColor}
+                                            buttonStyle={buttonStyle}
+                                            secondButtonText={secondButtonText}
+                                            secondButtonLink={secondButtonLink}
+                                            secondaryButtonStyle={secondaryButtonStyle}
                                         />
                                     </div>
                                 </div>

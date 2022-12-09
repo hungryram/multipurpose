@@ -32,7 +32,7 @@ export default function ServiceCard({
                     </div>
                 }
                 <div className="left-0 right-0 p-4 rounded-sm bg-white">
-                    <h3 className="mb-1 text-xl font-semibold leading-snug">{title}</h3>
+                    <h3 className="mb-1 text-xl leading-snug">{title}</h3>
                 </div>
             </div>
         </Link>

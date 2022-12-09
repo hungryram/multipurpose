@@ -8,14 +8,15 @@ export default function BlogSection({
     content,
     bodyColor,
     backgroundStyles,
-    arrowColor,
     textStyle,
     headerStyle,
+    textLeft,
     buttonText,
     buttonLink,
-    buttonBackground,
-    buttonTextColor,
-    textLeft,
+    buttonStyle,
+    secondButtonText,
+    secondButtonLink,
+    secondaryButtonStyle
 }: any) {
 
     return (
@@ -32,8 +33,10 @@ export default function BlogSection({
                     textAlign={textLeft}
                     buttonText={buttonText}
                     buttonLink={buttonLink}
-                    buttonBackground={buttonBackground}
-                    buttonTextColor={buttonTextColor}
+                    buttonStyle={buttonStyle}
+                    secondButtonText={secondButtonText}
+                    secondButtonLink={secondButtonLink}
+                    secondaryButtonStyle={secondaryButtonStyle}
                 />
             </div>
             <div className="grid md:grid-cols-2 gap-4 h-full" style={textStyle}>

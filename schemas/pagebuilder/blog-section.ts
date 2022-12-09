@@ -23,9 +23,15 @@ export default defineType({
             group: 'content',
         },
         {
-            title: 'Button',
+            title: 'Primary Button',
             name: 'button',
             type: 'buttonSettings',
+            group: 'content'
+        },
+        {
+            title: 'Secondary Button',
+            name: 'secondaryButton',
+            type: 'secondaryButton',
             group: 'content'
         },
         {

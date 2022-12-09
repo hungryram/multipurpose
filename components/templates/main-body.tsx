@@ -69,16 +69,47 @@ export default function MainBody({
                         section?.background?.background?.color?.hex}`,
                     backgroundImage: `${section.background?.background?.backgroundType === 'image' &&
                         `linear-gradient(rgba(
-${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
-rgba(
-${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
-${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
-url(${section.backgroundImage?.image?.asset?.url})`}`,
+                            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'}), 
+                            rgba(
+                            ${section?.background?.background?.imageOverlayColor?.rgb.r ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.g ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.b ?? '0'}, 
+                            ${section?.background?.background?.imageOverlayColor?.rgb.a ?? '0.2'})), 
+                            url(${section.backgroundImage?.image?.asset?.url})`}`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }
+
+                const secondaryBackground = {
+                    backgroundColor: `rgba(
+                    ${section?.secondaryBackground?.rgb.r}, 
+                    ${section?.secondaryBackground?.rgb.g}, 
+                    ${section?.secondaryBackground?.rgb.b}, 
+                    ${section?.secondaryBackground?.rgb.a})`
+                }
+
+                const primaryButton = {
+                    backgroundColor: `rgba(
+                        ${section?.button?.buttonBackground?.rgb.r}, 
+                        ${section?.button?.buttonBackground?.rgb.g}, 
+                        ${section?.button?.buttonBackground?.rgb.b}, 
+                        ${section?.button?.buttonBackground?.rgb.a})`,
+                    color: `${section?.button?.buttonTextColor?.hex}`,
+                    border: `1px solid ${section?.button?.buttonBorderColor?.hex}`
+                }
+
+                const secondaryButton = {
+                    backgroundColor: `rgba(
+                        ${section?.secondaryButton?.buttonBackground?.rgb.r}, 
+                        ${section?.secondaryButton?.buttonBackground?.rgb.g}, 
+                        ${section?.secondaryButton?.buttonBackground?.rgb.b}, 
+                        ${section?.secondaryButton?.buttonBackground?.rgb.a})`,
+                    color: `${section?.secondaryButton?.buttonTextColor?.hex}`,
+                    border: `1px solid ${section?.secondaryButton?.buttonBorderColor?.hex}`
                 }
 
 
@@ -94,8 +125,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             imageHeight={
                                 section?.imageHeight === 'small' && 'py-48 lg:py-48' ||
                                 section?.imageHeight === 'medium' && 'py-48 lg:py-60' ||
@@ -104,8 +134,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
+                            secondaryButtonStyle={secondaryButton}
                         />
                     )
                 }
@@ -120,8 +149,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             altText={section?.imageData?.asset?.altText}
                             rowReverse={section?.reverseRow}
                             removeShadow={section?.removeShadow}
@@ -134,8 +162,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
+                            secondaryButtonStyle={secondaryButton}
                         />
                     )
                 }
@@ -153,15 +180,12 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             removePadding={section?.removePadding}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             twoColumn={section?.twoColumn}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
-
+                            secondaryButtonStyle={secondaryButton}
                         />
                     )
                 }
@@ -176,8 +200,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             image={section?.image}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             textLeft='false'
@@ -186,8 +209,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
+                            secondaryButtonStyle={secondaryButton}
                         />
                     )
                 }
@@ -215,16 +237,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             fullWidth={section?.fullWidth}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
+                            secondaryButtonStyle={secondaryButton}
+
                         />
                     )
                 }
@@ -243,16 +264,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             textLeft={section?.textLeft}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
 
                     )
                 }
@@ -273,16 +293,14 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             removePadding={section?.removePadding}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor}
+                            secondaryButtonStyle={secondaryButton}
                         />
                     )
                 }
@@ -294,6 +312,7 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             heading={section?.heading}
                             testimonial={allTestimonial}
                             content={section?.content}
+                            columnNumber={section?.columnNumber}
                             carousel={section?.carousel}
                             textLeft={section?.textLeft}
                             cardTextColor={section?.cardTextColor?.hex}
@@ -302,16 +321,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             arrowColor={section?.background?.textColor?.textColor?.hex}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -321,10 +339,11 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
+                            formBackground={secondaryBackground}
+                            formTextColor={section?.formTextColor?.hex}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
@@ -339,8 +358,8 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -350,20 +369,20 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             key={section._key}
                             heading={section?.heading}
                             content={section?.content}
-                            packages={section?.packages}
+                            secondaryBackground={secondaryBackground}
+                            blocks={section?.blockImages}
                             columnNumber={section?.columnNumber}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -377,16 +396,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -400,16 +418,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -425,16 +442,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             columnNumber={section?.columnNumber}
                             buttonText={section?.buttonLinking?.buttonText}
                             buttonLink={section?.buttonLinking}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
@@ -455,6 +471,8 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                         <ContactPage
                             heading={section.heading}
                             content={section.text}
+                            backgroundColor={section?.backgroundColor?.hex}
+                            textColor={section?.textColor?.hex}
                             key={section._key}
                             email={email}
                             phone_number={phone_number}
@@ -502,16 +520,15 @@ url(${section.backgroundImage?.image?.asset?.url})`}`,
                             carousel={section?.carousel}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
-                            buttonBackground={section?.button?.buttonBackground?.hex}
-                            buttonTextColor={section?.button?.buttonTextColor?.hex}
+                            buttonStyle={primaryButton}
                             textStyle={bodyColor}
                             headerStyle={headerColor}
                             backgroundStyles={backgroundStyles}
                             // SECONDARY BUTTON
                             secondButtonText={section?.secondButtonLinking?.buttonText}
                             secondButtonLink={section?.secondButtonLinking}
-                            secondButtonBackground={section?.secondaryButton?.buttonBackground?.hex}
-                            secondButtonTextColor={section?.secondaryButton?.buttonTextColor} />
+                            secondaryButtonStyle={secondaryButton}
+                            />
                     )
                 }
 
