@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { urlForImage } from "../../lib/sanity"
 import BodyText from "../util/body-text"
 
 export default function Hero({
@@ -24,7 +25,7 @@ export default function Hero({
             {image &&
                 <div className="absolute inset-0">
                     <Image
-                        src={image}
+                        src={image.asset !== undefined && urlForImage(image).url()}
                         alt={altText}
                         className="object-cover w-full h-full object-center"
                         priority

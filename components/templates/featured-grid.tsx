@@ -72,6 +72,7 @@ export default function FeaturedGrid({
                                                 background: `${node.backgroundcolor?.hex ?? 'transparent'}`,
                                                 color: `${node.textColor?.hex ?? '#ffffff'}`,
                                                 border: `${node.borderColor?.hex ? `1px solid ${node.borderColor.hex}` : '0px solid rgba(0,0,0,0)'}`,
+                                                height: `${imageHeight ? imageHeight : '200px'}`,
                                             }}>
                                                 <Link href={blockLinks ?? '/'} target={node?.blockLinking?.newTab && '_blank'} aria-label={`Learn more about ${node?.value}`}>
                                                     <div>
@@ -87,7 +88,6 @@ export default function FeaturedGrid({
                                                                     className="w-full object-cover h-full"
                                                                     style={{
                                                                         height: `${imageHeight ? imageHeight : '200px'}`,
-
                                                                     }}
                                                                 />
                                                             }

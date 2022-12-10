@@ -77,7 +77,7 @@ export default function Navbar({
                         </div>
                     </div>
                 }
-                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden py-6 container relative">
+                <div className="lg:flex items-center justify-between flex-wrap lg:visible hidden py-3 container relative">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer inline-block">
                             {logo ?

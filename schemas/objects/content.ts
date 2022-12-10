@@ -52,7 +52,7 @@ import React from 'react'
                 {
                   title: 'URL',
                   name: 'href',
-                  type: 'url',
+                  type: 'string',
                 },
                 {
                   title: 'Open in New Tab',
@@ -76,9 +76,22 @@ import React from 'react'
             type: 'number'
           },
           {
+            title: 'Image Align',
+            name: 'imageAlign',
+            type: 'string',
+            options: {
+              list: [
+                  {title: 'Left', value: 'left'},
+                  {title: 'Center', value: 'center'},
+                  {title: 'Right', value: 'right'},
+              ]
+          },
+          },
+          {
             title: 'Alt Tag',
             name: 'altTag',
             type: 'string',
+            description: 'Describe your image',
             validation: (Rule) => Rule.required().error('Required for accessibility')
           },
         ]

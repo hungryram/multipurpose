@@ -21,8 +21,10 @@ const serializers = {
         },
         image: ({ value }) => {
             return (
-                <div className="relative text-center">
-                        <img src={value.asset !== undefined && urlForImage(value).url()} alt={value.altTag} width={value.imageWidth} className="mx-auto my-10" />
+                <div className={
+                    `relative flex ${value.imageAlign == 'left' && 'justify-start' || value.imageAlign == 'center' && 'justify-center' || value.imageAlign =='right' && 'justify-end'}`
+                }>
+                        <img src={value.asset !== undefined && urlForImage(value).url()} alt={value.altTag} width={value.imageWidth} className="my-10"/>
                 </div>
             )
         },
@@ -30,7 +32,7 @@ const serializers = {
     marks: {
         link: ({ value, children }) => {
             return (
-                <a href={value.href} target={value.newTab ? '_blank' : '_self'}>{children}</a>
+                <a href={value.href} target={value.newTab ? '_blank' : '_self'} className="accent">{children}</a>
             )
         },
     }

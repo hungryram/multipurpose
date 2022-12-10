@@ -24,21 +24,25 @@ export default function Banner({ twoColumn, heading, content, headerStyle, remov
                             }
                         </div>
                         <div className={twoColumn && 'md:w-1/2'}>
-                            <div className={twoColumn ? 'md:text-right text-center md:mt-0 mt-10' : 'text-center mt-10'}>
+                            <div className={twoColumn ? 'md:text-right text-center md:mt-0 mt-4' : 'text-center'}>
                                 {buttonText &&
-                                    <PrimaryButton
-                                        buttonLabel={buttonText}
-                                        buttonLink={buttonLink}
-                                        buttonStyle={buttonStyle}
-                                        buttonTextColor={buttonTextColor}
-                                    />
+                                    <div className="mt-10 inline">
+                                        <PrimaryButton
+                                            buttonLabel={buttonText}
+                                            buttonLink={buttonLink}
+                                            buttonStyle={buttonStyle}
+                                            buttonTextColor={buttonTextColor}
+                                        />
+                                    </div>
                                 }
                                 {secondButtonText &&
-                                    <SecondaryButton
-                                        buttonLabel={secondButtonText}
-                                        buttonLink={secondButtonLink}
-                                        secondaryButtonStyle={secondaryButtonStyle}
-                                    />
+                                    <div className="mt-10 inline">
+                                        <SecondaryButton
+                                            buttonLabel={secondButtonText}
+                                            buttonLink={secondButtonLink}
+                                            secondaryButtonStyle={secondaryButtonStyle}
+                                        />
+                                    </div>
                                 }
                             </div>
                         </div>

@@ -1,6 +1,13 @@
 # NOTES
 - Image gallery not displaying preview
-- How to get alt text from media plugin
+- Make option to display regular image for image-text section ========
+- image align for uploading image from contenteditor ========
+- make hero image able to crop ========
+- change contenteditor url to string ========
+- change contenteditor anchor to have accent class ========
+- fix featured grid
+- fix banner padding bottom when no button present ========
+
 
 This starter is a statically generated blog that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content. It comes with a native Sanity Studio that offers features like real-time collaboration, instant side-by-side content previews, and intuitive editing.
 

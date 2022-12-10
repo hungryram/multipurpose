@@ -3,8 +3,7 @@ import BodyText from "../util/body-text"
 import Wrapper from "../util/wrapper"
 import Styles from "../../styles/templates.module.css"
 
-export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonText, buttonLink, removePadding, altText, rowReverse, backgroundStyles, buttonStyle, buttonTextColor, secondaryButtonStyle, secondButtonLink, secondButtonText, twoColumnText, removeShadow }: any) {
-    
+export default function TextImage({ image, heading, blurData, content, textLeft, textStyle, headerStyle, buttonText, buttonLink, removePadding, altText, rowReverse, backgroundStyles, buttonStyle, imageWidth, secondaryButtonStyle, secondButtonLink, secondButtonText, twoColumnText, removeShadow }: any) {
     return (
         <Wrapper
             backgroundStyles={backgroundStyles}
@@ -15,16 +14,16 @@ export default function TextImage({ image, heading, blurData, content, textLeft,
                     <div className={`text-center ${content ? 'lg:w-1/2' : 'w-full'}`}>
                         <Image
                             src={image}
-                            width={500}
+                            width={600}
                             height={200}
                             alt={altText}
                             placeholder={blurData ? 'blur' : 'empty'}
                             blurDataURL={blurData}
+                            className="mx-auto md:py-0 py-5"
                             style={{
                                 height: 'auto',
-                                width: '100%',
-                                margin: '20px auto',
-                                boxShadow: `${removeShadow ? 'none' : '0 5px 12px rgb(0 0 0 / 15%)' }`
+                                width: `${imageWidth ? imageWidth + 'px' : '300px'}`,
+                                boxShadow: `${removeShadow ? 'none' : '0 5px 12px rgb(0 0 0 / 20%)' }`
                             }}
                         />
                     </div>

@@ -26,6 +26,13 @@ export default defineType({
             name: 'image',
             type: 'image',
             group: 'content',
+            fields: [
+                {
+                    title: 'Image Width',
+                    name: 'imageWidth',
+                    type: 'number'
+                }
+            ]
         },
         {
             title: 'Primary Button',

@@ -121,7 +121,7 @@ export default function MainBody({
                             body={section?.content}
                             altText={section?.imageData?.asset?.altText}
                             textStyle={section?.textColor?.textColor?.hex}
-                            image={section?.imageData?.asset?.url}
+                            image={section?.image}
                             blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
@@ -146,6 +146,7 @@ export default function MainBody({
                             heading={section?.heading}
                             content={section?.content}
                             image={section?.imageData?.asset?.url}
+                            imageWidth={section?.image?.imageWidth}
                             blurData={section?.imageData?.asset?.lqip}
                             buttonLink={section?.buttonLinking}
                             buttonText={section?.buttonLinking?.buttonText}
