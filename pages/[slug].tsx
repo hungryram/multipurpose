@@ -38,7 +38,7 @@ export default function Pages(props: Props) {
     }
 
     return (
-        <Layout preview={preview}>
+        <>
             <Seo
                 title={page?.pages?.seo?.title_tag ?? page?.pages?.title + ' | ' + page?.profileSettings?.company_name}
                 description={page?.pages?.seo?.meta_description}
@@ -49,52 +49,55 @@ export default function Pages(props: Props) {
                 themeColor={page?.appearances?.themeColor}
                 altText={page?.pages?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
             />
-            <Header
-                title={page?.pages?.title}
-                image={page?.pages?.headerImage?.asset !== undefined ? urlForImage(page?.pages?.headerImage).url() : page?.appearances?.defaultHeaderBanner?.asset?.url}
-                hideHeader={page?.pages?.headerImage?.hideHeader}
-                altText={page?.pages?.headerImageData?.asset?.altText ?? page?.appearances?.defaultHeaderBanner?.asset?.altText}
-                blurData={page?.pages?.headerImageData?.asset?.lqip ?? page?.appearances?.defaultHeaderBanner?.asset?.lqip}
-                spacing={
-                    page?.pages?.headerImage?.spacing === 'small' && 'md:py-14 py-10' ||
-                    page?.pages?.headerImage?.spacing === 'medium' && 'md:py-24 py-14' ||
-                    page?.pages?.headerImage?.spacing === 'large' && 'md:py-32 py-20'
-                }
-            />
-            <MainBody
-                pageBuilder={page?.pages?.pageBuilder}
-                // FIRST TREE
-                email={page?.profileSettings?.contact_information?.email}
-                phone_number={page?.profileSettings?.contact_information?.phone_number}
-                address={page?.profileSettings?.address?.address}
-                city={page?.profileSettings?.address?.city}
-                state={page?.profileSettings?.address?.state}
-                zip_code={page?.profileSettings?.address?.zip_code}
-                // SOCIAL
-                facebook={page?.profileSettings?.social?.facebook}
-                youtube={page?.profileSettings?.social?.youtube}
-                instagram={page?.profileSettings?.social?.instagram}
-                twitter={page?.profileSettings?.social?.twitter}
-                reddit={page?.profileSettings?.social?.reddit}
-                linkedin={page?.profileSettings?.social?.linkedin}
-                yelp={page?.profileSettings?.social?.yelp}
-                pinterest={page?.profileSettings?.social?.pinterest}
-                tiktok={page?.profileSettings?.social?.tiktok}
-                zillow={page?.profileSettings?.social?.zillow}
-                size={page?.profileSettings?.social?.size}
-                // FORMS
-                emailAlerts={page?.profileSettings?.settings?.emailAlerts}
-                sendFrom={page?.profileSettings?.settings?.sendFrom}
-                emailBcc={page?.profileSettings?.settings?.emailBcc}
-                emailCc={page?.profileSettings?.settings?.emailCc}
-                // PAGE FOLDERS
-                allServices={page?.allServices}
-                allTestimonial={page?.allTestimonial}
-                allBlog={page?.allBlog}
-                allTeam={page?.allTeam}
-                
-            />
-        </Layout>
+            <Layout preview={preview}>
+
+                <Header
+                    title={page?.pages?.title}
+                    image={page?.pages?.headerImage?.asset !== undefined ? urlForImage(page?.pages?.headerImage).url() : page?.appearances?.defaultHeaderBanner?.asset?.url}
+                    hideHeader={page?.pages?.headerImage?.hideHeader}
+                    altText={page?.pages?.headerImageData?.asset?.altText ?? page?.appearances?.defaultHeaderBanner?.asset?.altText}
+                    blurData={page?.pages?.headerImageData?.asset?.lqip ?? page?.appearances?.defaultHeaderBanner?.asset?.lqip}
+                    spacing={
+                        page?.pages?.headerImage?.spacing === 'small' && 'md:py-14 py-10' ||
+                        page?.pages?.headerImage?.spacing === 'medium' && 'md:py-24 py-14' ||
+                        page?.pages?.headerImage?.spacing === 'large' && 'md:py-32 py-20'
+                    }
+                />
+                <MainBody
+                    pageBuilder={page?.pages?.pageBuilder}
+                    // FIRST TREE
+                    email={page?.profileSettings?.contact_information?.email}
+                    phone_number={page?.profileSettings?.contact_information?.phone_number}
+                    address={page?.profileSettings?.address?.address}
+                    city={page?.profileSettings?.address?.city}
+                    state={page?.profileSettings?.address?.state}
+                    zip_code={page?.profileSettings?.address?.zip_code}
+                    // SOCIAL
+                    facebook={page?.profileSettings?.social?.facebook}
+                    youtube={page?.profileSettings?.social?.youtube}
+                    instagram={page?.profileSettings?.social?.instagram}
+                    twitter={page?.profileSettings?.social?.twitter}
+                    reddit={page?.profileSettings?.social?.reddit}
+                    linkedin={page?.profileSettings?.social?.linkedin}
+                    yelp={page?.profileSettings?.social?.yelp}
+                    pinterest={page?.profileSettings?.social?.pinterest}
+                    tiktok={page?.profileSettings?.social?.tiktok}
+                    zillow={page?.profileSettings?.social?.zillow}
+                    size={page?.profileSettings?.social?.size}
+                    // FORMS
+                    emailAlerts={page?.profileSettings?.settings?.emailAlerts}
+                    sendFrom={page?.profileSettings?.settings?.sendFrom}
+                    emailBcc={page?.profileSettings?.settings?.emailBcc}
+                    emailCc={page?.profileSettings?.settings?.emailCc}
+                    // PAGE FOLDERS
+                    allServices={page?.allServices}
+                    allTestimonial={page?.allTestimonial}
+                    allBlog={page?.allBlog}
+                    allTeam={page?.allTeam}
+
+                />
+            </Layout>
+        </>
     )
 }
 

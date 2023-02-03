@@ -36,11 +36,7 @@ export default function Post(props: Props) {
     return <NotFound />
   }
   return (
-    <Layout preview={preview}>
-      <Header
-        image={post?.coverImage?.asset !== undefined && urlForImage(post?.coverImage).url()}
-        blurData={post?.coverImageData?.asset?.lqip}
-      />
+    <>
       <Seo
         title={post?.seo?.title_tag}
         description={post?.seo?.meta_description}
@@ -52,35 +48,42 @@ export default function Post(props: Props) {
         favicon={appearances?.favicon}
         themeColor={appearances?.themeColor}
       />
-      <div className="section">
-        <div className="container">
-          {router.isFallback ? (
-            <PostTitle>Loading…</PostTitle>
-          ) : (
-            <>
-              <article>
-                <PostHeader
-                  title={post?.title}
-                  coverImage={post?.coverImage}
-                  date={post?.date}
-                  author={post?.author}
-                  altText={post?.altText}
-                  blurData={post?.lqip}
-                />
-                <PostBody content={post.content} />
-              </article>
+      <Layout preview={preview}>
+        <Header
+          image={post?.coverImage?.asset !== undefined && urlForImage(post?.coverImage).url()}
+          blurData={post?.coverImageData?.asset?.lqip}
+        />
 
-              <div className="my-10 mx-auto max-w-2xl">
-                <ShareSocial
-                  url={profileSettings.settings.websiteName + router.asPath}
-                />
-              </div>
-              {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-            </>
-          )}
+        <div className="section">
+          <div className="container">
+            {router.isFallback ? (
+              <PostTitle>Loading…</PostTitle>
+            ) : (
+              <>
+                <article>
+                  <PostHeader
+                    title={post?.title}
+                    coverImage={post?.coverImage}
+                    date={post?.date}
+                    author={post?.author}
+                    altText={post?.altText}
+                    blurData={post?.lqip}
+                  />
+                  <PostBody content={post.content} />
+                </article>
+
+                <div className="my-10 mx-auto max-w-2xl">
+                  <ShareSocial
+                    url={profileSettings.settings.websiteName + router.asPath}
+                  />
+                </div>
+                {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 

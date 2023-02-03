@@ -2,6 +2,7 @@ import { AiFillInstagram, AiFillRedditCircle, AiFillTwitterCircle, AiFillYoutube
 import { FaYelp, FaTiktok } from "react-icons/fa"
 import { BsPinterest } from "react-icons/bs"
 import { SiZillow } from "react-icons/si"
+import Styles from "../../styles/templates.module.css"
 
 export default function Social({ 
     facebook,
@@ -19,7 +20,7 @@ export default function Social({
     
     return (
         <div className="py-4">
-            <ul className="social-component">
+            <ul className={Styles.socialComponent}>
                 {facebook && <li><a href={facebook} target="_blank" rel="noreferrer" aria-label="Open link to facebook" title="Open link to facebook"><AiFillFacebook className={size} /></a></li>}
                 {youtube && <li><a href={youtube} target="_blank" rel="noreferrer" aria-label="Open link to youtube" title="Open link to youtube"><AiFillYoutube className={size} /></a></li>}
                 {instagram && <li><a href={instagram} target="_blank" rel="noreferrer" aria-label="Open link to instagram" title="Open link to instagram"><AiFillInstagram className={size} /></a></li>}

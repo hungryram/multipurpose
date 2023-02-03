@@ -28,7 +28,7 @@ export async function getStaticProps({ preview = false }) {
 
 export default function ServiceIndex({ serviceQuery }) {
     return (
-        <Layout>
+        <>
             <Seo
                 title={serviceQuery?.pageSettings?.services?.seo?.title_tag ?? serviceQuery?.pageSettings?.services?.title ?? 'Services | ' + serviceQuery?.profileSettings?.company_name}
                 description={serviceQuery?.pageSettings?.services?.seo?.meta_description}
@@ -40,36 +40,39 @@ export default function ServiceIndex({ serviceQuery }) {
                 favicon={serviceQuery?.appearances?.favicon}
                 themeColor={serviceQuery?.appearances?.themeColor}
             />
-            <Header
-                title={serviceQuery?.pageSettings?.services?.title ?? 'Services'}
-                image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.url}
-                blurData={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.lqip ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.lqip}
-                altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.altText}
-            />
-            <div className="section">
-                <div className="container">
-                    {serviceQuery?.services !== 0 ?
-                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-                            {serviceQuery.services?.map((node) => {
-                                return (
-                                    <>
-                                        <ServiceCard
-                                            key={node._id}
-                                            title={node.title}
-                                            slug={node.slug}
-                                            headerImage={node.headerImageData?.asset?.url}
-                                            blurData={node.headerImageData?.asset?.lqip}
-                                            altText={node.headerImageData?.asset?.altText}
-                                        />
-                                    </>
-                                )
-                            })}
-                        </div>
-                        :
-                        <h2 className="h2 text-center">No Services added. Check back later</h2>
-                    }
+            <Layout>
+
+                <Header
+                    title={serviceQuery?.pageSettings?.services?.title ?? 'Services'}
+                    image={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.url ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.url}
+                    blurData={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.lqip ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.lqip}
+                    altText={serviceQuery?.pageSettings?.services?.headerImageData?.asset?.altText ?? serviceQuery?.appearances?.defaultHeaderBanner?.asset?.altText}
+                />
+                <div className="section">
+                    <div className="container">
+                        {serviceQuery?.services !== 0 ?
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+                                {serviceQuery.services?.map((node) => {
+                                    return (
+                                        <>
+                                            <ServiceCard
+                                                key={node._id}
+                                                title={node.title}
+                                                slug={node.slug}
+                                                headerImage={node.headerImageData?.asset?.url}
+                                                blurData={node.headerImageData?.asset?.lqip}
+                                                altText={node.headerImageData?.asset?.altText}
+                                            />
+                                        </>
+                                    )
+                                })}
+                            </div>
+                            :
+                            <h2 className="h2 text-center">No Services added. Check back later</h2>
+                        }
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
     )
 }

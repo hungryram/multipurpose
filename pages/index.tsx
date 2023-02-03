@@ -34,18 +34,18 @@ export default function Index({
 
   return (
     <>
+      <Seo
+        title={homeSettings.profileSettings?.seo?.title_tag}
+        description={homeSettings.profileSettings?.seo?.meta_description}
+        schemaMarkup={schemaMarkup}
+        company_name={homeSettings.profileSettings?.company_name}
+        twitterHandle={homeSettings?.profileSettings?.seo?.twitterHandle}
+        favicon={homeSettings?.appearances?.favicon}
+        themeColor={homeSettings?.appearances?.themeColor}
+        image={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
+        altText={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+      />
       <Layout preview={preview}>
-        <Seo
-          title={homeSettings.profileSettings?.seo?.title_tag}
-          description={homeSettings.profileSettings?.seo?.meta_description}
-          schemaMarkup={schemaMarkup}
-          company_name={homeSettings.profileSettings?.company_name}
-          twitterHandle={homeSettings?.profileSettings?.seo?.twitterHandle}
-          favicon={homeSettings?.appearances?.favicon}
-          themeColor={homeSettings?.appearances?.themeColor}
-          image={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
-          altText={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
-        />
         <MainBody
           pageBuilder={homeSettings?.homeAppearance?.homePage?.pageBuilder}
           // FIRST TREE
