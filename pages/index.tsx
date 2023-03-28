@@ -1,6 +1,7 @@
 
 import { homePageQuery } from '../lib/queries'
 import { getClient } from '../lib/sanity.server'
+import { useRouter } from "next/router";
 
 // TEMPLATES
 import Layout from '../components/global/layout'
@@ -31,6 +32,7 @@ export default function Index({
       "addressCountry": `${homeSettings.profileSettings?.address?.state}`
     },
   }
+  const router = useRouter()
 
   return (
     <>
@@ -44,6 +46,7 @@ export default function Index({
         themeColor={homeSettings?.appearances?.themeColor}
         image={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.url}
         altText={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
+        canonicalUrl={homeSettings?.profileSettings?.settings?.websiteName + router.asPath}
       />
       <Layout preview={preview}>
         <MainBody

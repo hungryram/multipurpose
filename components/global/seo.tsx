@@ -12,7 +12,8 @@ export default function Seo({
     altText,
     ogType = "website",
     robotIndex = "index,follow",
-    schemaMarkup
+    schemaMarkup,
+    canonicalUrl
 }: any) {
 
     const defaultTitle = company_name
@@ -28,6 +29,7 @@ export default function Seo({
             <meta key="og_site_name" property="og:site_name" content={company_name} />
             <meta name="robots" content={robotIndex} />
             <meta name="theme-color" content={themeColor} />
+            {canonicalUrl && <link rel="canonical" href={canonicalUrl} key="canonical" />}
 
             {favicon &&
                 <link rel="shortcut icon" href={urlForImage(favicon).url()} />

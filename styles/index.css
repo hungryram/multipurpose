@@ -85,6 +85,41 @@ ul.social-component li {
     @apply md:text-xl text-lg;
 }
 
+/* BLOG CONTENT */
+
+body .article h1, body .article h2, body .article h3, body .article h4, body .article h5, body .article h6 {
+  @apply mt-10 leading-snug font-bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+.article h1 {
+  @apply md:text-5xl text-3xl;
+}
+
+.article h2 {
+  @apply md:text-3xl text-3xl;
+}
+
+.article h3 {
+  @apply md:text-xl text-lg;
+}
+
+.article h4 {
+  @apply text-lg;
+}
+
+.article p {
+  @apply mt-4 leading-7;
+}
+
+.article ul, .article ol {
+  @apply my-2 list-disc ml-5;
+}
+
+.article li {
+  @apply my-1;
+}
+
 /* CONTENT */
 body .content h1, 
 body .content h2, 
@@ -113,9 +148,12 @@ body .content h6 {
     @apply text-lg;
   }
   
-  .content p {
-    @apply mb-4 leading-7 font-thin;
+  .content p + p {
+    @apply mt-4;
+  }
 
+  .content p {
+    @apply leading-7
   }
   
   .content ul, .content ol {

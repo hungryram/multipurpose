@@ -48,7 +48,8 @@ export default function TeamPages(props: Props) {
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
                 altText={page?.team?.imageData?.asset?.altText ?? page?.team?.name}
-            />
+                canonicalUrl={page?.profileSettings?.settings?.websiteName + router.asPath}
+                />
             <Layout preview={preview}>
 
                 <Header

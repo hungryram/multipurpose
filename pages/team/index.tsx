@@ -4,6 +4,7 @@ import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
 import TeamCard from "../../components/templates/team-card"
+import { useRouter } from 'next/router'
 
 export async function getStaticProps({ preview = false }) {
 
@@ -27,6 +28,8 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function TeamIndex({ teamQuery }) {
+    const router = useRouter()
+
     return (
         <>
             <Seo
@@ -38,7 +41,8 @@ export default function TeamIndex({ teamQuery }) {
                 favicon={teamQuery?.appearances?.favicon}
                 themeColor={teamQuery?.appearances?.themeColor}
                 altText={teamQuery?.pageSettings?.team?.headerImageData?.asset?.altText ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
-            />
+                canonicalUrl={teamQuery?.profileSettings?.settings?.websiteName + router.asPath}
+                />
             <Layout>
 
                 <Header

@@ -47,6 +47,7 @@ export default function Post(props: Props) {
         ogType="article"
         favicon={appearances?.favicon}
         themeColor={appearances?.themeColor}
+        canonicalUrl={profileSettings?.settings?.websiteName + router.asPath}
       />
       <Layout preview={preview}>
         <Header

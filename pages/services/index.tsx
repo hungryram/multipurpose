@@ -4,6 +4,7 @@ import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
 import ServiceCard from "../../components/templates/service-card"
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ preview = false }) {
 
@@ -27,6 +28,8 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function ServiceIndex({ serviceQuery }) {
+    const router = useRouter()
+
     return (
         <>
             <Seo
@@ -39,6 +42,7 @@ export default function ServiceIndex({ serviceQuery }) {
                 ogType="website"
                 favicon={serviceQuery?.appearances?.favicon}
                 themeColor={serviceQuery?.appearances?.themeColor}
+                canonicalUrl={serviceQuery?.profileSettings?.settings?.websiteName + router.asPath}
             />
             <Layout>
 

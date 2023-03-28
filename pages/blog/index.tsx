@@ -1,10 +1,10 @@
 import { queryAllPosts } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
-import Link from "next/link"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import PostPreview from "../../components/templates/blog/post-preview"
 import Seo from "../../components/global/seo"
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ preview = false }) {
 
@@ -27,6 +27,8 @@ export async function getStaticProps({ preview = false }) {
 }
 
 export default function BlogIndex({ blogQuery }) {
+    const router = useRouter()
+
     return (
         <>
             <Seo
@@ -38,7 +40,8 @@ export default function BlogIndex({ blogQuery }) {
                 ogType="website"
                 favicon={blogQuery?.appearances?.favicon}
                 themeColor={blogQuery?.appearances?.themeColor}
-            />
+                canonicalUrl={blogQuery?.profileSettings?.settings?.websiteName + router.asPath}
+                />
             <Layout>
 
                 <Header

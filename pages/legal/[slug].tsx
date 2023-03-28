@@ -48,7 +48,7 @@ export default function LegalPages(props: Props) {
                 favicon={page?.appearances?.favicon}
                 themeColor={page?.appearances?.themeColor}
                 altText={page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
-
+                canonicalUrl={page?.profileSettings?.settings?.websiteName + router.asPath}
             />
             <Layout preview={preview}>
 

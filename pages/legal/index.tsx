@@ -4,6 +4,7 @@ import Link from "next/link"
 import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ preview = false }) {
 
@@ -27,6 +28,8 @@ export async function getStaticProps({ preview = false }) {
 
 
 export default function LegalIndex({ legalQuery }) {
+    const router = useRouter()
+
     return (
         <>
             <Seo
@@ -38,6 +41,7 @@ export default function LegalIndex({ legalQuery }) {
                 favicon={legalQuery?.appearances?.favicon}
                 themeColor={legalQuery?.appearances?.themeColor}
                 altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText}
+                canonicalUrl={legalQuery?.profileSettings?.settings?.websiteName + router.asPath}
             />
             <Layout>
 

@@ -7,20 +7,20 @@
  * https://portabletext.org/
  *
  */
-import { useRouter } from 'next/router'
-import ContentEditor from '../contenteditor'
-
-import portableTextStyles from './portable-text-styles.module.css'
-
-export default function PostBody({ content }) {
-
-  const router = useRouter()
-  return (
-    <>
-      <div className={`mx-auto max-w-2xl ${portableTextStyles.portableText}`}>
-        <ContentEditor content={content} />
-      </div>
-
-    </>
-  )
-}
+ import { useRouter } from 'next/router'
+ import ContentEditor from '../contenteditor'
+ 
+ import portableTextStyles from './portable-text-styles.module.css'
+ 
+ export default function PostBody({ content }) {
+ 
+   const router = useRouter()
+   return (
+     <>
+       <div className={`mx-auto max-w-2xl article`}>
+         <ContentEditor content={content} />
+       </div>
+     </>
+   )
+ }
+ 

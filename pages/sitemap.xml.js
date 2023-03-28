@@ -1,6 +1,5 @@
 import { groq } from "next-sanity";
 import { getClient } from '../lib/sanity.server'
-import { sitemapData } from "../lib/queries"
 
 export default function Sitemap() {
 
@@ -27,12 +26,15 @@ export async function getServerSideProps({ res }) {
         'services': *[_type == 'services']{
             'slug': slug.current,
         },
+        'blog': *[_type == 'blog']{
+            'slug': slug.current,
+        },
     }
     `
     const sanityPageQuery = await getClient(false).fetch(query)
 
     const pages = sanityPageQuery.pages.map(page => {
-        const slug = page.slug === '/' ? '/' : `/${page.slug}/`
+        const slug = page.slug === '/' ? '/' : `/${page.slug}`
 
         return `
         <loc>${sanityPageQuery.profile.domain}${slug}</loc>
@@ -43,7 +45,7 @@ export async function getServerSideProps({ res }) {
 
 
     const legal = sanityPageQuery?.legal?.map(legal => {
-        const slug = legal.slug === '/' ? '/' : `/legal/${legal.slug}/`
+        const slug = legal.slug === '/' ? '/' : `/legal/${legal.slug}`
 
         return `
         <loc>${sanityPageQuery.profile.domain}${slug}</loc>
@@ -54,7 +56,7 @@ export async function getServerSideProps({ res }) {
 
 
     const services = sanityPageQuery.services.map(services => {
-        const slug = services.slug === '/' ? '/' : `/services/${services.slug}/`
+        const slug = services.slug === '/' ? '/' : `/services/${services.slug}`
 
         return `
         <loc>${sanityPageQuery.profile.domain}${slug}</loc>
@@ -63,10 +65,21 @@ export async function getServerSideProps({ res }) {
         `
     })
 
+    const blog = sanityPageQuery.blog.map(blog => {
+        const slug = blog.slug === '/' ? '/' : `/blog/${blog.slug}`
+
+        return `
+        <loc>${sanityPageQuery.profile.domain}${slug}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+        `
+    })
 
     const sanityPages = [...pages]
     const sanityLegal = [...legal]
     const sanityServices = [...services]
+    const sanityBlog = [...blog]
+
     const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             <url>
@@ -81,6 +94,11 @@ export async function getServerSideProps({ res }) {
             </url>
             <url>
             <loc>${sanityPageQuery.profile.domain}/services/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+            </url>
+            <url>
+            <loc>${sanityPageQuery.profile.domain}/blog/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.7</priority>
             </url>
@@ -108,6 +126,15 @@ export async function getServerSideProps({ res }) {
                                     ${services}
                                   </url>
                                 `
+            })
+            .join('')}
+
+            ${sanityBlog
+            .map(blog => {
+                return `<url>
+                                            ${blog}
+                                          </url>
+                                        `
             })
             .join('')}
       </urlset>
