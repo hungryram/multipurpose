@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  assetPrefix: 'https://multipurpose-inky.vercel.app',
+  swcMinify: false,
   images: {
     remotePatterns: [
       { hostname: 'cdn.sanity.io' },
