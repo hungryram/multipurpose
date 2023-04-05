@@ -13,6 +13,13 @@ export default function Form({ emailAlerts, sendFrom, emailCc, emailBcc }: any) 
     const handleSubmit = async (e) => {
         setSending('Sending')
         e.preventDefault()
+
+        // Check if the honeypot field is filled out
+        if (e.target.botName.value || e.target.botEmail.value) {
+            console.log('Message failed. Bot detected.')
+            return; // do nothing, this is probably a bot
+        }
+
         const data = {
             name: e.target.fullName.value,
             email: e.target.emailAddress.value,
@@ -48,8 +55,8 @@ export default function Form({ emailAlerts, sendFrom, emailCc, emailBcc }: any) 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input type="hidden" name="name" id="name" className="h-0 w-0 opacity-0" autoComplete="off"/>
-                <input type="hidden" name="email" id="email" className="h-0 w-0 opacity-0" autoComplete="off"/>
+                <input type="text" name="botName" id="botName" className="hidden" autoComplete="off" />
+                <input type="email" name="botEmail" id="botEmail" className="hidden" autoComplete="off" />
                 <input type="hidden" name="emailAlerts" value={emailAlerts ? emailAlerts : 'submissions@hungryramwebdesign.com'} id="emailAlerts" className="h-0 w-0 opacity-0" />
                 <input type="hidden" name="sendFrom" value={sendFrom ? sendFrom : 'forms@hungryramwebdesign.com'} id="sendFrom" className="h-0 w-0 opacity-0" />
                 <input type="hidden" name="emailBcc" value={emailBcc} id="emailBcc" className="h-0 w-0 opacity-0" />

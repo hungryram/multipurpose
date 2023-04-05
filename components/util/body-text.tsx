@@ -21,7 +21,7 @@ export default function BodyText({
         <>
             <div className={`md:flex justify-center`}>
                 <div className={fullWidth ? 'w-full' : 'md:w-3/4'}>
-                    <div className={`px-4 content ${textAlign ? 'text-left' : 'text-center'}`}>
+                    <div className={`content ${textAlign ? 'text-left' : 'text-center'}`}>
                         {heading && <h2 className="h2 mb-6" style={headerStyle}>{heading}</h2>}
                         {body &&
                             <div className={`mb-10 ${twoColumnText && 'md:columns-2'}`} style={bodyStyle}>
