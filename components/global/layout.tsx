@@ -54,12 +54,6 @@ export default function Layout({ children, preview }: any) {
                         }
                     `}
                 </style>
-                <script src="https://kestrel.idxhome.com/ihf-kestrel.js"></script>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `window.ihfKestrel = window.ihfKestrel || {}; ihfKestrel.config = { platform: "custom", activationToken: "3779C949-155D-6043-0911FD9A208A875D" };`,
-                    }}
-                />
             </Head>
                 <Analytics
                     googleID={data.profileSettings?.settings?.googleID}
