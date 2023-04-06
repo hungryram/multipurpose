@@ -32,17 +32,17 @@ export async function getStaticProps({ preview = false }) {
 }
 
 export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
-    useEffect(() => {
-        // Load the iHomefinder embed code on the client side
-        const script = document.createElement('script');
-        script.async = true;
-        document.body.appendChild(script);
+    // useEffect(() => {
+    //     // Load the iHomefinder embed code on the client side
+    //     const script = document.createElement('script');
+    //     script.async = true;
+    //     document.body.appendChild(script);
 
-        // Replace the script tag with the iHomefinder embed code
-        script.onload = () => {
-            document.currentScript.replaceWith(ihfKestrel.render());
-        };
-    }, []);
+    //     // Replace the script tag with the iHomefinder embed code
+    //     script.onload = () => {
+    //         document.currentScript.replaceWith(ihfKestrel.render());
+    //     };
+    // }, []);
 
 console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
@@ -83,7 +83,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     `}
                 </style>
             </Head>
-            {/* <Navbar
+            <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
                 logo={appearanceQuery?.appearances?.branding?.logo?.asset?.url}
                 logoWidth={appearanceQuery?.branding?.logoWidth}
@@ -104,7 +104,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                 enableTopHeader={appearanceQuery?.appearanceQuery?.appearances?.topHeaderBar?.enableTopHeaderBar}
             />
             <Header
-            /> */}
+            />
             <div className="section">
                 <div className="container">
                     <div className="idxTest">
