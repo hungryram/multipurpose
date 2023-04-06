@@ -129,7 +129,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                     </div>
                 </div>
             </div>
-            {/* <Footer
+            <Footer
                 footerText={appearanceQuery?.appearances?.footer?.footerText}
                 image={appearanceQuery?.appearances?.footer?.footerLogo}
                 hours={appearanceQuery?.appearances?.footer?.hours}
@@ -164,7 +164,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                 zillow={appearanceQuery?.profileSettings?.social?.zillow}
                 size={appearanceQuery?.profileSettings?.social?.size}
                 footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
-            /> */}
+            />
         </>
     );
 };
