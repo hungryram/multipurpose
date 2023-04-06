@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  assetPrefix: 'http://localhost:3000',
+  assetPrefix: 'https://multipurpose-inky.vercel.app',
   swcMinify: false,
   images: {
     remotePatterns: [
