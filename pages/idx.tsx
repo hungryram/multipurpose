@@ -25,12 +25,12 @@ export async function getStaticProps({ preview = false }) {
 
     /* when the client isn't set up */
     return {
-        props: {idx_body},
+        props: { idx_body },
         revalidate: undefined,
     }
 }
 
-export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
+export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
     // useEffect(() => {
     //     // Load the iHomefinder embed code on the client side
     //     const script = document.createElement('script');
@@ -43,7 +43,19 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
     //     };
     // }, []);
 
-console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
+    const FooterComponent = () => {
+        return (
+            <div style={{ position: "fixed", bottom: 0, width: "100%", backgroundColor: "white" }}>
+                <footer className={Styles.footer}>
+                    <div className="pt-20 pb-10">
+                        <h1>Tet</h1>
+                    </div>
+                </footer>
+            </div>
+        )
+    }
+
+    console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
             <Head>
@@ -112,15 +124,11 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
                         <div dangerouslySetInnerHTML={{
                             __html: idx_body
-                        }}/>
+                        }} />
                     </div>
                 </div>
             </div>
-            <div className="section">
-                <div className="container">
-                    <h1>FOOTER</h1>
-                </div>
-            </div>
+            <FooterComponent />
             {/* <Footer
                 footerText={appearanceQuery?.appearances?.footer?.footerText}
                 image={appearanceQuery?.appearances?.footer?.footerLogo}
