@@ -116,7 +116,6 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
             />
             <Header
             />
-            <FooterComponent />
 
             <div className="section">
                 <div className="container">
