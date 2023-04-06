@@ -82,6 +82,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                         }
                     `}
                 </style>
+                <script src="/jquery.min.js"></script>
                 <script dangerouslySetInnerHTML={{
                     __html: `
     jQuery.noConflict();
