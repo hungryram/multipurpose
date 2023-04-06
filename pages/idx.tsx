@@ -32,4 +32,6 @@ const IhomefinderPage = () => {
     );
 };
 
+IhomefinderPage.getInitialProps = async () => ({});
+
 export default IhomefinderPage;
