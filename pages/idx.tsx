@@ -42,7 +42,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
         };
     }, []);
 
-    console.log(appearanceQuery)
+
     return (
         <>
             <Head>
@@ -83,7 +83,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
             </Head>
             <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
-                logo={appearanceQuery?.appearances?.branding?.logo}
+                logo={appearanceQuery?.appearances?.branding?.logo?.asset?.url}
                 logoWidth={appearanceQuery?.branding?.logoWidth}
                 mobileLogoWidth={appearanceQuery?.branding?.mobileLogoWidth}
                 navItems={appearanceQuery?.header?.navItems}
@@ -107,6 +107,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
                 <div className="container">
                     <div className="idxTest">
                         <h1>Test IDX BODY</h1>
+                        {/* First div is for version 10 */}
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
                         <div dangerouslySetInnerHTML={{
                             __html: idx_body

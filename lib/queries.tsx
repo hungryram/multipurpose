@@ -333,9 +333,13 @@ export const appearances = groq`
   'primaryAccent': mainColors.primaryColor.hex,
   'secondaryColor': mainColors.secondaryColor.hex,
   'branding': branding {
-          logo,
+          logo {
+            asset-> {
+              url
+            }
+          },
           logoWidth,
-          mobileLogoWidth
+          mobileLogoWidth,
       },
       'announcementBar': announcementBar {
         announcement,

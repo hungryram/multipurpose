@@ -61,7 +61,7 @@ export default function Layout({ children, preview }: any) {
                 />
             <Navbar
                 company_name={data.profileSettings?.company_name}
-                logo={data.appearances?.branding?.logo}
+                logo={data?.appearances?.branding?.logo?.asset?.url}
                 logoWidth={data.appearances?.branding?.logoWidth}
                 mobileLogoWidth={data.appearances?.branding?.mobileLogoWidth}
                 navItems={data.appearances?.header?.navItems}

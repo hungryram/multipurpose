@@ -82,7 +82,7 @@ export default function Navbar({
                         <Link href="/" className="relative cursor-pointer inline-block">
                             {logo ?
                                 <Image
-                                    src={urlForImage(logo).url()}
+                                    src={logo}
                                     width={logoWidth ? logoWidth : '150'}
                                     height={10}
                                     alt={company_name}
@@ -218,7 +218,7 @@ export default function Navbar({
                             <Link href="/" className="relative cursor-pointer block">
                                 {logo &&
                                     <Image
-                                        src={urlForImage(logo).url()}
+                                        src={logo}
                                         width={mobileLogoWidth ?? 100}
                                         height={50}
                                         alt={company_name}
