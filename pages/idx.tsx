@@ -18,17 +18,10 @@ const IhomefinderPage = () => {
 
     return (
         <>
-            <Head>
-                <script src="https://kestrel.idxhome.com/ihf-kestrel.js"></script>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `window.ihfKestrel = window.ihfKestrel || {}; ihfKestrel.config = { platform: "custom", activationToken: "3779C949-155D-6043-0911FD9A208A875D" };`,
-                    }}
-                />
-            </Head>
-            <div className="idxTest">
-                <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
-            </div>
+        <h1>IDX TEST</h1>
+                <div className="idxTest">
+                    <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
+                </div>
         </>
     );
 };
