@@ -116,6 +116,8 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
             />
             <Header
             />
+            <FooterComponent />
+
             <div className="section">
                 <div className="container">
                     <div className="idxTest">
@@ -128,7 +130,6 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                     </div>
                 </div>
             </div>
-            <FooterComponent />
             {/* <Footer
                 footerText={appearanceQuery?.appearances?.footer?.footerText}
                 image={appearanceQuery?.appearances?.footer?.footerLogo}
