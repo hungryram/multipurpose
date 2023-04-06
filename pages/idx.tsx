@@ -26,12 +26,12 @@ export async function getStaticProps({ preview = false }) {
 
     /* when the client isn't set up */
     return {
-        props: {idx_body},
+        props: { idx_body },
         revalidate: undefined,
     }
 }
 
-export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
+export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
     // useEffect(() => {
     //     // Load the iHomefinder embed code on the client side
     //     const script = document.createElement('script');
@@ -44,7 +44,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
     //     };
     // }, []);
 
-console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
+    console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
             <Head>
@@ -82,6 +82,13 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                         }
                     `}
                 </style>
+                <script dangerouslySetInnerHTML={{
+                    __html: `
+    jQuery.noConflict();
+    jQuery(document).ready(function () {
+      alert('The DOM is ready');
+    });
+  `}}></script>
             </Head>
             <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
@@ -113,7 +120,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
                         <div dangerouslySetInnerHTML={{
                             __html: idx_body
-                        }}/>
+                        }} />
                     </div>
                 </div>
             </div>
