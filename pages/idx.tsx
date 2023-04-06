@@ -18,10 +18,12 @@ const IhomefinderPage = () => {
 
     return (
         <>
-        <h1>IDX TEST</h1>
+            <Layout>
+                <h1>IDX TEST wlayout</h1>
                 <div className="idxTest">
                     <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
                 </div>
+            </Layout>
         </>
     );
 };
