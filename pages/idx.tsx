@@ -9,7 +9,7 @@ import Header from '../components/templates/header';
 import Styles from "../styles/footer.module.css"
 import Link from 'next/link';
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
     const idx_body = `{idx_body}`
 
     /* check if the project id has been defined by fetching the vercel envs */
