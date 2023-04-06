@@ -6,6 +6,7 @@ import { getClient } from '../lib/sanity.server';
 import { appearances } from '../lib/queries';
 import Head from 'next/head';
 import Header from '../components/templates/header';
+import Styles from "../styles/footer.module.css"
 
 export async function getStaticProps({ preview = false }) {
     const idx_body = `{idx_body}`
@@ -115,42 +116,158 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     </div>
                 </div>
             </div>
-            <Footer
-                // footerText={appearanceQuery?.appearances?.footer?.footerText}
-                // image={appearanceQuery?.appearances?.footer?.footerLogo}
-                // hours={appearanceQuery?.appearances?.footer?.hours}
-                // monday={appearanceQuery?.profileSettings?.hours?.monday}
-                // tuesday={appearanceQuery?.profileSettings?.hours?.tuesday}
-                // wednesday={appearanceQuery?.profileSettings?.hours?.wednesday}
-                // thursday={appearanceQuery?.profileSettings?.hours?.thursday}
-                // friday={appearanceQuery?.profileSettings?.hours?.friday}
-                // saturday={appearanceQuery?.profileSettings?.hours?.saturday}
-                // sunday={appearanceQuery?.profileSettings?.hours?.sunday}
-                // company_name={appearanceQuery?.profileSettings?.company_name}
-                // legal={appearanceQuery?.legal}
-                // email={appearanceQuery?.profileSettings?.contact_information?.email}
-                // phone_number={appearanceQuery?.profileSettings?.contact_information?.phone_number}
-                // office_number={appearanceQuery?.profileSettings?.contact_information?.office_number}
-                // website={appearanceQuery?.profileSettings?.settings?.websiteName}
-                // address={appearanceQuery?.profileSettings?.address?.address}
-                // city={appearanceQuery?.profileSettings?.address?.city}
-                // state={appearanceQuery?.profileSettings?.address?.state}
-                // zip_code={appearanceQuery?.profileSettings?.address?.zip_code}
-                // links={appearanceQuery?.appearances?.footer?.quickLinks}
-                // googleBusiness={appearanceQuery?.profileSettings?.social?.googleBusiness}
-                // facebook={appearanceQuery?.profileSettings?.social?.facebook}
-                // youtube={appearanceQuery?.profileSettings?.social?.youtube}
-                // instagram={appearanceQuery?.profileSettings?.social?.instagram}
-                // twitter={appearanceQuery?.profileSettings?.social?.twitter}
-                // reddit={appearanceQuery?.profileSettings?.social?.reddit}
-                // linkedin={appearanceQuery?.profileSettings?.social?.linkedin}
-                // yelp={appearanceQuery?.profileSettings?.social?.yelp}
-                // pinterest={appearanceQuery?.profileSettings?.social?.pinterest}
-                // tiktok={appearanceQuery?.profileSettings?.social?.tiktok}
-                // zillow={appearanceQuery?.profileSettings?.social?.zillow}
-                // size={appearanceQuery?.profileSettings?.social?.size}
-                // footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
-            />
+            <footer className={Styles.footer}>
+            <div className="pt-20 pb-10">
+                <div className="container">
+                    <div className="mx-6 py-10 md:text-left text-center">
+                        {/* <div className={`grid grid-1 md:grid-cols-2 lg:grid-cols-${hours ? '5' : '4'} md:gap-4 gap-8`}>
+                            <div className="relative">
+                                {image ?
+                                    <div className="flex md:justify-start justify-center">
+                                        <Image
+                                            src={urlForImage(image).url()}
+                                            width={200}
+                                            height="50"
+                                            alt={company_name}
+                                            className="mb-6 justify-center flex"
+                                        />
+                                    </div>
+                                    :
+                                    <h3 className="uppercase font-semibold mb-4">{company_name}</h3>
+                                }
+                                <Social
+                                    facebook={facebook}
+                                    youtube={youtube}
+                                    instagram={instagram}
+                                    twitter={twitter}
+                                    reddit={reddit}
+                                    linkedin={linkedin}
+                                    yelp={yelp}
+                                    pinterest={pinterest}
+                                    tiktok={tiktok}
+                                    zillow={zillow}
+                                    size={size}
+                                />
+                            </div>
+                            <div>
+                                <h3 className="uppercase font-semibold mb-4">Contact Info</h3>
+                                <ContactBlock
+                                    email={email}
+                                    phone={phone_number}
+                                    office={office_number}
+                                    address={address}
+                                    city={city}
+                                    state={state}
+                                    zipCode={zip_code}
+                                    googleBusiness={googleBusiness}
+                                />
+                            </div>
+                            <div>
+                                <h3 className="uppercase font-semibold mb-4">Quick links</h3>
+                                <ul>
+                                    {links?.map((link, i) => {
+
+                                        const quickLinks = (link.internalLink?._type === "pages" && `/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "blog" && `/blog/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "legal" && `/legal/${link.internalLink.slug}`) ||
+                                            (link.internalLink?._type === "author" && `/authors/${link.internalLink.slug}`) ||
+                                            (link.externalUrl && `${link.externalUrl}`)
+
+                                        return (
+                                            <li key={i}>
+                                                <Link
+                                                    href={quickLinks}
+                                                    target={link.newTab && '_blank'}
+                                                    aria-label={link.text}
+                                                >
+                                                    {link.text}
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
+
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="uppercase font-semibold mb-4">About</h3>
+                                {footerText &&
+                                    <ContentEditor
+                                        content={footerText}
+                                    />
+                                }
+                            </div>
+                            {hours &&
+                                <div>
+                                    <Hours
+                                        monday={monday}
+                                        tuesday={tuesday}
+                                        wednesday={wednesday}
+                                        thursday={thursday}
+                                        friday={friday}
+                                        saturday={saturday}
+                                        sunday={sunday}
+                                    />
+                                </div>
+                            }
+                        </div> */}
+                    </div>
+
+                </div>
+            </div>
+            {/* <div className="text-center p-4">
+                {legal ?
+                    <ul>
+                        {legal?.map((node) => {
+                            return (
+                                <li className="inline text-xs mx-2" key={node._id}>
+                                    <Link href={`/legal/${node.slug}`}>
+                                        {node.title}
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                    : null
+                }
+                <p className="text-xs font-light pt-0">&copy; Copyright {new Date().getFullYear()} &middot; <Link href={website ?? '/'}>{company_name}</Link> &middot; Website built by <a href="https://www.hungryram.com/" className="font-bold" target="_blank" rel="noreferrer">Hungry Ram</a></p>
+            </div> */}
+        </footer>
+            {/* <Footer
+                footerText={appearanceQuery?.appearances?.footer?.footerText}
+                image={appearanceQuery?.appearances?.footer?.footerLogo}
+                hours={appearanceQuery?.appearances?.footer?.hours}
+                monday={appearanceQuery?.profileSettings?.hours?.monday}
+                tuesday={appearanceQuery?.profileSettings?.hours?.tuesday}
+                wednesday={appearanceQuery?.profileSettings?.hours?.wednesday}
+                thursday={appearanceQuery?.profileSettings?.hours?.thursday}
+                friday={appearanceQuery?.profileSettings?.hours?.friday}
+                saturday={appearanceQuery?.profileSettings?.hours?.saturday}
+                sunday={appearanceQuery?.profileSettings?.hours?.sunday}
+                company_name={appearanceQuery?.profileSettings?.company_name}
+                legal={appearanceQuery?.legal}
+                email={appearanceQuery?.profileSettings?.contact_information?.email}
+                phone_number={appearanceQuery?.profileSettings?.contact_information?.phone_number}
+                office_number={appearanceQuery?.profileSettings?.contact_information?.office_number}
+                website={appearanceQuery?.profileSettings?.settings?.websiteName}
+                address={appearanceQuery?.profileSettings?.address?.address}
+                city={appearanceQuery?.profileSettings?.address?.city}
+                state={appearanceQuery?.profileSettings?.address?.state}
+                zip_code={appearanceQuery?.profileSettings?.address?.zip_code}
+                links={appearanceQuery?.appearances?.footer?.quickLinks}
+                googleBusiness={appearanceQuery?.profileSettings?.social?.googleBusiness}
+                facebook={appearanceQuery?.profileSettings?.social?.facebook}
+                youtube={appearanceQuery?.profileSettings?.social?.youtube}
+                instagram={appearanceQuery?.profileSettings?.social?.instagram}
+                twitter={appearanceQuery?.profileSettings?.social?.twitter}
+                reddit={appearanceQuery?.profileSettings?.social?.reddit}
+                linkedin={appearanceQuery?.profileSettings?.social?.linkedin}
+                yelp={appearanceQuery?.profileSettings?.social?.yelp}
+                pinterest={appearanceQuery?.profileSettings?.social?.pinterest}
+                tiktok={appearanceQuery?.profileSettings?.social?.tiktok}
+                zillow={appearanceQuery?.profileSettings?.social?.zillow}
+                size={appearanceQuery?.profileSettings?.social?.size}
+                footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
+            /> */}
         </>
     );
 };
