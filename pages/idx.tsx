@@ -26,7 +26,9 @@ const IhomefinderPage = () => {
                     }}
                 />
             </Head>
-            <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
+            <div className="idxTest">
+                <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
+            </div>
         </>
     );
 };
