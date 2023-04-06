@@ -83,7 +83,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     `}
                 </style>
             </Head>
-            <Navbar
+            {/* <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
                 logo={appearanceQuery?.appearances?.branding?.logo?.asset?.url}
                 logoWidth={appearanceQuery?.branding?.logoWidth}
@@ -104,7 +104,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                 enableTopHeader={appearanceQuery?.appearanceQuery?.appearances?.topHeaderBar?.enableTopHeaderBar}
             />
             <Header
-            />
+            /> */}
             <div className="section">
                 <div className="container">
                     <div className="idxTest">
