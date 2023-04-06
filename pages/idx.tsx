@@ -47,7 +47,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
     console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
-            {/* <Head>
+            <Head>
                 <style>
                     {`
                         :root {
@@ -103,18 +103,19 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                 topHeaderBackground={appearanceQuery?.appearanceQuery?.appearances?.topHeaderBar?.topHeaderBarBgColor}
                 topHeaderText={appearanceQuery?.appearanceQuery?.appearances?.topHeaderBar?.topHeaderBarTextColor}
                 enableTopHeader={appearanceQuery?.appearanceQuery?.appearances?.topHeaderBar?.enableTopHeaderBar}
-            /> */}
+            />
             <Header
             />
             <div className="section">
                 <div className="container">
                     <div className="idxTest">
-                        <h1>Test IDX BODY</h1>
-                        {/* First div is for version 10 */}
-                        {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
                         <div dangerouslySetInnerHTML={{
                             __html: idx_body
                         }} />
+                        <h1>Test IDX BODY</h1>
+                        {/* First div is for version 10 */}
+                        {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
+
                     </div>
                 </div>
             </div>
