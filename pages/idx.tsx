@@ -1,4 +1,3 @@
-// pages/ihomefinder.js
 import { useEffect } from 'react';
 import Navbar from '../components/global/navbar';
 import Footer from '../components/global/footer';
@@ -18,18 +17,20 @@ export async function getStaticProps({ preview = false }) {
 
 
         return {
-            props: { preview, appearanceQuery, idx_body, revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60 },
+            props: { preview, appearanceQuery, idx_body },
+            // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
+            revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
         }
     }
 
     /* when the client isn't set up */
     return {
-        props: { idx_body },
+        props: {idx_body},
         revalidate: undefined,
     }
 }
 
-export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
+export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
     // useEffect(() => {
     //     // Load the iHomefinder embed code on the client side
     //     const script = document.createElement('script');
@@ -42,10 +43,45 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
     //     };
     // }, []);
 
-    console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
+console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
+            <Head>
+                <style>
+                    {`
+                        :root {
 
+                            --primary-accent: ${appearanceQuery?.appearances?.primaryAccent ?? '#cccccc'};
+
+                            --footer-background-color: ${appearanceQuery?.appearances?.footerBg ?? '#0d1321'};
+                            --footer-header-color: ${appearanceQuery?.appearances?.footerHeader ?? '#ffffff'};
+                            --footer-text-color: ${appearanceQuery?.appearances?.footerText ?? '#9b9b9b'};
+                            --primary-button-background: ${appearanceQuery?.appearances?.primaryButtonBg ?? 'transparent'};
+                            --primary-button-text: ${appearanceQuery?.appearances?.primaryButtonText ?? '#000000'};
+                            --secondary-button-background: ${appearanceQuery?.appearances?.secondaryButtonBg ?? 'transparent'};
+                            --secondary-button-text: ${appearanceQuery?.appearances?.secondaryButtonText ?? '#cccccc'};
+                            --secondary-color: ${appearanceQuery?.appearances?.secondaryColor ?? '#cccccc'};
+
+                            --header-background-color: ${appearanceQuery?.appearances?.navBgColor ? appearanceQuery?.appearances?.navBgColor : 'transparent'};
+                            --header-navigation-color: ${appearanceQuery?.appearances?.navColor ?? '#ffffff'};
+                            --mobile-icon-color: ${appearanceQuery?.appearances?.mobileIconColor ?? '#ffffff'};
+
+                            --loading-background-color: ${appearanceQuery?.appearances?.loaderColor ?? '#0e0e0e'};
+                            --loading-image: url(${appearanceQuery?.appearances?.loaderImage});
+
+                            --website-body-color: ${appearanceQuery?.appearances?.websiteBodyColor ?? '#fff'};
+                            --website-text-color: ${appearanceQuery?.appearances?.websiteTextColor ?? '#222'};
+
+                            --button-radius: ${`${appearanceQuery?.appearances?.buttonRadius ?? 4}px`};
+                            --button-y-padding: ${`${appearanceQuery?.appearances?.buttonYPadding ?? 16}px`};
+                            --button-x-padding: ${`${appearanceQuery?.appearances?.buttonXPadding ?? 50}px`};
+                            
+                            --announcementbar-background-color: ${appearanceQuery?.appearances?.announcementBar?.announcementBgColor};
+                            --announcementbar-text-color: ${appearanceQuery?.appearances?.announcementBar?.announcementTextColor};
+                        }
+                    `}
+                </style>
+            </Head>
             <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
                 logo={appearanceQuery?.appearances?.branding?.logo?.asset?.url}
@@ -72,18 +108,11 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                 <div className="container">
                     <div className="idxTest">
                         <h1>Test IDX BODY</h1>
-
-                        <div dangerouslySetInnerHTML={{
-                            __html: `
-                            ${idx_body}
-                            <footer>
-                                <h1>MY FOOTER</h1>
-                            </footer>
-                            `
-                        }} />
                         {/* First div is for version 10 */}
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
-
+                        <div dangerouslySetInnerHTML={{
+                            __html: idx_body
+                        }}/>
                     </div>
                 </div>
             </div>
@@ -92,7 +121,42 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                     <h1>FOOTER</h1>
                 </div>
             </div>
-
+            {/* <Footer
+                footerText={appearanceQuery?.appearances?.footer?.footerText}
+                image={appearanceQuery?.appearances?.footer?.footerLogo}
+                hours={appearanceQuery?.appearances?.footer?.hours}
+                monday={appearanceQuery?.profileSettings?.hours?.monday}
+                tuesday={appearanceQuery?.profileSettings?.hours?.tuesday}
+                wednesday={appearanceQuery?.profileSettings?.hours?.wednesday}
+                thursday={appearanceQuery?.profileSettings?.hours?.thursday}
+                friday={appearanceQuery?.profileSettings?.hours?.friday}
+                saturday={appearanceQuery?.profileSettings?.hours?.saturday}
+                sunday={appearanceQuery?.profileSettings?.hours?.sunday}
+                company_name={appearanceQuery?.profileSettings?.company_name}
+                legal={appearanceQuery?.legal}
+                email={appearanceQuery?.profileSettings?.contact_information?.email}
+                phone_number={appearanceQuery?.profileSettings?.contact_information?.phone_number}
+                office_number={appearanceQuery?.profileSettings?.contact_information?.office_number}
+                website={appearanceQuery?.profileSettings?.settings?.websiteName}
+                address={appearanceQuery?.profileSettings?.address?.address}
+                city={appearanceQuery?.profileSettings?.address?.city}
+                state={appearanceQuery?.profileSettings?.address?.state}
+                zip_code={appearanceQuery?.profileSettings?.address?.zip_code}
+                links={appearanceQuery?.appearances?.footer?.quickLinks}
+                googleBusiness={appearanceQuery?.profileSettings?.social?.googleBusiness}
+                facebook={appearanceQuery?.profileSettings?.social?.facebook}
+                youtube={appearanceQuery?.profileSettings?.social?.youtube}
+                instagram={appearanceQuery?.profileSettings?.social?.instagram}
+                twitter={appearanceQuery?.profileSettings?.social?.twitter}
+                reddit={appearanceQuery?.profileSettings?.social?.reddit}
+                linkedin={appearanceQuery?.profileSettings?.social?.linkedin}
+                yelp={appearanceQuery?.profileSettings?.social?.yelp}
+                pinterest={appearanceQuery?.profileSettings?.social?.pinterest}
+                tiktok={appearanceQuery?.profileSettings?.social?.tiktok}
+                zillow={appearanceQuery?.profileSettings?.social?.zillow}
+                size={appearanceQuery?.profileSettings?.social?.size}
+                footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
+            /> */}
         </>
     );
 };
