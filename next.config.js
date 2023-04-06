@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  assetPrefix: 'http://localhost:3000',
   swcMinify: false,
   images: {
     remotePatterns: [
