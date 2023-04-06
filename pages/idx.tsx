@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import Layout from '../components/global/layout';
 
-const IhomefinderEmbed = () => {
+const IhomefinderPage = () => {
     useEffect(() => {
         // Load the iHomefinder embed code on the client side
         const script = document.createElement('script');
@@ -17,17 +17,11 @@ const IhomefinderEmbed = () => {
     }, []);
 
     return (
-        <div className="idxTest">
-            <script dangerouslySetInnerHTML={{ __html: 'document.currentScript.replaceWith(ihfKestrel.render());' }} />
-        </div>
-    );
-};
-
-const IhomefinderPage = () => {
-    return (
         <>
-            <h1>IDX TEST w/olayout</h1>
-            <IhomefinderEmbed />
+            <h1>IDX TEST wlayout</h1>
+            <div className="idxTest">
+                <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} />
+            </div>
         </>
     );
 };
