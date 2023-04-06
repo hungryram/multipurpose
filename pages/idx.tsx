@@ -1,7 +1,5 @@
 // pages/ihomefinder.js
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Layout from '../components/global/layout';
 import Navbar from '../components/global/navbar';
 import Footer from '../components/global/footer';
 import { getClient } from '../lib/sanity.server';
@@ -31,8 +29,7 @@ export async function getStaticProps({ preview = false }) {
     }
 }
 
-export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
-    const router = useRouter();
+export default function IHomefinderEmbed(appearanceQuery, idx_body) {
     useEffect(() => {
         // Load the iHomefinder embed code on the client side
         const script = document.createElement('script');
@@ -45,7 +42,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
         };
     }, []);
 
-    console.log(appearanceQuery.appearanceQuery?.appearances?.announcementBar?.announcementTextColor)
+    console.log(idx_body)
     return (
         <>
             <Head>
