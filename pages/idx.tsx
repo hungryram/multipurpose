@@ -26,10 +26,8 @@ const IhomefinderEmbed = () => {
 const IhomefinderPage = () => {
     return (
         <>
-            <Layout>
-                <h1>IDX TEST wlayout</h1>
-                <IhomefinderEmbed />
-            </Layout>
+            <h1>IDX TEST w/olayout</h1>
+            <IhomefinderEmbed />
         </>
     );
 };
