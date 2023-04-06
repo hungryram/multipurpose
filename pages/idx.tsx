@@ -82,14 +82,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
                         }
                     `}
                 </style>
-                <script src="/jquery.min.js"></script>
-                <script dangerouslySetInnerHTML={{
-                    __html: `
-    jQuery.noConflict();
-    jQuery(document).ready(function () {
-      alert('The DOM is ready');
-    });
-  `}}></script>
+
             </Head>
             <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
