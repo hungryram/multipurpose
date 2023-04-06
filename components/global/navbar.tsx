@@ -81,7 +81,7 @@ export default function Navbar({
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
                         <Link href="/" className="relative cursor-pointer inline-block">
                             {logo ?
-                                <Image
+                                <img
                                     src={logo}
                                     width={logoWidth ? logoWidth : '150'}
                                     height={10}
@@ -217,7 +217,7 @@ export default function Navbar({
                         <div className="flex-1">
                             <Link href="/" className="relative cursor-pointer block">
                                 {logo &&
-                                    <Image
+                                    <img
                                         src={logo}
                                         width={mobileLogoWidth ?? 100}
                                         height={50}
