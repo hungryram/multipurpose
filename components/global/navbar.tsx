@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BiCaretDown } from "react-icons/bi"
@@ -34,12 +34,12 @@ export default function Navbar({
     const [dropdownActive, setDropdownActive] = useState(null);
     const [openMobileNav, setOpenMobileNav] = useState(false)
 
-    // const [scroll, setScroll] = useState(false);
-    // useEffect(() => {
-    //     window.addEventListener("scroll", () => {
-    //         setScroll(window.scrollY > 50);
-    //     });
-    // }, []);
+    const [scroll, setScroll] = useState(false);
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            setScroll(window.scrollY > 50);
+        });
+    }, []);
 
     const router = useRouter();
 
