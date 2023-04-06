@@ -116,40 +116,40 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                 </div>
             </div>
             <Footer
-                footerText={appearanceQuery?.appearances?.footer?.footerText}
-                image={appearanceQuery?.appearances?.footer?.footerLogo}
-                hours={appearanceQuery?.appearances?.footer?.hours}
-                monday={appearanceQuery?.profileSettings?.hours?.monday}
-                tuesday={appearanceQuery?.profileSettings?.hours?.tuesday}
-                wednesday={appearanceQuery?.profileSettings?.hours?.wednesday}
-                thursday={appearanceQuery?.profileSettings?.hours?.thursday}
-                friday={appearanceQuery?.profileSettings?.hours?.friday}
-                saturday={appearanceQuery?.profileSettings?.hours?.saturday}
-                sunday={appearanceQuery?.profileSettings?.hours?.sunday}
-                company_name={appearanceQuery?.profileSettings?.company_name}
-                legal={appearanceQuery?.legal}
-                email={appearanceQuery?.profileSettings?.contact_information?.email}
-                phone_number={appearanceQuery?.profileSettings?.contact_information?.phone_number}
-                office_number={appearanceQuery?.profileSettings?.contact_information?.office_number}
-                website={appearanceQuery?.profileSettings?.settings?.websiteName}
-                address={appearanceQuery?.profileSettings?.address?.address}
-                city={appearanceQuery?.profileSettings?.address?.city}
-                state={appearanceQuery?.profileSettings?.address?.state}
-                zip_code={appearanceQuery?.profileSettings?.address?.zip_code}
-                links={appearanceQuery?.appearances?.footer?.quickLinks}
-                googleBusiness={appearanceQuery?.profileSettings?.social?.googleBusiness}
-                facebook={appearanceQuery?.profileSettings?.social?.facebook}
-                youtube={appearanceQuery?.profileSettings?.social?.youtube}
-                instagram={appearanceQuery?.profileSettings?.social?.instagram}
-                twitter={appearanceQuery?.profileSettings?.social?.twitter}
-                reddit={appearanceQuery?.profileSettings?.social?.reddit}
-                linkedin={appearanceQuery?.profileSettings?.social?.linkedin}
-                yelp={appearanceQuery?.profileSettings?.social?.yelp}
-                pinterest={appearanceQuery?.profileSettings?.social?.pinterest}
-                tiktok={appearanceQuery?.profileSettings?.social?.tiktok}
-                zillow={appearanceQuery?.profileSettings?.social?.zillow}
-                size={appearanceQuery?.profileSettings?.social?.size}
-                footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
+                // footerText={appearanceQuery?.appearances?.footer?.footerText}
+                // image={appearanceQuery?.appearances?.footer?.footerLogo}
+                // hours={appearanceQuery?.appearances?.footer?.hours}
+                // monday={appearanceQuery?.profileSettings?.hours?.monday}
+                // tuesday={appearanceQuery?.profileSettings?.hours?.tuesday}
+                // wednesday={appearanceQuery?.profileSettings?.hours?.wednesday}
+                // thursday={appearanceQuery?.profileSettings?.hours?.thursday}
+                // friday={appearanceQuery?.profileSettings?.hours?.friday}
+                // saturday={appearanceQuery?.profileSettings?.hours?.saturday}
+                // sunday={appearanceQuery?.profileSettings?.hours?.sunday}
+                // company_name={appearanceQuery?.profileSettings?.company_name}
+                // legal={appearanceQuery?.legal}
+                // email={appearanceQuery?.profileSettings?.contact_information?.email}
+                // phone_number={appearanceQuery?.profileSettings?.contact_information?.phone_number}
+                // office_number={appearanceQuery?.profileSettings?.contact_information?.office_number}
+                // website={appearanceQuery?.profileSettings?.settings?.websiteName}
+                // address={appearanceQuery?.profileSettings?.address?.address}
+                // city={appearanceQuery?.profileSettings?.address?.city}
+                // state={appearanceQuery?.profileSettings?.address?.state}
+                // zip_code={appearanceQuery?.profileSettings?.address?.zip_code}
+                // links={appearanceQuery?.appearances?.footer?.quickLinks}
+                // googleBusiness={appearanceQuery?.profileSettings?.social?.googleBusiness}
+                // facebook={appearanceQuery?.profileSettings?.social?.facebook}
+                // youtube={appearanceQuery?.profileSettings?.social?.youtube}
+                // instagram={appearanceQuery?.profileSettings?.social?.instagram}
+                // twitter={appearanceQuery?.profileSettings?.social?.twitter}
+                // reddit={appearanceQuery?.profileSettings?.social?.reddit}
+                // linkedin={appearanceQuery?.profileSettings?.social?.linkedin}
+                // yelp={appearanceQuery?.profileSettings?.social?.yelp}
+                // pinterest={appearanceQuery?.profileSettings?.social?.pinterest}
+                // tiktok={appearanceQuery?.profileSettings?.social?.tiktok}
+                // zillow={appearanceQuery?.profileSettings?.social?.zillow}
+                // size={appearanceQuery?.profileSettings?.social?.size}
+                // footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
             />
         </>
     );
