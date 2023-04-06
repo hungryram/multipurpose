@@ -7,6 +7,7 @@ import { appearances } from '../lib/queries';
 import Head from 'next/head';
 import Header from '../components/templates/header';
 import Styles from "../styles/footer.module.css"
+import Link from 'next/link';
 
 export async function getStaticProps({ preview = false }) {
     const idx_body = `{idx_body}`
@@ -116,10 +117,11 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     </div>
                 </div>
             </div>
-            <footer className={Styles.footer}>
+            <footer>
             <div className="pt-20 pb-10">
                 <div className="container">
                     <div className="mx-6 py-10 md:text-left text-center">
+                        <h1>footer</h1>
                         {/* <div className={`grid grid-1 md:grid-cols-2 lg:grid-cols-${hours ? '5' : '4'} md:gap-4 gap-8`}>
                             <div className="relative">
                                 {image ?
@@ -214,10 +216,10 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
 
                 </div>
             </div>
-            {/* <div className="text-center p-4">
-                {legal ?
+            <div className="text-center p-4">
+                {appearanceQuery?.legal ?
                     <ul>
-                        {legal?.map((node) => {
+                        {appearanceQuery?.legal?.map((node) => {
                             return (
                                 <li className="inline text-xs mx-2" key={node._id}>
                                     <Link href={`/legal/${node.slug}`}>
@@ -229,8 +231,8 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     </ul>
                     : null
                 }
-                <p className="text-xs font-light pt-0">&copy; Copyright {new Date().getFullYear()} &middot; <Link href={website ?? '/'}>{company_name}</Link> &middot; Website built by <a href="https://www.hungryram.com/" className="font-bold" target="_blank" rel="noreferrer">Hungry Ram</a></p>
-            </div> */}
+                {/* <p className="text-xs font-light pt-0">&copy; Copyright {new Date().getFullYear()} &middot; <Link href={website ?? '/'}>{company_name}</Link> &middot; Website built by <a href="https://www.hungryram.com/" className="font-bold" target="_blank" rel="noreferrer">Hungry Ram</a></p> */}
+            </div>
         </footer>
             {/* <Footer
                 footerText={appearanceQuery?.appearances?.footer?.footerText}
