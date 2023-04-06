@@ -58,42 +58,7 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
     console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
-            <Head>
-                <style>
-                    {`
-                        :root {
 
-                            --primary-accent: ${appearanceQuery?.appearances?.primaryAccent ?? '#cccccc'};
-
-                            --footer-background-color: ${appearanceQuery?.appearances?.footerBg ?? '#0d1321'};
-                            --footer-header-color: ${appearanceQuery?.appearances?.footerHeader ?? '#ffffff'};
-                            --footer-text-color: ${appearanceQuery?.appearances?.footerText ?? '#9b9b9b'};
-                            --primary-button-background: ${appearanceQuery?.appearances?.primaryButtonBg ?? 'transparent'};
-                            --primary-button-text: ${appearanceQuery?.appearances?.primaryButtonText ?? '#000000'};
-                            --secondary-button-background: ${appearanceQuery?.appearances?.secondaryButtonBg ?? 'transparent'};
-                            --secondary-button-text: ${appearanceQuery?.appearances?.secondaryButtonText ?? '#cccccc'};
-                            --secondary-color: ${appearanceQuery?.appearances?.secondaryColor ?? '#cccccc'};
-
-                            --header-background-color: ${appearanceQuery?.appearances?.navBgColor ? appearanceQuery?.appearances?.navBgColor : 'transparent'};
-                            --header-navigation-color: ${appearanceQuery?.appearances?.navColor ?? '#ffffff'};
-                            --mobile-icon-color: ${appearanceQuery?.appearances?.mobileIconColor ?? '#ffffff'};
-
-                            --loading-background-color: ${appearanceQuery?.appearances?.loaderColor ?? '#0e0e0e'};
-                            --loading-image: url(${appearanceQuery?.appearances?.loaderImage});
-
-                            --website-body-color: ${appearanceQuery?.appearances?.websiteBodyColor ?? '#fff'};
-                            --website-text-color: ${appearanceQuery?.appearances?.websiteTextColor ?? '#222'};
-
-                            --button-radius: ${`${appearanceQuery?.appearances?.buttonRadius ?? 4}px`};
-                            --button-y-padding: ${`${appearanceQuery?.appearances?.buttonYPadding ?? 16}px`};
-                            --button-x-padding: ${`${appearanceQuery?.appearances?.buttonXPadding ?? 50}px`};
-                            
-                            --announcementbar-background-color: ${appearanceQuery?.appearances?.announcementBar?.announcementBgColor};
-                            --announcementbar-text-color: ${appearanceQuery?.appearances?.announcementBar?.announcementTextColor};
-                        }
-                    `}
-                </style>
-            </Head>
             <Navbar
                 company_name={appearanceQuery?.profileSettings?.company_name}
                 logo={appearanceQuery?.appearances?.branding?.logo?.asset?.url}
