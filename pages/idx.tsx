@@ -71,10 +71,16 @@ export default function IHomefinderEmbed({ appearanceQuery, idx_body }) {
             <div className="section">
                 <div className="container">
                     <div className="idxTest">
-                        <div dangerouslySetInnerHTML={{
-                            __html: idx_body
-                        }} />
                         <h1>Test IDX BODY</h1>
+
+                        <div dangerouslySetInnerHTML={{
+                            __html: `
+                            ${idx_body}
+                            <footer>
+                                <h1>MY FOOTER</h1>
+                            </footer>
+                            `
+                        }} />
                         {/* First div is for version 10 */}
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
 
