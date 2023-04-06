@@ -110,7 +110,7 @@ export default function IHomefinderEmbed(appearanceQuery) {
                         <h1>Test IDX BODY</h1>
                         {/* <div dangerouslySetInnerHTML={{ __html: '<script>document.currentScript.replaceWith(ihfKestrel.render());</script>' }} /> */}
                         <div dangerouslySetInnerHTML={{
-                            __html: `{idx_body}`
+                            __html: idx_body
                         }}/>
                     </div>
                 </div>
