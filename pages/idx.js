@@ -43,6 +43,7 @@ export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
     //     };
     // }, []);
 
+console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
     return (
         <>
             <Head>

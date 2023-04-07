@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  // assetPrefix: 'https://multipurpose-inky.vercel.app',
+  assetPrefix: 'https://multipurpose-inky.vercel.app',
   polyfill: false,
   swcMinify: false,
   images: {
