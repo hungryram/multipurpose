@@ -116,8 +116,15 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                     </div>
                 </div>
             </div>
+            <div className="section" style={{
+                backgroundColor: 'black'
+            }}>
+                <div className="container">
+                    <h1>FOOTER</h1>
+                </div>
+            </div>
 
-            <Footer
+            {/* <Footer
                 footerText={appearanceQuery?.appearances?.footer?.footerText}
                 image={appearanceQuery?.appearances?.footer?.footerLogo}
                 hours={appearanceQuery?.appearances?.footer?.hours}
@@ -152,7 +159,7 @@ console.log(appearanceQuery?.appearances?.branding?.logo?.asset?.url)
                 zillow={appearanceQuery?.profileSettings?.social?.zillow}
                 size={appearanceQuery?.profileSettings?.social?.size}
                 footerDisclaimer={appearanceQuery?.appearances?.footer?.footerDisclaimer}
-            />
+            /> */}
         </>
     );
 };
