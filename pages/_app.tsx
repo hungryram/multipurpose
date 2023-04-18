@@ -1,6 +1,7 @@
 import '../styles/index.css'
 import { useRouter } from 'next/router'
 import Layout from '../components/global/layout'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()

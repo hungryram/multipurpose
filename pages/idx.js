@@ -29,17 +29,17 @@ export async function getStaticProps({ preview = false }) {
 }
 
 export default function IHomefinderEmbed({appearanceQuery, idx_body}) {
-    useEffect(() => {
-        // Load the iHomefinder embed code on the client side
-        const script = document.createElement('script');
-        script.async = true;
-        document.body.appendChild(script);
+    // useEffect(() => {
+    //     // Load the iHomefinder embed code on the client side
+    //     const script = document.createElement('script');
+    //     script.async = true;
+    //     document.body.appendChild(script);
 
-        // Replace the script tag with the iHomefinder embed code
-        script.onload = () => {
-            document.currentScript.replaceWith(ihfKestrel.render());
-        };
-    }, []);
+    //     // Replace the script tag with the iHomefinder embed code
+    //     script.onload = () => {
+    //         document.currentScript.replaceWith(ihfKestrel.render());
+    //     };
+    // }, []);
 
     return (
         <>
