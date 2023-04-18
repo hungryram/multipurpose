@@ -34,7 +34,7 @@ export default function Pages(props: Props) {
   }
 
   return (
-    <Layout preview={preview}>
+    <>
       <Seo
         robotIndex="nofollow, noindex"
       />
@@ -71,7 +71,7 @@ export default function Pages(props: Props) {
         allBlog={page?.allBlog}
         allTeam={page?.allTeam}
       />
-    </Layout>
+    </>
   )
 }
 

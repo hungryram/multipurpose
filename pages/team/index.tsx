@@ -43,7 +43,6 @@ export default function TeamIndex({ teamQuery }) {
                 altText={teamQuery?.pageSettings?.team?.headerImageData?.asset?.altText ?? teamQuery?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
                 canonicalUrl={teamQuery?.profileSettings?.settings?.websiteName + router.asPath}
                 />
-            <Layout>
 
                 <Header
                     title={teamQuery?.pageSettings?.team?.title || 'Team'}
@@ -73,7 +72,6 @@ export default function TeamIndex({ teamQuery }) {
                         }
                     </div>
                 </div>
-            </Layout>
         </>
     )
 }

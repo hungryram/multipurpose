@@ -44,7 +44,6 @@ export default function ServiceIndex({ serviceQuery }) {
                 themeColor={serviceQuery?.appearances?.themeColor}
                 canonicalUrl={serviceQuery?.profileSettings?.settings?.websiteName + router.asPath}
             />
-            <Layout>
 
                 <Header
                     title={serviceQuery?.pageSettings?.services?.title ?? 'Services'}
@@ -76,7 +75,6 @@ export default function ServiceIndex({ serviceQuery }) {
                         }
                     </div>
                 </div>
-            </Layout>
         </>
     )
 }

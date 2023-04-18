@@ -49,7 +49,6 @@ export default function Post(props: Props) {
         themeColor={appearances?.themeColor}
         canonicalUrl={profileSettings?.settings?.websiteName + router.asPath}
       />
-      <Layout preview={preview}>
         <Header
           image={post?.coverImage?.asset !== undefined && urlForImage(post?.coverImage).url()}
           blurData={post?.coverImageData?.asset?.lqip}
@@ -83,7 +82,6 @@ export default function Post(props: Props) {
             )}
           </div>
         </div>
-      </Layout>
     </>
   )
 }

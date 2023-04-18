@@ -48,7 +48,6 @@ export default function Index({
         altText={homeSettings.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
         canonicalUrl={homeSettings?.profileSettings?.settings?.websiteName + router.asPath}
       />
-      <Layout preview={preview}>
         <MainBody
           pageBuilder={homeSettings?.homeAppearance?.homePage?.pageBuilder}
           // FIRST TREE
@@ -82,7 +81,6 @@ export default function Index({
           allTeam={homeSettings?.allTeam}
 
         />
-      </Layout>
     </>
   )
 }

@@ -1,6 +1,10 @@
 import '../styles/index.css'
+import { useRouter } from 'next/router'
+import Layout from '../components/global/layout'
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  const isNotAdminPortal = !router.pathname.startsWith('/admin')
   return (
     <>
       {/* <Head>
@@ -12,7 +16,13 @@ function MyApp({ Component, pageProps }) {
         />
         
       </Head> */}
-      <Component {...pageProps} />
+      {isNotAdminPortal ? (
+        <Layout preview={pageProps.preview}>
+          <Component {...pageProps} />
+        </Layout>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </>
   )
 }

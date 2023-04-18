@@ -51,7 +51,6 @@ export default function ServicePages(props: Props) {
                 altText={page?.services?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
                 canonicalUrl={page?.profileSettings?.settings?.websiteName + router.asPath}
             />
-            <Layout preview={preview}>
 
                 <Header
                     title={page?.services?.title}
@@ -99,7 +98,6 @@ export default function ServicePages(props: Props) {
                     allTeam={page?.allTeam}
                 />
 
-            </Layout>
         </>
     )
 }

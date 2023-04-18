@@ -50,7 +50,6 @@ export default function TeamPages(props: Props) {
                 altText={page?.team?.imageData?.asset?.altText ?? page?.team?.name}
                 canonicalUrl={page?.profileSettings?.settings?.websiteName + router.asPath}
                 />
-            <Layout preview={preview}>
 
                 <Header
                     title={page?.team?.name}
@@ -83,7 +82,6 @@ export default function TeamPages(props: Props) {
                         </div>
                     </div>
                 </div>
-            </Layout>
         </>
     )
 }

@@ -43,7 +43,6 @@ export default function LegalIndex({ legalQuery }) {
                 altText={legalQuery?.pageSettings?.legal?.headerImageData?.asset?.altText}
                 canonicalUrl={legalQuery?.profileSettings?.settings?.websiteName + router.asPath}
             />
-            <Layout>
 
                 <Header
                     title={legalQuery?.pageSettings?.legal?.title || 'Website Policies'}
@@ -72,7 +71,6 @@ export default function LegalIndex({ legalQuery }) {
                         </div>
                     </div>
                 </div>
-            </Layout>
         </>
     )
 }

@@ -42,7 +42,6 @@ export default function BlogIndex({ blogQuery }) {
                 themeColor={blogQuery?.appearances?.themeColor}
                 canonicalUrl={blogQuery?.profileSettings?.settings?.websiteName + router.asPath}
                 />
-            <Layout>
 
                 <Header
                     title={blogQuery?.pageSettings?.blog?.title || 'The Blog'}
@@ -81,7 +80,6 @@ export default function BlogIndex({ blogQuery }) {
                         </div>
                     </div>
                 </div>
-            </Layout>
         </>
     )
 }
