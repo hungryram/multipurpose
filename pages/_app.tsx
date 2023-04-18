@@ -5,6 +5,7 @@ import Layout from '../components/global/layout'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const isNotAdminPortal = !router.pathname.startsWith('/admin')
+  const isIdx = !router.pathname.startsWith('/idx')
   return (
     <>
       {/* <Head>
@@ -16,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         />
         
       </Head> */}
-      {isNotAdminPortal ? (
+      {isNotAdminPortal && isIdx ? (
         <Layout preview={pageProps.preview}>
           <Component {...pageProps} />
         </Layout>
