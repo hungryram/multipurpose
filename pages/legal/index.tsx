@@ -1,7 +1,6 @@
 import { queryLegal } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
 import Link from "next/link"
-import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
 import { useRouter } from "next/router";

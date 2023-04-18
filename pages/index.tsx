@@ -4,7 +4,6 @@ import { getClient } from '../lib/sanity.server'
 import { useRouter } from "next/router";
 
 // TEMPLATES
-import Layout from '../components/global/layout'
 import Seo from '../components/global/seo'
 import MainBody from '../components/templates/main-body'
 
@@ -86,7 +85,6 @@ export default function Index({
 }
 
 export async function getStaticProps({ preview = false }) {
-
   /* check if the project id has been defined by fetching the vercel envs */
   if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
     const homeSettings = await getClient(preview).fetch(homePageQuery)

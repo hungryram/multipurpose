@@ -1,6 +1,5 @@
 import { queryServices } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
-import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
 import ServiceCard from "../../components/templates/service-card"

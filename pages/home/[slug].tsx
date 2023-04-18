@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 
 // TEMPLATES
-import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 import MainBody from '../../components/templates/main-body'
 

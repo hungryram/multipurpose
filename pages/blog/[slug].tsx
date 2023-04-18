@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 
-import Layout from '../../components/global/layout'
 import Header from '../../components/templates/header'
 import MoreStories from '../../components/templates/blog/more-stories'
 import PostBody from '../../components/templates/blog/post-body'

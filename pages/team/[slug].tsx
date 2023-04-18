@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 
 // TEMPLATES
 import Header from '../../components/templates/header'
-import Layout from '../../components/global/layout'
 import Seo from '../../components/global/seo'
 
 import { teamSlugsQuery, queryTeamCurrentPage } from '../../lib/queries'

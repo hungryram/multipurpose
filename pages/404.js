@@ -1,4 +1,3 @@
-import Layout from "../components/global/layout"
 import PrimaryButton from "../components/util/primary-button"
 
 export default function NotFound() {

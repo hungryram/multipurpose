@@ -2,10 +2,7 @@ import { useRouter } from 'next/router'
 
 // TEMPLATES
 import Header from '../components/templates/header'
-import Layout from '../components/global/layout'
 import Seo from '../components/global/seo'
-
-
 import { pagesSlugsQuery, pageQuery } from '../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
@@ -50,8 +47,6 @@ export default function Pages(props: Props) {
                 altText={page?.pages?.headerImageData?.asset?.altText ?? page?.profileSettings?.defaultImageData?.defaultImageBanner?.asset?.altText}
                 canonicalUrl={page?.profileSettings?.settings?.websiteName + router.asPath}
             />
-            <Layout preview={preview}>
-
                 <Header
                     title={page?.pages?.title}
                     image={page?.pages?.headerImage?.asset !== undefined ? urlForImage(page?.pages?.headerImage).url() : page?.appearances?.defaultHeaderBanner?.asset?.url}
@@ -97,7 +92,6 @@ export default function Pages(props: Props) {
                     allTeam={page?.allTeam}
 
                 />
-            </Layout>
         </>
     )
 }

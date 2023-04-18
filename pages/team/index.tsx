@@ -1,6 +1,5 @@
 import { queryTeam } from "../../lib/queries"
 import { getClient } from "../../lib/sanity.server"
-import Layout from "../../components/global/layout"
 import Header from "../../components/templates/header"
 import Seo from "../../components/global/seo"
 import TeamCard from "../../components/templates/team-card"
