@@ -18,7 +18,7 @@
     "@portabletext/react": "^2.0.0",
     "@sanity/color-input": "^3.0.0-v3-studio.11",
     "@sanity/image-url": "^1.0.1",
-    "@sanity/vision": "3.0.0-rc.0",
+    "@sanity/vision": "3.36.1",
     "@sanity/webhook": "^2.0.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
@@ -31,7 +31,7 @@
     "react-icons": "^4.6.0",
     "react-is": "^18.2.0",
     "react-youtube": "^10.1.0",
-    "sanity": "3.0.0-rc.0",
+    "sanity": "3.36.1",
     "sanity-plugin-asset-source-unsplash": "3.0.0-v3-studio.13",
     "sanity-plugin-media": "^2.0.0-v3-studio.3",
     "styled-components": "^5.3.6",
@@ -39,16 +39,16 @@
     "swr": "^1.3.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.27.0",
-    "eslint-config-next": "^13.0.2",
+    "@types/react": "^18.2.73",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^13.5.6",
     "eslint-plugin-simple-import-sort": "^8.0.0",
-    "postcss": "^8.4.21",
-    "prettier": "^2.7.1",
-    "prettier-plugin-packagejson": "^2.3.0",
-    "prettier-plugin-tailwindcss": "^0.1.13",
-    "tailwindcss": "^3.3.1",
-    "typescript": "^4.8.4"
+    "postcss": "^8.4.38",
+    "prettier": "^2.8.8",
+    "prettier-plugin-packagejson": "^2.4.13",
+    "prettier-plugin-tailwindcss": "^0.5.13",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^4.9.5"
   }
 }
